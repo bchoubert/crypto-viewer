@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Crypto Viewer",
-    "slug": "crypto-viewer",
+    "slug": "cryptoviewer",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundlerIdentifier": "com.bchoubert.cryptoviewer"
+    },
+    "android": {
+      "package": "com.bchoubert.cryptoviewer"
     }
   }
 }
