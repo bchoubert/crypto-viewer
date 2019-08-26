@@ -25,7 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundlerIdentifier": "com.bchoubert.cryptoviewer"
+      "bundleIdentifier": "com.bchoubert.cryptoviewer"
     },
     "android": {
       "package": "com.bchoubert.cryptoviewer"
