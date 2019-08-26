@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, StyleSheet, ToastAndroid, View, SectionList, TouchableOpacity } from 'react-native';
+import safeSetState from '@axetroy/react-safe-set-state';
 
 import Colors from '../assets/Colors';
 
@@ -9,29 +10,42 @@ import CryptoViewerIconsMap from '../assets/fonts/CryptoViewerIconsMap';
 import NetworkService from '../services/Network.service';
 import UtilsService from '../services/Utils.service';
 
-import Currency from '../models/Currency';
+import Currency from '../models/Crypto';
 import quoteType from '../models/QuoteType';
 import ExchangeRates from '../models/ExhangeRates';
 
 export interface Props {
+  // Quote as selected
   quote: quoteType,
+
+  // Change tab callback function to load details of a crypto
   changeTab: Function
 };
 
 interface State {
+  // List loading value (used also for pull to refresh)
   isLoading: boolean,
+
+  // All currencies
   currencies: Currency[],
+
+  // Quote as selected, used to refresh if from the settings
   quote: quoteType,
+
+  // Sorted assets
   mainAssets: Currency[],
   otherAssets: Currency[]
 };
 
+/* Render the crypto list */
+@safeSetState()
 class CryptoView extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
 
     this.state = {
+      // Default values
       isLoading: true,
       currencies: [],
       quote: props.quote,
@@ -42,10 +56,12 @@ class CryptoView extends Component<Props, State> {
   }
 
   componentDidMount() {
+    // Get currencies and others on load
     this.getCurrencies();
   }
 
   componentWillReceiveProps(nextProps) {
+    // If the quote is changed from the settings, auto update it here
     if(nextProps.quote.code !== this.state.quote.code) {
       this.setState({ quote: nextProps.quote }, () => {
         this.sortAssets();
@@ -53,41 +69,67 @@ class CryptoView extends Component<Props, State> {
     }
   }
 
+  // Render a crypto list item
   renderCrypto = (crypto, section) => {
+    // Compute the price
     var price = '';
     if(!!crypto.price) {
       price = UtilsService.truncateNumber(crypto.price) + ' ' + this.props.quote.symbol;
     }
 
-    return <TouchableOpacity style={styles.crypto_item} onPress={() => this.props.changeTab('details', crypto)}>
-      <View style={styles.crypto_item_properties}>
-        <Text style={{ ...styles.crypto_item_icon, color: CryptoCurrencyIconsMap[crypto.id.toLowerCase()].color }}>{CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode}</Text>
-        <View style={styles.crypto_item_names}>
-          <Text style={styles.crypto_item_name}>{crypto.name}</Text>
-          <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+    // Render the complete list item with action
+    if(section.id === 'other') {
+      return <View style={styles.crypto_item}>
+        <View style={styles.crypto_item_properties}>
+          <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
+            { !!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] && CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode }
+          </Text>
+          <View style={styles.crypto_item_names}>
+            <Text style={styles.crypto_item_name}>{crypto.name}</Text>
+            <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.crypto_item_details}>
-        <Text style={styles.crypto_item_price}>{price}</Text>
-        <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>{ CryptoViewerIconsMap.next.unicode }</Text>
-      </View>
-    </TouchableOpacity>
+        <View style={styles.crypto_item_details}>
+          <Text style={styles.crypto_item_price}>{price}</Text>
+        </View>
+      </View>;
+    } 
+    else {
+      return <TouchableOpacity style={styles.crypto_item} onPress={() => this.props.changeTab('details', crypto)}>
+        <View style={styles.crypto_item_properties}>
+          <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
+            { !!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] && CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode }
+          </Text>
+          <View style={styles.crypto_item_names}>
+            <Text style={styles.crypto_item_name}>{crypto.name}</Text>
+            <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+          </View>
+        </View>
+        <View style={styles.crypto_item_details}>
+          <Text style={styles.crypto_item_price}>{price}</Text>
+          <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>{ CryptoViewerIconsMap.next.unicode }</Text>
+        </View>
+      </TouchableOpacity>;
+    }
   }
 
+  // Callback for pull to refresh list action
   onRefresh = () => {
     this.setState({ isLoading: true }, this.getCurrencies);
   }
 
+  // Get all currencies
   getCurrencies = () => {
-    NetworkService.fetchCurrencies()
+    NetworkService.fetchCryptos()
       .then(currencies => this.setState({ currencies: (currencies.filter(currency => (currency as Currency).details.type === 'crypto') as Currency[]) }, this.sortAssets))
       .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
   }
 
+  // Take currencies, then fetch all exchange rates and sort assets
   sortAssets() {
     this.setState({ mainAssets: [], otherAssets: [], isLoading: true });
 
-    NetworkService.fetchExchangeRates(this.props.quote.code)
+    NetworkService.fetchCryptoExchangeRates(this.props.quote.code)
       .then(exchangeRates => {
         let mainAssets = [], otherAssets = [];
 
@@ -108,6 +150,7 @@ class CryptoView extends Component<Props, State> {
       .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
   }
   
+  // Render the view with sorted assets
   render() {
     return (
       <SectionList

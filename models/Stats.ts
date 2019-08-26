@@ -1,4 +1,5 @@
 
+// The stats of a crypto is defined here
 export default interface Stats {
   open: string,
   high: string,
@@ -7,5 +8,7 @@ export default interface Stats {
   volume: string,
   volume_30day: string,
 
-  rate?: number
+  rate?: number,
+  
+  message?: string
 }

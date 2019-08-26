@@ -8,23 +8,27 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.4.2",
-    "cryptocurrency-icons-font": "^0.6.2",
-    "expo": "^33.0.0",
+    "@axetroy/react-safe-set-state": "^0.1.2",
+    "@react-native-community/async-storage": "^1.6.1",
+    "cryptocurrency-icons-font": "^0.6.3",
+    "deep-object-diff": "^1.1.0",
+    "expo": "^33.0.7",
     "expo-font": "^5.0.1",
+    "moment": "^2.24.0",
     "react": "16.8.3",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-native-svg": "^9.5.1",
-    "react-native-web": "^0.11.4",
+    "react-native-svg": "^9.6.2",
+    "react-native-swipeable-row": "^0.8.1",
+    "react-native-web": "^0.11.6",
     "victory-native": "^32.0.2"
   },
   "devDependencies": {
-    "@types/react": "^16.8.19",
-    "@types/react-native": "^0.57.60",
+    "@types/react": "^16.9.1",
+    "@types/react-native": "^0.57.65",
     "babel-preset-expo": "^5.1.1",
     "react-native-share": "^1.2.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.5.3"
   },
   "private": true
 }
