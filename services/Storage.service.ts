@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 // Service applied to store and retrieve data from the device's storage
 const StorageService = {
