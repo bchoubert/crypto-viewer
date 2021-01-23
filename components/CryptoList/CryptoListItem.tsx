@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useMemo } from 'react';
 import { SectionListData, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -10,7 +10,7 @@ import UtilsService from '../../services/Utils.service';
 
 import Crypto from '../../models/Crypto';
 import quoteType from '../../models/QuoteType';
-import { tabType } from '../../App';
+import Tabs, { tabType } from '../../models/Tabs';
 
 const styles = StyleSheet.create({
   crypto_item: {
@@ -78,18 +78,25 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   changeTab,
 }) => {
   // Compute the price
-  var price = '';
-  if (!!crypto.price) {
-    price = UtilsService.truncateNumber(crypto.price) + ' ' + quote.symbol;
-  }
+  const price = crypto?.price ? `${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}` : '';
+
+  const handleGoToDetails = useCallback(
+    () => changeTab(Tabs.details, crypto),
+    [crypto, changeTab],
+  );
+
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(crypto.id),
+    [crypto],
+  );
 
   // Render the complete list item with action
   if (section.id === 'other') {
     return (
       <View style={styles.crypto_item}>
         <View style={styles.crypto_item_properties}>
-          <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-            {!!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] && CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode}
+          <Text style={{ ...styles.crypto_item_icon, color: cryptoColor }}>
+            {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
           </Text>
           <View style={styles.crypto_item_names}>
             <Text style={styles.crypto_item_name}>{crypto.name}</Text>
@@ -103,10 +110,10 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
     );
   }
   return (
-    <TouchableOpacity style={styles.crypto_item} onPress={() => changeTab('details', crypto)}>
+    <TouchableOpacity style={styles.crypto_item} onPress={handleGoToDetails}>
       <View style={styles.crypto_item_properties}>
-        <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-          {!!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] && CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode}
+        <Text style={{ ...styles.crypto_item_icon, color: cryptoColor }}>
+          {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
         </Text>
         <View style={styles.crypto_item_names}>
           <Text style={styles.crypto_item_name}>{crypto.name}</Text>

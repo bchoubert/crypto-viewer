@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -65,6 +65,11 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   stats,
   crypto,
 }) => {
+
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(crypto.id),
+    [crypto],
+  );
   
   if (!stats) {
     return null;
@@ -81,7 +86,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
               <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                 {CryptoViewerIconsMap.high.unicode}
               </Text>
-              <Text style={{ ...styles.stat_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
                 {`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
               </Text>
             </View>
@@ -93,7 +98,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           (
             <View style={styles.stat}>
               <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.low.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
                 {`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
               </Text>
             </View>
@@ -105,7 +110,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           (
             <View style={styles.stat}>
               <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.volume.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
                 {UtilsService.truncateNumber(stats.volume, 1)}
               </Text>
             </View>

@@ -111,15 +111,8 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
         });
         setHistoricRates(result);
       })
-      .catch(console.log);
+      .catch(console.warn);
   }, [crypto, quote, activeCandle, setHistoricRates])
-
-  const changeActiveCandle = (newCandle: candleType) => {
-    // Called on a candle change. Reload the graph data
-    setHistoricRates([]);
-    setActiveCandle(newCandle);
-    fetchHistoricRates();
-  }
 
   useEffect(() => {
     // Get the Buy Price of the crypto
@@ -148,14 +141,24 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
           console.warn('No 24H stats');
         }
         else {
-          stats.rate = (parseFloat(stats.last) / parseFloat(stats.open) - 1) * 100;
-          setStats(stats);
+          setStats({
+            ...stats,
+            rate: (parseFloat(stats.last) / parseFloat(stats.open) - 1) * 100,
+          });
         }
       })
       .catch(console.error);
 
     fetchHistoricRates();
   }, []);
+
+  useEffect(
+    () => {
+      setHistoricRates([]);
+      fetchHistoricRates();
+    },
+    [activeCandle],
+  );
 
   return (
     <View style={styles.container}>
@@ -178,7 +181,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
         crypto={crypto}
         dateFormat={dateFormat}
         activeCandle={activeCandle}
-        changeActiveCandle={changeActiveCandle}
+        changeActiveCandle={setActiveCandle}
       />
 
       {/* Show the current rate compared to the open market (or midnight if 24h/24h) */}

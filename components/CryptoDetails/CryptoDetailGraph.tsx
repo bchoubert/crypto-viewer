@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useMemo } from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
 import {
   VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer,
@@ -63,6 +63,11 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   changeActiveCandle,
 }) => {
 
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(crypto.id),
+    [crypto],
+  );
+
   if (historicRates === null) {
     return (
       <View style={styles.crypto_graph}>
@@ -73,7 +78,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   if (historicRates.length === 0) {
     return (
       <View style={styles.crypto_graph}>
-        <ActivityIndicator size="large" color={UtilsService.getColorFromCrypto(crypto.id)} />
+        <ActivityIndicator size="large" color={cryptoColor} />
         <Text>Loading historic rates...</Text>
       </View>
     );
@@ -119,7 +124,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
               data={historicRates}
               style={{
                 data: {
-                  stroke: UtilsService.getColorFromCrypto(crypto.id),
+                  stroke: cryptoColor,
                   strokeWidth: 3
                 }
               }}
@@ -131,17 +136,17 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
       {/* Show the candle options */}
       <View style={styles.candle_container}>
         {Object.keys(candleGranularity).map((candle: candleType) =>
-        (
-          <TouchableOpacity
-            key={candle}
-            style={{ ...styles.candle, ...((activeCandle === candle) ? { backgroundColor: UtilsService.getColorFromCrypto(crypto.id) } : []) }}
-            onPress={() => changeActiveCandle(candle as candleType)}
-          >
-            <Text style={{ ...styles.candle_text, ...((activeCandle !== candle) ? { color: UtilsService.getColorFromCrypto(crypto.id) } : []) }}>
-              {candle}
-            </Text>
-          </TouchableOpacity>
-        )
+          (
+            <TouchableOpacity
+              key={candle}
+              style={{ ...styles.candle, ...((activeCandle === candle) ? { backgroundColor: cryptoColor } : []) }}
+              onPress={() => changeActiveCandle(candle as candleType)}
+            >
+              <Text style={{ ...styles.candle_text, ...((activeCandle !== candle) ? { color: cryptoColor } : []) }}>
+                {candle}
+              </Text>
+            </TouchableOpacity>
+          )
         )}
       </View>
     </View>

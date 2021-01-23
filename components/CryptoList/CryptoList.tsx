@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useState } from 'react';
+import React, { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, StyleSheet, ToastAndroid, SectionList } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -9,8 +9,8 @@ import UtilsService from '../../services/Utils.service';
 import Crypto from '../../models/Crypto';
 import quoteType from '../../models/QuoteType';
 import ExchangeRates from '../../models/ExhangeRates';
-import { tabType } from '../../App';
 import CryptoListItem from './CryptoListItem';
+import { tabType } from '../../models/Tabs';
 
 
 const styles = StyleSheet.create({
@@ -46,7 +46,9 @@ const CryptoList: FC<CryptoListProps> = ({
   const [otherAssets, setOtherAssets] = useState<Crypto[]>([]);
 
   // Get all currencies
-  const fetchCryptos = async () => {
+  const fetchCryptos = useCallback(async () => {
+    setLoading(true);
+
     const fetchedCryptos = await NetworkService.fetchCryptos()
       .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
 
@@ -70,39 +72,48 @@ const CryptoList: FC<CryptoListProps> = ({
     setMainAssets(mainAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
     setOtherAssets(otherAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
     setLoading(false);
-  }
-
-  // Callback for pull to refresh list action
-  const onRefresh = () => {
-    setLoading(true);
-    fetchCryptos();
-  }
+  }, [setMainAssets, setOtherAssets, setLoading]);
 
   useEffect(() => {
     const asyncFetchCryptos = async () => fetchCryptos();
     asyncFetchCryptos();
   }, []);
 
+  const sections = useMemo(
+    () => [
+      { title: 'Main assets', id: 'main', data: mainAssets },
+      { title: 'Other assets', id: 'other', data: otherAssets }
+    ],
+    [mainAssets, otherAssets],
+  );
+
+  const handleRenderItem = useCallback(
+    ({ item, section }) => (
+      <CryptoListItem
+        crypto={item}
+        section={section}
+        quote={quote}
+        changeTab={changeTab}
+      />
+    ),
+    [quote, changeTab],
+  );
+
+  const handleRenderSectionHeader = useCallback(
+    ({ section }) => <Text style={styles.sectionHeader}>{section.title}</Text>,
+    [styles],
+  );
+
   // Render the view with sorted assets
   return (
     <SectionList
       style={styles.container}
-      sections={[
-        { title: 'Main assets', id: 'main', data: mainAssets },
-        { title: 'Other assets', id: 'other', data: otherAssets }
-      ]}
+      sections={sections}
       stickySectionHeadersEnabled
-      onRefresh={onRefresh}
+      onRefresh={fetchCryptos}
       refreshing={isLoading}
-      renderItem={({ item, section }) => (
-        <CryptoListItem
-          crypto={item}
-          section={section}
-          quote={quote}
-          changeTab={changeTab}
-        />
-      )}
-      renderSectionHeader={({ section }) => <Text style={styles.sectionHeader}>{section.title}</Text>}
+      renderItem={handleRenderItem}
+      renderSectionHeader={handleRenderSectionHeader}
       keyExtractor={item => item.id} />
   );
 }

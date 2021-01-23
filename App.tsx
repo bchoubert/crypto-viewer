@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, StatusBar, Platform, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
 import CryptoViewerIconsMap from './assets/fonts/CryptoViewerIconsMap';
 import * as Font from 'expo-font';
@@ -19,10 +19,9 @@ import Currency from './models/Crypto';
 import UtilsService from './services/Utils.service';
 import WalletItem from './models/WalletItem';
 import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
+import Tabs, { tabType } from './models/Tabs';
 
 const STATUSBAR_HEIGHT: number = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
-
-export type tabType = 'list' | 'wallet' | 'settings' | 'details';
 
 const styles = StyleSheet.create({
   container: {
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
 });
 
 const App = () => {
-  const [activeTab, setActiveTab] = useState<tabType>('list');
+  const [activeTab, setActiveTab] = useState<tabType>(Tabs.list);
   const [activeQuote, setActiveQuote] = useState<quoteType>({ code: 'USD', symbol: '$' });
   const [dateFormat, setDateFormat] = useState<dateFormatType>(dateFormats.american);
   const [details, setDetails] = useState<object | null>(null);
@@ -81,65 +80,61 @@ const App = () => {
   const [wallet, setWallet] = useState<WalletItem[]>([]);
 
   // Generic function to change the current interface of the app. Details are all it is required to load the new interface
-  const changeTab = (tabName: tabType, newDetails: Object = null) => {
-    if (tabName === 'details' && !newDetails) {
+  const changeTab = useCallback((tabName: tabType, newDetails: Object = null) => {
+    if (tabName === Tabs.details && !newDetails) {
       return null;
     }
 
-    if (tabName === 'details') {
-      setStatusBarColor(UtilsService.getColorFromCrypto((newDetails as Currency).id));
-    } else {
-      setStatusBarColor(Colors.white);
-    }
+    setStatusBarColor(tabName === Tabs.details ? UtilsService.getColorFromCrypto((newDetails as Currency).id) : Colors.white);
     setDetails(newDetails);
     setActiveTab(tabName);
-  }
+  }, [setStatusBarColor, setDetails, setActiveTab]);
 
   // Change quote from the settings, then store it
-  const changeQuote = (newQuote: quoteType) => {
+  const changeQuote = useCallback((newQuote: quoteType) => {
     StorageService.storeData(QUOTE_STORAGE_KEY, JSON.stringify(newQuote));
     setActiveQuote(newQuote);
-  }
+  }, [setActiveQuote]);
 
   // Change date format from the settings, then store it
-  const changeDateFormat = (newDateFormat: dateFormatType) => {
+  const changeDateFormat = useCallback((newDateFormat: dateFormatType) => {
     StorageService.storeData(DATE_FORMAT_KEY, newDateFormat);
     setDateFormat(newDateFormat);
-  }
+  }, [setDateFormat]);
 
   // Change wallet content from the wallet interface, then store it
-  const changeWallet = (newWallet: WalletItem[]) => {
+  const changeWallet = useCallback((newWallet: WalletItem[]) => {
     StorageService.storeData(WALLET_KEY, JSON.stringify(newWallet));
     setWallet(newWallet);
-  }
+  }, [setWallet]);
 
   // Technical function to render the current component depending on the current interface that has to be laoded
   const activeTabRendered = useMemo(() => {
     switch (activeTab) {
-      case 'list':
+      case Tabs.list:
         return <CryptoList
           quote={activeQuote}
           changeTab={changeTab} />;
-      case 'wallet':
+      case Tabs.wallet:
         return <Wallet
           quote={activeQuote}
           changeTab={changeTab}
           wallet={wallet}
           changeWallet={changeWallet} />;
-      case 'settings':
+      case Tabs.settings:
         return <Settings
           quote={activeQuote}
           changeQuote={changeQuote}
           dateFormat={dateFormat}
           changeDateFormat={changeDateFormat} />;
-      case 'details':
+      case Tabs.details:
         if (!!details) {
           return <CryptoDetails
             crypto={details as Currency}
             quote={activeQuote}
             dateFormat={dateFormat} />
         } else {
-          changeTab('list');
+          changeTab(Tabs.list);
         }
       default:
         return <CryptoList
@@ -183,8 +178,8 @@ const App = () => {
     asyncLoadFonts();
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      if (activeTab === 'settings' || activeTab === 'details') {
-        changeTab('list');
+      if ([Tabs.settings, Tabs.details].includes(activeTab)) {
+        changeTab(Tabs.list);
         return true;
       }
       return false;
@@ -192,6 +187,9 @@ const App = () => {
 
     return () => backHandler.remove();
   }, []);
+
+  const handleChangeTabList = useCallback(() => changeTab(Tabs.list), [changeTab]);
+  const handleChangeTabSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
 
   if (!areFontsLoaded) {
     return null;
@@ -201,11 +199,11 @@ const App = () => {
     <View style={styles.container}>
       <Text style={{ ...styles.statusBar, backgroundColor: statusBarColor }} />
       <View style={styles.topBar}>
-        <TouchableOpacity onPress={() => changeTab('list')} style={styles.topBarIconContainer}>
+        <TouchableOpacity onPress={handleChangeTabList} style={styles.topBarIconContainer}>
           <Image style={{ width: 50, height: 50 }} source={require('./assets/icon.png')} />
           <Text style={styles.topBarText}>Crypto Viewer</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => changeTab('settings')}>
+        <TouchableOpacity onPress={handleChangeTabSettings}>
           <Text style={styles.cryptoViewerIcon}>{CryptoViewerIconsMap.settings.unicode}</Text>
         </TouchableOpacity>
       </View>

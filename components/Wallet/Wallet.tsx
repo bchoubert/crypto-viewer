@@ -15,8 +15,8 @@ import Crypto from '../../models/Crypto';
 import ExchangeRates from '../../models/ExhangeRates';
 import WalletModal from './WalletModal';
 
-import { tabType } from '../../App';
 import WalletListItem from './WalletListItem';
+import { tabType } from '../../models/Tabs';
 
 const styles = StyleSheet.create({
   container: {
@@ -75,7 +75,6 @@ const Wallet: FC<WalletProps> = ({
   wallet,
   changeWallet,
 }) => {
-
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const [isWalletModalVisible, setWalletModalVisible] = useState<boolean>(false);
@@ -94,14 +93,9 @@ const Wallet: FC<WalletProps> = ({
     const fetchedExchangeRates = await NetworkService.fetchCryptoExchangeRates(quote.code)
       .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
 
-    let newCryptos = [];
-
-    unsortedCryptos.forEach(crypto => {
-      if (!!(fetchedExchangeRates as ExchangeRates).data.rates[crypto.id]) {
-        // Store only main assets
-        newCryptos.push(Object.assign({ price: 1 / parseFloat((fetchedExchangeRates as ExchangeRates).data.rates[crypto.id]) }, crypto));
-      }
-    });
+    const newCryptos = unsortedCryptos
+      .filter(crypto => !!(fetchedExchangeRates as ExchangeRates).data.rates[crypto.id])
+      .map(crypto => Object.assign({ price: 1 / parseFloat((fetchedExchangeRates as ExchangeRates).data.rates[crypto.id]) }, crypto));
 
     setLoading(false);
     setCryptos(newCryptos.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
@@ -115,9 +109,9 @@ const Wallet: FC<WalletProps> = ({
 
   // Callback for the modal crpyot picker
   const onSelectedCryptoKeyChange = useCallback((newCryptoKey: string) => {
-    if (!!wallet && !!wallet.filter(walletItem => walletItem.crypto === newCryptoKey).length) {
+    if (!!wallet?.find(walletItem => walletItem.crypto === newCryptoKey)) {
       // If the crypto is already present in the wallet, load the amount
-      setSelectedAmount(wallet.filter(walletItem => walletItem.crypto === newCryptoKey)[0].amount);
+      setSelectedAmount(wallet.find(walletItem => walletItem.crypto === newCryptoKey).amount);
     } else {
       setSelectedAmount(null);
     }
@@ -146,7 +140,7 @@ const Wallet: FC<WalletProps> = ({
     }
     let walletTemp = wallet || [];
     if (!!wallet && !!wallet.filter(walletItem => walletItem.crypto === selectedCryptoKey).length) {
-      walletTemp.filter(walletItem => walletItem.crypto === selectedCryptoKey)[0].amount = selectedAmount;
+      walletTemp.find(walletItem => walletItem.crypto === selectedCryptoKey).amount = selectedAmount;
     } else {
       walletTemp.push({ crypto: selectedCryptoKey, amount: selectedAmount });
     }
@@ -156,8 +150,8 @@ const Wallet: FC<WalletProps> = ({
 
   // Load the modal with corresponding crypto and amount
   const editFromWallet = useCallback((cryptoKey: string) => {
-    const crypto = cryptos.filter(crypto => crypto.id === cryptoKey)[0],
-      amount = wallet.filter(walletItem => walletItem.crypto === cryptoKey)[0].amount;
+    const crypto = cryptos.find(crypto => crypto.id === cryptoKey),
+      amount = wallet.find(walletItem => walletItem.crypto === cryptoKey).amount;
 
     openWalletPopup(crypto.id, amount);
   }, [cryptos, wallet, openWalletPopup]);

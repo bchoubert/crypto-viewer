@@ -1,10 +1,10 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
 import dateFormats, { dateFormatType } from '../../models/DateFormat';
-import quoteType from '../../models/QuoteType';
+import quoteType, { possibleQuotes } from '../../models/QuoteType';
 
 const styles = StyleSheet.create({
   settings: {
@@ -93,21 +93,15 @@ const SettingItem: FC<SettingItemProps> = ({
         <View style={styles.settings}>
           <Text style={styles.settingsText}>Preferred currency</Text>
           <View style={styles.quoteChanger}>
-            <TouchableOpacity onPress={() => changeQuote({ code: 'USD', symbol: '$' })}
-              style={{ ...styles.quoteChangerPart, ...(quote.code === 'USD' ? styles.quoteChangerPartActive : []) }}>
+            {possibleQuotes.map(qu => (
+              <TouchableOpacity onPress={() => changeQuote(qu)} key={qu.code}
+                style={{ ...styles.quoteChangerPart, ...(quote.code === qu.code ? styles.quoteChangerPartActive : []) }}>
 
-              <Text style={{ ...(quote.code === 'USD' ? styles.quoteChangerPartTextActive : []) }}>USD</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => changeQuote({ code: 'EUR', symbol: '€' })}
-              style={{ ...styles.quoteChangerPart, ...(quote.code === 'EUR' ? styles.quoteChangerPartActive : []) }}>
-
-              <Text style={{ ...(quote.code === 'EUR' ? styles.quoteChangerPartTextActive : []) }}>EUR</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => changeQuote({ code: 'BTC', symbol: '₿' })}
-              style={{ ...styles.quoteChangerPart, ...(quote.code === 'BTC' ? styles.quoteChangerPartActive : []) }}>
-
-              <Text style={{ ...(quote.code === 'BTC' ? styles.quoteChangerPartTextActive : []) }}>BTC</Text>
-            </TouchableOpacity>
+                <Text style={{ ...(quote.code === qu.code ? styles.quoteChangerPartTextActive : []) }}>
+                  {qu.code}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       );
@@ -116,20 +110,15 @@ const SettingItem: FC<SettingItemProps> = ({
         <View style={styles.settings}>
           <Text style={styles.settingsText}>Preferred date</Text>
           <View style={styles.dateChanger}>
-            <TouchableOpacity onPress={() => changeDateFormat(dateFormats.american)}
-              style={{ ...styles.dateChangerPart, ...(dateFormat === dateFormats.american ? styles.dateChangerPartActive : []) }}>
+            {Object.values(dateFormats).map((df) => (
+              <TouchableOpacity onPress={() => changeDateFormat(df)} key={df}
+                style={{ ...styles.dateChangerPart, ...(dateFormat === df ? styles.dateChangerPartActive : []) }}>
 
-              <Text style={{ ...(dateFormat === dateFormats.american ? styles.dateChangerPartTextActive : []) }}>
-                {dateFormats.american}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => changeDateFormat(dateFormats.european)}
-              style={{ ...styles.dateChangerPart, ...(dateFormat === dateFormats.european ? styles.dateChangerPartActive : []) }}>
-
-              <Text style={{ ...(dateFormat === dateFormats.european ? styles.dateChangerPartTextActive : []) }}>
-                {dateFormats.european}
-              </Text>
-            </TouchableOpacity>
+                <Text style={{ ...(dateFormat === df ? styles.dateChangerPartTextActive : []) }}>
+                  {df}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </View>
       );

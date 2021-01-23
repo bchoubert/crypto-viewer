@@ -51,7 +51,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
         height={30}
         fill="#FFFFFF"
         stroke="#000000"></Rect>
-      <Line x1={x} x2={popinPosition} y1={y} y2={y - 30} stroke="#000000"></Line>
+      <Line x1={x} x2={popinPosition} y1={y} y2={y - 30} stroke="#000000" />
       <TextSVG x={textPosition} y={y - 30} textAnchor={textAnchor} fill="#000000">
         {`${UtilsService.printDate(datum.x, dateFormat)} ${UtilsService.printTime(datum.x)}`}
       </TextSVG>

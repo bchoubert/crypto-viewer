@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { Picker } from '@react-native-community/picker';
 import { Modal, TextInput, TouchableHighlight, Text, View, StyleSheet, Dimensions } from 'react-native';
 
@@ -105,7 +105,15 @@ const WalletModal: FC<WalletModalProps> = ({
 }) => {
 
   // Validate function for the modal form
-  const isValid = () => !!selectedAmount && !!selectedCryptoKey;
+  const isValid = useMemo(
+    () => !!selectedAmount && !!selectedCryptoKey,
+    [selectedAmount, selectedCryptoKey],
+  );
+
+  const cryptoOptions = useMemo(
+    () => cryptos.map(asset => <Picker.Item key={asset.id} label={asset.name} value={asset.id} />),
+    [cryptos],
+  );
 
   return (
     <Modal
@@ -123,7 +131,7 @@ const WalletModal: FC<WalletModalProps> = ({
             <Text style={styles.modal_title}>Add to your Wallet</Text>
             {/* Save buttom, active only if isValid() returnes true */}
             <TouchableHighlight onPress={saveWallet}>
-              <Text style={{ ...styles.modal_action, ...styles.modal_main_action, ...(!!isValid() && [] || styles.disabled_modal_action) }}>Save</Text>
+              <Text style={{ ...styles.modal_action, ...styles.modal_main_action, ...(isValid && [] || styles.disabled_modal_action) }}>Save</Text>
             </TouchableHighlight>
           </View>
           <View style={styles.modal_content}>
@@ -131,7 +139,7 @@ const WalletModal: FC<WalletModalProps> = ({
             <View style={styles.modal_crypto_container}>
               {!!selectedCryptoKey &&
                 <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(selectedCryptoKey) }}>
-                  {!!CryptoCurrencyIconsMap[selectedCryptoKey.toLowerCase()] && CryptoCurrencyIconsMap[selectedCryptoKey.toLowerCase()].unicode}
+                  {CryptoCurrencyIconsMap[selectedCryptoKey.toLowerCase()]?.unicode}
                 </Text>
               }
               {/* Picker with a default item */}
@@ -140,9 +148,7 @@ const WalletModal: FC<WalletModalProps> = ({
                 style={styles.modal_crypto}
                 onValueChange={onSelectedCryptoKeyChange}>
                 <Picker.Item label='Please select an option...' value={null} />
-                {cryptos.map(asset =>
-                  <Picker.Item key={asset.id} label={asset.name} value={asset.id} />
-                )}
+                {cryptoOptions}
               </Picker>
             </View>
             <Text style={styles.modal_label}>Amount</Text>

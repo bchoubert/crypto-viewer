@@ -5,7 +5,7 @@ import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
 
-import { tabType } from '../../App';
+import Tabs, { tabType } from '../../models/Tabs';
 
 const styles = StyleSheet.create({
   bottomBar: {
@@ -40,17 +40,19 @@ const BottomBar: FC<BottomBarProps> = ({
   activeTab,
   changeTab,
 }) => {
-  const handleListAction = useCallback(() => changeTab('list'), [changeTab]);
-  const handleWalletAction = useCallback(() => changeTab('wallet'), [changeTab]);
+  const handleListAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
+  const handleWalletAction = useCallback(() => changeTab(Tabs.wallet), [changeTab]);
 
-  if (['list', 'wallet'].includes(activeTab)) {
+  const handleBackAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
+
+  if ([Tabs.list, Tabs.wallet].includes(activeTab)) {
     return (
       <View style={styles.bottomBar}>
         <TouchableOpacity onPress={handleListAction} style={styles.bottomBarButtonContainer}>
-          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === 'list') ? Colors.blue : 'black' }}>
+          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.list) ? Colors.blue : 'black' }}>
             {CryptoViewerIconsMap.prices.unicode}
           </Text>
-          {activeTab === 'list' ?
+          {activeTab === Tabs.list ?
             (
               <Text style={{ color: 'blue' }}>
                 Prices
@@ -59,10 +61,10 @@ const BottomBar: FC<BottomBarProps> = ({
           }
         </TouchableOpacity>
         <TouchableOpacity onPress={handleWalletAction} style={styles.bottomBarButtonContainer}>
-          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === 'wallet') ? Colors.blue : 'black' }}>
+          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.wallet) ? Colors.blue : 'black' }}>
             {CryptoViewerIconsMap.wallet.unicode}
           </Text>
-          {activeTab === 'wallet' ?
+          {activeTab === Tabs.wallet ?
             (
               <Text style={{ color: 'blue' }}>
                 Wallet
@@ -73,8 +75,6 @@ const BottomBar: FC<BottomBarProps> = ({
       </View>
     );
   }
-
-  const handleBackAction = useCallback(() => changeTab('list'), [changeTab]);
 
   // If not on the list or wallet view, show a back button to get back to the list interface
   return (

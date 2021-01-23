@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -60,54 +60,61 @@ const CryptoDetailPrices: FC<CryptoDetailPricesProps> = ({
   buyPrice,
   sellPrice,
   quote,
-}) => (
-  <View style={styles.crypto_prices}>
-    <Text style={styles.crypto_prices_title}>
-      Current Price
-    </Text>
-    <View style={styles.crypto_prices_container}>
+}) => {
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(crypto.id),
+    [crypto],
+  );
 
-      {/* Buy Price Section */}
-      {(!!buyPrice) ?
-        (
-          <View style={styles.crypto_price}>
-            <Text>Buy</Text>
-            <Text style={{ ...styles.crypto_price_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-              {`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
-            </Text>
-          </View>
-        ) : null
-      }
+  return (
+    <View style={styles.crypto_prices}>
+      <Text style={styles.crypto_prices_title}>
+        Current Price
+      </Text>
+      <View style={styles.crypto_prices_container}>
 
-      {/* Current Price Section */}
-      {(!!crypto.price) ?
-        (
-          <View style={{ ...styles.crypto_price, ...styles.main_crypto_price }}>
-            <Text>
-              Price
-            </Text>
-            <Text style={{ ...styles.crypto_price_number, ...styles.main_crypto_price_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-              {`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
-            </Text>
-          </View>
-        ) : null
-      }
+        {/* Buy Price Section */}
+        {(!!buyPrice) ?
+          (
+            <View style={styles.crypto_price}>
+              <Text>Buy</Text>
+              <Text style={{ ...styles.crypto_price_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
+              </Text>
+            </View>
+          ) : null
+        }
 
-      {/* Sell Price Section */}
-      {(!!sellPrice) ?
-        (
-          <View style={styles.crypto_price}>
-            <Text>
-              Sell
-            </Text>
-            <Text style={{ ...styles.crypto_price_number, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-              {`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
-            </Text>
-          </View>
-        ) : null
-      }
+        {/* Current Price Section */}
+        {(!!crypto.price) ?
+          (
+            <View style={{ ...styles.crypto_price, ...styles.main_crypto_price }}>
+              <Text>
+                Price
+              </Text>
+              <Text style={{ ...styles.crypto_price_number, ...styles.main_crypto_price_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
+              </Text>
+            </View>
+          ) : null
+        }
+
+        {/* Sell Price Section */}
+        {(!!sellPrice) ?
+          (
+            <View style={styles.crypto_price}>
+              <Text>
+                Sell
+              </Text>
+              <Text style={{ ...styles.crypto_price_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
+              </Text>
+            </View>
+          ) : null
+        }
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 export default memo(CryptoDetailPrices);

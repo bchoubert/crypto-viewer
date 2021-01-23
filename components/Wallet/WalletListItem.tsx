@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useCallback, useMemo } from 'react';
 import Swipeable from 'react-native-swipeable-row';
 import { TouchableHighlight, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
@@ -12,7 +12,7 @@ import UtilsService from '../../services/Utils.service';
 import quoteType from '../../models/QuoteType';
 import WalletItem from '../../models/WalletItem';
 import Crypto from '../../models/Crypto';
-import { tabType } from '../../App';
+import Tabs, { tabType } from '../../models/Tabs';
 
 const styles = StyleSheet.create({
   list_actions__delete: {
@@ -105,33 +105,44 @@ const WalletListItem: FC<WalletListItemProps> = ({
   deleteFromWallet,
   editFromWallet,
 }) => {
-  if (!cryptos || !cryptos.length) {
-    return null;
-  }
-
-  const crypto = cryptos.filter(asset => asset.id === walletItem.crypto)[0] as Crypto;
+  const crypto = useMemo(
+    () => (cryptos || []).filter(asset => asset.id === walletItem.crypto)[0] as Crypto,
+    [cryptos, walletItem],
+  );
 
   // Prices compute
-  let priceAmount = '', walletAmount = '';
-  if (!!crypto && !!crypto.price) {
-    priceAmount = UtilsService.truncateNumber(crypto.price * walletItem.amount) + ' ' + quote.symbol;
-    walletAmount = UtilsService.truncateNumber(walletItem.amount, 5) + ' ' + crypto.details.symbol;
+  const priceAmount = useMemo(
+    () => crypto?.price ? UtilsService.truncateNumber(crypto.price * walletItem.amount) + ' ' + quote.symbol : '',
+    [crypto],
+  );
+  const walletAmount = useMemo(
+    () => crypto?.price ? UtilsService.truncateNumber(walletItem.amount, 5) + ' ' + crypto.details.symbol : '',
+    [crypto, walletItem],
+  );
+
+  const handleEdit = useCallback(() => editFromWallet(walletItem.crypto), [crypto]);
+  const handleDelete = useCallback(() => deleteFromWallet(walletItem.crypto), [crypto]);
+
+  const handleSelectCrypto = useCallback(() => changeTab(Tabs.details, crypto), [changeTab, crypto]);
+
+  if (!crypto) {
+    return null;
   }
 
   // Actions to edit or delete the wallet item
   return (
     <Swipeable rightButtons={[
-      <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__edit }} onPress={() => editFromWallet(walletItem.crypto)}>
+      <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__edit }} onPress={handleEdit}>
         <Text style={styles.list_actions_title}>Edit</Text>
       </TouchableHighlight>,
-      <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__delete }} onPress={() => deleteFromWallet(walletItem.crypto)}>
+      <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__delete }} onPress={handleDelete}>
         <Text style={styles.list_actions_title}>Delete</Text>
       </TouchableHighlight>
     ]}>
-      <TouchableOpacity style={styles.crypto_item} onPress={() => changeTab('details', crypto)}>
+      <TouchableOpacity style={styles.crypto_item} onPress={handleSelectCrypto}>
         <View style={styles.crypto_item_properties}>
           <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-            {!!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] && CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode}
+            {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
           </Text>
           <View style={styles.crypto_item_names}>
             <Text style={styles.crypto_item_name}>
@@ -144,8 +155,12 @@ const WalletListItem: FC<WalletListItemProps> = ({
         </View>
         <View style={styles.crypto_item_details}>
           <View style={styles.crypto_amount}>
-            <Text style={styles.crypto_item_price}>{walletAmount}</Text>
-            <Text style={styles.crypto_total_amount}>{priceAmount}</Text>
+            <Text style={styles.crypto_item_price}>
+              {walletAmount}
+            </Text>
+            <Text style={styles.crypto_total_amount}>
+              {priceAmount}
+            </Text>
           </View>
           <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>
             {CryptoViewerIconsMap.next.unicode}
