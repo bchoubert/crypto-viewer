@@ -3,7 +3,7 @@
 export default interface Crypto {
   id: string,
   name: string,
-  status: 'online'|'offline',
+  status: 'online' | 'offline',
   details: {
     type: string,
     symbol: string

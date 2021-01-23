@@ -63,4 +63,3 @@ const candleGranularity = {
 export type candleType = '6M' | '3M' | '1M' | '1W' | '3D' | '1D';
 
 export default candleGranularity;
- 
