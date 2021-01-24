@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@babel/core": "^7.12.10",
     "@react-native-community/async-storage": "~1.11.0",
     "@react-native-community/picker": "1.6.0",
     "cryptocurrency-icons": "^0.17.1",
