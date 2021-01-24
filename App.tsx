@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, View, StatusBar, Platform, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
-import CryptoViewerIconsMap from './assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from './assets/fonts/baseIcons/CryptoViewerIconsMap';
 import * as Font from 'expo-font';
 
 import Colors from './assets/Colors';
@@ -12,14 +12,15 @@ import CryptoDetails from './components/CryptoDetails/CryptoDetails';
 import BottomBar from './components/Utils/BottomBar';
 
 import StorageService from './services/Storage.service';
+import UtilsService from './services/Utils.service';
 
 import quoteType from './models/QuoteType';
 import dateFormats, { dateFormatType } from './models/DateFormat';
 import Currency from './models/Crypto';
-import UtilsService from './services/Utils.service';
 import WalletItem from './models/WalletItem';
-import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
 import Tabs, { tabType } from './models/Tabs';
+
+import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
 
 const STATUSBAR_HEIGHT: number = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 
@@ -147,10 +148,10 @@ const App = () => {
     const asyncLoadFonts = async () => {
       // Load specific fonts
       Font.loadAsync({
-        // cryptocurrencies (from npm package 'cryptocurrency-icons')
-        'cryptocurrencies': require('./node_modules/cryptocurrency-icons-font/dist/webfont/cryptocurrency-icons.ttf'),
+        // crypto-font (from npm package 'cryptocurrency-icons')
+        'crypto-font': require('./node_modules/cryptocurrency-icons-font/dist/webfont/cryptocurrency-icons.ttf'),
         // Specific font for the project icons
-        'crypto-viewer': require('./assets/fonts/crypto-viewer.ttf')
+        'crypto-viewer': require('./assets/fonts/baseIcons/crypto-viewer.ttf')
       }).then(() => setFontsLoaded(true));
     };
 

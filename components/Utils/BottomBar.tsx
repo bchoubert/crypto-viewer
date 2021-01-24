@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback } from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
 

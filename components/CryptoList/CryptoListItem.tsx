@@ -4,7 +4,7 @@ import { SectionListData, View, Text, TouchableOpacity, StyleSheet } from 'react
 import Colors from '../../assets/Colors';
 
 import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     width: 40,
     marginRight: 15,
-    fontFamily: 'cryptocurrencies'
+    fontFamily: 'crypto-font'
   },
   cryptoViewerIcon: {
     fontSize: 20,

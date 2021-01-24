@@ -4,7 +4,7 @@ import { Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList } from
 
 import Colors from '../../assets/Colors';
 
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import NetworkService from '../../services/Network.service';
 import UtilsService from '../../services/Utils.service';

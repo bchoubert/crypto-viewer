@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Colors from '../../assets/Colors';
 
 import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 60,
     width: 60,
     color: 'white',
-    fontFamily: 'cryptocurrencies'
+    fontFamily: 'crypto-font'
   },
   cryptoViewerIcon: {
     fontSize: 20,
@@ -166,7 +166,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
         {!!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] &&
           (
             <Text style={styles.crypto_icon}>
-              {CryptoCurrencyIconsMap[crypto.id.toLowerCase()].unicode}
+              {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
             </Text>
           )
         }

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
 

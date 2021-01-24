@@ -3,7 +3,7 @@ import Swipeable from 'react-native-swipeable-row';
 import { TouchableHighlight, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
 import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
-import CryptoViewerIconsMap from '../../assets/fonts/CryptoViewerIconsMap';
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
 
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     width: 40,
     marginRight: 15,
-    fontFamily: 'cryptocurrencies'
+    fontFamily: 'crypto-font'
   },
   crypto_item_names: {
     fontSize: 25,

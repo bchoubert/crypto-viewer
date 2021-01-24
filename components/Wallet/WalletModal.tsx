@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     width: 40,
     marginRight: 15,
-    fontFamily: 'cryptocurrencies'
+    fontFamily: 'crypto-font'
   },
   modal_crypto_container: {
     flexDirection: 'row',
