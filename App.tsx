@@ -148,8 +148,6 @@ const App = () => {
     const asyncLoadFonts = async () => {
       // Load specific fonts
       Font.loadAsync({
-        // crypto-font (from npm package 'cryptocurrency-icons')
-        'crypto-font': require('./node_modules/cryptocurrency-icons-font/dist/webfont/cryptocurrency-icons.ttf'),
         // Specific font for the project icons
         'crypto-viewer': require('./assets/fonts/baseIcons/crypto-viewer.ttf')
       }).then(() => setFontsLoaded(true));

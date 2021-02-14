@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import CryptoCurrencyIconsMap from '../assets/fonts/CryptoCurrencyIconsMap';
+import CryptoCurrenciesIconMap from './../components/Utils/CryptoCurrencyIconsMap';
 
 // Generic usage service
 const UtilsService = {
@@ -49,10 +49,7 @@ const UtilsService = {
   },
   // Get the color from the specific crypto currencies map
   getColorFromCrypto(crypto) {
-    if (!!CryptoCurrencyIconsMap[crypto.toLowerCase()]) {
-      return CryptoCurrencyIconsMap[crypto.toLowerCase()].color;
-    }
-    return '#000000';
+    return CryptoCurrenciesIconMap[crypto?.toLowerCase()]?.color || '#000000';
   }
 }
 

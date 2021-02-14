@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
-import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
@@ -19,6 +18,7 @@ import Stats from '../../models/Stats';
 import CryptoDetailPrices from './CryptoDetailPrices';
 import CryptoDetailGraph from './CryptoDetailGraph';
 import CryptoDetailStats from './CryptoDetailStats';
+import CryptoIcon from '../Utils/CryptoIcon';
 
 const styles = StyleSheet.create({
   container: {
@@ -61,12 +61,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 
-  crypto_icon: {
-    fontSize: 60,
-    width: 60,
-    color: 'white',
-    fontFamily: 'crypto-font'
-  },
   cryptoViewerIcon: {
     fontSize: 20,
     fontFamily: 'crypto-viewer'
@@ -163,13 +157,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
   return (
     <View style={styles.container}>
       <View style={{ ...styles.crypto_details, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }}>
-        {!!CryptoCurrencyIconsMap[crypto.id.toLowerCase()] &&
-          (
-            <Text style={styles.crypto_icon}>
-              {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
-            </Text>
-          )
-        }
+        <CryptoIcon code={crypto.id.toLowerCase()} />
         <Text style={styles.crypto_name}>
           {`${crypto.name} - ${crypto.id}`}
         </Text>

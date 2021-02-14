@@ -3,7 +3,6 @@ import { SectionListData, View, Text, TouchableOpacity, StyleSheet } from 'react
 
 import Colors from '../../assets/Colors';
 
-import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
@@ -11,6 +10,7 @@ import UtilsService from '../../services/Utils.service';
 import Crypto from '../../models/Crypto';
 import quoteType from '../../models/QuoteType';
 import Tabs, { tabType } from '../../models/Tabs';
+import CryptoIcon from '../Utils/CryptoIcon';
 
 const styles = StyleSheet.create({
   crypto_item: {
@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   crypto_item_properties: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    display: 'flex',
+    alignItems: 'center'
   },
   crypto_item_details: {
     flexDirection: 'row',
@@ -51,13 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
 
-
-  crypto_item_icon: {
-    fontSize: 40,
-    width: 40,
-    marginRight: 15,
-    fontFamily: 'crypto-font'
-  },
   cryptoViewerIcon: {
     fontSize: 20,
     fontFamily: 'crypto-viewer'
@@ -95,9 +90,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
     return (
       <View style={styles.crypto_item}>
         <View style={styles.crypto_item_properties}>
-          <Text style={{ ...styles.crypto_item_icon, color: cryptoColor }}>
-            {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
-          </Text>
+          <CryptoIcon code={crypto.id.toLowerCase()} />
           <View style={styles.crypto_item_names}>
             <Text style={styles.crypto_item_name}>{crypto.name}</Text>
             <Text style={styles.crypto_item_id}>{crypto.id}</Text>
@@ -112,9 +105,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   return (
     <TouchableOpacity style={styles.crypto_item} onPress={handleGoToDetails}>
       <View style={styles.crypto_item_properties}>
-        <Text style={{ ...styles.crypto_item_icon, color: cryptoColor }}>
-          {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
-        </Text>
+        <CryptoIcon code={crypto.id.toLowerCase()} />
         <View style={styles.crypto_item_names}>
           <Text style={styles.crypto_item_name}>{crypto.name}</Text>
           <Text style={styles.crypto_item_id}>{crypto.id}</Text>
