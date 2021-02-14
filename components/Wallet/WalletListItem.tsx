@@ -2,7 +2,6 @@ import React, { FC, memo, useCallback, useMemo } from 'react';
 import Swipeable from 'react-native-swipeable-row';
 import { TouchableHighlight, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
-import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
@@ -13,6 +12,7 @@ import quoteType from '../../models/QuoteType';
 import WalletItem from '../../models/WalletItem';
 import Crypto from '../../models/Crypto';
 import Tabs, { tabType } from '../../models/Tabs';
+import CryptoIcon from '../Utils/CryptoIcon';
 
 const styles = StyleSheet.create({
   list_actions__delete: {
@@ -43,12 +43,6 @@ const styles = StyleSheet.create({
   },
   crypto_item_properties: {
     flexDirection: 'row'
-  },
-  crypto_item_icon: {
-    fontSize: 40,
-    width: 40,
-    marginRight: 15,
-    fontFamily: 'crypto-font'
   },
   crypto_item_names: {
     fontSize: 25,
@@ -141,9 +135,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
     ]}>
       <TouchableOpacity style={styles.crypto_item} onPress={handleSelectCrypto}>
         <View style={styles.crypto_item_properties}>
-          <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(crypto.id) }}>
-            {CryptoCurrencyIconsMap[crypto.id.toLowerCase()]?.unicode}
-          </Text>
+          <CryptoIcon code={crypto.id.toLowerCase()} />
           <View style={styles.crypto_item_names}>
             <Text style={styles.crypto_item_name}>
               {crypto.name}

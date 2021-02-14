@@ -12,7 +12,6 @@
     "@react-native-community/async-storage": "~1.11.0",
     "@react-native-community/picker": "1.6.0",
     "cryptocurrency-icons": "^0.17.1",
-    "cryptocurrency-icons-font": "^0.6.7",
     "deep-object-diff": "^1.1.0",
     "expo": "^38.0.0",
     "expo-font": "~8.2.1",

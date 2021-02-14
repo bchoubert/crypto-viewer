@@ -2,13 +2,12 @@ import React, { FC, memo, useMemo } from 'react';
 import { Picker } from '@react-native-community/picker';
 import { Modal, TextInput, TouchableHighlight, Text, View, StyleSheet, Dimensions } from 'react-native';
 
-import CryptoCurrencyIconsMap from '../../assets/fonts/CryptoCurrencyIconsMap';
-
 import Colors from '../../assets/Colors';
 
 import UtilsService from '../../services/Utils.service';
 
 import Crypto from '../../models/Crypto';
+import CryptoIcon from '../Utils/CryptoIcon';
 
 const styles = StyleSheet.create({
   modal_container: {
@@ -66,12 +65,6 @@ const styles = StyleSheet.create({
     padding: 5,
     borderBottomColor: Colors.gray,
     borderBottomWidth: 1
-  },
-  crypto_item_icon: {
-    fontSize: 40,
-    width: 40,
-    marginRight: 15,
-    fontFamily: 'crypto-font'
   },
   modal_crypto_container: {
     flexDirection: 'row',
@@ -138,9 +131,7 @@ const WalletModal: FC<WalletModalProps> = ({
             <Text style={styles.modal_label}>Crypto</Text>
             <View style={styles.modal_crypto_container}>
               {!!selectedCryptoKey &&
-                <Text style={{ ...styles.crypto_item_icon, color: UtilsService.getColorFromCrypto(selectedCryptoKey) }}>
-                  {CryptoCurrencyIconsMap[selectedCryptoKey.toLowerCase()]?.unicode}
-                </Text>
+                <CryptoIcon code={selectedCryptoKey.toLowerCase()} />
               }
               {/* Picker with a default item */}
               <Picker
