@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, StatusBar, Platform, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
-import CryptoViewerIconsMap from './assets/fonts/baseIcons/CryptoViewerIconsMap';
+import { StyleSheet, View, StatusBar, Platform, Text, BackHandler } from 'react-native';
+
 import * as Font from 'expo-font';
 
 import Colors from './assets/Colors';
@@ -21,6 +21,7 @@ import WalletItem from './models/WalletItem';
 import Tabs, { tabType } from './models/Tabs';
 
 import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
+import TopBar from './components/Utils/TopBar';
 
 const STATUSBAR_HEIGHT: number = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
 
@@ -38,34 +39,6 @@ const styles = StyleSheet.create({
     flexBasis: STATUSBAR_HEIGHT,
     flexGrow: 0
   },
-
-  // TOP BAR
-  topBar: {
-    flexBasis: 60,
-    flexGrow: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomColor: Colors.gray,
-    borderBottomWidth: 1,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  topBarIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topBarText: {
-    marginLeft: 5,
-    fontSize: 20,
-    color: Colors.blue,
-  },
-
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
 });
 
 const App = () => {
@@ -189,6 +162,7 @@ const App = () => {
 
   const handleChangeTabList = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleChangeTabSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
+  const handleBackAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
 
   if (!areFontsLoaded) {
     return null;
@@ -197,15 +171,13 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text style={{ ...styles.statusBar, backgroundColor: statusBarColor }} />
-      <View style={styles.topBar}>
-        <TouchableOpacity onPress={handleChangeTabList} style={styles.topBarIconContainer}>
-          <Image style={{ width: 50, height: 50 }} source={require('./assets/icon.png')} />
-          <Text style={styles.topBarText}>Crypto Viewer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleChangeTabSettings}>
-          <Text style={styles.cryptoViewerIcon}>{CryptoViewerIconsMap.settings.unicode}</Text>
-        </TouchableOpacity>
-      </View>
+      <TopBar
+        handleChangeTabList={handleChangeTabList}
+        handleChangeTabSettings={handleChangeTabSettings}
+        handleBackAction={handleBackAction}
+        activeTab={activeTab}
+        crypto={details as Currency}
+      />
       {activeTabRendered}
       <BottomBar
         activeTab={activeTab}

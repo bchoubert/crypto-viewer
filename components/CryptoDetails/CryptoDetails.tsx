@@ -1,5 +1,5 @@
 import React, { FC, memo, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -31,6 +31,20 @@ const styles = StyleSheet.create({
     flexGrow: 0,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  crypto_details_bottom: {
+    flexBasis: 50,
+    flexGrow: 0,
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  crypto_details_bottom_circle: {
+    height: Dimensions.get('window').width * 3,
+    width: Dimensions.get('window').width * 3,
+    borderRadius: Dimensions.get('window').width * 1.5,
+    position: 'absolute',
+    bottom: 2,
+    left: Dimensions.get('window').width * -1,
   },
   crypto_name: {
     color: 'white',
@@ -161,6 +175,9 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
         <Text style={styles.crypto_name}>
           {`${crypto.name} - ${crypto.id}`}
         </Text>
+      </View>
+      <View style={styles.crypto_details_bottom}>
+        <Text style={{ ...styles.crypto_details_bottom_circle, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }} />
       </View>
 
       <CryptoDetailGraph

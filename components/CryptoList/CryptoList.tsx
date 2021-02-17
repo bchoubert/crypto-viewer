@@ -18,13 +18,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   sectionHeader: {
-    paddingTop: 2,
+    paddingTop: 25,
     paddingLeft: 10,
     paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
+    paddingBottom: 20,
+    fontSize: 20,
+    textAlign: 'center',
     fontWeight: 'bold',
-    backgroundColor: Colors.lightGray,
+    backgroundColor: Colors.white,
   }
 });
 

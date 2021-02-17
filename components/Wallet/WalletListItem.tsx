@@ -32,14 +32,20 @@ const styles = StyleSheet.create({
 
   crypto_item: {
     width: '100%',
-    height: 80,
+    height: 75,
+    flexDirection: 'row',
+    padding: 10,
+  },
+  crypto_item_content: {
+    height: 62,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderBottomColor: Colors.lightGray,
-    borderBottomWidth: 1
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 10,
+    backgroundColor: Colors.veryLightGray,
   },
   crypto_item_properties: {
     flexDirection: 'row'
@@ -119,6 +125,11 @@ const WalletListItem: FC<WalletListItemProps> = ({
 
   const handleSelectCrypto = useCallback(() => changeTab(Tabs.details, crypto), [changeTab, crypto]);
 
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(crypto?.id),
+    [crypto],
+  );
+
   if (!crypto) {
     return null;
   }
@@ -134,29 +145,31 @@ const WalletListItem: FC<WalletListItemProps> = ({
       </TouchableHighlight>
     ]}>
       <TouchableOpacity style={styles.crypto_item} onPress={handleSelectCrypto}>
-        <View style={styles.crypto_item_properties}>
-          <CryptoIcon code={crypto.id.toLowerCase()} />
-          <View style={styles.crypto_item_names}>
-            <Text style={styles.crypto_item_name}>
-              {crypto.name}
-            </Text>
-            <Text style={styles.crypto_item_id}>
-              {crypto.id}
+        <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
+          <View style={styles.crypto_item_properties}>
+            <CryptoIcon code={crypto.id.toLowerCase()} />
+            <View style={styles.crypto_item_names}>
+              <Text style={styles.crypto_item_name}>
+                {crypto.name}
+              </Text>
+              <Text style={styles.crypto_item_id}>
+                {crypto.id}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.crypto_item_details}>
+            <View style={styles.crypto_amount}>
+              <Text style={styles.crypto_item_price}>
+                {walletAmount}
+              </Text>
+              <Text style={styles.crypto_total_amount}>
+                {priceAmount}
+              </Text>
+            </View>
+            <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>
+              {CryptoViewerIconsMap.next.unicode}
             </Text>
           </View>
-        </View>
-        <View style={styles.crypto_item_details}>
-          <View style={styles.crypto_amount}>
-            <Text style={styles.crypto_item_price}>
-              {walletAmount}
-            </Text>
-            <Text style={styles.crypto_total_amount}>
-              {priceAmount}
-            </Text>
-          </View>
-          <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>
-            {CryptoViewerIconsMap.next.unicode}
-          </Text>
         </View>
       </TouchableOpacity>
     </Swipeable>

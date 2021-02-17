@@ -15,14 +15,20 @@ import CryptoIcon from '../Utils/CryptoIcon';
 const styles = StyleSheet.create({
   crypto_item: {
     width: '100%',
-    height: 80,
+    height: 75,
+    flexDirection: 'row',
+    padding: 10,
+  },
+  crypto_item_content: {
+    height: 62,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingLeft: 15,
-    paddingRight: 15,
-    borderBottomColor: Colors.lightGray,
-    borderBottomWidth: 1
+    flex: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 10,
+    backgroundColor: Colors.veryLightGray,
   },
   crypto_item_properties: {
     flexDirection: 'row',
@@ -89,6 +95,24 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   if (section.id === 'other') {
     return (
       <View style={styles.crypto_item}>
+        <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
+          <View style={styles.crypto_item_properties}>
+            <CryptoIcon code={crypto.id.toLowerCase()} />
+            <View style={styles.crypto_item_names}>
+              <Text style={styles.crypto_item_name}>{crypto.name}</Text>
+              <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+            </View>
+          </View>
+          <View style={styles.crypto_item_details}>
+            <Text style={styles.crypto_item_price}>{price}</Text>
+          </View>
+        </View>
+      </View>
+    );
+  }
+  return (
+    <TouchableOpacity style={styles.crypto_item} onPress={handleGoToDetails}>
+      <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
         <View style={styles.crypto_item_properties}>
           <CryptoIcon code={crypto.id.toLowerCase()} />
           <View style={styles.crypto_item_names}>
@@ -98,24 +122,10 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
         </View>
         <View style={styles.crypto_item_details}>
           <Text style={styles.crypto_item_price}>{price}</Text>
+          <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>
+            {CryptoViewerIconsMap.next.unicode}
+          </Text>
         </View>
-      </View>
-    );
-  }
-  return (
-    <TouchableOpacity style={styles.crypto_item} onPress={handleGoToDetails}>
-      <View style={styles.crypto_item_properties}>
-        <CryptoIcon code={crypto.id.toLowerCase()} />
-        <View style={styles.crypto_item_names}>
-          <Text style={styles.crypto_item_name}>{crypto.name}</Text>
-          <Text style={styles.crypto_item_id}>{crypto.id}</Text>
-        </View>
-      </View>
-      <View style={styles.crypto_item_details}>
-        <Text style={styles.crypto_item_price}>{price}</Text>
-        <Text style={{ ...styles.cryptoViewerIcon, ...styles.crypto_item_next_icon }}>
-          {CryptoViewerIconsMap.next.unicode}
-        </Text>
       </View>
     </TouchableOpacity>
   );

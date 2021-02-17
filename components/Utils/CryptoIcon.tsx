@@ -7,6 +7,7 @@ import CryptoCurrencyIconsMap from './CryptoCurrencyIconsMap';
 const styles = StyleSheet.create({
   iconContainer: {
     marginRight: 10,
+    borderRadius: 10,
   },
   icon: {
     width: 40,
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
 
 const CryptoIcon = ({ code }) => {
   return (
-    <View style={styles.iconContainer}>
+    <View style={{ ...styles.iconContainer, backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333' }}>
       <Image style={styles.icon} source={CryptoCurrencyIconsMap[code]?.icon}  />
     </View>
   );
