@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, StatusBar, Platform, Text, BackHandler } from 'react-native';
+import { StyleSheet, View, StatusBar, Platform, BackHandler, StatusBarStyle } from 'react-native';
 
 import * as Font from 'expo-font';
 
@@ -23,8 +23,6 @@ import Tabs, { tabType } from './models/Tabs';
 import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
 import TopBar from './components/Utils/TopBar';
 
-const STATUSBAR_HEIGHT: number = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,12 +30,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     display: 'flex',
     flexDirection: 'column'
-  },
-
-  // STATUS BAR
-  statusBar: {
-    flexBasis: STATUSBAR_HEIGHT,
-    flexGrow: 0
   },
 });
 
@@ -50,6 +42,7 @@ const App = () => {
   const [areFontsLoaded, setFontsLoaded] = useState<boolean>(false);
 
   const [statusBarColor, setStatusBarColor] = useState<string>(Colors.white);
+  const [statusBarMode, setStatusBarMode] = useState<StatusBarStyle>('dark-content');
 
   const [wallet, setWallet] = useState<WalletItem[]>([]);
 
@@ -60,6 +53,7 @@ const App = () => {
     }
 
     setStatusBarColor(tabName === Tabs.details ? UtilsService.getColorFromCrypto((newDetails as Currency).id) : Colors.white);
+    setStatusBarMode(tabName === Tabs.details ? 'light-content' as StatusBarStyle : 'dark-content' as StatusBarStyle);
     setDetails(newDetails);
     setActiveTab(tabName);
   }, [setStatusBarColor, setDetails, setActiveTab]);
@@ -170,7 +164,10 @@ const App = () => {
   // Only render if fonts are loaded, to limit the reflow and API calls
   return (
     <View style={styles.container}>
-      <Text style={{ ...styles.statusBar, backgroundColor: statusBarColor }} />
+       <StatusBar
+        backgroundColor={statusBarColor}
+        barStyle={statusBarMode}
+      />
       <TopBar
         handleChangeTabList={handleChangeTabList}
         handleChangeTabSettings={handleChangeTabSettings}

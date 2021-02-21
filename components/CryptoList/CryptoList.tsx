@@ -19,11 +19,10 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     paddingTop: 25,
-    paddingLeft: 10,
+    paddingLeft: 20,
     paddingRight: 10,
     paddingBottom: 20,
     fontSize: 20,
-    textAlign: 'center',
     fontWeight: 'bold',
     backgroundColor: Colors.white,
   }

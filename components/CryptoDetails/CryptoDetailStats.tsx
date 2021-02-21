@@ -1,8 +1,6 @@
 import React, { memo, FC, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Colors from '../../assets/Colors';
-
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
@@ -13,21 +11,13 @@ import Crypto from '../../models/Crypto';
 
 const styles = StyleSheet.create({
   stats: {
-    flexBasis: 55,
-    flexGrow: 0,
-    borderTopWidth: 1,
-    borderTopColor: Colors.midGray,
     flexDirection: 'column'
   },
   stats_title: {
-    flexBasis: 20,
-    color: Colors.gray,
-    backgroundColor: '#FFFFFF',
-    marginHorizontal: 'auto',
-    textAlign: 'center',
-    marginTop: -11,
-    alignSelf: 'center',
-    paddingHorizontal: 4
+    paddingLeft: 20,
+    paddingRight: 10,
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   stats_container: {
     flex: 1,
@@ -58,12 +48,16 @@ interface CryptoDetailStatsProps {
   quote: quoteType;
   stats: Stats;
   crypto: Crypto;
+  buyPrice: number | null;
+  sellPrice: number | null;
 }
 
 const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   quote,
   stats,
   crypto,
+  buyPrice,
+  sellPrice,
 }) => {
 
   const cryptoColor = useMemo(
@@ -112,6 +106,51 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
               <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.volume.unicode}</Text>
               <Text style={{ ...styles.stat_number, color: cryptoColor }}>
                 {UtilsService.truncateNumber(stats.volume, 1)}
+              </Text>
+            </View>
+          ) : null
+        }
+      </View>
+      <Text style={styles.stats_title}>
+        Current Price
+      </Text>
+      <View style={styles.stats_container}>
+
+        {/* Buy Price Section */}
+        {(!!buyPrice) ?
+          (
+            <View style={styles.stat}>
+              <Text>Buy</Text>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
+              </Text>
+            </View>
+          ) : null
+        }
+
+        {/* Current Price Section */}
+        {(!!crypto.price) ?
+          (
+            <View style={{ ...styles.stat }}>
+              <Text>
+                Price
+              </Text>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
+              </Text>
+            </View>
+          ) : null
+        }
+
+        {/* Sell Price Section */}
+        {(!!sellPrice) ?
+          (
+            <View style={styles.stat}>
+              <Text>
+                Sell
+              </Text>
+              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
+                {`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
               </Text>
             </View>
           ) : null

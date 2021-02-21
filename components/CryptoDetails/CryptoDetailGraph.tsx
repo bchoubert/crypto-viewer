@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
+    height: 350,
+    marginBottom: 50,
   },
   chart: {
     overflow: 'visible'
@@ -32,10 +34,11 @@ const styles = StyleSheet.create({
   },
   candle: {
     flex: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
+    height: 25,
     textAlign: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 13,
   },
   candle_text: {
     color: '#FFFFFF',
@@ -91,6 +94,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
         (
           <VictoryChart
             width={Dimensions.get('window').width - 20}
+            height={350}
             theme={VictoryTheme.material}
             style={styles.chart}
             containerComponent={

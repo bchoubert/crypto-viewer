@@ -1,9 +1,5 @@
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
-
-import Colors from '../../assets/Colors';
-
-import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
+import React, { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { StyleSheet, Text, View, Dimensions, Animated, ScrollView } from 'react-native';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -15,69 +11,62 @@ import { candleType } from '../../models/CandleGranularity';
 
 import Stats from '../../models/Stats';
 
-import CryptoDetailPrices from './CryptoDetailPrices';
 import CryptoDetailGraph from './CryptoDetailGraph';
 import CryptoDetailStats from './CryptoDetailStats';
+import CryptoDescription from './CryptoDescription';
 import CryptoIcon from '../Utils/CryptoIcon';
+import CryptoDailyRate from './CryptoDailyRate';
+
+const screenWidth = Dimensions.get('window').width;
+
+const FadeInView = (props) => {
+  const translateAnim = useRef(new Animated.Value(-0.4 * screenWidth)).current;
+
+  useEffect(() => {
+    Animated.timing(
+      translateAnim,
+      {
+        toValue: 50,
+        duration: 600,
+        useNativeDriver: true,
+      }
+    ).start();
+  }, [translateAnim]);
+
+  const animatedStyle = { transform: [ { translateY: translateAnim } ] };
+
+  return (
+    <Animated.View style={{ ...props.style, ...animatedStyle }}>
+      {props.children}
+    </Animated.View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     textAlign: 'center',
-    flexDirection: 'column'
+    overflow: 'scroll',
+    paddingBottom: 50,
+    marginTop: 60
   },
   crypto_details: {
-    flexBasis: 120,
-    flexGrow: 0,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  crypto_details_bottom: {
-    flexBasis: 50,
-    flexGrow: 0,
+    alignItems: 'center',
     position: 'relative',
-    overflow: 'hidden',
   },
   crypto_details_bottom_circle: {
-    height: Dimensions.get('window').width * 3,
-    width: Dimensions.get('window').width * 3,
-    borderRadius: Dimensions.get('window').width * 1.5,
+    height: screenWidth * 3,
+    width: screenWidth * 3,
+    borderRadius: screenWidth * 1.5,
     position: 'absolute',
     bottom: 2,
-    left: Dimensions.get('window').width * -1,
+    left: screenWidth * -1,
+    zIndex: -1,
   },
   crypto_name: {
     color: 'white',
     paddingTop: 10
-  },
-
-  rate_container: {
-    height: 40,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 20
-  },
-  rate: {
-    padding: 8,
-    borderRadius: 17,
-    fontSize: 17,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  rate_icon: {
-    fontSize: 15,
-    paddingRight: 5,
-    color: 'white',
-  },
-  rate_number: {
-    color: 'white',
-  },
-
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer'
   }
 });
 
@@ -169,63 +158,38 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
   );
 
   return (
-    <View style={styles.container}>
-      <View style={{ ...styles.crypto_details, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }}>
+    <>
+      <View style={styles.crypto_details}>
         <CryptoIcon code={crypto.id.toLowerCase()} />
         <Text style={styles.crypto_name}>
           {`${crypto.name} - ${crypto.id}`}
         </Text>
+        {/* Show the current rate compared to the open market (or midnight if 24h/24h) */}
+        <CryptoDailyRate rate={stats?.rate} />
+        <FadeInView style={{ ...styles.crypto_details_bottom_circle, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }} />
       </View>
-      <View style={styles.crypto_details_bottom}>
-        <Text style={{ ...styles.crypto_details_bottom_circle, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }} />
-      </View>
-
-      <CryptoDetailGraph
-        historicRates={historicRates}
-        quote={quote}
-        crypto={crypto}
-        dateFormat={dateFormat}
-        activeCandle={activeCandle}
-        changeActiveCandle={setActiveCandle}
-      />
-
-      {/* Show the current rate compared to the open market (or midnight if 24h/24h) */}
-      {(!!stats?.rate) ?
-        (
-          <View style={styles.rate_container}>
-            <View style={{ ...styles.rate, backgroundColor: (stats.rate < 0) ? Colors.red : Colors.green }}>
-              {(stats.rate < 0) ?
-                (
-                  <Text style={{ ...styles.cryptoViewerIcon, ...styles.rate_icon }}>
-                    {CryptoViewerIconsMap.minus.unicode}
-                  </Text>
-                ) : (
-                  <Text style={{ ...styles.cryptoViewerIcon, ...styles.rate_icon }}>
-                    {CryptoViewerIconsMap.plus.unicode}
-                  </Text>
-                )
-              }
-              <Text style={styles.rate_number}>
-                {`${UtilsService.truncateNumber(Math.abs(stats.rate))}%`}
-              </Text>
-            </View>
-          </View>
-        ) : null
-      }
-      
-      <CryptoDetailStats
-        quote={quote}
-        crypto={crypto}
-        stats={stats}
-      />
-
-      <CryptoDetailPrices
-        crypto={crypto}
-        buyPrice={buyPrice}
-        sellPrice={sellPrice}
-        quote={quote}
-      />
-    </View>
+      <ScrollView style={styles.container}>
+        <CryptoDescription
+          crypto={crypto}
+        />
+        <CryptoDetailGraph
+          historicRates={historicRates}
+          quote={quote}
+          crypto={crypto}
+          dateFormat={dateFormat}
+          activeCandle={activeCandle}
+          changeActiveCandle={setActiveCandle}
+        />
+        
+        <CryptoDetailStats
+          quote={quote}
+          crypto={crypto}
+          stats={stats}
+          buyPrice={buyPrice}
+          sellPrice={sellPrice}
+        />
+      </ScrollView>
+    </>
   );
 }
 

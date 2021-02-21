@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     paddingRight: 8,
     backgroundColor: Colors.white,
+    position: 'relative',
+    zIndex: 3,
   },
   topBarIconContainer: {
     flexDirection: 'row',
@@ -87,7 +89,7 @@ const TopBar: FC<TopBarProps> = ({
   );
 
   return (
-    <View style={{ ...styles.topBar, ...(isInsideCrypto ? { backgroundColor: UtilsService.getColorFromCrypto(crypto.id) } : {}) }}>
+    <View style={{ ...styles.topBar, ...(isInsideCrypto ? { backgroundColor: 'transparent' } : {}) }}>
       {inner}
       <TouchableOpacity onPress={handleChangeTabSettings}>
         <Text style={{ ...styles.cryptoViewerIcon, ...(isInsideCrypto ? { color: Colors.white } : {}) }}>
