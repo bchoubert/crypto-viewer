@@ -8,6 +8,7 @@ import UtilsService from '../../services/Utils.service';
 import Stats from '../../models/Stats';
 import quoteType from '../../models/QuoteType';
 import Crypto from '../../models/Crypto';
+import Tile, { TileMode } from '../Utils/Tile';
 
 const styles = StyleSheet.create({
   stats: {
@@ -74,42 +75,56 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
       <View style={styles.stats_container}>
 
         {/* Highest 24h value section */}
-        {(!!stats.high) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
-                {CryptoViewerIconsMap.high.unicode}
-              </Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.high && (
+          <Tile
+            mode={TileMode.LIGHT}
+            label={
+              <>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                  {CryptoViewerIconsMap.high.unicode}
+                </Text>
+                <Text>High</Text>
+              </>
+            }
+            number={`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* Lowest 24h value section */}
-        {(!!stats.low) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.low.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.low && (
+          <Tile
+            mode={TileMode.CLEAR}
+            label={
+              <>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                  {CryptoViewerIconsMap.low.unicode}
+                </Text>
+                <Text>Low</Text>
+              </>
+            }
+            number={`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* 24h Volume section */}
-        {(!!stats.volume) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.volume.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {UtilsService.truncateNumber(stats.volume, 1)}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.volume && (
+          <Tile
+            mode={TileMode.FULL}
+            isLongNumber
+            label={
+              <>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                  {CryptoViewerIconsMap.volume.unicode}
+                </Text>
+                <Text>Volume</Text>
+              </>
+            }
+            number={`${UtilsService.truncateNumber(stats.volume, 0)}`}
+            color={cryptoColor}
+          />
+        )}
       </View>
       <Text style={styles.stats_title}>
         Current Price
@@ -117,44 +132,34 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
       <View style={styles.stats_container}>
 
         {/* Buy Price Section */}
-        {(!!buyPrice) ?
-          (
-            <View style={styles.stat}>
-              <Text>Buy</Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!buyPrice && (
+          <Tile
+            mode={TileMode.CLEAR}
+            label="Buy"
+            number={`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* Current Price Section */}
-        {(!!crypto.price) ?
-          (
-            <View style={{ ...styles.stat }}>
-              <Text>
-                Price
-              </Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!crypto.price && (
+          <Tile
+            mode={TileMode.FULL}
+            label="Price"
+            number={`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* Sell Price Section */}
-        {(!!sellPrice) ?
-          (
-            <View style={styles.stat}>
-              <Text>
-                Sell
-              </Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!sellPrice && (
+          <Tile
+            mode={TileMode.LIGHT}
+            label="Sell"
+            number={`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
       </View>
     </View>
   );
