@@ -47,13 +47,18 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     overflow: 'scroll',
-    paddingBottom: 50,
-    marginTop: 60
+    marginTop: 60,
+    paddingTop: 50,
+  },
+  container_last: {
+    height: 50,
   },
   crypto_details: {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
+    zIndex: 2,
+    marginBottom: -50,
   },
   crypto_details_bottom_circle: {
     height: screenWidth * 3,
@@ -188,6 +193,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
           buyPrice={buyPrice}
           sellPrice={sellPrice}
         />
+        <View style={styles.container_last}></View>
       </ScrollView>
     </>
   );

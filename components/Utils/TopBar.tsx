@@ -30,6 +30,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: Colors.blue,
   },
+  topBarInsideContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
 
   cryptoViewerIcon: {
     fontSize: 20,
@@ -58,7 +62,7 @@ const TopBar: FC<TopBarProps> = ({
     [activeTab, crypto],
   );
 
-  const inner = useMemo(
+  const innerLeft = useMemo(
     () => {
       if (isInsideCrypto) {
         return (
@@ -88,14 +92,40 @@ const TopBar: FC<TopBarProps> = ({
     [activeTab, isInsideCrypto, handleBackAction, handleChangeTabList],
   );
 
+  const innerRight = useMemo(
+    () => {
+      if (isInsideCrypto) {
+        return (
+          <View style={styles.topBarInsideContainer}>
+            <TouchableOpacity onPress={handleChangeTabSettings}>
+              <Text style={{ ...styles.cryptoViewerIcon, ...({ color: Colors.white }) }}>
+                {CryptoViewerIconsMap.star_empty.unicode}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleChangeTabSettings}>
+              <Text style={{ ...styles.cryptoViewerIcon, ...({ color: Colors.white }) }}>
+                {CryptoViewerIconsMap.settings.unicode}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        );
+      } else {
+        return (
+          <TouchableOpacity onPress={handleChangeTabSettings}>
+            <Text style={styles.cryptoViewerIcon}>
+              {CryptoViewerIconsMap.settings.unicode}
+            </Text>
+          </TouchableOpacity>
+        );
+      }
+    },
+    [isInsideCrypto],
+  );
+
   return (
     <View style={{ ...styles.topBar, ...(isInsideCrypto ? { backgroundColor: 'transparent' } : {}) }}>
-      {inner}
-      <TouchableOpacity onPress={handleChangeTabSettings}>
-        <Text style={{ ...styles.cryptoViewerIcon, ...(isInsideCrypto ? { color: Colors.white } : {}) }}>
-          {CryptoViewerIconsMap.settings.unicode}
-        </Text>
-      </TouchableOpacity>
+      {innerLeft}
+      {innerRight}
     </View>
   );
 }

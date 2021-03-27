@@ -5,6 +5,7 @@ import UtilsService from '../../services/Utils.service';
 
 import Colors from '../../assets/Colors';
 
+import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import CryptoCurrenciesIconMap from '../Utils/CryptoCurrencyIconsMap';
 
 import Crypto from '../../models/Crypto';
@@ -28,10 +29,22 @@ const styles = StyleSheet.create({
   },
   description_website: {
     paddingHorizontal: 20,
-    paddingBottom: 10
+    paddingBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  description_website_icon: {
+    fontSize: 12,
   },
   description_website_text: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    width: 95
+  },
+
+  cryptoViewerIcon: {
+    fontSize: 20,
+    fontFamily: 'crypto-viewer'
   }
 });
 
@@ -53,19 +66,26 @@ const CryptoDescription: FC<CryptoDescriptionProps> = ({
   );
 
   return (
-    <View style={styles.descritpion}>
-      <Text style={styles.descritpion_title}>
-        Details
-      </Text>
-      <Text style={styles.description_text}>
-        {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description}
-      </Text>
-      {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website && (
-        <TouchableOpacity onPress={openWebsite} style={ styles.description_website }>
-          <Text style={{ ...styles.description_website_text, color: cryptoColor }}>Official Website</Text>
-        </TouchableOpacity>
-      )}
-    </View>
+    CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
+      <View style={styles.descritpion}>
+        <Text style={styles.descritpion_title}>
+          Details
+        </Text>
+        <Text style={styles.description_text}>
+          {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || ''}
+        </Text>
+        {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
+          <TouchableOpacity onPress={openWebsite} style={ styles.description_website }>
+            <Text numberOfLines={1} style={{ ...styles.description_website_text, color: cryptoColor }}>
+              Official Website
+            </Text>
+            <Text style={{ ...styles.cryptoViewerIcon, ...styles.description_website_icon, color: cryptoColor }}>
+              {CryptoViewerIconsMap.link.unicode}
+            </Text>
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    ) : null
   );
 };
 

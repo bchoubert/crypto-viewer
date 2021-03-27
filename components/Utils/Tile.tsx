@@ -88,8 +88,12 @@ const Tile: FC<TileProps> = ({
       <Text style={{
         ...(isLongNumber ? styles.tile_long_number : styles.tile_number),
         color: textColor,
-      }}>{number}</Text>
-      <Text style={{ ...styles.tile_label, color: textColor }}>{label}</Text>
+      }}>
+        {number}
+      </Text>
+      <Text style={{ ...styles.tile_label, color: textColor }}>
+        {label}
+      </Text>
     </View>
   );
 }

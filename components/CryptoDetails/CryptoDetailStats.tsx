@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
   },
   stat_icon: {
     fontSize: 12,
-    paddingRight: 5
   },
 
   cryptoViewerIcon: {
@@ -82,7 +81,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
               <>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.high.unicode}
-                </Text>
+                </Text>{' '}
                 <Text>High</Text>
               </>
             }
@@ -99,7 +98,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
               <>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.low.unicode}
-                </Text>
+                </Text>{' '}
                 <Text>Low</Text>
               </>
             }
@@ -117,7 +116,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
               <>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.volume.unicode}
-                </Text>
+                </Text>{' '}
                 <Text>Volume</Text>
               </>
             }
