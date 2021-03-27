@@ -10,6 +10,10 @@ const UtilsService = {
     if (prop1[property].toLowerCase() > prop2[property].toLowerCase()) { return 1 }
     return 0;
   },
+  // Unique array items
+  onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  },
   // Truncate number for prices  amounts. Default is truncated at 2
   truncateNumber(nb: number | string, trunc = 2) {
     if (typeof nb === 'string') {

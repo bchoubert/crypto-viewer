@@ -1,11 +1,10 @@
-import React, { FC, useMemo } from 'react';
-import { TouchableOpacity, View, Image, StyleSheet, Text } from 'react-native';
+import React, { FC, useCallback, useMemo, useRef } from 'react';
+import { TouchableOpacity, View, Image, StyleSheet, Text, Animated } from 'react-native';
 
 import CryptoViewerIconsMap from './../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import Colors from './../../assets/Colors';
 import Tabs, { tabType } from '../../models/Tabs';
 import Crypto from '../../models/Crypto';
-import UtilsService from '../../services/Utils.service';
 
 const styles = StyleSheet.create({
   topBar: {
@@ -45,21 +44,30 @@ const styles = StyleSheet.create({
 interface TopBarProps {
   handleChangeTabList: () => void;
   handleChangeTabSettings: () => void;
+  handleChangeFavourites: () => void;
   handleBackAction: () => void;
   crypto: Crypto;
+  favouritesList: string[];
   activeTab: tabType;
 }
 
 const TopBar: FC<TopBarProps> = ({
   handleChangeTabList,
   handleChangeTabSettings,
+  handleChangeFavourites,
   handleBackAction,
   crypto,
+  favouritesList,
   activeTab,
 }) => {
   const isInsideCrypto = useMemo(
     () => activeTab === Tabs.details && !!crypto,
     [activeTab, crypto],
+  );
+
+  const isFavourite = useMemo(
+    () => (favouritesList || []).includes(crypto?.id),
+    [favouritesList, crypto],
   );
 
   const innerLeft = useMemo(
@@ -97,9 +105,9 @@ const TopBar: FC<TopBarProps> = ({
       if (isInsideCrypto) {
         return (
           <View style={styles.topBarInsideContainer}>
-            <TouchableOpacity onPress={handleChangeTabSettings}>
+            <TouchableOpacity onPress={handleChangeFavourites}>
               <Text style={{ ...styles.cryptoViewerIcon, ...({ color: Colors.white }) }}>
-                {CryptoViewerIconsMap.star_empty.unicode}
+                {isFavourite ? CryptoViewerIconsMap.star.unicode : CryptoViewerIconsMap.star_empty.unicode}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleChangeTabSettings}>
@@ -119,7 +127,7 @@ const TopBar: FC<TopBarProps> = ({
         );
       }
     },
-    [isInsideCrypto],
+    [isInsideCrypto, isFavourite, handleChangeFavourites],
   );
 
   return (

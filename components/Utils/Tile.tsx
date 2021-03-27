@@ -1,5 +1,5 @@
 import React, { FC, ReactNode, useMemo } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -7,6 +7,7 @@ export enum TileMode {
   CLEAR = 'CLEAR',
   LIGHT = 'LIGHT',
   FULL = 'FULL',
+  TALL = 'TALL',
 };
 
 const styles = StyleSheet.create({
@@ -19,6 +20,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     padding: 10
+  },
+  tall: {
+    height: 180,
   },
   tile_number: {
     flex: 1,
@@ -37,6 +41,7 @@ const stylesForTileMode = {
   [TileMode.CLEAR]: styles.tile,
   [TileMode.LIGHT]: styles.tile,
   [TileMode.FULL]: styles.tile,
+  [TileMode.TALL]: { ...styles.tile, ...styles.tall },
 }
 
 interface TileProps {
@@ -45,6 +50,8 @@ interface TileProps {
   number: string | ReactNode;
   color: string;
   isLongNumber?: boolean;
+  style?: object,
+  onPress?: () => void;
 }
 
 const Tile: FC<TileProps> = ({
@@ -53,6 +60,8 @@ const Tile: FC<TileProps> = ({
   number,
   color,
   isLongNumber,
+  style,
+  onPress,
 }) => {
 
   const backgroundColor = useMemo(
@@ -63,6 +72,7 @@ const Tile: FC<TileProps> = ({
         case TileMode.LIGHT:
           return `${color}22`;
         case TileMode.FULL:
+        case TileMode.TALL:
           return color;
       }
     },
@@ -77,6 +87,7 @@ const Tile: FC<TileProps> = ({
         case TileMode.LIGHT:
           return Colors.darkGray;
         case TileMode.FULL:
+        case TileMode.TALL:
           return Colors.white;
       }
     },
@@ -84,17 +95,21 @@ const Tile: FC<TileProps> = ({
   );
 
   return (
-    <View style={{ ...stylesForTileMode[mode], backgroundColor }}>
+    <TouchableOpacity style={{ ...stylesForTileMode[mode], backgroundColor, ...(style || {}) }} onPress={onPress}>
       <Text style={{
         ...(isLongNumber ? styles.tile_long_number : styles.tile_number),
         color: textColor,
       }}>
         {number}
       </Text>
-      <Text style={{ ...styles.tile_label, color: textColor }}>
-        {label}
-      </Text>
-    </View>
+      {(typeof label === 'string') ? (
+        <Text style={{ ...styles.tile_label, color: textColor }}>
+          {label}
+        </Text>
+      ) : (
+        <View>{label}</View>
+      )}
+    </TouchableOpacity>
   );
 }
 

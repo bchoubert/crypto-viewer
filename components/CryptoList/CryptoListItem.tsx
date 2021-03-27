@@ -11,6 +11,7 @@ import Crypto from '../../models/Crypto';
 import quoteType from '../../models/QuoteType';
 import Tabs, { tabType } from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
+import Tile, { TileMode } from '../Utils/Tile';
 
 const styles = StyleSheet.create({
   crypto_item: {
@@ -58,6 +59,12 @@ const styles = StyleSheet.create({
     color: Colors.gray,
     fontSize: 14
   },
+  favourite_list_item: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  favourite_item: {
+  },
 
   cryptoViewerIcon: {
     fontSize: 20,
@@ -67,7 +74,7 @@ const styles = StyleSheet.create({
 
 interface CryptoListItemProps {
   section: SectionListData<Crypto>;
-  crypto: Crypto;
+  crypto: Crypto | Crypto[];
   quote: quoteType;
   changeTab: (tabName: tabType, newDetails: Object) => any;
 }
@@ -78,29 +85,66 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   quote,
   changeTab,
 }) => {
-  // Compute the price
-  const price = crypto?.price ? `${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}` : '';
-
   const handleGoToDetails = useCallback(
-    () => changeTab(Tabs.details, crypto),
+    (cryptoToOpen) => changeTab(Tabs.details, cryptoToOpen),
     [crypto, changeTab],
   );
 
+  // Render favourites
+  if (section.id === 'favourites') {
+    const finalCryptos = crypto as Crypto[];
+
+    return (
+      <View style={styles.favourite_list_item} key={`view_${finalCryptos[0]?.id}`}>
+        {finalCryptos.map(crypto => {
+
+          const cryptoColor = UtilsService.getColorFromCrypto(crypto.id);
+          const price = crypto?.price ? `${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}` : '';
+
+          return (
+            <Tile
+              key={`item_${crypto.id}`}
+              mode={TileMode.FULL}
+              color={cryptoColor}
+              label={(
+                <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                  <CryptoIcon code={crypto.id.toLowerCase()} style={{ height: 15, width: 15 }} styleForIcon={{ height: 15, width: 15 }} />
+                  <Text style={{ color: Colors.white }} numberOfLines={1}>{crypto.name}</Text>
+                </View>
+              )}
+              number={price}
+              style={styles.favourite_item}
+              onPress={() => handleGoToDetails(crypto)}
+            >
+              {crypto.id}
+            </Tile>
+          );
+        })}
+        {finalCryptos.length === 1 ? <View style={{ flex: 1, margin: 10, padding: 10 }}></View> : null}
+      </View>
+    );
+  }
+
+  const finalCrypto = crypto as Crypto;
+
+  // Compute the price
+  const price = finalCrypto?.price ? `${UtilsService.truncateNumber(finalCrypto.price)} ${quote.symbol}` : '';
+
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto.id),
+    () => UtilsService.getColorFromCrypto(finalCrypto.id),
     [crypto],
   );
 
   // Render the complete list item with action
   if (section.id === 'other') {
     return (
-      <View style={styles.crypto_item}>
+      <View style={styles.crypto_item} key={`other_${finalCrypto.id}`}>
         <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
           <View style={styles.crypto_item_properties}>
-            <CryptoIcon code={crypto.id.toLowerCase()} />
+            <CryptoIcon code={finalCrypto.id.toLowerCase()} />
             <View style={styles.crypto_item_names}>
-              <Text style={styles.crypto_item_name}>{crypto.name}</Text>
-              <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+              <Text style={styles.crypto_item_name}>{finalCrypto.name}</Text>
+              <Text style={styles.crypto_item_id}>{finalCrypto.id}</Text>
             </View>
           </View>
           <View style={styles.crypto_item_details}>
@@ -111,13 +155,13 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
     );
   }
   return (
-    <TouchableOpacity style={styles.crypto_item} onPress={handleGoToDetails}>
+    <TouchableOpacity style={styles.crypto_item} onPress={() => handleGoToDetails(finalCrypto)} key={`main_${finalCrypto.id}`}>
       <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
         <View style={styles.crypto_item_properties}>
-          <CryptoIcon code={crypto.id.toLowerCase()} />
+          <CryptoIcon code={finalCrypto.id.toLowerCase()} />
           <View style={styles.crypto_item_names}>
-            <Text style={styles.crypto_item_name}>{crypto.name}</Text>
-            <Text style={styles.crypto_item_id}>{crypto.id}</Text>
+            <Text style={styles.crypto_item_name}>{finalCrypto.name}</Text>
+            <Text style={styles.crypto_item_id}>{finalCrypto.id}</Text>
           </View>
         </View>
         <View style={styles.crypto_item_details}>

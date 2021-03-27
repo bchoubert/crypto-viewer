@@ -37,6 +37,11 @@ const styles = StyleSheet.create({
   stat_icon: {
     fontSize: 12,
   },
+  stat_label: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 
   cryptoViewerIcon: {
     fontSize: 20,
@@ -78,12 +83,12 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.LIGHT}
             label={
-              <>
+              <View style={styles.stat_label}>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.high.unicode}
-                </Text>{' '}
-                <Text>High</Text>
-              </>
+                </Text>
+                <Text> High</Text>
+              </View>
             }
             number={`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
             color={cryptoColor}
@@ -95,12 +100,12 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.CLEAR}
             label={
-              <>
+              <View style={styles.stat_label}>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.low.unicode}
-                </Text>{' '}
-                <Text>Low</Text>
-              </>
+                </Text>
+                <Text> Low</Text>
+              </View>
             }
             number={`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
             color={cryptoColor}
@@ -113,12 +118,12 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             mode={TileMode.FULL}
             isLongNumber
             label={
-              <>
+              <View style={styles.stat_label}>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.volume.unicode}
-                </Text>{' '}
-                <Text>Volume</Text>
-              </>
+                </Text>
+                <Text> Volume</Text>
+              </View>
             }
             number={`${UtilsService.truncateNumber(stats.volume, 0)}`}
             color={cryptoColor}

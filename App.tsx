@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, StatusBar, Platform, BackHandler, StatusBarStyle } from 'react-native';
+import { StyleSheet, View, StatusBar, Platform, BackHandler, StatusBarStyle, ToastAndroid } from 'react-native';
 
 import * as Font from 'expo-font';
 
@@ -20,7 +20,7 @@ import Currency from './models/Crypto';
 import WalletItem from './models/WalletItem';
 import Tabs, { tabType } from './models/Tabs';
 
-import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
+import { DATE_FORMAT_KEY, FAVOURITES_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
 import TopBar from './components/Utils/TopBar';
 
 const styles = StyleSheet.create({
@@ -37,6 +37,8 @@ const App = () => {
   const [activeTab, setActiveTab] = useState<tabType>(Tabs.list);
   const [activeQuote, setActiveQuote] = useState<quoteType>({ code: 'USD', symbol: '$' });
   const [dateFormat, setDateFormat] = useState<dateFormatType>(dateFormats.american);
+  const [favouritesList, setFavouriesList] = useState<string[]>([]);
+
   const [details, setDetails] = useState<object | null>(null);
 
   const [areFontsLoaded, setFontsLoaded] = useState<boolean>(false);
@@ -82,6 +84,7 @@ const App = () => {
       case Tabs.list:
         return <CryptoList
           quote={activeQuote}
+          favouritesList={favouritesList}
           changeTab={changeTab} />;
       case Tabs.wallet:
         return <Wallet
@@ -107,6 +110,7 @@ const App = () => {
       default:
         return <CryptoList
           quote={activeQuote}
+          favouritesList={favouritesList}
           changeTab={changeTab} />;
     }
   }, [activeTab, activeQuote, dateFormat]);
@@ -141,6 +145,13 @@ const App = () => {
       }
     });
 
+    // Get the favourites content back from the storage
+    StorageService.getData(FAVOURITES_KEY).then(value => {
+      if (value != null) {
+        setFavouriesList(JSON.parse(value) as string[]);
+      }
+    });
+
     asyncLoadFonts();
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -156,6 +167,28 @@ const App = () => {
 
   const handleChangeTabList = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleChangeTabSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
+  const handleChangeFavourites = useCallback(() => {
+    if (!details) { return; }
+
+    const activeCurrency = details as Currency;
+
+    setFavouriesList(list => {
+      let newList = [...(list || [])];
+
+      // If already in favourites, remove it. Otherwise, add it
+      if (newList.includes(activeCurrency.id)) {
+        newList = newList.filter(i => i !== activeCurrency.id);
+        ToastAndroid.show('Favourite removed!', ToastAndroid.BOTTOM)
+      } else {
+        newList.push(activeCurrency.id);
+        ToastAndroid.show('Added as favourite!', ToastAndroid.BOTTOM)
+      }
+
+
+      StorageService.storeData(FAVOURITES_KEY, JSON.stringify(newList));
+      return newList.filter(UtilsService.onlyUnique);
+    });
+  }, [favouritesList, details]);
   const handleBackAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
 
   if (!areFontsLoaded) {
@@ -171,9 +204,11 @@ const App = () => {
       <TopBar
         handleChangeTabList={handleChangeTabList}
         handleChangeTabSettings={handleChangeTabSettings}
+        handleChangeFavourites={handleChangeFavourites}
         handleBackAction={handleBackAction}
         activeTab={activeTab}
         crypto={details as Currency}
+        favouritesList={favouritesList}
       />
       {activeTabRendered}
       <BottomBar
