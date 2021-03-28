@@ -113,7 +113,7 @@ const App = () => {
           favouritesList={favouritesList}
           changeTab={changeTab} />;
     }
-  }, [activeTab, activeQuote, dateFormat]);
+  }, [activeTab, activeQuote, dateFormat, favouritesList]);
 
   useEffect(() => {
     const asyncLoadFonts = async () => {

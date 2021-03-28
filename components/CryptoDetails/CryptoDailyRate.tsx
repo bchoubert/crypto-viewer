@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useRef } from 'react';
-import { Animated, StyleSheet, Text, View } from 'react-native';
+import React, { FC } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -7,63 +7,42 @@ import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIcons
 
 import UtilsService from '../../services/Utils.service';
 
-const HeightTransitionView = (props) => {
-  const translateAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.timing(
-      translateAnim,
-      {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }
-    ).start();
-  }, [translateAnim]);
-
-  const animatedStyle = { transform: [ { scale: translateAnim } ] };
-
-  return (
-    <Animated.View style={{ ...props.style, ...animatedStyle }}>
-      {props.children}
-    </Animated.View>
-  );
-};
-
 const styles = StyleSheet.create({
   rate_container: {
-    height: 40,
+    height: 84,
+    width: 84,
+    display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 25
-  },
-  rate_plus: {
-    padding: 8,
-    borderRadius: 17,
-    fontSize: 17,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 25,
+    borderWidth: 2,
+    borderRadius: 42,
+    borderColor: Colors.white,
     backgroundColor: Colors.white,
-    borderWidth: 1,
-    borderBottomColor: Colors.white,
-    borderTopColor: Colors.white,
-    borderLeftColor: Colors.green,
-    borderRightColor: Colors.green
   },
-  rate_minus: {
-    padding: 8,
-    borderRadius: 17,
-    fontSize: 17,
+  rate_content: {
+    borderWidth: 4,
+    height: 80,
+    width: 80,
+    display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    borderLeftColor: Colors.white,
+    borderRightColor: Colors.white,
+    borderRadius: 40,
     backgroundColor: Colors.white,
-    borderWidth: 1,
-    borderBottomColor: Colors.white,
-    borderTopColor: Colors.white,
-    borderLeftColor: Colors.red,
-    borderRightColor: Colors.red
+    transform: [{
+      rotate: '-15deg'
+    }],
+  },
+  rate_content_plus: {
+    borderTopColor: Colors.green,
+    borderBottomColor: Colors.green,
+  },
+  rate_content_minus: {
+    borderTopColor: Colors.red,
+    borderBottomColor: Colors.red,
   },
   rate_icon_plus: {
     fontSize: 15,
@@ -98,27 +77,27 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
 
   return (
     <View style={styles.rate_container}>
-      {rate && (
-        (rate < 0) ? (
-          <HeightTransitionView style={styles.rate_minus}>
-            <Text style={{ ...styles.cryptoViewerIcon, ...styles.rate_icon_minus }}>
-              {CryptoViewerIconsMap.minus.unicode}
-            </Text>
-            <Text style={styles.rate_number_minus}>
-              {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-            </Text>
-          </HeightTransitionView>
-        ) : (
-          <HeightTransitionView style={styles.rate_plus}>
-            <Text style={{ ...styles.cryptoViewerIcon, ...styles.rate_icon_plus }}>
-              {CryptoViewerIconsMap.plus.unicode}
-            </Text>
-            <Text style={styles.rate_number_plus}>
-              {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-            </Text>
-          </HeightTransitionView>
-        )
-      )}
+        {rate && (
+          (rate < 0) ? (
+            <View style={[styles.rate_content, styles.rate_content_minus]}>
+              <Text style={[styles.cryptoViewerIcon, styles.rate_icon_minus]}>
+                {CryptoViewerIconsMap.minus.unicode}
+              </Text>
+              <Text style={styles.rate_number_minus}>
+                {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+              </Text>
+            </View>
+          ) : (
+            <View style={[styles.rate_content, styles.rate_content_plus]}>
+              <Text style={[ styles.cryptoViewerIcon, styles.rate_icon_plus]}>
+                {CryptoViewerIconsMap.plus.unicode}
+              </Text>
+              <Text style={styles.rate_number_plus}>
+                {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+              </Text>
+            </View>
+          )
+        )}
     </View>
   );
 }

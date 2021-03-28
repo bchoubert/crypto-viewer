@@ -9,6 +9,7 @@ import Stats from '../../models/Stats';
 import quoteType from '../../models/QuoteType';
 import Crypto from '../../models/Crypto';
 import Tile, { TileMode } from '../Utils/Tile';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   stats: {
@@ -119,10 +120,10 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             isLongNumber
             label={
               <View style={styles.stat_label}>
-                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon, color: Colors.white }}>
                   {CryptoViewerIconsMap.volume.unicode}
                 </Text>
-                <Text> Volume</Text>
+                <Text style={{ color: Colors.white }}> Volume</Text>
               </View>
             }
             number={`${UtilsService.truncateNumber(stats.volume, 0)}`}

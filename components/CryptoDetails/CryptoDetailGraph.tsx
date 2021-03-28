@@ -1,5 +1,5 @@
 import React, { memo, FC, useMemo } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, Dimensions } from 'react-native';
 import {
   VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer,
   VictoryTooltip,
@@ -13,6 +13,7 @@ import candleGranularity, { candleType } from '../../models/CandleGranularity';
 import UtilsService from '../../services/Utils.service';
 
 import MultilineTooltip from '../Utils/MultilineTooltip';
+import Selector from '../Utils/Selector';
 
 const styles = StyleSheet.create({
   crypto_graph: {
@@ -27,25 +28,6 @@ const styles = StyleSheet.create({
   chart: {
     overflow: 'visible'
   },
-
-  candle_container: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-  },
-  candle: {
-    flex: 1,
-    height: 25,
-    textAlign: 'center',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 13,
-  },
-  candle_text: {
-    color: '#FFFFFF',
-    flex: 1,
-    textAlign: 'center'
-  },
-
 });
 
 interface CryptoDetailGraphProps {
@@ -138,21 +120,12 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
       }
 
       {/* Show the candle options */}
-      <View style={styles.candle_container}>
-        {Object.keys(candleGranularity).map((candle: candleType) =>
-          (
-            <TouchableOpacity
-              key={candle}
-              style={{ ...styles.candle, ...((activeCandle === candle) ? { backgroundColor: cryptoColor } : []) }}
-              onPress={() => changeActiveCandle(candle as candleType)}
-            >
-              <Text style={{ ...styles.candle_text, ...((activeCandle !== candle) ? { color: cryptoColor } : []) }}>
-                {candle}
-              </Text>
-            </TouchableOpacity>
-          )
-        )}
-      </View>
+      <Selector
+        items={Object.keys(candleGranularity)}
+        activeItem={activeCandle}
+        setActiveItem={changeActiveCandle}
+        color={cryptoColor}
+      />
     </View>
   );
 }

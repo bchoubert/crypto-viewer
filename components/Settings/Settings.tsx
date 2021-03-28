@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { dateFormatType } from '../../models/DateFormat';
 
+
 import quoteType from '../../models/QuoteType';
 import SettingItem from './SettingItem';
 

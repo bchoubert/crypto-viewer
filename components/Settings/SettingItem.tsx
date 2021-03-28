@@ -1,63 +1,30 @@
-import React, { memo, FC, useCallback } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { memo, FC } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
 
 import dateFormats, { dateFormatType } from '../../models/DateFormat';
 import quoteType, { possibleQuotes } from '../../models/QuoteType';
+import Selector from '../Utils/Selector';
 
 const styles = StyleSheet.create({
   settings: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     paddingLeft: 15,
     paddingRight: 15,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 80,
+    paddingBottom: 10,
+    paddingTop: 10,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
     borderBottomWidth: 1,
     borderBottomColor: Colors.lightGray
   },
   settingsText: {
-    fontSize: 17
+    fontSize: 17,
+    width: '100%',
+    marginBottom: 8,
   },
 
-  quoteChanger: {
-    height: 80,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  quoteChangerPart: {
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 60,
-    borderRadius: 30
-  },
-  quoteChangerPartActive: {
-    backgroundColor: Colors.gray
-  },
-  quoteChangerPartTextActive: {
-    color: 'white'
-  },
-
-  dateChanger: {
-    height: 80,
-    flexDirection: 'row',
-    alignItems: 'center'
-  },
-  dateChangerPart: {
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 60,
-    borderRadius: 30
-  },
-  dateChangerPartActive: {
-    backgroundColor: Colors.gray
-  },
-  dateChangerPartTextActive: {
-    color: 'white'
-  },
 
   credits: {
     flexDirection: 'column',
@@ -92,34 +59,24 @@ const SettingItem: FC<SettingItemProps> = ({
       return (
         <View style={styles.settings}>
           <Text style={styles.settingsText}>Preferred currency</Text>
-          <View style={styles.quoteChanger}>
-            {possibleQuotes.map(qu => (
-              <TouchableOpacity onPress={() => changeQuote(qu)} key={qu.code}
-                style={{ ...styles.quoteChangerPart, ...(quote.code === qu.code ? styles.quoteChangerPartActive : []) }}>
-
-                <Text style={{ ...(quote.code === qu.code ? styles.quoteChangerPartTextActive : []) }}>
-                  {qu.code}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <Selector
+            items={possibleQuotes.map(qu => qu.code)}
+            activeItem={quote.code}
+            setActiveItem={(code) => changeQuote(possibleQuotes.find(qu => qu.code === code))}
+            color={Colors.blue}
+          />
         </View>
       );
     case 'dateFormat':
       return (
         <View style={styles.settings}>
           <Text style={styles.settingsText}>Preferred date</Text>
-          <View style={styles.dateChanger}>
-            {Object.values(dateFormats).map((df) => (
-              <TouchableOpacity onPress={() => changeDateFormat(df)} key={df}
-                style={{ ...styles.dateChangerPart, ...(dateFormat === df ? styles.dateChangerPartActive : []) }}>
-
-                <Text style={{ ...(dateFormat === df ? styles.dateChangerPartTextActive : []) }}>
-                  {df}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <Selector
+            items={Object.values(dateFormats)}
+            activeItem={dateFormat}
+            setActiveItem={changeDateFormat}
+            color={Colors.blue}
+          />
         </View>
       );
     case 'credits':
