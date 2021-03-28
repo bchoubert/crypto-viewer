@@ -21,6 +21,12 @@ const UtilsService = {
     }
     return nb.toFixed(trunc);
   },
+  truncateIntelligentNumber(nb: number | string, trunc = 2) {
+    if (typeof nb === 'string') {
+      nb = parseFloat(nb);
+    }
+    return nb.toFixed(nb > 999 ? 0 : trunc);
+  },
   // Specific function for graphs. Permits to only show the first and last label (clear all other labels)
   generateLabels(arr) {
     return arr.map((item, index) => {

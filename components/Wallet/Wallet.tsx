@@ -99,7 +99,7 @@ const Wallet: FC<WalletProps> = ({
 
     setLoading(false);
     setCryptos(newCryptos.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
-  }, [quote]);
+  }, [quote, wallet]);
 
   // Callback for the pull to refresh list action
   const onRefresh = useCallback(() => {
@@ -138,7 +138,7 @@ const Wallet: FC<WalletProps> = ({
     if (!selectedCryptoKey || !selectedAmount) {
       return;
     }
-    let walletTemp = wallet || [];
+    let walletTemp = [...(wallet || [])];
     if (!!wallet && !!wallet.filter(walletItem => walletItem.crypto === selectedCryptoKey).length) {
       walletTemp.find(walletItem => walletItem.crypto === selectedCryptoKey).amount = selectedAmount;
     } else {
@@ -166,7 +166,7 @@ const Wallet: FC<WalletProps> = ({
       const asyncFetchData = async () => fetchCryptos();
       asyncFetchData();
     },
-    [],
+    [wallet],
   );
 
   // Render wallet

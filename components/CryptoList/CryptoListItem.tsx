@@ -99,7 +99,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
         {finalCryptos.map(crypto => {
 
           const cryptoColor = UtilsService.getColorFromCrypto(crypto.id);
-          const price = crypto?.price ? `${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}` : '';
+          const price = crypto?.price ? `${UtilsService.truncateIntelligentNumber(crypto.price)} ${quote.symbol}` : '';
 
           return (
             <Tile
@@ -128,7 +128,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   const finalCrypto = crypto as Crypto;
 
   // Compute the price
-  const price = finalCrypto?.price ? `${UtilsService.truncateNumber(finalCrypto.price)} ${quote.symbol}` : '';
+  const price = finalCrypto?.price ? `${UtilsService.truncateIntelligentNumber(finalCrypto.price)} ${quote.symbol}` : '';
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(finalCrypto.id),

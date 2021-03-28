@@ -1,6 +1,7 @@
 import React, { Component, FC, memo, useMemo } from 'react';
 import { Dimensions } from 'react-native';
-import { Line, G, Text as TextSVG, TextAnchor, Rect } from 'react-native-svg';
+import { Line, G, Text as TextSVG, TextAnchor, Rect, Circle } from 'react-native-svg';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -32,7 +33,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   );
 
   const textPosition: number = useMemo(
-    () => x + (showPosition === 'right' ? 52 : -52),
+    () => x + (showPosition === 'right' ? 55 : -55),
     [showPosition, x],
   );
 
@@ -45,13 +46,21 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   return (
     <G>
       <Rect
-        x={(showPosition === 'left') ? x - 118 : x + 50}
-        y={y - 41}
-        width={68}
-        height={30}
-        fill="#FFFFFF"
+        x={(showPosition === 'left') ? x - 124 : x + 50}
+        y={y - 44}
+        width={74}
+        height={36}
+        rx={10}
+        fill={Colors.white}
         stroke="#000000"></Rect>
-      <Line x1={x} x2={popinPosition} y1={y} y2={y - 30} stroke="#000000" />
+      <Circle cx={x} cy={y} r={10} stroke="#000000" />
+      <Line
+        x1={x + (showPosition === 'left' ? -8 : 8)}
+        x2={popinPosition}
+        y1={y - 5}
+        y2={y - 30}
+        stroke="#000000"
+      />
       <TextSVG x={textPosition} y={y - 30} textAnchor={textAnchor} fill="#000000">
         {`${UtilsService.printDate(datum.x, dateFormat)} ${UtilsService.printTime(datum.x)}`}
       </TextSVG>

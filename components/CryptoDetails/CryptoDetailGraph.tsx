@@ -1,8 +1,7 @@
 import React, { memo, FC, useMemo } from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, Dimensions } from 'react-native';
 import {
-  VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer,
-  VictoryTooltip,
+  VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip,
 } from 'victory-native';
 
 import Crypto from '../../models/Crypto';

@@ -75,7 +75,7 @@ const App = () => {
   // Change wallet content from the wallet interface, then store it
   const changeWallet = useCallback((newWallet: WalletItem[]) => {
     StorageService.storeData(WALLET_KEY, JSON.stringify(newWallet));
-    setWallet(newWallet);
+    setWallet([...newWallet]);
   }, [setWallet]);
 
   // Technical function to render the current component depending on the current interface that has to be laoded
@@ -113,7 +113,7 @@ const App = () => {
           favouritesList={favouritesList}
           changeTab={changeTab} />;
     }
-  }, [activeTab, activeQuote, dateFormat, favouritesList]);
+  }, [activeTab, activeQuote, dateFormat, favouritesList, wallet]);
 
   useEffect(() => {
     const asyncLoadFonts = async () => {

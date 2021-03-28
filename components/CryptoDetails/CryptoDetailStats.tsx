@@ -91,7 +91,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 <Text> High</Text>
               </View>
             }
-            number={`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(stats.high)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}
@@ -108,7 +108,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 <Text> Low</Text>
               </View>
             }
-            number={`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(stats.low)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}
@@ -126,7 +126,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 <Text style={{ color: Colors.white }}> Volume</Text>
               </View>
             }
-            number={`${UtilsService.truncateNumber(stats.volume, 0)}`}
+            number={`${UtilsService.truncateIntelligentNumber(stats.volume, 0)}`}
             color={cryptoColor}
           />
         )}
@@ -141,7 +141,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.CLEAR}
             label="Buy"
-            number={`${UtilsService.truncateNumber(buyPrice)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(buyPrice)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}
@@ -151,7 +151,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.FULL}
             label="Price"
-            number={`${UtilsService.truncateNumber(crypto.price)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(crypto.price)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}
@@ -161,7 +161,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.LIGHT}
             label="Sell"
-            number={`${UtilsService.truncateNumber(sellPrice)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(sellPrice)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}
