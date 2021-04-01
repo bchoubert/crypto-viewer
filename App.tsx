@@ -20,8 +20,9 @@ import Currency from './models/Crypto';
 import WalletItem from './models/WalletItem';
 import Tabs, { tabType } from './models/Tabs';
 
-import { DATE_FORMAT_KEY, FAVOURITES_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
+import { DATE_FORMAT_KEY, FAVOURITES_KEY, GRAPH_MODE_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
 import TopBar from './components/Utils/TopBar';
+import { graphModeType } from './models/GraphMode';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,6 +39,7 @@ const App = () => {
   const [activeQuote, setActiveQuote] = useState<quoteType>({ code: 'USD', symbol: '$' });
   const [dateFormat, setDateFormat] = useState<dateFormatType>(dateFormats.american);
   const [favouritesList, setFavouriesList] = useState<string[]>([]);
+  const [graphMode, setGraphMode] = useState<graphModeType>('Simple');
 
   const [details, setDetails] = useState<object | null>(null);
 
@@ -78,6 +80,12 @@ const App = () => {
     setWallet([...newWallet]);
   }, [setWallet]);
 
+  // Change graphMode content from the settings, then store it
+  const changeGraphMode = useCallback((newGraphMode: graphModeType) => {
+    StorageService.storeData(GRAPH_MODE_KEY, newGraphMode);
+    setGraphMode(newGraphMode);
+  }, [setGraphMode]);
+
   // Technical function to render the current component depending on the current interface that has to be laoded
   const activeTabRendered = useMemo(() => {
     switch (activeTab) {
@@ -97,13 +105,16 @@ const App = () => {
           quote={activeQuote}
           changeQuote={changeQuote}
           dateFormat={dateFormat}
-          changeDateFormat={changeDateFormat} />;
+          changeDateFormat={changeDateFormat}
+          graphMode={graphMode}
+          changeGraphMode={changeGraphMode} />;
       case Tabs.details:
         if (!!details) {
           return <CryptoDetails
             crypto={details as Currency}
             quote={activeQuote}
-            dateFormat={dateFormat} />
+            dateFormat={dateFormat}
+            graphMode={graphMode} />
         } else {
           changeTab(Tabs.list);
         }
@@ -113,7 +124,7 @@ const App = () => {
           favouritesList={favouritesList}
           changeTab={changeTab} />;
     }
-  }, [activeTab, activeQuote, dateFormat, favouritesList, wallet]);
+  }, [activeTab, activeQuote, dateFormat, favouritesList, wallet, graphMode]);
 
   useEffect(() => {
     const asyncLoadFonts = async () => {
@@ -149,6 +160,13 @@ const App = () => {
     StorageService.getData(FAVOURITES_KEY).then(value => {
       if (value != null) {
         setFavouriesList(JSON.parse(value) as string[]);
+      }
+    });
+
+    // Get the graph mode back from the storage
+    StorageService.getData(GRAPH_MODE_KEY).then(value => {
+      if (value != null) {
+        setGraphMode(value as graphModeType);
       }
     });
 

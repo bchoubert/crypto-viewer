@@ -4,8 +4,10 @@ import { View, Text, StyleSheet } from 'react-native';
 import Colors from '../../assets/Colors';
 
 import dateFormats, { dateFormatType } from '../../models/DateFormat';
+import { graphModes, graphModeType } from '../../models/GraphMode';
 import quoteType, { possibleQuotes } from '../../models/QuoteType';
 import Selector from '../Utils/Selector';
+import { settingType } from './Settings';
 
 const styles = StyleSheet.create({
   settings: {
@@ -40,11 +42,13 @@ const styles = StyleSheet.create({
 });
 
 interface SettingItemProps {
-  settingKey: 'currency' | 'dateFormat' | 'credits';
+  settingKey: settingType;
   quote: quoteType;
   changeQuote: (newQuote: quoteType) => any;
   dateFormat: dateFormatType;
   changeDateFormat: (newDateFormat: dateFormatType) => any;
+  graphMode: graphModeType;
+  changeGraphMode: (newGraphMode: graphModeType) => any;
 }
 
 const SettingItem: FC<SettingItemProps> = ({
@@ -53,6 +57,8 @@ const SettingItem: FC<SettingItemProps> = ({
   changeQuote,
   dateFormat,
   changeDateFormat,
+  graphMode,
+  changeGraphMode,
 }) => {
   switch (settingKey) {
     case 'currency':
@@ -79,6 +85,18 @@ const SettingItem: FC<SettingItemProps> = ({
           />
         </View>
       );
+    case 'graphMode':
+      return (
+        <View style={styles.settings}>
+          <Text style={styles.settingsText}>Graph mode</Text>
+          <Selector
+            items={graphModes}
+            activeItem={graphMode}
+            setActiveItem={changeGraphMode}
+            color={Colors.blue}
+          />
+        </View>
+      );
     case 'credits':
       return (
         <View style={{ ...styles.settings, ...styles.credits }}>
@@ -88,6 +106,8 @@ const SettingItem: FC<SettingItemProps> = ({
           <Text style={styles.creditsText}>Use of cryptocurrency-icons-font and Font-Awesome Pro Icons</Text>
         </View>
       );
+    default:
+      return null;
   }
 };
 

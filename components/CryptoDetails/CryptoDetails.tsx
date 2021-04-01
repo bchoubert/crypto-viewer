@@ -16,6 +16,7 @@ import CryptoDetailStats from './CryptoDetailStats';
 import CryptoDescription from './CryptoDescription';
 import CryptoIcon from '../Utils/CryptoIcon';
 import CryptoDailyRate from './CryptoDailyRate';
+import { graphModeType } from '../../models/GraphMode';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -82,6 +83,8 @@ export interface CryptoDetailsProps {
   quote: quoteType;
   // The date format selected
   dateFormat: dateFormatType;
+  // Graph mode
+  graphMode: graphModeType;
 }
 
 // Details for a crypto
@@ -89,6 +92,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
   crypto,
   quote,
   dateFormat,
+  graphMode,
 }) => {
   const [buyPrice, setBuyPrice] = useState<number | null>(null);
   const [sellPrice, setSellPrice] = useState<number | null>(null);
@@ -184,6 +188,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
           dateFormat={dateFormat}
           activeCandle={activeCandle}
           changeActiveCandle={setActiveCandle}
+          graphMode={graphMode}
         />
         
         <CryptoDetailStats
