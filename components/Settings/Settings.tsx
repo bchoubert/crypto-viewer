@@ -1,6 +1,8 @@
 import React, { FC, memo } from 'react';
 import { StyleSheet, FlatList } from 'react-native';
 import { dateFormatType } from '../../models/DateFormat';
+import { graphModeType } from '../../models/GraphMode';
+
 
 import quoteType from '../../models/QuoteType';
 import SettingItem from './SettingItem';
@@ -10,6 +12,8 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
+export type settingType = 'currency' | 'dateFormat' | 'graphMode' | 'credits';
 
 interface SettingsProps {
   // Quote as selected
@@ -21,6 +25,11 @@ interface SettingsProps {
   dateFormat: dateFormatType;
   // Callback function to change the date format
   changeDateFormat: (newDateFormat: dateFormatType) => any;
+
+  // Graph mode as selected
+  graphMode: graphModeType;
+  // Callback function to change the graph mode
+  changeGraphMode: (newGraphMode: graphModeType) => any;
 };
 
 // Settings view
@@ -30,21 +39,26 @@ const Settings: FC<SettingsProps> = ({
   changeQuote,
   dateFormat,
   changeDateFormat,
+  graphMode,
+  changeGraphMode,
 }) => (
   <FlatList
     style={styles.container}
     data={[
       { key: 'currency' },
       { key: 'dateFormat' },
+      { key: 'graphMode' },
       { key: 'credits' }
     ]}
     renderItem={({ item }) => (
       <SettingItem
-        settingKey={item.key as 'currency' | 'dateFormat' | 'credits'}
+        settingKey={item.key as settingType}
         quote={quote}
         changeQuote={changeQuote}
         dateFormat={dateFormat}
         changeDateFormat={changeDateFormat}
+        graphMode={graphMode}
+        changeGraphMode={changeGraphMode}
       />
     )}
   />

@@ -43,8 +43,6 @@ const BottomBar: FC<BottomBarProps> = ({
   const handleListAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleWalletAction = useCallback(() => changeTab(Tabs.wallet), [changeTab]);
 
-  const handleBackAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
-
   if ([Tabs.list, Tabs.wallet].includes(activeTab)) {
     return (
       <View style={styles.bottomBar}>
@@ -76,17 +74,8 @@ const BottomBar: FC<BottomBarProps> = ({
     );
   }
 
-  // If not on the list or wallet view, show a back button to get back to the list interface
-  return (
-    <View style={styles.bottomBar}>
-      <TouchableOpacity onPress={handleBackAction} style={styles.bottomBarButtonContainer}>
-        <Text style={styles.cryptoViewerIcon}>
-          {CryptoViewerIconsMap.back.unicode}
-        </Text>
-        <Text>Back</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  // If not on the list or wallet view, show nothing
+  return null;
 }
 
 export default memo(BottomBar);

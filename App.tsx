@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleSheet, View, StatusBar, Platform, Text, TouchableOpacity, Image, BackHandler } from 'react-native';
-import CryptoViewerIconsMap from './assets/fonts/baseIcons/CryptoViewerIconsMap';
+import { StyleSheet, View, StatusBar, Platform, BackHandler, StatusBarStyle, ToastAndroid } from 'react-native';
+
 import * as Font from 'expo-font';
 
 import Colors from './assets/Colors';
@@ -20,9 +20,9 @@ import Currency from './models/Crypto';
 import WalletItem from './models/WalletItem';
 import Tabs, { tabType } from './models/Tabs';
 
-import { DATE_FORMAT_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
-
-const STATUSBAR_HEIGHT: number = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
+import { DATE_FORMAT_KEY, FAVOURITES_KEY, GRAPH_MODE_KEY, QUOTE_STORAGE_KEY, WALLET_KEY } from './constants';
+import TopBar from './components/Utils/TopBar';
+import { graphModeType } from './models/GraphMode';
 
 const styles = StyleSheet.create({
   container: {
@@ -32,51 +32,21 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column'
   },
-
-  // STATUS BAR
-  statusBar: {
-    flexBasis: STATUSBAR_HEIGHT,
-    flexGrow: 0
-  },
-
-  // TOP BAR
-  topBar: {
-    flexBasis: 60,
-    flexGrow: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomColor: Colors.gray,
-    borderBottomWidth: 1,
-    paddingLeft: 10,
-    paddingRight: 10
-  },
-  topBarIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topBarText: {
-    marginLeft: 5,
-    fontSize: 20,
-    color: Colors.blue,
-  },
-
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
 });
 
 const App = () => {
   const [activeTab, setActiveTab] = useState<tabType>(Tabs.list);
   const [activeQuote, setActiveQuote] = useState<quoteType>({ code: 'USD', symbol: '$' });
   const [dateFormat, setDateFormat] = useState<dateFormatType>(dateFormats.american);
+  const [favouritesList, setFavouriesList] = useState<string[]>([]);
+  const [graphMode, setGraphMode] = useState<graphModeType>('Simple');
+
   const [details, setDetails] = useState<object | null>(null);
 
   const [areFontsLoaded, setFontsLoaded] = useState<boolean>(false);
 
   const [statusBarColor, setStatusBarColor] = useState<string>(Colors.white);
+  const [statusBarMode, setStatusBarMode] = useState<StatusBarStyle>('dark-content');
 
   const [wallet, setWallet] = useState<WalletItem[]>([]);
 
@@ -87,6 +57,7 @@ const App = () => {
     }
 
     setStatusBarColor(tabName === Tabs.details ? UtilsService.getColorFromCrypto((newDetails as Currency).id) : Colors.white);
+    setStatusBarMode(tabName === Tabs.details ? 'light-content' as StatusBarStyle : 'dark-content' as StatusBarStyle);
     setDetails(newDetails);
     setActiveTab(tabName);
   }, [setStatusBarColor, setDetails, setActiveTab]);
@@ -106,8 +77,14 @@ const App = () => {
   // Change wallet content from the wallet interface, then store it
   const changeWallet = useCallback((newWallet: WalletItem[]) => {
     StorageService.storeData(WALLET_KEY, JSON.stringify(newWallet));
-    setWallet(newWallet);
+    setWallet([...newWallet]);
   }, [setWallet]);
+
+  // Change graphMode content from the settings, then store it
+  const changeGraphMode = useCallback((newGraphMode: graphModeType) => {
+    StorageService.storeData(GRAPH_MODE_KEY, newGraphMode);
+    setGraphMode(newGraphMode);
+  }, [setGraphMode]);
 
   // Technical function to render the current component depending on the current interface that has to be laoded
   const activeTabRendered = useMemo(() => {
@@ -115,6 +92,7 @@ const App = () => {
       case Tabs.list:
         return <CryptoList
           quote={activeQuote}
+          favouritesList={favouritesList}
           changeTab={changeTab} />;
       case Tabs.wallet:
         return <Wallet
@@ -127,22 +105,26 @@ const App = () => {
           quote={activeQuote}
           changeQuote={changeQuote}
           dateFormat={dateFormat}
-          changeDateFormat={changeDateFormat} />;
+          changeDateFormat={changeDateFormat}
+          graphMode={graphMode}
+          changeGraphMode={changeGraphMode} />;
       case Tabs.details:
         if (!!details) {
           return <CryptoDetails
             crypto={details as Currency}
             quote={activeQuote}
-            dateFormat={dateFormat} />
+            dateFormat={dateFormat}
+            graphMode={graphMode} />
         } else {
           changeTab(Tabs.list);
         }
       default:
         return <CryptoList
           quote={activeQuote}
+          favouritesList={favouritesList}
           changeTab={changeTab} />;
     }
-  }, [activeTab, activeQuote, dateFormat]);
+  }, [activeTab, activeQuote, dateFormat, favouritesList, wallet, graphMode]);
 
   useEffect(() => {
     const asyncLoadFonts = async () => {
@@ -174,6 +156,20 @@ const App = () => {
       }
     });
 
+    // Get the favourites content back from the storage
+    StorageService.getData(FAVOURITES_KEY).then(value => {
+      if (value != null) {
+        setFavouriesList(JSON.parse(value) as string[]);
+      }
+    });
+
+    // Get the graph mode back from the storage
+    StorageService.getData(GRAPH_MODE_KEY).then(value => {
+      if (value != null) {
+        setGraphMode(value as graphModeType);
+      }
+    });
+
     asyncLoadFonts();
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -189,6 +185,29 @@ const App = () => {
 
   const handleChangeTabList = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleChangeTabSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
+  const handleChangeFavourites = useCallback(() => {
+    if (!details) { return; }
+
+    const activeCurrency = details as Currency;
+
+    setFavouriesList(list => {
+      let newList = [...(list || [])];
+
+      // If already in favourites, remove it. Otherwise, add it
+      if (newList.includes(activeCurrency.id)) {
+        newList = newList.filter(i => i !== activeCurrency.id);
+        ToastAndroid.show('Favourite removed!', ToastAndroid.BOTTOM)
+      } else {
+        newList.push(activeCurrency.id);
+        ToastAndroid.show('Added as favourite!', ToastAndroid.BOTTOM)
+      }
+
+
+      StorageService.storeData(FAVOURITES_KEY, JSON.stringify(newList));
+      return newList.filter(UtilsService.onlyUnique);
+    });
+  }, [favouritesList, details]);
+  const handleBackAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
 
   if (!areFontsLoaded) {
     return null;
@@ -196,16 +215,19 @@ const App = () => {
   // Only render if fonts are loaded, to limit the reflow and API calls
   return (
     <View style={styles.container}>
-      <Text style={{ ...styles.statusBar, backgroundColor: statusBarColor }} />
-      <View style={styles.topBar}>
-        <TouchableOpacity onPress={handleChangeTabList} style={styles.topBarIconContainer}>
-          <Image style={{ width: 50, height: 50 }} source={require('./assets/icon.png')} />
-          <Text style={styles.topBarText}>Crypto Viewer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={handleChangeTabSettings}>
-          <Text style={styles.cryptoViewerIcon}>{CryptoViewerIconsMap.settings.unicode}</Text>
-        </TouchableOpacity>
-      </View>
+       <StatusBar
+        backgroundColor={statusBarColor}
+        barStyle={statusBarMode}
+      />
+      <TopBar
+        handleChangeTabList={handleChangeTabList}
+        handleChangeTabSettings={handleChangeTabSettings}
+        handleChangeFavourites={handleChangeFavourites}
+        handleBackAction={handleBackAction}
+        activeTab={activeTab}
+        crypto={details as Currency}
+        favouritesList={favouritesList}
+      />
       {activeTabRendered}
       <BottomBar
         activeTab={activeTab}

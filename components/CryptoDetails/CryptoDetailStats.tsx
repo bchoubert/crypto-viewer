@@ -1,8 +1,6 @@
 import React, { memo, FC, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import Colors from '../../assets/Colors';
-
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
@@ -10,24 +8,18 @@ import UtilsService from '../../services/Utils.service';
 import Stats from '../../models/Stats';
 import quoteType from '../../models/QuoteType';
 import Crypto from '../../models/Crypto';
+import Tile, { TileMode } from '../Utils/Tile';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   stats: {
-    flexBasis: 55,
-    flexGrow: 0,
-    borderTopWidth: 1,
-    borderTopColor: Colors.midGray,
     flexDirection: 'column'
   },
   stats_title: {
-    flexBasis: 20,
-    color: Colors.gray,
-    backgroundColor: '#FFFFFF',
-    marginHorizontal: 'auto',
-    textAlign: 'center',
-    marginTop: -11,
-    alignSelf: 'center',
-    paddingHorizontal: 4
+    paddingLeft: 20,
+    paddingRight: 10,
+    fontSize: 20,
+    fontWeight: 'bold'
   },
   stats_container: {
     flex: 1,
@@ -45,7 +37,11 @@ const styles = StyleSheet.create({
   },
   stat_icon: {
     fontSize: 12,
-    paddingRight: 5
+  },
+  stat_label: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   cryptoViewerIcon: {
@@ -58,12 +54,16 @@ interface CryptoDetailStatsProps {
   quote: quoteType;
   stats: Stats;
   crypto: Crypto;
+  buyPrice: number | null;
+  sellPrice: number | null;
 }
 
 const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   quote,
   stats,
   crypto,
+  buyPrice,
+  sellPrice,
 }) => {
 
   const cryptoColor = useMemo(
@@ -80,42 +80,91 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
       <View style={styles.stats_container}>
 
         {/* Highest 24h value section */}
-        {(!!stats.high) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
-                {CryptoViewerIconsMap.high.unicode}
-              </Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(stats.high, 1)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.high && (
+          <Tile
+            mode={TileMode.LIGHT}
+            label={
+              <View style={styles.stat_label}>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                  {CryptoViewerIconsMap.high.unicode}
+                </Text>
+                <Text> High</Text>
+              </View>
+            }
+            number={`${UtilsService.truncateIntelligentNumber(stats.high)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* Lowest 24h value section */}
-        {(!!stats.low) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.low.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {`${UtilsService.truncateNumber(stats.low, 1)} ${quote.symbol}`}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.low && (
+          <Tile
+            mode={TileMode.CLEAR}
+            label={
+              <View style={styles.stat_label}>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                  {CryptoViewerIconsMap.low.unicode}
+                </Text>
+                <Text> Low</Text>
+              </View>
+            }
+            number={`${UtilsService.truncateIntelligentNumber(stats.low)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
 
         {/* 24h Volume section */}
-        {(!!stats.volume) ?
-          (
-            <View style={styles.stat}>
-              <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>{CryptoViewerIconsMap.volume.unicode}</Text>
-              <Text style={{ ...styles.stat_number, color: cryptoColor }}>
-                {UtilsService.truncateNumber(stats.volume, 1)}
-              </Text>
-            </View>
-          ) : null
-        }
+        {!!stats.volume && (
+          <Tile
+            mode={TileMode.FULL}
+            isLongNumber
+            label={
+              <View style={styles.stat_label}>
+                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon, color: Colors.white }}>
+                  {CryptoViewerIconsMap.volume.unicode}
+                </Text>
+                <Text style={{ color: Colors.white }}> Volume</Text>
+              </View>
+            }
+            number={`${UtilsService.truncateIntelligentNumber(stats.volume, 0)}`}
+            color={cryptoColor}
+          />
+        )}
+      </View>
+      <Text style={styles.stats_title}>
+        Current Price
+      </Text>
+      <View style={styles.stats_container}>
+
+        {/* Buy Price Section */}
+        {!!buyPrice && (
+          <Tile
+            mode={TileMode.CLEAR}
+            label="Buy"
+            number={`${UtilsService.truncateIntelligentNumber(buyPrice)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
+
+        {/* Current Price Section */}
+        {!!crypto.price && (
+          <Tile
+            mode={TileMode.FULL}
+            label="Price"
+            number={`${UtilsService.truncateIntelligentNumber(crypto.price)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
+
+        {/* Sell Price Section */}
+        {!!sellPrice && (
+          <Tile
+            mode={TileMode.LIGHT}
+            label="Sell"
+            number={`${UtilsService.truncateIntelligentNumber(sellPrice)} ${quote.symbol}`}
+            color={cryptoColor}
+          />
+        )}
       </View>
     </View>
   );

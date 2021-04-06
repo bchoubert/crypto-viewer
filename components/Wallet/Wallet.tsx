@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
+import React, { FC, memo, useCallback, useEffect, useState, useMemo } from 'react';
 import { Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList } from 'react-native';
 
 
@@ -99,13 +99,22 @@ const Wallet: FC<WalletProps> = ({
 
     setLoading(false);
     setCryptos(newCryptos.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
-  }, [quote]);
+  }, [quote, wallet]);
 
   // Callback for the pull to refresh list action
   const onRefresh = useCallback(() => {
     setLoading(true);
     fetchCryptos();
   }, []);
+
+  const walletWithTotal: WalletItem[] = useMemo(() => {
+    const total = wallet.reduce(
+      (acc, walletItem) => acc + (((cryptos || []).find(asset => asset.id === walletItem.crypto)?.price || 0) * walletItem.amount),
+      0,
+    );
+
+    return ([...wallet, {  crypto: 'total', amount: total }]);
+  }, [wallet, cryptos]);
 
   // Callback for the modal crpyot picker
   const onSelectedCryptoKeyChange = useCallback((newCryptoKey: string) => {
@@ -138,7 +147,7 @@ const Wallet: FC<WalletProps> = ({
     if (!selectedCryptoKey || !selectedAmount) {
       return;
     }
-    let walletTemp = wallet || [];
+    let walletTemp = [...(wallet || [])];
     if (!!wallet && !!wallet.filter(walletItem => walletItem.crypto === selectedCryptoKey).length) {
       walletTemp.find(walletItem => walletItem.crypto === selectedCryptoKey).amount = selectedAmount;
     } else {
@@ -166,7 +175,7 @@ const Wallet: FC<WalletProps> = ({
       const asyncFetchData = async () => fetchCryptos();
       asyncFetchData();
     },
-    [],
+    [wallet],
   );
 
   // Render wallet
@@ -174,7 +183,7 @@ const Wallet: FC<WalletProps> = ({
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={wallet}
+        data={walletWithTotal}
         onRefresh={onRefresh}
         refreshing={isLoading}
         renderItem={({ item }) => (

@@ -18,19 +18,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   sectionHeader: {
-    paddingTop: 2,
-    paddingLeft: 10,
+    paddingTop: 25,
+    paddingLeft: 20,
     paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 14,
+    paddingBottom: 20,
+    fontSize: 20,
     fontWeight: 'bold',
-    backgroundColor: Colors.lightGray,
+    backgroundColor: Colors.white,
   }
 });
 
 interface CryptoListProps {
   // Quote as selected
   quote: quoteType;
+  // List of favourites
+  favouritesList: string[];
   // Change tab callback function to load details of a crypto
   changeTab: (tabName: tabType, newDetails: Object) => any;
 }
@@ -38,6 +40,7 @@ interface CryptoListProps {
 /* Render the crypto list */
 const CryptoList: FC<CryptoListProps> = ({
   quote,
+  favouritesList,
   changeTab,
 }) => {
 
@@ -80,11 +83,30 @@ const CryptoList: FC<CryptoListProps> = ({
   }, []);
 
   const sections = useMemo(
-    () => [
-      { title: 'Main assets', id: 'main', data: mainAssets },
-      { title: 'Other assets', id: 'other', data: otherAssets }
-    ],
-    [mainAssets, otherAssets],
+    () => {
+      let sections = [
+        { title: 'Main assets', id: 'main', data: mainAssets },
+        { title: 'Other assets', id: 'other', data: otherAssets }
+      ];
+      if ((favouritesList || []).length > 0) {
+        const items = mainAssets.filter(asset => (favouritesList || []).includes(asset.id));
+        const finalItems = [];
+
+        for (let i = 0; i < Math.ceil(items.length / 2); i++) {
+          if (i < items.length) {
+            const newItems = [items[i * 2]];
+            if (items[i * 2 + 1]) {
+              newItems.push(items[i * 2 + 1]);
+            }
+            finalItems.push(newItems);
+          }
+        }       
+
+        sections.unshift({ title: 'Favourites', id: 'favourites', data: finalItems });
+      }
+      return sections;
+    },
+    [mainAssets, otherAssets, favouritesList],
   );
 
   const handleRenderItem = useCallback(

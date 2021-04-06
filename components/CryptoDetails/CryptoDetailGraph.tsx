@@ -1,8 +1,7 @@
 import React, { memo, FC, useMemo } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, ActivityIndicator, Dimensions } from 'react-native';
 import {
-  VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer,
-  VictoryTooltip,
+  VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip,
 } from 'victory-native';
 
 import Crypto from '../../models/Crypto';
@@ -13,6 +12,8 @@ import candleGranularity, { candleType } from '../../models/CandleGranularity';
 import UtilsService from '../../services/Utils.service';
 
 import MultilineTooltip from '../Utils/MultilineTooltip';
+import Selector from '../Utils/Selector';
+import { graphModeType } from '../../models/GraphMode';
 
 const styles = StyleSheet.create({
   crypto_graph: {
@@ -20,29 +21,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 10,
-    marginRight: 10
+    marginRight: 10,
+    height: 350,
+    marginBottom: 50,
   },
   chart: {
-    overflow: 'visible'
+    overflow: 'visible',
+    borderLeftWidth: 0,
   },
-
-  candle_container: {
-    flexDirection: 'row',
-    alignSelf: 'stretch',
-  },
-  candle: {
-    flex: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
-    textAlign: 'center',
-    flexDirection: 'row'
-  },
-  candle_text: {
-    color: '#FFFFFF',
-    flex: 1,
-    textAlign: 'center'
-  },
-
+  chartSpacer: {
+    height: 30,
+  }
 });
 
 interface CryptoDetailGraphProps {
@@ -52,6 +41,7 @@ interface CryptoDetailGraphProps {
   dateFormat: dateFormatType;
   activeCandle: candleType;
   changeActiveCandle: (newCandle: candleType) => any;
+  graphMode: graphModeType;
 }
 
 const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
@@ -61,11 +51,27 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   dateFormat,
   activeCandle,
   changeActiveCandle,
+  graphMode,
 }) => {
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(crypto.id),
     [crypto],
+  );
+
+  const dateLabel = useMemo(
+    () => {
+      if (!historicRates || historicRates.length === 0) {
+        return '';
+      }
+      return `${UtilsService.printDate(historicRates[0].x, dateFormat)}  -  ${UtilsService.printDate(historicRates[historicRates.length - 1].x, dateFormat)}`;
+    },
+    [UtilsService, historicRates]
+  );
+
+  const historicRatesToPrint = useMemo(
+    () => historicRates && historicRates.filter((_, index) => index % (graphMode === 'Advanced' ? 1 : 5) === 0),
+    [historicRates],
   );
 
   if (historicRates === null) {
@@ -86,11 +92,17 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
 
   return (
     <View style={styles.crypto_graph}>
+
+      <Text style={styles.chartSpacer} />
+
       {/* Render the graph */}
-      {(!!historicRates.length) ?
+      {(!!historicRatesToPrint.length) ?
         (
           <VictoryChart
-            width={Dimensions.get('window').width - 20}
+            width={Dimensions.get('window').width}
+            height={350}
+            padding={{ left: 0, right: 0, top: 0, bottom: 30 }}
+            domainPadding={{ x: 0, y: 50 }}
             theme={VictoryTheme.material}
             style={styles.chart}
             containerComponent={
@@ -104,24 +116,31 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
             {/* X axis is time based */}
             <VictoryAxis
               scale="time"
-              tickFormat={
-                (date, index, arr) => {
-                  if (index === 0 || index === arr.length - 1) {
-                    return `${UtilsService.printDate(date, dateFormat)} ${UtilsService.printTime(date)}`;
-                  }
-                  return '';
-                }}
-              style={{ ticks: { stroke: 'none' }, grid: { stroke: 'none' } }} />
+              padding={{ top: 0, bottom: 0, left: 100, right: 100 }}
+              tickFormat={() => ''}
+              label={dateLabel}
+              width={200}
+              style={{
+                ticks: { stroke: 'none', opacity: 0 },
+                grid: { stroke: 'none' },
+                axis: { stroke: 'none' },
+                axisLabel: { fontSize: 15 },
+              }} />
 
             {/* Y axis is value linear based */}
-            <VictoryAxis dependentAxis tickFormat={(data) => `${quote.symbol} ${data}`} orientation="left" />
+            <VictoryAxis
+              dependentAxis
+              style={{
+                axis: { stroke: 'none' },
+              }}
+            />
 
             {/* Draw the line plot graph */}
             <VictoryLine
               scale={{ x: 'time', y: 'linear' }}
-              domainPadding={{ x: 10 }}
+              interpolation="natural"
               standalone={true}
-              data={historicRates}
+              data={historicRatesToPrint}
               style={{
                 data: {
                   stroke: cryptoColor,
@@ -133,22 +152,15 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
         ) : null
       }
 
+      <Text style={styles.chartSpacer} />
+
       {/* Show the candle options */}
-      <View style={styles.candle_container}>
-        {Object.keys(candleGranularity).map((candle: candleType) =>
-          (
-            <TouchableOpacity
-              key={candle}
-              style={{ ...styles.candle, ...((activeCandle === candle) ? { backgroundColor: cryptoColor } : []) }}
-              onPress={() => changeActiveCandle(candle as candleType)}
-            >
-              <Text style={{ ...styles.candle_text, ...((activeCandle !== candle) ? { color: cryptoColor } : []) }}>
-                {candle}
-              </Text>
-            </TouchableOpacity>
-          )
-        )}
-      </View>
+      <Selector
+        items={Object.keys(candleGranularity)}
+        activeItem={activeCandle}
+        setActiveItem={changeActiveCandle}
+        color={cryptoColor}
+      />
     </View>
   );
 }
