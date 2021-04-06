@@ -9,40 +9,28 @@ import UtilsService from '../../services/Utils.service';
 
 const styles = StyleSheet.create({
   rate_container: {
-    height: 84,
-    width: 84,
+    height: 30,
+    width: 80,
     display: 'flex',
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: 25,
-    borderWidth: 2,
     borderRadius: 42,
-    borderColor: Colors.white,
     backgroundColor: Colors.white,
   },
   rate_content: {
-    borderWidth: 4,
-    height: 80,
+    height: 30,
     width: 80,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    borderLeftColor: Colors.white,
-    borderRightColor: Colors.white,
     borderRadius: 40,
     backgroundColor: Colors.white,
-    transform: [{
-      rotate: '-15deg'
-    }],
   },
   rate_content_plus: {
-    borderTopColor: Colors.green,
-    borderBottomColor: Colors.green,
   },
   rate_content_minus: {
-    borderTopColor: Colors.red,
-    borderBottomColor: Colors.red,
   },
   rate_icon_plus: {
     fontSize: 15,

@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useState } from 'react';
+import React, { FC, memo, useCallback, useEffect, useState, useMemo } from 'react';
 import { Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList } from 'react-native';
 
 
@@ -107,6 +107,15 @@ const Wallet: FC<WalletProps> = ({
     fetchCryptos();
   }, []);
 
+  const walletWithTotal: WalletItem[] = useMemo(() => {
+    const total = wallet.reduce(
+      (acc, walletItem) => acc + (((cryptos || []).find(asset => asset.id === walletItem.crypto)?.price || 0) * walletItem.amount),
+      0,
+    );
+
+    return ([...wallet, {  crypto: 'total', amount: total }]);
+  }, [wallet, cryptos]);
+
   // Callback for the modal crpyot picker
   const onSelectedCryptoKeyChange = useCallback((newCryptoKey: string) => {
     if (!!wallet?.find(walletItem => walletItem.crypto === newCryptoKey)) {
@@ -174,7 +183,7 @@ const Wallet: FC<WalletProps> = ({
     <View style={styles.container}>
       <FlatList
         style={styles.list}
-        data={wallet}
+        data={walletWithTotal}
         onRefresh={onRefresh}
         refreshing={isLoading}
         renderItem={({ item }) => (

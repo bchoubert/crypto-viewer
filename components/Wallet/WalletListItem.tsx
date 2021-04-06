@@ -119,7 +119,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
   const [swipeableRef, setSwipeableRef] = useState(null);
 
   const crypto = useMemo(
-    () => (cryptos || []).filter(asset => asset.id === walletItem.crypto)[0] as Crypto,
+    () => (cryptos || []).find(asset => asset.id === walletItem.crypto) as Crypto,
     [cryptos, walletItem],
   );
 
@@ -148,6 +148,29 @@ const WalletListItem: FC<WalletListItemProps> = ({
     () => swipeableRef?.recenter(),
     [walletItem, walletAmount],
   );
+
+  if (walletItem.crypto === 'total') {
+    return (
+      <View style={styles.crypto_item}>
+        <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
+          <View style={styles.crypto_item_properties}>
+            <View style={styles.crypto_item_names}>
+              <Text style={styles.crypto_item_name}>
+                Total
+              </Text>
+            </View>
+          </View>
+          <View style={styles.crypto_item_details}>
+            <View style={styles.crypto_amount}>
+              <Text style={styles.crypto_item_price}>
+                {UtilsService.truncateIntelligentNumber(walletItem.amount)} {quote.symbol}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    )
+  }
 
   if (!crypto) {
     return null;
