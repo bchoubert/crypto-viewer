@@ -2,6 +2,7 @@
 const CryptoCurrenciesIconMap = {
 	"$pac": { icon: require('cryptocurrency-icons/128/color/$pac.png'), color: '#F5EB17' , description: '', website: '' },
 	"0xbtc": { icon: require('cryptocurrency-icons/128/color/0xbtc.png'), color: '#FF914C' , description: '', website: '' },
+	"1inch": { icon: require('./../../assets/cryptos/1inch.png'), color: '#1B314F' , description: '1INCH is an Ethereum token that powers 1inch, a decentralized exchange that aims to offer the “best rates by discovering the most efficient swapping routes across all leading DEXes.” Decentralized exchanges (a.k.a. DEXes) like 1inch enable users to transact tokens without an intermediary. 1inch aggregates token prices across decentralized exchanges in order to find the best prices for users.', website: 'https://1inch.exchange/' },
 	"2give": { icon: require('cryptocurrency-icons/128/color/2give.png'), color: '#F1CB60' , description: '', website: '' },
 	"aave": { icon: require('./../../assets/cryptos/aave.png'), color: '#B6509E' , description: 'Aave (AAVE) is an Ethereum token that powers Aave, a decentralized non-custodial money market protocol where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow cryptocurrencies in exchange for paying a variable interest rate.', website: 'https://aave.com/' },
 	"abt": { icon: require('cryptocurrency-icons/128/color/abt.png'), color: '#3EFEFF' , description: '', website: '' },
@@ -270,6 +271,7 @@ const CryptoCurrenciesIconMap = {
 	"nexo": { icon: require('cryptocurrency-icons/128/color/nexo.png'), color: '#1A4199' , description: '', website: '' },
 	"ngc": { icon: require('cryptocurrency-icons/128/color/ngc.png'), color: '#F80000' , description: '', website: '' },
 	"nio": { icon: require('cryptocurrency-icons/128/color/nio.png'), color: '#70C9C9' , description: '', website: '' },
+	"nkn": { icon: require('./../../assets/cryptos/nkn.png'), color: '#253A7E' , description: 'New Kind of Network (NKN) is a public blockchain that aims to use economic incentives to motivate Internet users to share network connections and utilize unused bandwidth. NKN aims to be a network for building decentralized applications in a way that enhances peer-to-peer data transmission and connectivity.', website: 'https://nkn.org/' },
 	"nlc2": { icon: require('cryptocurrency-icons/128/color/nlc2.png'), color: '#F28F01' , description: '', website: '' },
 	"nlg": { icon: require('cryptocurrency-icons/128/color/nlg.png'), color: '#2AB0FD' , description: '', website: '' },
 	"nmc": { icon: require('cryptocurrency-icons/128/color/nmc.png'), color: '#186C9D' , description: '', website: '' },
@@ -280,6 +282,7 @@ const CryptoCurrenciesIconMap = {
 	"nxs": { icon: require('cryptocurrency-icons/128/color/nxs.png'), color: '#4099CD' , description: '', website: '' },
 	"nxt": { icon: require('cryptocurrency-icons/128/color/nxt.png'), color: '#008FBB' , description: '', website: '' },
 	"oax": { icon: require('cryptocurrency-icons/128/color/oax.png'), color: '#164B79' , description: '', website: '' },
+	"ogn": { icon: require('./../../assets/cryptos/ogn.png'), color: '#2087FB' , description: 'Origin Token (OGN) is an Ethereum token that powers the Origin platform, which aims to power decentralized and peer-to-peer marketplaces. OGN can be used for staking, governance, and advertising on the Origin platform.', website: 'https://www.originprotocol.com/' },
 	"ok": { icon: require('cryptocurrency-icons/128/color/ok.png'), color: '#000000' , description: '', website: '' },
 	"omg": { icon: require('cryptocurrency-icons/128/color/omg.png'), color: '#101010' , description: 'The OMG Network (formerly OmiseGO) is a value transfer network for Ethereum and any ERC-20 token. It describes itself as the first production-grade layer-2 Ethereum scaling solution and aims to let people move money and a variety of digital values on the blockchain faster, cheaper, and without compromising on security.', website: 'https://omg.network/' },
 	"omni": { icon: require('cryptocurrency-icons/128/color/omni.png'), color: '#1C347A' , description: '', website: '' },

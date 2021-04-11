@@ -13,6 +13,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const styles = StyleSheet.create({
   stats: {
+    marginTop: 20,
     flexDirection: 'column'
   },
   stats_title: {
