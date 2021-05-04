@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     height: 350,
     marginBottom: 50,
+    marginTop: 20,
   },
   chart: {
     overflow: 'visible',
@@ -75,11 +76,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   );
 
   if (historicRates === null) {
-    return (
-      <View style={styles.crypto_graph}>
-        <Text>No historic rates</Text>
-      </View>
-    );
+    return null;
   }
   if (historicRates.length === 0) {
     return (

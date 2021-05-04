@@ -7,18 +7,18 @@ const styles = StyleSheet.create({
   selector_container: {
     flexDirection: 'row',
     alignSelf: 'stretch',
-    borderRadius: 13,
+    borderRadius: 18,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    height: 26,
+    height: 35,
   },
   selector_item: {
     flex: 1,
-    height: 25,
+    height: 34,
     textAlign: 'center',
     flexDirection: 'row',
     alignItems: 'center',
-    borderRadius: 13,
+    borderRadius: 17,
   },
   selector_item_text: {
     color: Colors.white,

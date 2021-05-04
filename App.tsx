@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
 
 const App = () => {
   const [activeTab, setActiveTab] = useState<tabType>(Tabs.list);
+
   const [activeQuote, setActiveQuote] = useState<quoteType>({ code: 'USD', symbol: '$' });
   const [dateFormat, setDateFormat] = useState<dateFormatType>(dateFormats.american);
   const [favouritesList, setFavouriesList] = useState<string[]>([]);
@@ -126,6 +127,19 @@ const App = () => {
     }
   }, [activeTab, activeQuote, dateFormat, favouritesList, wallet, graphMode]);
 
+  const handleBackButton = useCallback(() => {
+    if ([Tabs.settings, Tabs.details].includes(activeTab)) {
+      changeTab(Tabs.list);
+      return true;
+    }
+    return false;
+  }, [activeTab, changeTab]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => backHandler.remove();
+  }, [activeTab]);
+
   useEffect(() => {
     const asyncLoadFonts = async () => {
       // Load specific fonts
@@ -171,16 +185,6 @@ const App = () => {
     });
 
     asyncLoadFonts();
-
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      if ([Tabs.settings, Tabs.details].includes(activeTab)) {
-        changeTab(Tabs.list);
-        return true;
-      }
-      return false;
-    });
-
-    return () => backHandler.remove();
   }, []);
 
   const handleChangeTabList = useCallback(() => changeTab(Tabs.list), [changeTab]);
