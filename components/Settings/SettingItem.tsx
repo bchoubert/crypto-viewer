@@ -1,5 +1,6 @@
-import React, { memo, FC } from 'react';
+import React, { memo, FC, useCallback } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { openURL } from 'expo-linking';
 
 import Colors from '../../assets/Colors';
 
@@ -31,13 +32,20 @@ const styles = StyleSheet.create({
   credits: {
     flexDirection: 'column',
     marginTop: 15,
+    height: 130,
+  },
+  credits_first: {
     paddingBottom: 15,
-    height: 130
+  },
+  portfolioLink: {
+    color: Colors.blue,
   },
   creditsText: {
     paddingTop: 5,
     paddingBottom: 5,
-    color: Colors.gray
+    color: Colors.gray,
+    textAlign: 'center',
+    width: '100%',
   }
 });
 
@@ -60,6 +68,11 @@ const SettingItem: FC<SettingItemProps> = ({
   graphMode,
   changeGraphMode,
 }) => {
+  const openPortfolio = useCallback(
+    () => openURL('https://chbe.fr'),
+    [],
+  );
+
   switch (settingKey) {
     case 'currency':
       return (
@@ -76,7 +89,7 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'dateFormat':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>Preferred date</Text>
+          <Text style={styles.settingsText}>Preferred date format</Text>
           <Selector
             items={Object.values(dateFormats)}
             activeItem={dateFormat}
@@ -100,9 +113,11 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'credits':
       return (
         <View style={{ ...styles.settings, ...styles.credits }}>
-          <Text style={styles.creditsText}>Designed and developed by Bertrand Choubert</Text>
-          <Text style={styles.creditsText}>Developed with React-Native Expo</Text>
-          <Text style={styles.creditsText}>Based on Coinbase Basic &amp; Pro APIs</Text>
+          <Text style={{ ...styles.creditsText, ...styles.credits_first }}>
+            Crytpo-Viewer is a product designed, developed and maintained by Bertrand Choubert.
+            <Text style={styles.portfolioLink} onPress={openPortfolio}> His website here!</Text>
+          </Text>
+          <Text style={styles.creditsText}>Developed with React-Native Expo, based on Coinbase Basic &amp; Pro APIs</Text>
           <Text style={styles.creditsText}>Use of cryptocurrency-icons-font and Font-Awesome Pro Icons</Text>
         </View>
       );
