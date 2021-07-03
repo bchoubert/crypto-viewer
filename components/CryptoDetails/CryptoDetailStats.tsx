@@ -1,4 +1,4 @@
-import React, { memo, FC, useMemo } from 'react';
+import React, { memo, FC, useMemo, useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
@@ -10,6 +10,8 @@ import quoteType from '../../models/QuoteType';
 import Crypto from '../../models/Crypto';
 import Tile, { TileMode } from '../Utils/Tile';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   stats: {
@@ -52,23 +54,28 @@ const styles = StyleSheet.create({
 });
 
 interface CryptoDetailStatsProps {
-  quote: quoteType;
   stats: Stats;
-  crypto: Crypto;
   buyPrice: number | null;
   sellPrice: number | null;
 }
 
 const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
-  quote,
   stats,
-  crypto,
   buyPrice,
   sellPrice,
 }) => {
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+
+  const {
+    details,
+  } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto.id),
+    () => UtilsService.getColorFromCrypto(details.id),
     [crypto],
   );
   
@@ -148,11 +155,11 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         )}
 
         {/* Current Price Section */}
-        {!!crypto.price && (
+        {!!details.price && (
           <Tile
             mode={TileMode.FULL}
             label="Price"
-            number={`${UtilsService.truncateIntelligentNumber(crypto.price)} ${quote.symbol}`}
+            number={`${UtilsService.truncateIntelligentNumber(details.price)} ${quote.symbol}`}
             color={cryptoColor}
           />
         )}

@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useState, useMemo } from 'react';
+import React, { FC, memo, useCallback, useEffect, useState, useMemo, useContext } from 'react';
 import { Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList } from 'react-native';
 
 
@@ -16,7 +16,7 @@ import ExchangeRates from '../../models/ExhangeRates';
 import WalletModal from './WalletModal';
 
 import WalletListItem from './WalletListItem';
-import { tabType } from '../../models/Tabs';
+import { SettingsContext } from '../../contexts/SettingsProvider';
 
 const styles = StyleSheet.create({
   container: {
@@ -57,24 +57,20 @@ const styles = StyleSheet.create({
   },
 });
 
-interface WalletProps {
-  // Quote as selected
-  quote: quoteType;
-  // Callback function to change the interface when a crypto is selected
-  changeTab: (tabName: tabType, newDetails: Object) => any;
-  // Wallet as loaded from storage
-  wallet: WalletItem[];
-  // Callback function to change the wallet content
-  changeWallet: (newWallet: WalletItem[]) => any;
-};
+interface WalletProps {};
 
 // Render the wallet interface
-const Wallet: FC<WalletProps> = ({
-  quote,
-  changeTab,
-  wallet,
-  changeWallet,
-}) => {
+const Wallet: FC<WalletProps> = ({}) => {
+  const {
+    settings, changeSettings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const wallet = useMemo(() => settings.WALLET_KEY as WalletItem[], [settings]);
+  const changeWallet = useCallback((newWallet: WalletItem[]) => {
+    changeSettings('WALLET_KEY', newWallet);
+  }, [changeSettings]);
+
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const [isWalletModalVisible, setWalletModalVisible] = useState<boolean>(false);
@@ -189,8 +185,6 @@ const Wallet: FC<WalletProps> = ({
         renderItem={({ item }) => (
           <WalletListItem
             walletItem={item}
-            quote={quote}
-            changeTab={changeTab}
             cryptos={cryptos}
             deleteFromWallet={deleteFromWallet}
             editFromWallet={editFromWallet}

@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from 'react';
+import React, { FC, memo, useCallback, useContext } from 'react';
 import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
@@ -6,6 +6,7 @@ import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIcons
 import Colors from '../../assets/Colors';
 
 import Tabs, { tabType } from '../../models/Tabs';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   bottomBar: {
@@ -31,15 +32,13 @@ const styles = StyleSheet.create({
   }
 });
 
-interface BottomBarProps {
-  activeTab: tabType;
-  changeTab: (newTabType: tabType) => any;
-}
+interface BottomBarProps {}
 
-const BottomBar: FC<BottomBarProps> = ({
-  activeTab,
-  changeTab,
-}) => {
+const BottomBar: FC<BottomBarProps> = ({}) => {
+  const {
+    activeTab, changeTab,
+  } = useContext(NavigationContext);
+
   const handleListAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleWalletAction = useCallback(() => changeTab(Tabs.wallet), [changeTab]);
 

@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View, Dimensions, Animated, ScrollView } from 'react-native';
 
 import UtilsService from '../../services/Utils.service';
@@ -17,6 +17,8 @@ import CryptoDescription from './CryptoDescription';
 import CryptoIcon from '../Utils/CryptoIcon';
 import CryptoDailyRate from './CryptoDailyRate';
 import { graphModeType } from '../../models/GraphMode';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import { SettingsContext } from '../../contexts/SettingsProvider';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -76,24 +78,20 @@ const styles = StyleSheet.create({
   }
 });
 
-export interface CryptoDetailsProps {
-  // The crypto to load
-  crypto: Crypto;
-  // The quote selected
-  quote: quoteType;
-  // The date format selected
-  dateFormat: dateFormatType;
-  // Graph mode
-  graphMode: graphModeType;
-}
+export interface CryptoDetailsProps {}
 
 // Details for a crypto
-const CryptoDetails: FC<CryptoDetailsProps> = ({
-  crypto,
-  quote,
-  dateFormat,
-  graphMode,
-}) => {
+const CryptoDetails: FC<CryptoDetailsProps> = ({}) => {
+  const {
+    details,
+  } = useContext(NavigationContext);
+
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+
   const [buyPrice, setBuyPrice] = useState<number | null>(null);
   const [sellPrice, setSellPrice] = useState<number | null>(null);
   const [historicRates, setHistoricRates] = useState<any[] | null>([]);
@@ -101,7 +99,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
   const [activeCandle, setActiveCandle] = useState<candleType>('1W');
 
   const fetchHistoricRates = useCallback(() => {
-    NetworkService.fetchCryptoHistoricRates(crypto.id, quote.code, activeCandle)
+    NetworkService.fetchCryptoHistoricRates(details.id, quote.code, activeCandle)
       .then(newHistoricRates => {
         if (!newHistoricRates || !newHistoricRates.length) {
           setHistoricRates(null);
@@ -122,7 +120,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
 
   useEffect(() => {
     // Get the Buy Price of the crypto
-    NetworkService.fetchCryptoBuyPrice(crypto.id, quote.code)
+    NetworkService.fetchCryptoBuyPrice(details.id, quote.code)
       .then(price => {
         if (price?.data) {
           setBuyPrice(parseFloat(price.data.amount));
@@ -131,7 +129,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
       .catch(console.error);
 
     // Get the Sell Price of the crypto
-    NetworkService.fetchCryptoSellPrice(crypto.id, quote.code)
+    NetworkService.fetchCryptoSellPrice(details.id, quote.code)
       .then(price => {
         if (price?.data) {
           setSellPrice(parseFloat(price.data.amount));
@@ -140,7 +138,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
       .catch(console.error);
 
     // Get the 24hr Stats for the crypto
-    NetworkService.fetchCrypto24hrStats(crypto.id, quote.code)
+    NetworkService.fetchCrypto24hrStats(details.id, quote.code)
       .then(stats => {
         // Check id stats are found or not (the API returns no error code when not found)
         if (stats.message === 'NotFound') {
@@ -169,31 +167,25 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({
   return (
     <>
       <View style={styles.crypto_details}>
-        <CryptoIcon code={crypto.id.toLowerCase()} />
+        <CryptoIcon code={details.id.toLowerCase()} />
         <Text style={styles.crypto_name}>
-          {`${crypto.name} - ${crypto.id}`}
+          {`${details.name} - ${details.id}`}
         </Text>
         {/* Show the current rate compared to the open market (or midnight if 24h/24h) */}
         <CryptoDailyRate rate={stats?.rate} />
-        <FadeInView style={{ ...styles.crypto_details_bottom_circle, backgroundColor: UtilsService.getColorFromCrypto(crypto.id) }} />
+        <FadeInView style={{ ...styles.crypto_details_bottom_circle, backgroundColor: UtilsService.getColorFromCrypto(details.id) }} />
       </View>
       <ScrollView style={styles.container}>
         <CryptoDescription
-          crypto={crypto}
+          crypto={details}
         />
         <CryptoDetailGraph
           historicRates={historicRates}
-          quote={quote}
-          crypto={crypto}
-          dateFormat={dateFormat}
           activeCandle={activeCandle}
           changeActiveCandle={setActiveCandle}
-          graphMode={graphMode}
         />
         
         <CryptoDetailStats
-          quote={quote}
-          crypto={crypto}
           stats={stats}
           buyPrice={buyPrice}
           sellPrice={sellPrice}

@@ -1,10 +1,13 @@
-import React, { FC, useCallback, useMemo, useRef } from 'react';
-import { TouchableOpacity, View, Image, StyleSheet, Text, Animated } from 'react-native';
+import React, { FC, useCallback, useContext, useMemo } from 'react';
+import { TouchableOpacity, View, Image, StyleSheet, Text, ToastAndroid } from 'react-native';
 
 import CryptoViewerIconsMap from './../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import Colors from './../../assets/Colors';
-import Tabs, { tabType } from '../../models/Tabs';
+import Tabs from '../../models/Tabs';
 import Crypto from '../../models/Crypto';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import UtilsService from '../../services/Utils.service';
 
 const styles = StyleSheet.create({
   topBar: {
@@ -41,32 +44,51 @@ const styles = StyleSheet.create({
   }
 });
 
-interface TopBarProps {
-  handleChangeTabList: () => void;
-  handleChangeTabSettings: () => void;
-  handleChangeFavourites: () => void;
-  handleBackAction: () => void;
-  crypto: Crypto;
-  favouritesList: string[];
-  activeTab: tabType;
-}
+interface TopBarProps {}
 
-const TopBar: FC<TopBarProps> = ({
-  handleChangeTabList,
-  handleChangeTabSettings,
-  handleChangeFavourites,
-  handleBackAction,
-  crypto,
-  favouritesList,
-  activeTab,
-}) => {
+const TopBar: FC<TopBarProps> = ({}) => {
+
+  const {
+    settings, changeSettings,
+  } = useContext(SettingsContext);
+
+  const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
+
+  const {
+    details, activeTab, changeTab,
+  } = useContext(NavigationContext);
+
+  const handleChangeTabToList = useCallback(() => changeTab(Tabs.list), [changeTab]);
+  const handleChangeTabToSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
+ 
+  const handleChangeTabBack = useCallback(() => changeTab(Tabs.list), [changeTab]);
+
+  const handleChangeFavourites = useCallback(() => {
+    if (!details) { return; }
+
+    const activeCurrency = details as Crypto;
+
+    let newList = [...(favouritesList || [])];
+
+    // If already in favourites, remove it. Otherwise, add it
+    if (newList.includes(activeCurrency.id)) {
+      newList = newList.filter(i => i !== activeCurrency.id);
+      ToastAndroid.show('Favourite removed!', ToastAndroid.BOTTOM)
+    } else {
+      newList.push(activeCurrency.id);
+      ToastAndroid.show('Added as favourite!', ToastAndroid.BOTTOM)
+    }
+
+    changeSettings('FAVOURITES_KEY', newList.filter(UtilsService.onlyUnique));
+  }, [details]);
+
   const isInsideCrypto = useMemo(
     () => activeTab === Tabs.details && !!crypto,
     [activeTab, crypto],
   );
 
   const isFavourite = useMemo(
-    () => (favouritesList || []).includes(crypto?.id),
+    () => (favouritesList || []).includes(details?.id),
     [favouritesList, crypto],
   );
 
@@ -74,7 +96,7 @@ const TopBar: FC<TopBarProps> = ({
     () => {
       if (isInsideCrypto) {
         return (
-          <TouchableOpacity onPress={handleBackAction}>
+          <TouchableOpacity onPress={handleChangeTabBack}>
             <Text style={{ ...styles.cryptoViewerIcon, color: Colors.white }}>
               {CryptoViewerIconsMap.back.unicode}
             </Text>
@@ -82,7 +104,7 @@ const TopBar: FC<TopBarProps> = ({
         );
       } else if (activeTab === Tabs.settings) {
         return (
-          <TouchableOpacity onPress={handleBackAction}>
+          <TouchableOpacity onPress={handleChangeTabBack}>
             <Text style={styles.cryptoViewerIcon}>
               {CryptoViewerIconsMap.back.unicode}
             </Text>
@@ -90,14 +112,14 @@ const TopBar: FC<TopBarProps> = ({
         );
       } else {
         return (
-          <TouchableOpacity onPress={handleChangeTabList} style={styles.topBarIconContainer}>
+          <TouchableOpacity onPress={handleChangeTabToList} style={styles.topBarIconContainer}>
             <Image style={{ width: 50, height: 50 }} source={require('./../../assets/icon.png')} />
             <Text style={styles.topBarText}>Crypto Viewer</Text>
           </TouchableOpacity>
         );
       }
     },
-    [activeTab, isInsideCrypto, handleBackAction, handleChangeTabList],
+    [activeTab, isInsideCrypto, handleChangeTabBack, handleChangeTabToList],
   );
 
   const innerRight = useMemo(
@@ -110,7 +132,7 @@ const TopBar: FC<TopBarProps> = ({
                 {isFavourite ? CryptoViewerIconsMap.star.unicode : CryptoViewerIconsMap.star_empty.unicode}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleChangeTabSettings}>
+            <TouchableOpacity onPress={handleChangeTabToSettings}>
               <Text style={{ ...styles.cryptoViewerIcon, ...({ color: Colors.white }) }}>
                 {CryptoViewerIconsMap.settings.unicode}
               </Text>
@@ -119,7 +141,7 @@ const TopBar: FC<TopBarProps> = ({
         );
       } else {
         return (
-          <TouchableOpacity onPress={handleChangeTabSettings}>
+          <TouchableOpacity onPress={handleChangeTabToSettings}>
             <Text style={styles.cryptoViewerIcon}>
               {CryptoViewerIconsMap.settings.unicode}
             </Text>

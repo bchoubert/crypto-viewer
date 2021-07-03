@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import Swipeable from 'react-native-swipeable-row';
 import { TouchableHighlight, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 
@@ -13,6 +13,8 @@ import WalletItem from '../../models/WalletItem';
 import Crypto from '../../models/Crypto';
 import Tabs, { tabType } from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   list_actions__delete: {
@@ -100,22 +102,28 @@ const styles = StyleSheet.create({
 });
 
 interface WalletListItemProps {
-  changeTab: (tabName: tabType, newDetails: Object) => any;
   cryptos: Crypto[];
   walletItem: WalletItem;
-  quote: quoteType;
   deleteFromWallet: (cryptoKey: string) => any;
   editFromWallet: (cryptoKey: string) => any;
 }
 
 const WalletListItem: FC<WalletListItemProps> = ({
-  changeTab,
   cryptos,
   walletItem,
-  quote,
   deleteFromWallet,
   editFromWallet,
 }) => {
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+
+  const {
+    changeTab,
+  } = useContext(NavigationContext);
+
   const [swipeableRef, setSwipeableRef] = useState(null);
 
   const crypto = useMemo(

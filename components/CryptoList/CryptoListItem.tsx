@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useMemo } from 'react';
+import React, { FC, memo, useCallback, useContext, useMemo } from 'react';
 import { SectionListData, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -12,6 +12,8 @@ import quoteType from '../../models/QuoteType';
 import Tabs, { tabType } from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
 import Tile, { TileMode } from '../Utils/Tile';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import { SettingsContext } from '../../contexts/SettingsProvider';
 
 const styles = StyleSheet.create({
   crypto_item: {
@@ -75,16 +77,23 @@ const styles = StyleSheet.create({
 interface CryptoListItemProps {
   section: SectionListData<Crypto>;
   crypto: Crypto | Crypto[];
-  quote: quoteType;
-  changeTab: (tabName: tabType, newDetails: Object) => any;
 }
 
 const CryptoListItem: FC<CryptoListItemProps> = ({
   section,
   crypto,
-  quote,
-  changeTab,
 }) => {
+
+  const {
+    changeTab,
+  } = useContext(NavigationContext);
+
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+
   const handleGoToDetails = useCallback(
     (cryptoToOpen) => changeTab(Tabs.details, cryptoToOpen),
     [crypto, changeTab],

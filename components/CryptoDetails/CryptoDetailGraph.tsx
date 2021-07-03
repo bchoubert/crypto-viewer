@@ -1,4 +1,4 @@
-import React, { memo, FC, useMemo } from 'react';
+import React, { memo, FC, useMemo, useContext } from 'react';
 import { StyleSheet, View, Text, ActivityIndicator, Dimensions } from 'react-native';
 import {
   VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip,
@@ -14,6 +14,8 @@ import UtilsService from '../../services/Utils.service';
 import MultilineTooltip from '../Utils/MultilineTooltip';
 import Selector from '../Utils/Selector';
 import { graphModeType } from '../../models/GraphMode';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   crypto_graph: {
@@ -37,26 +39,29 @@ const styles = StyleSheet.create({
 
 interface CryptoDetailGraphProps {
   historicRates: any[] | null;
-  quote: quoteType;
-  crypto: Crypto;
-  dateFormat: dateFormatType;
   activeCandle: candleType;
   changeActiveCandle: (newCandle: candleType) => any;
-  graphMode: graphModeType;
 }
 
 const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   historicRates,
-  quote,
-  crypto,
-  dateFormat,
   activeCandle,
   changeActiveCandle,
-  graphMode,
 }) => {
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as graphModeType, [settings]);
+  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as dateFormatType, [settings]);
+
+  const {
+    details,
+  } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto.id),
+    () => UtilsService.getColorFromCrypto(details.id),
     [crypto],
   );
 

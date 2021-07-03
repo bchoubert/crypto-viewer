@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { Text, StyleSheet, ToastAndroid, SectionList } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -11,6 +11,8 @@ import quoteType from '../../models/QuoteType';
 import ExchangeRates from '../../models/ExhangeRates';
 import CryptoListItem from './CryptoListItem';
 import { tabType } from '../../models/Tabs';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import { SettingsContext } from '../../contexts/SettingsProvider';
 
 
 const styles = StyleSheet.create({
@@ -28,21 +30,16 @@ const styles = StyleSheet.create({
   }
 });
 
-interface CryptoListProps {
-  // Quote as selected
-  quote: quoteType;
-  // List of favourites
-  favouritesList: string[];
-  // Change tab callback function to load details of a crypto
-  changeTab: (tabName: tabType, newDetails: Object) => any;
-}
+interface CryptoListProps {}
 
 /* Render the crypto list */
-const CryptoList: FC<CryptoListProps> = ({
-  quote,
-  favouritesList,
-  changeTab,
-}) => {
+const CryptoList: FC<CryptoListProps> = ({}) => {
+  const {
+    settings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
 
   const [isLoading, setLoading] = useState<boolean>(true);
   const [mainAssets, setMainAssets] = useState<Crypto[]>([]);
@@ -114,11 +111,9 @@ const CryptoList: FC<CryptoListProps> = ({
       <CryptoListItem
         crypto={item}
         section={section}
-        quote={quote}
-        changeTab={changeTab}
       />
     ),
-    [quote, changeTab],
+    [],
   );
 
   const handleRenderSectionHeader = useCallback(

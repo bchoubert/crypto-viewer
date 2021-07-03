@@ -1,4 +1,4 @@
-import React, { memo, FC, useCallback } from 'react';
+import React, { memo, FC, useCallback, useContext, useMemo } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { openURL } from 'expo-linking';
 
@@ -9,6 +9,8 @@ import { graphModes, graphModeType } from '../../models/GraphMode';
 import quoteType, { possibleQuotes } from '../../models/QuoteType';
 import Selector from '../Utils/Selector';
 import { settingType } from './Settings';
+import { AvailableTranslations } from '../../assets/translations/TranslationType';
+import { SettingsContext } from '../../contexts/SettingsProvider';
 
 const styles = StyleSheet.create({
   settings: {
@@ -51,27 +53,24 @@ const styles = StyleSheet.create({
 
 interface SettingItemProps {
   settingKey: settingType;
-  quote: quoteType;
-  changeQuote: (newQuote: quoteType) => any;
-  dateFormat: dateFormatType;
-  changeDateFormat: (newDateFormat: dateFormatType) => any;
-  graphMode: graphModeType;
-  changeGraphMode: (newGraphMode: graphModeType) => any;
 }
 
 const SettingItem: FC<SettingItemProps> = ({
   settingKey,
-  quote,
-  changeQuote,
-  dateFormat,
-  changeDateFormat,
-  graphMode,
-  changeGraphMode,
 }) => {
   const openPortfolio = useCallback(
     () => openURL('https://chbe.fr'),
     [],
   );
+
+  const {
+    settings, changeSettings,
+  } = useContext(SettingsContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as dateFormatType, [settings]);
+  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as graphModeType, [settings]);
+  const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
 
   switch (settingKey) {
     case 'currency':
@@ -81,7 +80,7 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={possibleQuotes.map(qu => qu.code)}
             activeItem={quote.code}
-            setActiveItem={(code) => changeQuote(possibleQuotes.find(qu => qu.code === code))}
+            setActiveItem={(code) => changeSettings('QUOTE_STORAGE_KEY', possibleQuotes.find(qu => qu.code === code))}
             color={Colors.blue}
           />
         </View>
@@ -93,7 +92,7 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={Object.values(dateFormats)}
             activeItem={dateFormat}
-            setActiveItem={changeDateFormat}
+            setActiveItem={(dateFormat) => changeSettings('DATE_FORMAT_KEY', dateFormat as dateFormatType)}
             color={Colors.blue}
           />
         </View>
@@ -105,9 +104,21 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={graphModes}
             activeItem={graphMode}
-            setActiveItem={changeGraphMode}
+            setActiveItem={(graphMode) => changeSettings('GRAPH_MODE_KEY', graphMode as graphModeType)}
             color={Colors.blue}
           />
+        </View>
+      );
+    case 'language':
+      return (
+        <View style={styles.settings}>
+          <Text style={styles.settingsText}>Language</Text>
+          <Selector
+            items={Object.keys(AvailableTranslations)}
+            activeItem={language}
+            setActiveItem={(language => changeSettings('LANGUAGE', language as AvailableTranslations))}
+            color={Colors.blue}
+            />
         </View>
       );
     case 'credits':
