@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     padding: 10,
     fontFamily: 'crypto-viewer',
+    color: Colors.darkGray,
   }
 });
 
@@ -86,12 +87,12 @@ const TopBar: FC<TopBarProps> = ({}) => {
     () => activeTab === Tabs.details && !!details,
     [activeTab, details],
   );
-
+    
   const isFavourite = useMemo(
     () => (favouritesList || []).includes(details?.id),
     [favouritesList, details],
   );
-
+      
   const innerLeft = useMemo(
     () => {
       if (isInsideCrypto) {
