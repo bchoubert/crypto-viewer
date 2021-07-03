@@ -61,33 +61,28 @@ interface CryptoDailyRateProps {
 
 const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
   rate,
-}) => {
-
-  return (
-    <View style={styles.rate_container}>
-        {rate && (
-          (rate < 0) ? (
-            <View style={[styles.rate_content, styles.rate_content_minus]}>
-              <Text style={[styles.cryptoViewerIcon, styles.rate_icon_minus]}>
-                {CryptoViewerIconsMap.minus.unicode}
-              </Text>
-              <Text style={styles.rate_number_minus}>
-                {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-              </Text>
-            </View>
-          ) : (
-            <View style={[styles.rate_content, styles.rate_content_plus]}>
-              <Text style={[ styles.cryptoViewerIcon, styles.rate_icon_plus]}>
-                {CryptoViewerIconsMap.plus.unicode}
-              </Text>
-              <Text style={styles.rate_number_plus}>
-                {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-              </Text>
-            </View>
-          )
-        )}
-    </View>
-  );
-}
+}) => (
+  <View style={styles.rate_container}>
+      {rate < 0 ? (
+        <View style={[styles.rate_content, styles.rate_content_minus]}>
+          <Text style={[styles.cryptoViewerIcon, styles.rate_icon_minus]}>
+            {CryptoViewerIconsMap.minus.unicode}
+          </Text>
+          <Text style={styles.rate_number_minus}>
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+          </Text>
+        </View>
+      ) : (
+        <View style={[styles.rate_content, styles.rate_content_plus]}>
+          <Text style={[ styles.cryptoViewerIcon, styles.rate_icon_plus]}>
+            {CryptoViewerIconsMap.plus.unicode}
+          </Text>
+          <Text style={styles.rate_number_plus}>
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+          </Text>
+        </View>
+      )}
+  </View>
+);
 
 export default CryptoDailyRate;

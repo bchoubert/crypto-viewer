@@ -16,6 +16,7 @@ import CryptoIcon from '../Utils/CryptoIcon';
 import CryptoDailyRate from './CryptoDailyRate';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { SettingsContext } from '../../contexts/SettingsProvider';
+import Tabs from '../../models/Tabs';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -80,7 +81,7 @@ export interface CryptoDetailsProps {}
 // Details for a crypto
 const CryptoDetails: FC<CryptoDetailsProps> = ({}) => {
   const {
-    details,
+    details, changeTab,
   } = useContext(NavigationContext);
 
   const {
@@ -160,6 +161,10 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({}) => {
     },
     [activeCandle],
   );
+
+  if (!details) {
+    changeTab(Tabs.list);
+  }
 
   return (
     <>
