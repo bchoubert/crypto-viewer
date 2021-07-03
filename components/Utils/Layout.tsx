@@ -70,7 +70,7 @@ const Layout: FC<LayoutProps> = () => {
       // Load specific fonts
       Font.loadAsync({
         // Specific font for the project icons
-        'crypto-viewer': require('./assets/fonts/baseIcons/crypto-viewer.ttf')
+        'crypto-viewer': require('./../../assets/fonts/baseIcons/crypto-viewer.ttf')
       }).then(() => setFontsLoaded(true));
     };
 

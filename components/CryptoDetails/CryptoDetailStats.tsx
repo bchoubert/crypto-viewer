@@ -76,7 +76,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(details.id),
-    [crypto],
+    [details],
   );
   
   if (!stats) {

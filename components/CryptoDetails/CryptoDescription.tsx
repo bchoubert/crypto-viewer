@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC, useCallback, useMemo, useContext } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
 
 import UtilsService from '../../services/Utils.service';
@@ -8,7 +8,7 @@ import Colors from '../../assets/Colors';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import CryptoCurrenciesIconMap from '../Utils/CryptoCurrencyIconsMap';
 
-import Crypto from '../../models/Crypto';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   descritpion: {
@@ -48,33 +48,33 @@ const styles = StyleSheet.create({
   }
 });
 
-interface CryptoDescriptionProps {
-  crypto: Crypto;
-}
+interface CryptoDescriptionProps {}
 
-const CryptoDescription: FC<CryptoDescriptionProps> = ({
-  crypto,
-}) => {
+const CryptoDescription: FC<CryptoDescriptionProps> = ({}) => {
+  const {
+    details,
+  } = useContext(NavigationContext);
+
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto.id),
-    [crypto],
+    () => UtilsService.getColorFromCrypto(details.id),
+    [details],
   );
 
   const openWebsite = useCallback(
-    () => Linking.openURL(CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website),
-    [crypto],
+    () => Linking.openURL(CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website),
+    [details],
   );
 
   return (
-    CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
+    CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
       <View style={styles.descritpion}>
         <Text style={styles.descritpion_title}>
           Details
         </Text>
         <Text style={styles.description_text}>
-          {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || ''}
+          {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || ''}
         </Text>
-        {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
+        {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
           <TouchableOpacity onPress={openWebsite} style={ styles.description_website }>
             <Text numberOfLines={1} style={{ ...styles.description_website_text, color: cryptoColor }}>
               Official Website

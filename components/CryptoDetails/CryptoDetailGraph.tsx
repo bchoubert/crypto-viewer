@@ -62,7 +62,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(details.id),
-    [crypto],
+    [details],
   );
 
   const dateLabel = useMemo(

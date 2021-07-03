@@ -3,10 +3,8 @@ import { StyleSheet, Text, View, Dimensions, Animated, ScrollView } from 'react-
 
 import UtilsService from '../../services/Utils.service';
 
-import Crypto from '../../models/Crypto';
 import NetworkService from '../../services/Network.service';
 import quoteType from '../../models/QuoteType';
-import { dateFormatType } from '../../models/DateFormat';
 import { candleType } from '../../models/CandleGranularity';
 
 import Stats from '../../models/Stats';
@@ -16,7 +14,6 @@ import CryptoDetailStats from './CryptoDetailStats';
 import CryptoDescription from './CryptoDescription';
 import CryptoIcon from '../Utils/CryptoIcon';
 import CryptoDailyRate from './CryptoDailyRate';
-import { graphModeType } from '../../models/GraphMode';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 
@@ -116,7 +113,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = ({}) => {
         setHistoricRates(result);
       })
       .catch(console.warn);
-  }, [crypto, quote, activeCandle, setHistoricRates])
+  }, [details, quote, activeCandle, setHistoricRates])
 
   useEffect(() => {
     // Get the Buy Price of the crypto

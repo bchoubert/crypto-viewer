@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import React, { FC, ReactNode } from "react";
 import NavigationProvider from "./contexts/NavigationProvider";
 import SettingsProvider from "./contexts/SettingsProvider";
 import TranslationProvider from "./contexts/TranslationProvider";

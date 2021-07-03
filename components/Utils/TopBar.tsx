@@ -83,13 +83,13 @@ const TopBar: FC<TopBarProps> = ({}) => {
   }, [details]);
 
   const isInsideCrypto = useMemo(
-    () => activeTab === Tabs.details && !!crypto,
-    [activeTab, crypto],
+    () => activeTab === Tabs.details && !!details,
+    [activeTab, details],
   );
 
   const isFavourite = useMemo(
     () => (favouritesList || []).includes(details?.id),
-    [favouritesList, crypto],
+    [favouritesList, details],
   );
 
   const innerLeft = useMemo(

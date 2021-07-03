@@ -9,7 +9,7 @@ import UtilsService from '../../services/Utils.service';
 
 import Crypto from '../../models/Crypto';
 import quoteType from '../../models/QuoteType';
-import Tabs, { tabType } from '../../models/Tabs';
+import Tabs from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
 import Tile, { TileMode } from '../Utils/Tile';
 import { NavigationContext } from '../../contexts/NavigationProvider';

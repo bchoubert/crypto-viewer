@@ -1,4 +1,4 @@
-import { createContext, FC, memo, ReactNode, useState, useEffect, useMemo, useCallback } from 'react';
+import React, { createContext, FC, memo, ReactNode, useState, useEffect, useMemo, useCallback } from 'react';
 import { Text } from 'react-native';
 
 import { SettingsKeysType, SETTINGS_KEYS } from '../constants';
