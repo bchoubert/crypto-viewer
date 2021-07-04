@@ -1,16 +1,18 @@
-import React, { memo, FC, useCallback, useContext, useMemo } from 'react';
+import React, {
+  memo, FC, useCallback, useContext, useMemo,
+} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { openURL } from 'expo-linking';
 
 import Colors from '../../assets/Colors';
 
-import dateFormats, { dateFormatType } from '../../models/DateFormat';
-import { graphModes, graphModeType } from '../../models/GraphMode';
-import quoteType, { possibleQuotes } from '../../models/QuoteType';
+import dateFormats, { DateFormatType } from '../../models/DateFormat';
+import { graphModes, GraphModeType } from '../../models/GraphMode';
+import QuoteType, { possibleQuotes } from '../../models/QuoteType';
 import Selector from '../Utils/Selector';
-import { settingType } from './Settings';
-import { AvailableTranslations } from '../../assets/translations/TranslationType';
+import { AvailableTranslations } from '../../assets/translations/TranslationUtils';
 import { SettingsContext } from '../../contexts/SettingsProvider';
+import { SettingType } from '../../models/SettingType';
 
 const styles = StyleSheet.create({
   settings: {
@@ -22,14 +24,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     borderBottomWidth: 1,
-    borderBottomColor: Colors.lightGray
+    borderBottomColor: Colors.lightGray,
   },
   settingsText: {
     fontSize: 17,
     width: '100%',
     marginBottom: 8,
   },
-
 
   credits: {
     flexDirection: 'column',
@@ -48,11 +49,11 @@ const styles = StyleSheet.create({
     color: Colors.gray,
     textAlign: 'center',
     width: '100%',
-  }
+  },
 });
 
 interface SettingItemProps {
-  settingKey: settingType;
+  settingKey: SettingType;
 }
 
 const SettingItem: FC<SettingItemProps> = ({
@@ -67,9 +68,9 @@ const SettingItem: FC<SettingItemProps> = ({
     settings, changeSettings,
   } = useContext(SettingsContext);
 
-  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
-  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as dateFormatType, [settings]);
-  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as graphModeType, [settings]);
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
+  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
+  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
   const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
 
   switch (settingKey) {
@@ -78,9 +79,9 @@ const SettingItem: FC<SettingItemProps> = ({
         <View style={styles.settings}>
           <Text style={styles.settingsText}>Preferred currency</Text>
           <Selector
-            items={possibleQuotes.map(qu => qu.code)}
+            items={possibleQuotes.map((qu) => qu.code)}
             activeItem={quote.code}
-            setActiveItem={(code) => changeSettings('QUOTE_STORAGE_KEY', possibleQuotes.find(qu => qu.code === code))}
+            setActiveItem={(code) => changeSettings('QUOTE_STORAGE_KEY', possibleQuotes.find((qu) => qu.code === code))}
             color={Colors.blue}
           />
         </View>
@@ -92,7 +93,7 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={Object.values(dateFormats)}
             activeItem={dateFormat}
-            setActiveItem={(dateFormat) => changeSettings('DATE_FORMAT_KEY', dateFormat as dateFormatType)}
+            setActiveItem={(newDateFormat) => changeSettings('DATE_FORMAT_KEY', newDateFormat as DateFormatType)}
             color={Colors.blue}
           />
         </View>
@@ -104,7 +105,7 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={graphModes}
             activeItem={graphMode}
-            setActiveItem={(graphMode) => changeSettings('GRAPH_MODE_KEY', graphMode as graphModeType)}
+            setActiveItem={(newGraphMode) => changeSettings('GRAPH_MODE_KEY', newGraphMode as GraphModeType)}
             color={Colors.blue}
           />
         </View>
@@ -116,9 +117,9 @@ const SettingItem: FC<SettingItemProps> = ({
           <Selector
             items={Object.keys(AvailableTranslations)}
             activeItem={language}
-            setActiveItem={(language => changeSettings('LANGUAGE', language as AvailableTranslations))}
+            setActiveItem={((newLanguage) => changeSettings('LANGUAGE', newLanguage as AvailableTranslations))}
             color={Colors.blue}
-            />
+          />
         </View>
       );
     case 'credits':
@@ -128,8 +129,12 @@ const SettingItem: FC<SettingItemProps> = ({
             Crytpo-Viewer is a product designed, developed and maintained by Bertrand Choubert.
             <Text style={styles.portfolioLink} onPress={openPortfolio}> His website here!</Text>
           </Text>
-          <Text style={styles.creditsText}>Developed with React-Native Expo, based on Coinbase Basic &amp; Pro APIs</Text>
-          <Text style={styles.creditsText}>Use of cryptocurrency-icons-font and Font-Awesome Pro Icons</Text>
+          <Text style={styles.creditsText}>
+            Developed with React-Native Expo, based on Coinbase Basic &amp; Pro APIs
+          </Text>
+          <Text style={styles.creditsText}>
+            Use of cryptocurrency-icons-font, Font-Awesome Pro Icons and some CoinBase assets
+          </Text>
         </View>
       );
     default:

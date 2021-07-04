@@ -1,5 +1,9 @@
-import React, { FC, useCallback, useMemo, useContext } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
+import React, {
+  FC, useCallback, useMemo, useContext,
+} from 'react';
+import {
+  View, StyleSheet, Text, TouchableOpacity, Linking,
+} from 'react-native';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -11,14 +15,14 @@ import CryptoCurrenciesIconMap from '../Utils/CryptoCurrencyIconsMap';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
-  descritpion: {
-    flexDirection: 'column'
+  description: {
+    flexDirection: 'column',
   },
-  descritpion_title: {
+  description_title: {
     paddingLeft: 20,
     paddingRight: 10,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   description_text: {
     color: Colors.darkGray,
@@ -39,18 +43,18 @@ const styles = StyleSheet.create({
   },
   description_website_text: {
     fontWeight: 'bold',
-    width: 95
+    width: 95,
   },
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
 interface CryptoDescriptionProps {}
 
-const CryptoDescription: FC<CryptoDescriptionProps> = ({}) => {
+const CryptoDescription: FC<CryptoDescriptionProps> = () => {
   const {
     details,
   } = useContext(NavigationContext);
@@ -65,21 +69,30 @@ const CryptoDescription: FC<CryptoDescriptionProps> = ({}) => {
     [details],
   );
 
-  return (
-    CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
-      <View style={styles.descritpion}>
-        <Text style={styles.descritpion_title}>
+  return (CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description
+    || CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
+      <View style={styles.description}>
+        <Text style={styles.description_title}>
           Details
         </Text>
         <Text style={styles.description_text}>
           {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || ''}
         </Text>
         {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
-          <TouchableOpacity onPress={openWebsite} style={ styles.description_website }>
-            <Text numberOfLines={1} style={{ ...styles.description_website_text, color: cryptoColor }}>
+          <TouchableOpacity onPress={openWebsite} style={styles.description_website}>
+            <Text
+              numberOfLines={1}
+              style={{ ...styles.description_website_text, color: cryptoColor }}
+            >
               Official Website
             </Text>
-            <Text style={{ ...styles.cryptoViewerIcon, ...styles.description_website_icon, color: cryptoColor }}>
+            <Text
+              style={{
+                ...styles.cryptoViewerIcon,
+                ...styles.description_website_icon,
+                color: cryptoColor,
+              }}
+            >
               {CryptoViewerIconsMap.link.unicode}
             </Text>
           </TouchableOpacity>

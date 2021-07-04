@@ -1,5 +1,9 @@
-import React, { FC, memo, useCallback, useContext, useMemo } from 'react';
-import { SectionListData, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, {
+  FC, memo, useCallback, useContext, useMemo,
+} from 'react';
+import {
+  SectionListData, View, Text, TouchableOpacity, StyleSheet,
+} from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -8,7 +12,7 @@ import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIcons
 import UtilsService from '../../services/Utils.service';
 
 import Crypto from '../../models/Crypto';
-import quoteType from '../../models/QuoteType';
+import QuoteType from '../../models/QuoteType';
 import Tabs from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
 import Tile, { TileMode } from '../Utils/Tile';
@@ -36,30 +40,30 @@ const styles = StyleSheet.create({
   crypto_item_properties: {
     flexDirection: 'row',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   crypto_item_details: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   crypto_item_names: {
     fontSize: 25,
     justifyContent: 'flex-start',
-    width: 200
+    width: 200,
   },
   crypto_item_name: {
-    fontSize: 18
+    fontSize: 18,
   },
   crypto_item_id: {
     fontSize: 12,
-    color: Colors.gray
+    color: Colors.gray,
   },
   crypto_item_price: {
-    paddingRight: 5
+    paddingRight: 5,
   },
   crypto_item_next_icon: {
     color: Colors.gray,
-    fontSize: 14
+    fontSize: 14,
   },
   favourite_list_item: {
     display: 'flex',
@@ -70,8 +74,8 @@ const styles = StyleSheet.create({
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
 interface CryptoListItemProps {
@@ -83,7 +87,6 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
   section,
   crypto,
 }) => {
-
   const {
     changeTab,
   } = useContext(NavigationContext);
@@ -92,7 +95,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
     settings,
   } = useContext(SettingsContext);
 
-  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
   const handleGoToDetails = useCallback(
     (cryptoToOpen) => changeTab(Tabs.details, cryptoToOpen),
@@ -105,31 +108,34 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
 
     return (
       <View style={styles.favourite_list_item} key={`view_${finalCryptos[0]?.id}`}>
-        {finalCryptos.map(crypto => {
-
-          const cryptoColor = UtilsService.getColorFromCrypto(crypto.id);
-          const price = crypto?.price ? `${UtilsService.truncateIntelligentNumber(crypto.price)} ${quote.symbol}` : '';
+        {finalCryptos.map((cryptoItem) => {
+          const cryptoColor = UtilsService.getColorFromCrypto(cryptoItem.id);
+          const price = cryptoItem?.price ? `${UtilsService.truncateIntelligentNumber(cryptoItem.price)} ${quote.symbol}` : '';
 
           return (
             <Tile
-              key={`item_${crypto.id}`}
+              key={`item_${cryptoItem.id}`}
               mode={TileMode.FULL}
               color={cryptoColor}
               label={(
                 <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                  <CryptoIcon code={crypto.id.toLowerCase()} style={{ height: 15, width: 15 }} styleForIcon={{ height: 15, width: 15 }} />
-                  <Text style={{ color: Colors.white }} numberOfLines={1}>{crypto.name}</Text>
+                  <CryptoIcon
+                    code={cryptoItem.id.toLowerCase()}
+                    style={{ height: 15, width: 15 }}
+                    styleForIcon={{ height: 15, width: 15 }}
+                  />
+                  <Text style={{ color: Colors.white }} numberOfLines={1}>{cryptoItem.name}</Text>
                 </View>
               )}
               number={price}
               style={styles.favourite_item}
-              onPress={() => handleGoToDetails(crypto)}
+              onPress={() => handleGoToDetails(cryptoItem)}
             >
-              {crypto.id}
+              {cryptoItem.id}
             </Tile>
           );
         })}
-        {finalCryptos.length === 1 ? <View style={{ flex: 1, margin: 10, padding: 10 }}></View> : null}
+        {finalCryptos.length === 1 ? <View style={{ flex: 1, margin: 10, padding: 10 }} /> : null}
       </View>
     );
   }
@@ -141,7 +147,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(finalCrypto.id),
-    [crypto],
+    [finalCrypto],
   );
 
   // Render the complete list item with action
@@ -182,6 +188,6 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
       </View>
     </TouchableOpacity>
   );
-}
+};
 
 export default memo(CryptoListItem);

@@ -1,17 +1,19 @@
-import React, { FC, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC, useContext, useEffect, useMemo, useState,
+} from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 
 import * as Font from 'expo-font';
 
-import CryptoList from '../../components/CryptoList/CryptoList';
-import Wallet from '../../components/Wallet/Wallet';
-import Settings from '../../components/Settings/Settings';
-import CryptoDetails from '../../components/CryptoDetails/CryptoDetails';
-import BottomBar from '../../components/Utils/BottomBar';
+import CryptoList from '../CryptoList/CryptoList';
+import Wallet from '../Wallet/Wallet';
+import Settings from '../Settings/Settings';
+import CryptoDetails from '../CryptoDetails/CryptoDetails';
+import BottomBar from './BottomBar';
 
 import Tabs from '../../models/Tabs';
 
-import TopBar from '../../components/Utils/TopBar';
+import TopBar from './TopBar';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 
 interface LayoutProps {
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     textAlign: 'center',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
 });
 
@@ -35,7 +37,8 @@ const Layout: FC<LayoutProps> = () => {
     activeTab, details, changeTab, statusBarColor, statusBarMode,
   } = useContext(NavigationContext);
 
-  // Technical function to render the current component depending on the current interface that has to be laoded
+  // Technical function to render the current component
+  // depending on the current interface that has to be laoded
   const activeTabRendered = useMemo(() => {
     switch (activeTab) {
       case Tabs.list:
@@ -51,13 +54,16 @@ const Layout: FC<LayoutProps> = () => {
           <Settings />
         );
       case Tabs.details:
-        if (!!details) {
+        if (details) {
           return (
             <CryptoDetails />
           );
-        } else {
-          changeTab(Tabs.list);
         }
+        // fallback
+        changeTab(Tabs.list);
+        return (
+          <CryptoList />
+        );
       default:
         return (
           <CryptoList />
@@ -70,7 +76,8 @@ const Layout: FC<LayoutProps> = () => {
       // Load specific fonts
       Font.loadAsync({
         // Specific font for the project icons
-        'crypto-viewer': require('./../../assets/fonts/baseIcons/crypto-viewer.ttf')
+        // eslint-disable-next-line global-require
+        'crypto-viewer': require('../../assets/fonts/baseIcons/crypto-viewer.ttf'),
       }).then(() => setFontsLoaded(true));
     };
 
@@ -83,7 +90,7 @@ const Layout: FC<LayoutProps> = () => {
   // Only render if fonts are loaded, to limit the reflow and API calls
   return (
     <View style={styles.container}>
-       <StatusBar
+      <StatusBar
         backgroundColor={statusBarColor}
         barStyle={statusBarMode}
       />

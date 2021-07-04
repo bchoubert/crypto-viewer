@@ -3,7 +3,6 @@ import { Image, StyleSheet, View } from 'react-native';
 
 import CryptoCurrencyIconsMap from './CryptoCurrencyIconsMap';
 
-
 const styles = StyleSheet.create({
   iconContainer: {
     marginRight: 10,
@@ -26,12 +25,19 @@ const CryptoIcon: FC<CryptoIconProps> = ({
   code,
   style,
   styleForIcon,
-}) => {
-  return (
-    <View style={{ ...styles.iconContainer, backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333', ...(style || {}) }}>
-      <Image style={{ ...styles.icon, ...(styleForIcon || {}) }} source={CryptoCurrencyIconsMap[code]?.icon}  />
-    </View>
-  );
-}
+}) => (
+  <View
+    style={{
+      ...styles.iconContainer,
+      backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333',
+      ...(style || {}),
+    }}
+  >
+    <Image
+      style={{ ...styles.icon, ...(styleForIcon || {}) }}
+      source={CryptoCurrencyIconsMap[code]?.icon}
+    />
+  </View>
+);
 
 export default memo(CryptoIcon);

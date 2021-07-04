@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     color: Colors.green,
   },
   rate_number_minus: {
-    color: Colors.red
+    color: Colors.red,
   },
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
 interface CryptoDailyRateProps {
@@ -63,25 +63,25 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
   rate,
 }) => (
   <View style={styles.rate_container}>
-      {rate < 0 ? (
-        <View style={[styles.rate_content, styles.rate_content_minus]}>
-          <Text style={[styles.cryptoViewerIcon, styles.rate_icon_minus]}>
-            {CryptoViewerIconsMap.minus.unicode}
-          </Text>
-          <Text style={styles.rate_number_minus}>
-            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-          </Text>
-        </View>
-      ) : (
-        <View style={[styles.rate_content, styles.rate_content_plus]}>
-          <Text style={[ styles.cryptoViewerIcon, styles.rate_icon_plus]}>
-            {CryptoViewerIconsMap.plus.unicode}
-          </Text>
-          <Text style={styles.rate_number_plus}>
-            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
-          </Text>
-        </View>
-      )}
+    {rate < 0 ? (
+      <View style={[styles.rate_content, styles.rate_content_minus]}>
+        <Text style={[styles.cryptoViewerIcon, styles.rate_icon_minus]}>
+          {CryptoViewerIconsMap.minus.unicode}
+        </Text>
+        <Text style={styles.rate_number_minus}>
+          {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+        </Text>
+      </View>
+    ) : (
+      <View style={[styles.rate_content, styles.rate_content_plus]}>
+        <Text style={[styles.cryptoViewerIcon, styles.rate_icon_plus]}>
+          {CryptoViewerIconsMap.plus.unicode}
+        </Text>
+        <Text style={styles.rate_number_plus}>
+          {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+        </Text>
+      </View>
+    )}
   </View>
 );
 

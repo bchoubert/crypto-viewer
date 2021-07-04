@@ -1,0 +1,14 @@
+{
+  "ignorePatterns": [
+    "node_modules"
+  ],
+  "extends": [
+    "airbnb-typescript"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/prop-types": "off"
+  }
+}

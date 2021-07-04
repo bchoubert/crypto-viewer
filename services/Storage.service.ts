@@ -9,7 +9,7 @@ const StorageService = {
   // Retrieve the string data store at a specific key
   getData(key: string): Promise<string | null> {
     return AsyncStorage.getItem(key);
-  }
+  },
 };
 
 export default StorageService;

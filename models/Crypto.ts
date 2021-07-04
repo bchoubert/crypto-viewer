@@ -1,4 +1,3 @@
-
 // Currency type as returned by the API
 export default interface Crypto {
   id: string,
@@ -9,4 +8,4 @@ export default interface Crypto {
     symbol: string
   },
   price?: number
-};
+}

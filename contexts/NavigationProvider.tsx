@@ -1,17 +1,19 @@
-import React, { createContext, FC, ReactNode, useCallback, useState, useEffect, useMemo, memo } from 'react';
+import React, {
+  createContext, FC, ReactNode, useCallback, useState, useEffect, useMemo, memo,
+} from 'react';
 import { StatusBarStyle, BackHandler } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import Tabs, { tabType } from '../models/Tabs';
+import Tabs, { TabType } from '../models/Tabs';
 import Currency from '../models/Crypto';
 import UtilsService from '../services/Utils.service';
 
 export const NavigationContext = createContext({
-  activeTab: Tabs.list as tabType,
+  activeTab: Tabs.list as TabType,
   details: null as Currency | null,
   statusBarColor: Colors.white as string,
   statusBarMode: 'dark-content' as StatusBarStyle,
-  changeTab: null as (tabName: tabType, newDetails?: Object) => void | null,
+  changeTab: null as (tabName: TabType, newDetails?: Object) => void | null,
 });
 
 interface NavigationProviderProps {
@@ -19,8 +21,7 @@ interface NavigationProviderProps {
 }
 
 const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
-
-  const [activeTab, setActiveTab] = useState<tabType>(Tabs.list);
+  const [activeTab, setActiveTab] = useState<TabType>(Tabs.list);
 
   // Store details about current active tab
   const [details, setDetails] = useState<Currency | null>(null);
@@ -29,8 +30,10 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
   const [statusBarColor, setStatusBarColor] = useState<string>(Colors.white);
   const [statusBarMode, setStatusBarMode] = useState<StatusBarStyle>('dark-content');
 
-  const changeTab = useCallback((tabName: tabType, newDetails: Currency = null) => {
-    setStatusBarColor(tabName === Tabs.details ? UtilsService.getColorFromCrypto(newDetails.id) : Colors.white);
+  const changeTab = useCallback((tabName: TabType, newDetails: Currency = null) => {
+    setStatusBarColor(tabName === Tabs.details
+      ? UtilsService.getColorFromCrypto(newDetails.id)
+      : Colors.white);
     setStatusBarMode(tabName === Tabs.details ? 'light-content' as StatusBarStyle : 'dark-content' as StatusBarStyle);
     setDetails(newDetails);
     setActiveTab(tabName);
@@ -62,6 +65,6 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
       {children}
     </NavigationContext.Provider>
   );
-}
+};
 
 export default memo(NavigationProvider);

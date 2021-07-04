@@ -1,7 +1,9 @@
-import React, { createContext, FC, memo, ReactNode, useState, useEffect, useMemo, useCallback } from 'react';
+import React, {
+  createContext, FC, memo, ReactNode, useState, useEffect, useMemo, useCallback,
+} from 'react';
 import { Text } from 'react-native';
 
-import { SettingsKeysType, SETTINGS_KEYS } from '../constants';
+import { SettingsKeysType } from '../constants';
 import SettingsType, { defaultSettings, SettingsValue } from '../models/SettingsType';
 import SettingsService from '../services/Settings.service';
 
@@ -14,7 +16,9 @@ interface SettingsProviderProps {
   children: ReactNode;
 }
 
-const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
+const SettingsProvider: FC<SettingsProviderProps> = ({
+  children,
+}) => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [values, setValues] = useState<SettingsType>(defaultSettings);
 
@@ -30,13 +34,16 @@ const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
     [],
   );
 
-  const handleChangeSettings = useCallback(async (key: SettingsKeysType, newValue: SettingsValue) => {
-    await SettingsService.changeSetting(key, newValue);
-    setValues(v => ({
-      ...v,
-      [key]: newValue,
-    }));
-  }, []);
+  const handleChangeSettings = useCallback(
+    async (key: SettingsKeysType, newValue: SettingsValue) => {
+      await SettingsService.changeSetting(key, newValue);
+      setValues((v) => ({
+        ...v,
+        [key]: newValue,
+      }));
+    },
+    [],
+  );
 
   const contextValues = useMemo(() => ({
     settings: values,
@@ -44,7 +51,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
   }), [values, handleChangeSettings]);
 
   if (isLoading) {
-    return <Text>Loading...</Text>
+    return <Text>Loading...</Text>;
   }
 
   return (
@@ -55,4 +62,3 @@ const SettingsProvider: FC<SettingsProviderProps> = ({ children }) => {
 };
 
 export default memo(SettingsProvider);
-

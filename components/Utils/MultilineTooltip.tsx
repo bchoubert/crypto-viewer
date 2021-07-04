@@ -1,6 +1,8 @@
-import React, { Component, FC, memo, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 import { Dimensions } from 'react-native';
-import { Line, G, Text as TextSVG, TextAnchor, Rect, Circle } from 'react-native-svg';
+import {
+  Line, G, Text as TextSVG, TextAnchor, Rect, Circle,
+} from 'react-native-svg';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import UtilsService from '../../services/Utils.service';
@@ -20,10 +22,9 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   dateFormat,
   datum,
 }) => {
-
   // Position tooltip calculation
   const showPosition: 'left' | 'right' = useMemo(
-    () => (x > ((Dimensions.get('window').width - 20) / 2)) ? 'left' : 'right',
+    () => ((x > ((Dimensions.get('window').width - 20) / 2)) ? 'left' : 'right'),
     [x],
   );
 
@@ -38,7 +39,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   );
 
   const textAnchor: TextAnchor = useMemo(
-    () => (showPosition === 'right') ? 'start' : 'end',
+    () => ((showPosition === 'right') ? 'start' : 'end'),
     [showPosition],
   );
 
@@ -52,7 +53,8 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
         height={36}
         rx={10}
         fill={Colors.white}
-        stroke="#000000"></Rect>
+        stroke="#000000"
+      />
       <Circle cx={x} cy={y} r={10} stroke="#000000" />
       <Line
         x1={x + (showPosition === 'left' ? -8 : 8)}
@@ -69,6 +71,6 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
       </TextSVG>
     </G>
   );
-}
+};
 
 export default memo(MultilineTooltip);

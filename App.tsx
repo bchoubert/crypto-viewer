@@ -1,14 +1,11 @@
-import AppProviders from "./AppProviders";
-import Layout from './components/Utils/Layout';
 import React from 'react';
+import AppProviders from './AppProviders';
+import Layout from './components/Utils/Layout';
 
-const App = () => {
-  
-  return (
-    <AppProviders>
-      <Layout />
-    </AppProviders>
-  );
-}
+const App = () => (
+  <AppProviders>
+    <Layout />
+  </AppProviders>
+);
 
 export default App;

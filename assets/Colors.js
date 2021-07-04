@@ -1,4 +1,3 @@
-
 /* Colors used all over the app */
 const Colors = {
   blue: '#005BE3',

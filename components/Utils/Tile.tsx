@@ -1,5 +1,7 @@
 import React, { FC, ReactNode, useMemo } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet, View, Text, TouchableOpacity,
+} from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -8,7 +10,7 @@ export enum TileMode {
   LIGHT = 'LIGHT',
   FULL = 'FULL',
   TALL = 'TALL',
-};
+}
 
 const styles = StyleSheet.create({
   tile: {
@@ -19,22 +21,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     display: 'flex',
     flexDirection: 'column',
-    padding: 10
+    padding: 10,
   },
   tall: {
     height: 180,
   },
   tile_number: {
     flex: 1,
-    fontSize: 28
+    fontSize: 28,
   },
   tile_long_number: {
     flex: 1,
-    fontSize: 25
+    fontSize: 25,
   },
   tile_label: {
-    fontSize: 14
-  }
+    fontSize: 14,
+  },
 });
 
 const stylesForTileMode = {
@@ -42,7 +44,7 @@ const stylesForTileMode = {
   [TileMode.LIGHT]: styles.tile,
   [TileMode.FULL]: styles.tile,
   [TileMode.TALL]: { ...styles.tile, ...styles.tall },
-}
+};
 
 interface TileProps {
   mode: TileMode,
@@ -63,16 +65,16 @@ const Tile: FC<TileProps> = ({
   style,
   onPress,
 }) => {
-
   const backgroundColor = useMemo(
     () => {
-      switch(mode) {
+      switch (mode) {
         case TileMode.CLEAR:
           return Colors.white;
         case TileMode.LIGHT:
           return `${color}22`;
         case TileMode.FULL:
         case TileMode.TALL:
+        default:
           return color;
       }
     },
@@ -81,13 +83,14 @@ const Tile: FC<TileProps> = ({
 
   const textColor = useMemo(
     () => {
-      switch(mode) {
+      switch (mode) {
         case TileMode.CLEAR:
           return Colors.darkGray;
         case TileMode.LIGHT:
           return Colors.darkGray;
         case TileMode.FULL:
         case TileMode.TALL:
+        default:
           return Colors.white;
       }
     },
@@ -95,11 +98,15 @@ const Tile: FC<TileProps> = ({
   );
 
   return (
-    <TouchableOpacity style={{ ...stylesForTileMode[mode], backgroundColor, ...(style || {}) }} onPress={onPress}>
+    <TouchableOpacity
+      style={{ ...stylesForTileMode[mode], backgroundColor, ...(style || {}) }}
+      onPress={onPress}
+    >
       <Text style={{
         ...(isLongNumber ? styles.tile_long_number : styles.tile_number),
         color: textColor,
-      }}>
+      }}
+      >
         {number}
       </Text>
       {(typeof label === 'string') ? (
@@ -111,6 +118,6 @@ const Tile: FC<TileProps> = ({
       )}
     </TouchableOpacity>
   );
-}
+};
 
 export default Tile;

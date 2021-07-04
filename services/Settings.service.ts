@@ -1,6 +1,6 @@
-import { SettingsKeysType, SETTINGS_KEYS } from "../constants";
-import SettingsType, { settingDetails, SettingsValue } from "../models/SettingsType";
-import StorageService from "./Storage.service";
+import { SettingsKeysType, SETTINGS_KEYS } from '../constants';
+import SettingsType, { settingDetails, SettingsValue } from '../models/SettingsType';
+import StorageService from './Storage.service';
 
 const SettingsService = {
   loadOneSetting: async (settingKey: SettingsKeysType): Promise<SettingsValue> => {
@@ -10,19 +10,24 @@ const SettingsService = {
     }
     return settingDetails[settingKey].defaultValue;
   },
-  changeSetting: async (settingKey: SettingsKeysType, newValue: SettingsValue): Promise<void> => {
-    return StorageService.storeData(
-      settingKey,
-      (settingDetails[settingKey].needsParsing ? JSON.stringify(newValue) : newValue) as string,
-    );
-  },
+  changeSetting: async (
+    settingKey: SettingsKeysType,
+    newValue: SettingsValue,
+  ): Promise<void> => StorageService.storeData(
+    settingKey,
+    (settingDetails[settingKey].needsParsing ? JSON.stringify(newValue) : newValue) as string,
+  ),
   loadAll: async (): Promise<SettingsType> => {
-    const values = await Promise.all(Object.keys(SETTINGS_KEYS).map((settingKey) => SettingsService.loadOneSetting(settingKey as SettingsKeysType)));
-    return Object.keys(SETTINGS_KEYS).reduce((result, settingKey, idx) => {
-      result[settingKey] = values[idx];
-      return result;
-    }, {} as SettingsType);
-  }
+    const values = await Promise.all(
+      Object.keys(SETTINGS_KEYS).map(
+        (settingKey) => SettingsService.loadOneSetting(settingKey as SettingsKeysType),
+      ),
+    );
+    return Object.keys(SETTINGS_KEYS).reduce((result, settingKey, idx) => ({
+      ...result,
+      [settingKey]: values[idx],
+    }), {} as SettingsType);
+  },
 };
 
 export default SettingsService;

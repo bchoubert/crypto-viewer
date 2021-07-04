@@ -1,4 +1,4 @@
-import TranslationType from './TranslationType';
+import TranslationType from '../../models/TranslationType';
 
 const FrTranslation: TranslationType = {
   common: {

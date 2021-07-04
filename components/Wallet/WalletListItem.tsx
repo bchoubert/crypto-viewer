@@ -1,6 +1,10 @@
-import React, { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC, memo, useCallback, useContext, useEffect, useMemo, useState,
+} from 'react';
 import Swipeable from 'react-native-swipeable-row';
-import { TouchableHighlight, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import {
+  TouchableHighlight, Text, TouchableOpacity, View, StyleSheet,
+} from 'react-native';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
@@ -8,10 +12,10 @@ import Colors from '../../assets/Colors';
 
 import UtilsService from '../../services/Utils.service';
 
-import quoteType from '../../models/QuoteType';
+import QuoteType from '../../models/QuoteType';
 import WalletItem from '../../models/WalletItem';
 import Crypto from '../../models/Crypto';
-import Tabs, { tabType } from '../../models/Tabs';
+import Tabs from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
@@ -118,7 +122,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
     settings,
   } = useContext(SettingsContext);
 
-  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
   const {
     changeTab,
@@ -127,24 +131,27 @@ const WalletListItem: FC<WalletListItemProps> = ({
   const [swipeableRef, setSwipeableRef] = useState(null);
 
   const crypto = useMemo(
-    () => (cryptos || []).find(asset => asset.id === walletItem.crypto) as Crypto,
+    () => (cryptos || []).find((asset) => asset.id === walletItem.crypto) as Crypto,
     [cryptos, walletItem],
   );
 
   // Prices compute
   const priceAmount = useMemo(
-    () => crypto?.price ? UtilsService.truncateIntelligentNumber(crypto.price * walletItem.amount) + ' ' + quote.symbol : '',
+    () => (crypto?.price ? `${UtilsService.truncateIntelligentNumber(crypto.price * walletItem.amount)} ${quote.symbol}` : ''),
     [crypto],
   );
   const walletAmount = useMemo(
-    () => crypto?.price ? UtilsService.truncateIntelligentNumber(walletItem.amount) + ' ' + crypto.details.symbol : '',
+    () => (crypto?.price ? `${UtilsService.truncateIntelligentNumber(walletItem.amount)} ${crypto.details.symbol}` : ''),
     [crypto, walletItem],
   );
 
   const handleEdit = useCallback(() => editFromWallet(walletItem.crypto), [crypto]);
   const handleDelete = useCallback(() => deleteFromWallet(walletItem.crypto), [crypto]);
 
-  const handleSelectCrypto = useCallback(() => changeTab(Tabs.details, crypto), [changeTab, crypto]);
+  const handleSelectCrypto = useCallback(
+    () => changeTab(Tabs.details, crypto),
+    [changeTab, crypto],
+  );
 
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(crypto?.id),
@@ -171,13 +178,15 @@ const WalletListItem: FC<WalletListItemProps> = ({
           <View style={styles.crypto_item_details}>
             <View style={styles.crypto_amount}>
               <Text style={styles.crypto_item_price}>
-                {UtilsService.truncateIntelligentNumber(walletItem.amount)} {quote.symbol}
+                {UtilsService.truncateIntelligentNumber(walletItem.amount)}
+                {' '}
+                {quote.symbol}
               </Text>
             </View>
           </View>
         </View>
       </View>
-    )
+    );
   }
 
   if (!crypto) {
@@ -187,14 +196,24 @@ const WalletListItem: FC<WalletListItemProps> = ({
   // Actions to edit or delete the wallet item
   return (
     <Swipeable
-      onRef={ref => setSwipeableRef(ref)}
+      onRef={(ref) => setSwipeableRef(ref)}
       rightButtons={[
-        <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__edit }} onPress={handleEdit}>
-          <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__edit }}>Edit</Text>
+        <TouchableHighlight
+          style={{ ...styles.list_actions, ...styles.list_actions__edit }}
+          onPress={handleEdit}
+        >
+          <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__edit }}>
+            Edit
+          </Text>
         </TouchableHighlight>,
-        <TouchableHighlight style={{ ...styles.list_actions, ...styles.list_actions__delete }} onPress={handleDelete}>
-          <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__delete }}>Delete</Text>
-        </TouchableHighlight>
+        <TouchableHighlight
+          style={{ ...styles.list_actions, ...styles.list_actions__delete }}
+          onPress={handleDelete}
+        >
+          <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__delete }}>
+            Delete
+          </Text>
+        </TouchableHighlight>,
       ]}
       bounceOnMount
     >
@@ -228,6 +247,6 @@ const WalletListItem: FC<WalletListItemProps> = ({
       </TouchableOpacity>
     </Swipeable>
   );
-}
+};
 
 export default memo(WalletListItem);

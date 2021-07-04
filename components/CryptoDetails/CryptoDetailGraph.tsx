@@ -1,19 +1,22 @@
-import React, { memo, FC, useMemo, useContext } from 'react';
-import { StyleSheet, View, Text, ActivityIndicator, Dimensions } from 'react-native';
+import React, {
+  memo, FC, useMemo, useContext,
+} from 'react';
+import {
+  StyleSheet, View, Text, ActivityIndicator, Dimensions,
+} from 'react-native';
 import {
   VictoryLine, VictoryChart, VictoryTheme, VictoryAxis, VictoryVoronoiContainer, VictoryTooltip,
 } from 'victory-native';
 
-import Crypto from '../../models/Crypto';
-import { dateFormatType } from '../../models/DateFormat';
-import quoteType from '../../models/QuoteType';
-import candleGranularity, { candleType } from '../../models/CandleGranularity';
+import { DateFormatType } from '../../models/DateFormat';
+import QuoteType from '../../models/QuoteType';
+import candleGranularity, { CandleType } from '../../models/CandleGranularity';
 
 import UtilsService from '../../services/Utils.service';
 
 import MultilineTooltip from '../Utils/MultilineTooltip';
 import Selector from '../Utils/Selector';
-import { graphModeType } from '../../models/GraphMode';
+import { GraphModeType } from '../../models/GraphMode';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 
@@ -34,13 +37,13 @@ const styles = StyleSheet.create({
   },
   chartSpacer: {
     height: 30,
-  }
+  },
 });
 
 interface CryptoDetailGraphProps {
   historicRates: any[] | null;
-  activeCandle: candleType;
-  changeActiveCandle: (newCandle: candleType) => any;
+  activeCandle: CandleType;
+  changeActiveCandle: (newCandle: CandleType) => any;
 }
 
 const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
@@ -52,9 +55,9 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
     settings,
   } = useContext(SettingsContext);
 
-  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
-  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as graphModeType, [settings]);
-  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as dateFormatType, [settings]);
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
+  const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
+  const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
 
   const {
     details,
@@ -72,7 +75,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
       }
       return `${UtilsService.printDate(historicRates[0].x, dateFormat)}  -  ${UtilsService.printDate(historicRates[historicRates.length - 1].x, dateFormat)}`;
     },
-    [UtilsService, historicRates]
+    [UtilsService, historicRates],
   );
 
   const historicRatesToPrint = useMemo(
@@ -98,27 +101,40 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
       <Text style={styles.chartSpacer} />
 
       {/* Render the graph */}
-      {(!!historicRatesToPrint.length) ?
-        (
+      {(historicRatesToPrint.length)
+        ? (
           <VictoryChart
             width={Dimensions.get('window').width}
             height={350}
-            padding={{ left: 0, right: 0, top: 0, bottom: 30 }}
+            padding={{
+              left: 0, right: 0, top: 0, bottom: 30,
+            }}
             domainPadding={{ x: 0, y: 50 }}
             theme={VictoryTheme.material}
             style={styles.chart}
-            containerComponent={
+            containerComponent={(
               <VictoryVoronoiContainer
-                labels={_ => ''}
-                labelComponent={
-                  <VictoryTooltip flyoutComponent={<MultilineTooltip quoteSymbol={quote.symbol} dateFormat={dateFormat} />} />
-                } />
-            }>
+                labels={() => ''}
+                labelComponent={(
+                  <VictoryTooltip
+                    flyoutComponent={(
+                      <MultilineTooltip
+                        quoteSymbol={quote.symbol}
+                        dateFormat={dateFormat}
+                      />
+                    )}
+                  />
+                )}
+              />
+            )}
+          >
 
             {/* X axis is time based */}
             <VictoryAxis
               scale="time"
-              padding={{ top: 0, bottom: 0, left: 100, right: 100 }}
+              padding={{
+                top: 0, bottom: 0, left: 100, right: 100,
+              }}
               tickFormat={() => ''}
               label={dateLabel}
               width={200}
@@ -127,7 +143,8 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
                 grid: { stroke: 'none' },
                 axis: { stroke: 'none' },
                 axisLabel: { fontSize: 15 },
-              }} />
+              }}
+            />
 
             {/* Y axis is value linear based */}
             <VictoryAxis
@@ -141,18 +158,17 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
             <VictoryLine
               scale={{ x: 'time', y: 'linear' }}
               interpolation="natural"
-              standalone={true}
+              standalone
               data={historicRatesToPrint}
               style={{
                 data: {
                   stroke: cryptoColor,
-                  strokeWidth: 3
-                }
+                  strokeWidth: 3,
+                },
               }}
             />
           </VictoryChart>
-        ) : null
-      }
+        ) : null}
 
       <Text style={styles.chartSpacer} />
 
@@ -165,6 +181,6 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
       />
     </View>
   );
-}
+};
 
 export default memo(CryptoDetailGraph);

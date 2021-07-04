@@ -11,5 +11,14 @@
     "skipLibCheck": true,
     "experimentalDecorators": true
   },
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.js",
+    "./**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

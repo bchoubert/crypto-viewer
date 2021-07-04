@@ -1,11 +1,15 @@
-import React, { FC, memo, useCallback, useContext } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import React, {
+  FC, memo, useCallback, useContext,
+} from 'react';
+import {
+  StyleSheet, TouchableOpacity, View, Text,
+} from 'react-native';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
 
-import Tabs, { tabType } from '../../models/Tabs';
+import Tabs from '../../models/Tabs';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
@@ -16,25 +20,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     borderTopColor: Colors.gray,
-    borderTopWidth: 1
+    borderTopWidth: 1,
   },
   bottomBarButtonContainer: {
     flex: 1,
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
 interface BottomBarProps {}
 
-const BottomBar: FC<BottomBarProps> = ({}) => {
+const BottomBar: FC<BottomBarProps> = () => {
   const {
     activeTab, changeTab,
   } = useContext(NavigationContext);
@@ -49,25 +53,23 @@ const BottomBar: FC<BottomBarProps> = ({}) => {
           <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.list) ? Colors.blue : 'black' }}>
             {CryptoViewerIconsMap.prices.unicode}
           </Text>
-          {activeTab === Tabs.list ?
-            (
+          {activeTab === Tabs.list
+            ? (
               <Text style={{ color: 'blue' }}>
                 Prices
               </Text>
-            ) : null
-          }
+            ) : null}
         </TouchableOpacity>
         <TouchableOpacity onPress={handleWalletAction} style={styles.bottomBarButtonContainer}>
           <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.wallet) ? Colors.blue : 'black' }}>
             {CryptoViewerIconsMap.wallet.unicode}
           </Text>
-          {activeTab === Tabs.wallet ?
-            (
+          {activeTab === Tabs.wallet
+            ? (
               <Text style={{ color: 'blue' }}>
                 Wallet
               </Text>
-            ) : null
-          }
+            ) : null}
         </TouchableOpacity>
       </View>
     );
@@ -75,6 +77,6 @@ const BottomBar: FC<BottomBarProps> = ({}) => {
 
   // If not on the list or wallet view, show nothing
   return null;
-}
+};
 
 export default memo(BottomBar);

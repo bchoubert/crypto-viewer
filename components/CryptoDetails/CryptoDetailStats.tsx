@@ -1,42 +1,43 @@
-import React, { memo, FC, useMemo, useContext } from 'react';
+import React, {
+  memo, FC, useMemo, useContext,
+} from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
 
 import Stats from '../../models/Stats';
-import quoteType from '../../models/QuoteType';
-import Crypto from '../../models/Crypto';
+import QuoteType from '../../models/QuoteType';
 import Tile, { TileMode } from '../Utils/Tile';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 
 const styles = StyleSheet.create({
   stats: {
     marginTop: 20,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   stats_title: {
     paddingLeft: 20,
     paddingRight: 10,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   stats_container: {
     flex: 1,
     flexDirection: 'row',
-    marginVertical: 10
+    marginVertical: 10,
   },
   stat: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   stat_number: {
-    fontSize: 14
+    fontSize: 14,
   },
   stat_icon: {
     fontSize: 12,
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
 interface CryptoDetailStatsProps {
@@ -68,7 +69,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
     settings,
   } = useContext(SettingsContext);
 
-  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as quoteType, [settings]);
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
   const {
     details,
@@ -78,7 +79,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
     () => UtilsService.getColorFromCrypto(details.id),
     [details],
   );
-  
+
   if (!stats) {
     return null;
   }
@@ -91,14 +92,14 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         {!!stats.high && (
           <Tile
             mode={TileMode.LIGHT}
-            label={
+            label={(
               <View style={styles.stat_label}>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.high.unicode}
                 </Text>
                 <Text> High</Text>
               </View>
-            }
+            )}
             number={`${UtilsService.truncateIntelligentNumber(stats.high)} ${quote.symbol}`}
             color={cryptoColor}
           />
@@ -108,14 +109,14 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         {!!stats.low && (
           <Tile
             mode={TileMode.CLEAR}
-            label={
+            label={(
               <View style={styles.stat_label}>
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.low.unicode}
                 </Text>
                 <Text> Low</Text>
               </View>
-            }
+            )}
             number={`${UtilsService.truncateIntelligentNumber(stats.low)} ${quote.symbol}`}
             color={cryptoColor}
           />
@@ -126,14 +127,20 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
           <Tile
             mode={TileMode.FULL}
             isLongNumber
-            label={
+            label={(
               <View style={styles.stat_label}>
-                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon, color: Colors.white }}>
+                <Text
+                  style={{
+                    ...styles.cryptoViewerIcon,
+                    ...styles.stat_icon,
+                    color: Colors.white,
+                  }}
+                >
                   {CryptoViewerIconsMap.volume.unicode}
                 </Text>
                 <Text style={{ color: Colors.white }}> Volume</Text>
               </View>
-            }
+            )}
             number={`${UtilsService.truncateIntelligentNumber(stats.volume, 0)}`}
             color={cryptoColor}
           />
@@ -176,6 +183,6 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
       </View>
     </View>
   );
-}
+};
 
 export default memo(CryptoDetailStats);

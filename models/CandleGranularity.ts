@@ -11,7 +11,7 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
+    },
   },
   '3M': {
     granularity: 86400,
@@ -20,7 +20,7 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
+    },
   },
   '1M': {
     granularity: 21600,
@@ -29,7 +29,7 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
+    },
   },
   '1W': {
     granularity: 3600,
@@ -38,7 +38,7 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
+    },
   },
   '3D': {
     granularity: 3600,
@@ -47,7 +47,7 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
+    },
   },
   '1D': {
     granularity: 900,
@@ -56,10 +56,10 @@ const candleGranularity = {
     },
     getEndDate(): string {
       return moment().add(1, 'day').format(formatString);
-    }
-  }
+    },
+  },
 };
 
-export type candleType = '6M' | '3M' | '1M' | '1W' | '3D' | '1D';
+export type CandleType = '6M' | '3M' | '1M' | '1W' | '3D' | '1D';
 
 export default candleGranularity;
