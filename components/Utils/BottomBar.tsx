@@ -11,6 +11,7 @@ import Colors from '../../assets/Colors';
 
 import Tabs from '../../models/Tabs';
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   bottomBar: {
@@ -43,6 +44,8 @@ const BottomBar: FC<BottomBarProps> = () => {
     activeTab, changeTab,
   } = useContext(NavigationContext);
 
+  const t = useContext(TranslationContext);
+
   const handleListAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleWalletAction = useCallback(() => changeTab(Tabs.wallet), [changeTab]);
 
@@ -56,7 +59,7 @@ const BottomBar: FC<BottomBarProps> = () => {
           {activeTab === Tabs.list
             ? (
               <Text style={{ color: 'blue' }}>
-                Prices
+                {t.menu.prices}
               </Text>
             ) : null}
         </TouchableOpacity>
@@ -67,7 +70,7 @@ const BottomBar: FC<BottomBarProps> = () => {
           {activeTab === Tabs.wallet
             ? (
               <Text style={{ color: 'blue' }}>
-                Wallet
+                {t.menu.wallet}
               </Text>
             ) : null}
         </TouchableOpacity>

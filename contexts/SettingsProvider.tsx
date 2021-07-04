@@ -1,7 +1,6 @@
 import React, {
   createContext, FC, memo, ReactNode, useState, useEffect, useMemo, useCallback,
 } from 'react';
-import { Text } from 'react-native';
 
 import { SettingsKeysType } from '../constants';
 import SettingsType, { defaultSettings, SettingsValue } from '../models/SettingsType';
@@ -51,7 +50,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
   }), [values, handleChangeSettings]);
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return null;
   }
 
   return (

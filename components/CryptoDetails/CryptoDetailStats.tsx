@@ -13,6 +13,7 @@ import QuoteType from '../../models/QuoteType';
 import Tile, { TileMode } from '../Utils/Tile';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   stats: {
@@ -69,6 +70,8 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
     settings,
   } = useContext(SettingsContext);
 
+  const t = useContext(TranslationContext);
+
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
   const {
@@ -85,7 +88,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   }
   return (
     <View style={styles.stats}>
-      <Text style={styles.stats_title}>24h Stats</Text>
+      <Text style={styles.stats_title}>{t.details.stats_24h}</Text>
       <View style={styles.stats_container}>
 
         {/* Highest 24h value section */}
@@ -97,7 +100,9 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.high.unicode}
                 </Text>
-                <Text> High</Text>
+                <Text>
+                  {t.details.high}
+                </Text>
               </View>
             )}
             number={`${UtilsService.truncateIntelligentNumber(stats.high)} ${quote.symbol}`}
@@ -114,7 +119,9 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
                   {CryptoViewerIconsMap.low.unicode}
                 </Text>
-                <Text> Low</Text>
+                <Text>
+                  {t.details.low}
+                </Text>
               </View>
             )}
             number={`${UtilsService.truncateIntelligentNumber(stats.low)} ${quote.symbol}`}
@@ -138,7 +145,9 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
                 >
                   {CryptoViewerIconsMap.volume.unicode}
                 </Text>
-                <Text style={{ color: Colors.white }}> Volume</Text>
+                <Text style={{ color: Colors.white }}>
+                  {t.details.volume}
+                </Text>
               </View>
             )}
             number={`${UtilsService.truncateIntelligentNumber(stats.volume, 0)}`}
@@ -147,7 +156,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         )}
       </View>
       <Text style={styles.stats_title}>
-        Current Price
+        {t.details.current_price}
       </Text>
       <View style={styles.stats_container}>
 
@@ -155,7 +164,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         {!!buyPrice && (
           <Tile
             mode={TileMode.CLEAR}
-            label="Buy"
+            label={t.details.buy}
             number={`${UtilsService.truncateIntelligentNumber(buyPrice)} ${quote.symbol}`}
             color={cryptoColor}
           />
@@ -165,7 +174,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         {!!details.price && (
           <Tile
             mode={TileMode.FULL}
-            label="Price"
+            label={t.details.price}
             number={`${UtilsService.truncateIntelligentNumber(details.price)} ${quote.symbol}`}
             color={cryptoColor}
           />
@@ -175,7 +184,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         {!!sellPrice && (
           <Tile
             mode={TileMode.LIGHT}
-            label="Sell"
+            label={t.details.sell}
             number={`${UtilsService.truncateIntelligentNumber(sellPrice)} ${quote.symbol}`}
             color={cryptoColor}
           />

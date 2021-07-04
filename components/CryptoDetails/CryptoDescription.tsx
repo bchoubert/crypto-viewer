@@ -13,6 +13,7 @@ import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIcons
 import CryptoCurrenciesIconMap from '../Utils/CryptoCurrencyIconsMap';
 
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   description: {
@@ -40,10 +41,12 @@ const styles = StyleSheet.create({
   },
   description_website_icon: {
     fontSize: 12,
+    width: 10,
+    marginLeft: 5,
   },
   description_website_text: {
     fontWeight: 'bold',
-    width: 95,
+    paddingRight: 20,
   },
 
   cryptoViewerIcon: {
@@ -59,6 +62,8 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
     details,
   } = useContext(NavigationContext);
 
+  const t = useContext(TranslationContext);
+
   const cryptoColor = useMemo(
     () => UtilsService.getColorFromCrypto(details.id),
     [details],
@@ -73,7 +78,7 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
     || CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
       <View style={styles.description}>
         <Text style={styles.description_title}>
-          Details
+          {t.details.details}
         </Text>
         <Text style={styles.description_text}>
           {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || ''}
@@ -84,7 +89,7 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
               numberOfLines={1}
               style={{ ...styles.description_website_text, color: cryptoColor }}
             >
-              Official Website
+              {t.details.website}
             </Text>
             <Text
               style={{

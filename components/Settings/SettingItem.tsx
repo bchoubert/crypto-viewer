@@ -13,6 +13,7 @@ import Selector from '../Utils/Selector';
 import { AvailableTranslations } from '../../assets/translations/TranslationUtils';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { SettingType } from '../../models/SettingType';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   settings: {
@@ -68,6 +69,8 @@ const SettingItem: FC<SettingItemProps> = ({
     settings, changeSettings,
   } = useContext(SettingsContext);
 
+  const t = useContext(TranslationContext);
+
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
@@ -77,7 +80,7 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'currency':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>Preferred currency</Text>
+          <Text style={styles.settingsText}>{t.settings.preferred_currency}</Text>
           <Selector
             items={possibleQuotes.map((qu) => qu.code)}
             activeItem={quote.code}
@@ -89,7 +92,7 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'dateFormat':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>Preferred date format</Text>
+          <Text style={styles.settingsText}>{t.settings.preferred_date_format}</Text>
           <Selector
             items={Object.values(dateFormats)}
             activeItem={dateFormat}
@@ -101,7 +104,7 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'graphMode':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>Graph mode</Text>
+          <Text style={styles.settingsText}>{t.settings.graph_mode}</Text>
           <Selector
             items={graphModes}
             activeItem={graphMode}
@@ -113,7 +116,7 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'language':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>Language</Text>
+          <Text style={styles.settingsText}>{t.settings.language}</Text>
           <Selector
             items={Object.keys(AvailableTranslations)}
             activeItem={language}
@@ -126,14 +129,17 @@ const SettingItem: FC<SettingItemProps> = ({
       return (
         <View style={{ ...styles.settings, ...styles.credits }}>
           <Text style={{ ...styles.creditsText, ...styles.credits_first }}>
-            Crytpo-Viewer is a product designed, developed and maintained by Bertrand Choubert.
-            <Text style={styles.portfolioLink} onPress={openPortfolio}> His website here!</Text>
+            {t.settings.credits.product}
+            <Text style={styles.portfolioLink} onPress={openPortfolio}>
+              {t.settings.credits.website}
+            </Text>
           </Text>
           <Text style={styles.creditsText}>
-            Developed with React-Native Expo, based on Coinbase Basic &amp; Pro APIs
+            {t.settings.credits.apis}
+            {' '}
           </Text>
           <Text style={styles.creditsText}>
-            Use of cryptocurrency-icons-font, Font-Awesome Pro Icons and some CoinBase assets
+            {t.settings.credits.libraries}
           </Text>
         </View>
       );

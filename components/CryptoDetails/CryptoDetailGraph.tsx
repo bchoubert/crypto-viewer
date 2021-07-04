@@ -19,6 +19,7 @@ import Selector from '../Utils/Selector';
 import { GraphModeType } from '../../models/GraphMode';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   crypto_graph: {
@@ -55,6 +56,8 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
     settings,
   } = useContext(SettingsContext);
 
+  const t = useContext(TranslationContext);
+
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
   const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
@@ -90,7 +93,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
     return (
       <View style={styles.crypto_graph}>
         <ActivityIndicator size="large" color={cryptoColor} />
-        <Text>Loading historic rates...</Text>
+        <Text>{t.details.loading_rates}</Text>
       </View>
     );
   }

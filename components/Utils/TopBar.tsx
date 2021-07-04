@@ -12,6 +12,7 @@ import Crypto from '../../models/Crypto';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import UtilsService from '../../services/Utils.service';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   topBar: {
@@ -56,6 +57,8 @@ const TopBar: FC<TopBarProps> = () => {
     settings, changeSettings,
   } = useContext(SettingsContext);
 
+  const t = useContext(TranslationContext);
+
   const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
 
   const {
@@ -77,10 +80,10 @@ const TopBar: FC<TopBarProps> = () => {
     // If already in favourites, remove it. Otherwise, add it
     if (newList.includes(activeCurrency.id)) {
       newList = newList.filter((i) => i !== activeCurrency.id);
-      ToastAndroid.show('Favourite removed!', ToastAndroid.BOTTOM);
+      ToastAndroid.show(t.details.favourite_removed, ToastAndroid.BOTTOM);
     } else {
       newList.push(activeCurrency.id);
-      ToastAndroid.show('Added as favourite!', ToastAndroid.BOTTOM);
+      ToastAndroid.show(t.details.favourite_added, ToastAndroid.BOTTOM);
     }
 
     changeSettings('FAVOURITES_KEY', newList.filter(UtilsService.onlyUnique));

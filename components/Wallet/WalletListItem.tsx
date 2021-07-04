@@ -19,6 +19,7 @@ import Tabs from '../../models/Tabs';
 import CryptoIcon from '../Utils/CryptoIcon';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   list_actions__delete: {
@@ -122,6 +123,8 @@ const WalletListItem: FC<WalletListItemProps> = ({
     settings,
   } = useContext(SettingsContext);
 
+  const t = useContext(TranslationContext);
+
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
   const {
@@ -171,7 +174,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
           <View style={styles.crypto_item_properties}>
             <View style={styles.crypto_item_names}>
               <Text style={styles.crypto_item_name}>
-                Total
+                {t.wallet.total}
               </Text>
             </View>
           </View>
@@ -203,7 +206,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
           onPress={handleEdit}
         >
           <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__edit }}>
-            Edit
+            {t.common.edit}
           </Text>
         </TouchableHighlight>,
         <TouchableHighlight
@@ -211,7 +214,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
           onPress={handleDelete}
         >
           <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__delete }}>
-            Delete
+            {t.common.delete}
           </Text>
         </TouchableHighlight>,
       ]}

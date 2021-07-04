@@ -15,6 +15,7 @@ import QuoteType from '../../models/QuoteType';
 import ExchangeRates from '../../models/ExhangeRates';
 import CryptoListItem from './CryptoListItem';
 import { SettingsContext } from '../../contexts/SettingsProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,6 +39,8 @@ const CryptoList: FC<CryptoListProps> = () => {
   const {
     settings,
   } = useContext(SettingsContext);
+
+  const t = useContext(TranslationContext);
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
@@ -86,8 +89,8 @@ const CryptoList: FC<CryptoListProps> = () => {
   const sections = useMemo(
     () => {
       const baseSections = [
-        { title: 'Main assets', id: 'main', data: mainAssets },
-        { title: 'Other assets', id: 'other', data: otherAssets },
+        { title: t.list.main, id: 'main', data: mainAssets },
+        { title: t.list.other, id: 'other', data: otherAssets },
       ];
       if ((favouritesList || []).length > 0) {
         const items = mainAssets.filter((asset) => (favouritesList || []).includes(asset.id));
@@ -103,11 +106,11 @@ const CryptoList: FC<CryptoListProps> = () => {
           }
         }
 
-        baseSections.unshift({ title: 'Favourites', id: 'favourites', data: finalItems });
+        baseSections.unshift({ title: t.list.favourites, id: 'favourites', data: finalItems });
       }
       return baseSections;
     },
-    [mainAssets, otherAssets, favouritesList],
+    [mainAssets, otherAssets, favouritesList, t],
   );
 
   const handleRenderItem = useCallback(

@@ -20,6 +20,7 @@ import WalletModal from './WalletModal';
 
 import WalletListItem from './WalletListItem';
 import { SettingsContext } from '../../contexts/SettingsProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   container: {
@@ -67,6 +68,8 @@ const Wallet: FC<WalletProps> = () => {
   const {
     settings, changeSettings,
   } = useContext(SettingsContext);
+
+  const t = useContext(TranslationContext);
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const wallet = useMemo(() => settings.WALLET_KEY as WalletItem[], [settings]);
@@ -212,7 +215,7 @@ const Wallet: FC<WalletProps> = () => {
         ListEmptyComponent={() => (
           <View style={styles.list_empty}>
             <Text style={styles.list_empty_text}>
-              No item in your wallet yet
+              {t.wallet.no_item}
             </Text>
           </View>
         )}
