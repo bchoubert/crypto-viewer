@@ -50,6 +50,12 @@ const EnTranslation: TranslationType = {
       apis: 'Developed with React-Native Expo, based on Coinbase Basic & Pro APIs',
       libraries: 'Use of cryptocurrency-icons-font, Font-Awesome Pro Icons and some CoinBase assets',
     },
+    values: {
+      graph_mode: {
+        simple: 'Simple',
+        advanced: 'Advanced',
+      },
+    },
   },
 };
 

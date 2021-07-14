@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import {
   TouchableOpacity, View, Text, StyleSheet,
 } from 'react-native';
@@ -30,10 +30,11 @@ const styles = StyleSheet.create({
 });
 
 interface SelectorProps {
-  items: string[];
+  items: (string | any)[];
   activeItem: string;
   setActiveItem: (item: string) => void;
   color: string;
+  renderItem?: (item: any) => string;
 }
 
 const Selector: FC<SelectorProps> = ({
@@ -41,11 +42,12 @@ const Selector: FC<SelectorProps> = ({
   activeItem,
   setActiveItem,
   color,
+  renderItem,
 }) => (
   <View style={{ ...styles.selector_container, borderColor: color }}>
-    {items.map((item: string) => (
+    {items.map((item: string | any) => (
       <TouchableOpacity
-        key={item}
+        key={renderItem?.(item) || item}
         style={{
           ...styles.selector_item,
           ...((activeItem === item) ? { backgroundColor: color } : []),
@@ -53,11 +55,11 @@ const Selector: FC<SelectorProps> = ({
         onPress={() => setActiveItem(item)}
       >
         <Text style={{ ...styles.selector_item_text, ...((activeItem !== item) ? { color } : []) }}>
-          {item}
+          {renderItem?.(item) || item}
         </Text>
       </TouchableOpacity>
     ))}
   </View>
 );
 
-export default Selector;
+export default memo(Selector);

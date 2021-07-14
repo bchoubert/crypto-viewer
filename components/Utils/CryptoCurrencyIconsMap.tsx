@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
-const CryptoCurrenciesIconMap = {
+const CryptoCurrenciesIconMap
+: Record<string, { icon: any, color: string, description: string, website: string }> = {
   $pac: {
     icon: require('cryptocurrency-icons/128/color/$pac.png'), color: '#F5EB17', description: '', website: '',
   },
@@ -1108,7 +1109,7 @@ const CryptoCurrenciesIconMap = {
     icon: require('cryptocurrency-icons/128/color/soc.png'), color: '#199248', description: '', website: '',
   },
   sol: {
-    icon: require('../../assets/cryptos/sol.png'), color: '#D8D8D8', description: 'Solana is a decentralized computing platform that uses SOL to pay for transactions. Solana aims to improve blockchain scalability by using a combination of proof of stake consensus and so-called proof of history. As a result, Solana claims to be able to support 50,000 transactions per second without sacrificing decentralization.', website: 'https://solana.com/',
+    icon: require('../../assets/cryptos/sol.png'), color: '#00FFBD', description: 'Solana is a decentralized computing platform that uses SOL to pay for transactions. Solana aims to improve blockchain scalability by using a combination of proof of stake consensus and so-called proof of history. As a result, Solana claims to be able to support 50,000 transactions per second without sacrificing decentralization.', website: 'https://solana.com/',
   },
   spank: {
     icon: require('cryptocurrency-icons/128/color/spank.png'), color: '#FF3B81', description: '', website: '',

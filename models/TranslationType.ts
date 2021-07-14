@@ -48,6 +48,12 @@ type TranslationType = {
       apis: string,
       libraries: string,
     },
+    values: {
+      graph_mode: {
+        simple: string,
+        advanced: string,
+      },
+    },
   },
 };
 

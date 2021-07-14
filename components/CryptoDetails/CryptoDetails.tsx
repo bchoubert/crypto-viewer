@@ -116,6 +116,9 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
   const [activeCandle, setActiveCandle] = useState<CandleType>('1W');
 
   const fetchHistoricRates = useCallback(() => {
+    if (!details) {
+      return;
+    }
     NetworkService.fetchCryptoHistoricRates(details.id, quote.code, activeCandle)
       .then((newHistoricRates) => {
         if (!newHistoricRates || !newHistoricRates.length) {
@@ -136,6 +139,9 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
   }, [details, quote, activeCandle, setHistoricRates]);
 
   useEffect(() => {
+    if (!details) {
+      return;
+    }
     // Get the Buy Price of the crypto
     NetworkService.fetchCryptoBuyPrice(details.id, quote.code)
       .then((price) => {
@@ -170,7 +176,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
       .catch(LoggerService.error);
 
     fetchHistoricRates();
-  }, []);
+  }, [details, quote]);
 
   useEffect(
     () => {
@@ -182,6 +188,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
 
   if (!details) {
     changeTab(Tabs.list);
+    return null;
   }
 
   return (

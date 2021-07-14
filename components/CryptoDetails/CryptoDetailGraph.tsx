@@ -67,7 +67,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details.id),
+    () => UtilsService.getColorFromCrypto(details?.id),
     [details],
   );
 
@@ -82,7 +82,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
   );
 
   const historicRatesToPrint = useMemo(
-    () => historicRates && historicRates.filter((_, index) => index % (graphMode === 'Advanced' ? 1 : 5) === 0),
+    () => historicRates && historicRates.filter((_, index) => index % (graphMode === 'advanced' ? 1 : 5) === 0),
     [historicRates],
   );
 

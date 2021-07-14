@@ -130,9 +130,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
               number={price}
               style={styles.favourite_item}
               onPress={() => handleGoToDetails(cryptoItem)}
-            >
-              {cryptoItem.id}
-            </Tile>
+            />
           );
         })}
         {finalCryptos.length === 1 ? <View style={{ flex: 1, margin: 10, padding: 10 }} /> : null}

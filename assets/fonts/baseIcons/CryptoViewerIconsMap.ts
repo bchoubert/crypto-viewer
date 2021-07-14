@@ -1,4 +1,4 @@
-const CryptoViewerIconsMap = {
+const CryptoViewerIconsMap: Record<string, { unicode: string }> = {
   coin: { unicode: '\uE800' },
   coins: { unicode: '\uE801' },
   star_empty: { unicode: '\uE802' },

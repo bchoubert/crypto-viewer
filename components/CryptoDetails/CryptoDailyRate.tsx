@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Colors from '../../assets/Colors';
@@ -69,7 +69,7 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
           {CryptoViewerIconsMap.minus.unicode}
         </Text>
         <Text style={styles.rate_number_minus}>
-          {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+          {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
         </Text>
       </View>
     ) : (
@@ -78,11 +78,11 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
           {CryptoViewerIconsMap.plus.unicode}
         </Text>
         <Text style={styles.rate_number_plus}>
-          {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
+          {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
         </Text>
       </View>
     )}
   </View>
 );
 
-export default CryptoDailyRate;
+export default memo(CryptoDailyRate);

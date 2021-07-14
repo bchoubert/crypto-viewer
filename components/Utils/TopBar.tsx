@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useContext, useMemo,
+  FC, useCallback, useContext, useMemo, memo,
 } from 'react';
 import {
   TouchableOpacity, View, Image, StyleSheet, Text, ToastAndroid,
@@ -168,4 +168,4 @@ const TopBar: FC<TopBarProps> = () => {
   );
 };
 
-export default TopBar;
+export default memo(TopBar);

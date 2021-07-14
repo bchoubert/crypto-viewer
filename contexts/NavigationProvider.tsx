@@ -5,12 +5,12 @@ import { StatusBarStyle, BackHandler } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Tabs, { TabType } from '../models/Tabs';
-import Currency from '../models/Crypto';
+import Crypto from '../models/Crypto';
 import UtilsService from '../services/Utils.service';
 
 export const NavigationContext = createContext({
   activeTab: Tabs.list as TabType,
-  details: null as Currency | null,
+  details: null as Crypto | null,
   statusBarColor: Colors.white as string,
   statusBarMode: 'dark-content' as StatusBarStyle,
   changeTab: null as (tabName: TabType, newDetails?: Object) => void | null,
@@ -24,13 +24,13 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
   const [activeTab, setActiveTab] = useState<TabType>(Tabs.list);
 
   // Store details about current active tab
-  const [details, setDetails] = useState<Currency | null>(null);
+  const [details, setDetails] = useState<Crypto | null>(null);
 
   // StatusBar mode
   const [statusBarColor, setStatusBarColor] = useState<string>(Colors.white);
   const [statusBarMode, setStatusBarMode] = useState<StatusBarStyle>('dark-content');
 
-  const changeTab = useCallback((tabName: TabType, newDetails: Currency = null) => {
+  const changeTab = useCallback((tabName: TabType, newDetails: Crypto = null) => {
     setStatusBarColor(tabName === Tabs.details
       ? UtilsService.getColorFromCrypto(newDetails.id)
       : Colors.white);

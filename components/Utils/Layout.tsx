@@ -1,5 +1,5 @@
 import React, {
-  FC, useContext, useEffect, useMemo, useState,
+  FC, useContext, useEffect, useMemo, useState, memo,
 } from 'react';
 import { StyleSheet, View, StatusBar } from 'react-native';
 
@@ -101,4 +101,4 @@ const Layout: FC<LayoutProps> = () => {
   );
 };
 
-export default Layout;
+export default memo(Layout);

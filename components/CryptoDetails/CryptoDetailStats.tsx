@@ -79,11 +79,11 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details.id),
+    () => UtilsService.getColorFromCrypto(details?.id),
     [details],
   );
 
-  if (!stats) {
+  if (!stats || !details) {
     return null;
   }
   return (

@@ -1,5 +1,5 @@
 import React, {
-  FC, useCallback, useMemo, useContext,
+  FC, useCallback, useMemo, useContext, memo,
 } from 'react';
 import {
   View, StyleSheet, Text, TouchableOpacity, Linking,
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
   },
   description_website_text: {
     fontWeight: 'bold',
-    paddingRight: 20,
+    marginLeft: 10,
+    width: 100,
   },
 
   cryptoViewerIcon: {
@@ -65,14 +66,18 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
   const t = useContext(TranslationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details.id),
+    () => UtilsService.getColorFromCrypto(details?.id),
     [details],
   );
 
   const openWebsite = useCallback(
-    () => Linking.openURL(CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website),
+    () => Linking.openURL(CryptoCurrenciesIconMap[details?.id?.toLowerCase()]?.website),
     [details],
   );
+
+  if (!details) {
+    return null;
+  }
 
   return (CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description
     || CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
@@ -86,12 +91,6 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
         {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
           <TouchableOpacity onPress={openWebsite} style={styles.description_website}>
             <Text
-              numberOfLines={1}
-              style={{ ...styles.description_website_text, color: cryptoColor }}
-            >
-              {t.details.website}
-            </Text>
-            <Text
               style={{
                 ...styles.cryptoViewerIcon,
                 ...styles.description_website_icon,
@@ -100,6 +99,11 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
             >
               {CryptoViewerIconsMap.link.unicode}
             </Text>
+            <Text
+              style={{ ...styles.description_website_text, color: cryptoColor }}
+            >
+              {t.details.website}
+            </Text>
           </TouchableOpacity>
         ) : null}
       </View>
@@ -107,4 +111,4 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
   );
 };
 
-export default CryptoDescription;
+export default memo(CryptoDescription);

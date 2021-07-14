@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, memo } from 'react';
 import NavigationProvider from './contexts/NavigationProvider';
 import SettingsProvider from './contexts/SettingsProvider';
 import TranslationProvider from './contexts/TranslationProvider';
@@ -19,4 +19,4 @@ const AppProviders: FC<AppProviderProps> = ({
   </SettingsProvider>
 );
 
-export default AppProviders;
+export default memo(AppProviders);

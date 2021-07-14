@@ -10,7 +10,7 @@ import dateFormats, { DateFormatType } from '../../models/DateFormat';
 import { graphModes, GraphModeType } from '../../models/GraphMode';
 import QuoteType, { possibleQuotes } from '../../models/QuoteType';
 import Selector from '../Utils/Selector';
-import { AvailableTranslations } from '../../assets/translations/TranslationUtils';
+import { AvailableTranslationDetails, AvailableTranslations } from '../../assets/translations/TranslationUtils';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { SettingType } from '../../models/SettingType';
 import { TranslationContext } from '../../contexts/TranslationProvider';
@@ -76,6 +76,16 @@ const SettingItem: FC<SettingItemProps> = ({
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
   const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
 
+  const renderGraphModeSetting = useCallback(
+    (item: GraphModeType) => t.settings.values.graph_mode[item],
+    [t],
+  );
+
+  const renderLanguageSetting = useCallback(
+    (item: AvailableTranslations) => AvailableTranslationDetails[item].name,
+    [],
+  );
+
   switch (settingKey) {
     case 'currency':
       return (
@@ -110,6 +120,7 @@ const SettingItem: FC<SettingItemProps> = ({
             activeItem={graphMode}
             setActiveItem={(newGraphMode) => changeSettings('GRAPH_MODE_KEY', newGraphMode as GraphModeType)}
             color={Colors.blue}
+            renderItem={renderGraphModeSetting}
           />
         </View>
       );
@@ -122,6 +133,7 @@ const SettingItem: FC<SettingItemProps> = ({
             activeItem={language}
             setActiveItem={((newLanguage) => changeSettings('LANGUAGE', newLanguage as AvailableTranslations))}
             color={Colors.blue}
+            renderItem={renderLanguageSetting}
           />
         </View>
       );

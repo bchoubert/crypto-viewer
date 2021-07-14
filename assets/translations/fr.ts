@@ -5,7 +5,7 @@ const FrTranslation: TranslationType = {
     cancel: 'Annuler',
     save: 'Sauvegarder',
     edit: 'Editer',
-    delete: 'Supprimer',
+    delete: 'Enlever',
     select_option: 'Sélectionnez une option...',
   },
   list: {
@@ -49,6 +49,12 @@ const FrTranslation: TranslationType = {
       website: 'Son portfolio ici !',
       apis: 'Dévelopé avec React-Native Expo, basé sur les APIs basique et professionelle de CoinBase',
       libraries: 'Utilisation de cryptocurrency-icon-font, icons de Font-Awesome Pro, utilisation de ressources CoinBase',
+    },
+    values: {
+      graph_mode: {
+        simple: 'Simple',
+        advanced: 'Avancé',
+      },
     },
   },
 };

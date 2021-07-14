@@ -1,4 +1,6 @@
-import React, { FC, ReactNode, useMemo } from 'react';
+import React, {
+  FC, ReactNode, useMemo, memo,
+} from 'react';
 import {
   StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
@@ -120,4 +122,4 @@ const Tile: FC<TileProps> = ({
   );
 };
 
-export default Tile;
+export default memo(Tile);

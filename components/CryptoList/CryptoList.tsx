@@ -139,6 +139,11 @@ const CryptoList: FC<CryptoListProps> = () => {
     [styles],
   );
 
+  const extractKey = useCallback(
+    (item: Crypto | Crypto[]) => (Array.isArray(item) ? item[0]?.id : item.id),
+    [],
+  );
+
   // Render the view with sorted assets
   return (
     <SectionList
@@ -149,7 +154,7 @@ const CryptoList: FC<CryptoListProps> = () => {
       refreshing={isLoading}
       renderItem={handleRenderItem}
       renderSectionHeader={handleRenderSectionHeader}
-      keyExtractor={(item) => item.id}
+      keyExtractor={extractKey}
     />
   );
 };

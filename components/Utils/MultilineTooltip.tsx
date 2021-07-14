@@ -1,9 +1,12 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, {
+  FC, memo, useContext, useMemo,
+} from 'react';
 import { Dimensions } from 'react-native';
 import {
   Line, G, Text as TextSVG, TextAnchor, Rect, Circle,
 } from 'react-native-svg';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import Colors from '../../assets/Colors';
+import { NavigationContext } from '../../contexts/NavigationProvider';
 
 import UtilsService from '../../services/Utils.service';
 
@@ -22,6 +25,15 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   dateFormat,
   datum,
 }) => {
+  const {
+    details,
+  } = useContext(NavigationContext);
+
+  const cryptoColor = useMemo(
+    () => UtilsService.getColorFromCrypto(details.id),
+    [details],
+  );
+
   // Position tooltip calculation
   const showPosition: 'left' | 'right' = useMemo(
     () => ((x > ((Dimensions.get('window').width - 20) / 2)) ? 'left' : 'right'),
@@ -29,7 +41,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   );
 
   const popinPosition: number = useMemo(
-    () => x + (showPosition === 'right' ? 50 : -50),
+    () => x + (showPosition === 'right' ? 49 : -49),
     [showPosition, x],
   );
 
@@ -47,26 +59,25 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   return (
     <G>
       <Rect
-        x={(showPosition === 'left') ? x - 124 : x + 50}
-        y={y - 44}
-        width={74}
+        x={(showPosition === 'left') ? x - 125 : x + 49}
+        y={y - 49}
+        width={76}
         height={36}
         rx={10}
-        fill={Colors.white}
-        stroke="#000000"
+        fill={cryptoColor || Colors.midGray}
       />
-      <Circle cx={x} cy={y} r={10} stroke="#000000" />
+      <Circle cx={x} cy={y} r={30} fill="#CCCCCC55" />
       <Line
-        x1={x + (showPosition === 'left' ? -8 : 8)}
+        x1={x + (showPosition === 'left' ? -26 : 26)}
         x2={popinPosition}
-        y1={y - 5}
+        y1={y - 15}
         y2={y - 30}
-        stroke="#000000"
+        stroke={Colors.black}
       />
-      <TextSVG x={textPosition} y={y - 30} textAnchor={textAnchor} fill="#000000">
+      <TextSVG x={textPosition} y={y - 35} textAnchor={textAnchor} fill={Colors.white}>
         {`${UtilsService.printDate(datum.x, dateFormat)} ${UtilsService.printTime(datum.x)}`}
       </TextSVG>
-      <TextSVG x={textPosition} y={y - 15} textAnchor={textAnchor} fill="#000000">
+      <TextSVG x={textPosition} y={y - 20} textAnchor={textAnchor} fill={Colors.white}>
         {`${quoteSymbol} ${datum.y}`}
       </TextSVG>
     </G>
