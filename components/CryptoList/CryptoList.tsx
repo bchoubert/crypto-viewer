@@ -5,8 +5,6 @@ import {
   Text, StyleSheet, ToastAndroid, SectionList,
 } from 'react-native';
 
-import Colors from '../../assets/Colors';
-
 import NetworkService from '../../services/Network.service';
 import UtilsService from '../../services/Utils.service';
 
@@ -16,21 +14,7 @@ import ExchangeRates from '../../models/ExhangeRates';
 import CryptoListItem from './CryptoListItem';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  sectionHeader: {
-    paddingTop: 25,
-    paddingLeft: 20,
-    paddingRight: 10,
-    paddingBottom: 20,
-    fontSize: 20,
-    fontWeight: 'bold',
-    backgroundColor: Colors.white,
-  },
-});
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface CryptoListProps {}
 
@@ -41,6 +25,26 @@ const CryptoList: FC<CryptoListProps> = () => {
   } = useContext(SettingsContext);
 
   const t = useContext(TranslationContext);
+  const theme = useContext(ThemeContext);
+
+  const styles = useMemo(
+    () => StyleSheet.create({
+      container: {
+        flex: 1,
+      },
+      sectionHeader: {
+        paddingTop: 25,
+        paddingLeft: 20,
+        paddingRight: 10,
+        paddingBottom: 20,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: theme.textColor,
+        backgroundColor: theme.backgroundColor,
+      },
+    }),
+    [theme],
+  );
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);

@@ -43,6 +43,7 @@ const FrTranslation: TranslationType = {
     preferred_currency: 'Devise préférée',
     preferred_date_format: 'Format de date préféré',
     graph_mode: 'Affichage du graphique',
+    dark_mode: 'Thème',
     language: 'Langue',
     credits: {
       product: 'Crypto-Viewer est une app conçue, developée et maintenue par Bertrand Choubert',
@@ -54,6 +55,10 @@ const FrTranslation: TranslationType = {
       graph_mode: {
         simple: 'Simple',
         advanced: 'Avancé',
+      },
+      dark_mode: {
+        light: 'Clair',
+        dark: 'Sombre',
       },
     },
   },

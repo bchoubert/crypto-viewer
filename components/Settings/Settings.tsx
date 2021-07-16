@@ -22,6 +22,7 @@ const Settings: FC<SettingsProps> = () => {
     { key: 'dateFormat' },
     { key: 'graphMode' },
     { key: 'language' },
+    { key: 'darkMode' },
     { key: 'credits' },
   ]), []);
 

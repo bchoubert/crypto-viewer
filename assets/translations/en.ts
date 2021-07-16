@@ -43,6 +43,7 @@ const EnTranslation: TranslationType = {
     preferred_currency: 'Preferred Currency',
     preferred_date_format: 'Preferred date format',
     graph_mode: 'Graph Mode',
+    dark_mode: 'Theme',
     language: 'Language',
     credits: {
       product: 'Crytpo-Viewer is a product designed, developed and maintained by Bertrand Choubert.',
@@ -54,6 +55,10 @@ const EnTranslation: TranslationType = {
       graph_mode: {
         simple: 'Simple',
         advanced: 'Advanced',
+      },
+      dark_mode: {
+        light: 'Light',
+        dark: 'Dark',
       },
     },
   },

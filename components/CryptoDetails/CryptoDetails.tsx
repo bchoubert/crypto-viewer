@@ -5,8 +5,6 @@ import {
   StyleSheet, Text, View, Dimensions, Animated, ScrollView,
 } from 'react-native';
 
-import UtilsService from '../../services/Utils.service';
-
 import NetworkService from '../../services/Network.service';
 import QuoteType from '../../models/QuoteType';
 import { CandleType } from '../../models/CandleGranularity';
@@ -22,6 +20,7 @@ import { NavigationContext } from '../../contexts/NavigationProvider';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import Tabs from '../../models/Tabs';
 import LoggerService from '../../services/Logger.service';
+import ColorService from '../../services/Color.service';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -62,39 +61,6 @@ const FadeInView: FC<FadeInViewProps> = ({ style, children }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    textAlign: 'center',
-    overflow: 'scroll',
-    marginTop: 60,
-    paddingTop: 50,
-  },
-  container_last: {
-    height: 50,
-  },
-  crypto_details: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-    zIndex: 2,
-    marginBottom: -50,
-  },
-  crypto_details_bottom_circle: {
-    height: screenWidth * 3,
-    width: screenWidth * 3,
-    borderRadius: screenWidth * 1.5,
-    position: 'absolute',
-    bottom: 2,
-    left: screenWidth * -1,
-    zIndex: -1,
-  },
-  crypto_name: {
-    color: 'white',
-    paddingTop: 10,
-  },
-});
-
 export interface CryptoDetailsProps {}
 
 // Details for a crypto
@@ -106,6 +72,42 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
   const {
     settings,
   } = useContext(SettingsContext);
+
+  const styles = useMemo(
+    () => StyleSheet.create({
+      container: {
+        flex: 1,
+        textAlign: 'center',
+        overflow: 'scroll',
+        marginTop: 60,
+        paddingTop: 50,
+      },
+      container_last: {
+        height: 50,
+      },
+      crypto_details: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'relative',
+        zIndex: 2,
+        marginBottom: -50,
+      },
+      crypto_details_bottom_circle: {
+        height: screenWidth * 3,
+        width: screenWidth * 3,
+        borderRadius: screenWidth * 1.5,
+        position: 'absolute',
+        bottom: 2,
+        left: screenWidth * -1,
+        zIndex: -1,
+      },
+      crypto_name: {
+        color: 'white',
+        paddingTop: 10,
+      },
+    }),
+    [],
+  );
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
 
@@ -203,7 +205,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
         <FadeInView
           style={{
             ...styles.crypto_details_bottom_circle,
-            backgroundColor: UtilsService.getColorFromCrypto(details.id),
+            backgroundColor: ColorService.getColorFromCrypto(details.id),
           }}
         />
       </View>

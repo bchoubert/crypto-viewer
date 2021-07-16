@@ -7,6 +7,7 @@ import { Colors } from 'react-native/Libraries/NewAppScreen';
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import UtilsService from '../../services/Utils.service';
+import ColorService from '../../services/Color.service';
 
 import Stats from '../../models/Stats';
 import QuoteType from '../../models/QuoteType';
@@ -14,46 +15,7 @@ import Tile, { TileMode } from '../Utils/Tile';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  stats: {
-    marginTop: 20,
-    flexDirection: 'column',
-  },
-  stats_title: {
-    paddingLeft: 20,
-    paddingRight: 10,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  stats_container: {
-    flex: 1,
-    flexDirection: 'row',
-    marginVertical: 10,
-  },
-  stat: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stat_number: {
-    fontSize: 14,
-  },
-  stat_icon: {
-    fontSize: 12,
-  },
-  stat_label: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer',
-  },
-});
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface CryptoDetailStatsProps {
   stats: Stats;
@@ -66,6 +28,56 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   buyPrice,
   sellPrice,
 }) => {
+  const theme = useContext(ThemeContext);
+
+  const styles = useMemo(
+    () => StyleSheet.create({
+      stats: {
+        marginTop: 20,
+        flexDirection: 'column',
+      },
+      stats_title: {
+        paddingLeft: 20,
+        paddingRight: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: theme.textColor,
+      },
+      stats_container: {
+        flex: 1,
+        flexDirection: 'row',
+        marginVertical: 10,
+      },
+      stat: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      stat_number: {
+        fontSize: 14,
+      },
+      stat_icon: {
+        fontSize: 12,
+        fontFamily: 'crypto-viewer',
+      },
+      white_stat_icon: {
+        fontSize: 12,
+        fontFamily: 'crypto-viewer',
+        color: Colors.white,
+      },
+      stat_label: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      white_stat_label_text: {
+        color: theme.textColor,
+      },
+    }),
+    [theme],
+  );
+
   const {
     settings,
   } = useContext(SettingsContext);
@@ -79,7 +91,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
   } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details?.id),
+    () => ColorService.getColorFromCrypto(details?.id),
     [details],
   );
 
@@ -97,10 +109,10 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             mode={TileMode.LIGHT}
             label={(
               <View style={styles.stat_label}>
-                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                <Text style={styles.white_stat_icon}>
                   {CryptoViewerIconsMap.high.unicode}
                 </Text>
-                <Text>
+                <Text style={styles.white_stat_label_text}>
                   {t.details.high}
                 </Text>
               </View>
@@ -116,7 +128,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             mode={TileMode.CLEAR}
             label={(
               <View style={styles.stat_label}>
-                <Text style={{ ...styles.cryptoViewerIcon, ...styles.stat_icon }}>
+                <Text style={styles.stat_icon}>
                   {CryptoViewerIconsMap.low.unicode}
                 </Text>
                 <Text>
@@ -137,11 +149,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             label={(
               <View style={styles.stat_label}>
                 <Text
-                  style={{
-                    ...styles.cryptoViewerIcon,
-                    ...styles.stat_icon,
-                    color: Colors.white,
-                  }}
+                  style={styles.white_stat_icon}
                 >
                   {CryptoViewerIconsMap.volume.unicode}
                 </Text>

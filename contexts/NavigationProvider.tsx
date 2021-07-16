@@ -1,12 +1,13 @@
 import React, {
-  createContext, FC, ReactNode, useCallback, useState, useEffect, useMemo, memo,
+  createContext, FC, ReactNode, useCallback, useState, useEffect, useMemo, memo, useContext,
 } from 'react';
 import { StatusBarStyle, BackHandler } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Tabs, { TabType } from '../models/Tabs';
 import Crypto from '../models/Crypto';
-import UtilsService from '../services/Utils.service';
+import ColorService from '../services/Color.service';
+import { ThemeContext } from './ThemeProvider';
 
 export const NavigationContext = createContext({
   activeTab: Tabs.list as TabType,
@@ -21,19 +22,21 @@ interface NavigationProviderProps {
 }
 
 const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
+  const theme = useContext(ThemeContext);
+
   const [activeTab, setActiveTab] = useState<TabType>(Tabs.list);
 
   // Store details about current active tab
   const [details, setDetails] = useState<Crypto | null>(null);
 
   // StatusBar mode
-  const [statusBarColor, setStatusBarColor] = useState<string>(Colors.white);
+  const [statusBarColor, setStatusBarColor] = useState<string>(theme.backgroundColor);
   const [statusBarMode, setStatusBarMode] = useState<StatusBarStyle>('dark-content');
 
   const changeTab = useCallback((tabName: TabType, newDetails: Crypto = null) => {
     setStatusBarColor(tabName === Tabs.details
-      ? UtilsService.getColorFromCrypto(newDetails.id)
-      : Colors.white);
+      ? ColorService.getColorFromCrypto(newDetails.id)
+      : theme.backgroundColor);
     setStatusBarMode(tabName === Tabs.details ? 'light-content' as StatusBarStyle : 'dark-content' as StatusBarStyle);
     setDetails(newDetails);
     setActiveTab(tabName);
@@ -59,6 +62,10 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
     statusBarMode,
     changeTab,
   }), [activeTab, details, statusBarColor, statusBarMode, changeTab]);
+
+  useEffect(() => {
+    setStatusBarColor(theme.backgroundColor);
+  }, [theme]);
 
   return (
     <NavigationContext.Provider value={contextValues}>

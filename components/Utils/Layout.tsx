@@ -15,10 +15,9 @@ import Tabs from '../../models/Tabs';
 
 import TopBar from './TopBar';
 import { NavigationContext } from '../../contexts/NavigationProvider';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
-interface LayoutProps {
-
-}
+interface LayoutProps {}
 
 const styles = StyleSheet.create({
   container: {
@@ -36,6 +35,8 @@ const Layout: FC<LayoutProps> = () => {
   const {
     activeTab, details, changeTab, statusBarColor, statusBarMode,
   } = useContext(NavigationContext);
+
+  const theme = useContext(ThemeContext);
 
   // Technical function to render the current component
   // depending on the current interface that has to be laoded
@@ -89,7 +90,7 @@ const Layout: FC<LayoutProps> = () => {
   }
   // Only render if fonts are loaded, to limit the reflow and API calls
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, ...{ backgroundColor: theme.backgroundColor } }}>
       <StatusBar
         backgroundColor={statusBarColor}
         barStyle={statusBarMode}

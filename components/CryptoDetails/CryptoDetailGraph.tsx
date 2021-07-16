@@ -13,6 +13,7 @@ import QuoteType from '../../models/QuoteType';
 import candleGranularity, { CandleType } from '../../models/CandleGranularity';
 
 import UtilsService from '../../services/Utils.service';
+import ColorService from '../../services/Color.service';
 
 import MultilineTooltip from '../Utils/MultilineTooltip';
 import Selector from '../Utils/Selector';
@@ -20,26 +21,8 @@ import { GraphModeType } from '../../models/GraphMode';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  crypto_graph: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 10,
-    marginRight: 10,
-    height: 350,
-    marginBottom: 50,
-    marginTop: 20,
-  },
-  chart: {
-    overflow: 'visible',
-    borderLeftWidth: 0,
-  },
-  chartSpacer: {
-    height: 30,
-  },
-});
+import DateTimeService from '../../services/DateTime.service';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface CryptoDetailGraphProps {
   historicRates: any[] | null;
@@ -66,17 +49,63 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
     details,
   } = useContext(NavigationContext);
 
+  const theme = useContext(ThemeContext);
+
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details?.id),
+    () => ColorService.getColorFromCrypto(details?.id),
     [details],
   );
+
+  const adjustedCryptoColor = useMemo(
+    () => theme.adjustColorIfTooDarkOrLight(cryptoColor),
+    [cryptoColor, theme],
+  );
+
+  const styles = useMemo(
+    () => StyleSheet.create({
+      crypto_graph: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginLeft: 10,
+        marginRight: 10,
+        height: 350,
+        marginBottom: 50,
+        marginTop: 20,
+      },
+      chart: {
+        overflow: 'visible',
+        borderLeftWidth: 0,
+        color: theme.textColor,
+      },
+      chartSpacer: {
+        height: 30,
+      },
+    }),
+    [theme],
+  );
+
+  // Replace the color of the axis label to be the text color of our theme
+  const customChartTheme = useMemo(() => ({
+    ...VictoryTheme.material,
+    axis: {
+      ...VictoryTheme.material.axis,
+      style: {
+        ...VictoryTheme.material.axis.style,
+        axisLabel: {
+          ...VictoryTheme.material.axis.style.axisLabel,
+          fill: theme.textColor,
+        },
+      },
+    },
+  }), [theme]);
 
   const dateLabel = useMemo(
     () => {
       if (!historicRates || historicRates.length === 0) {
         return '';
       }
-      return `${UtilsService.printDate(historicRates[0].x, dateFormat)}  -  ${UtilsService.printDate(historicRates[historicRates.length - 1].x, dateFormat)}`;
+      return `${DateTimeService.printDate(historicRates[0].x, dateFormat)}  -  ${DateTimeService.printDate(historicRates[historicRates.length - 1].x, dateFormat)}`;
     },
     [UtilsService, historicRates],
   );
@@ -113,7 +142,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
               left: 0, right: 0, top: 0, bottom: 30,
             }}
             domainPadding={{ x: 0, y: 50 }}
-            theme={VictoryTheme.material}
+            theme={customChartTheme}
             style={styles.chart}
             containerComponent={(
               <VictoryVoronoiContainer
@@ -165,7 +194,7 @@ const CryptoDetailGraph: FC<CryptoDetailGraphProps> = ({
               data={historicRatesToPrint}
               style={{
                 data: {
-                  stroke: cryptoColor,
+                  stroke: adjustedCryptoColor,
                   strokeWidth: 3,
                 },
               }}

@@ -1,11 +1,12 @@
 import React, {
-  FC, ReactNode, useMemo, memo,
+  FC, ReactNode, useMemo, memo, useContext,
 } from 'react';
 import {
   StyleSheet, View, Text, TouchableOpacity,
 } from 'react-native';
 
 import Colors from '../../assets/Colors';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 export enum TileMode {
   CLEAR = 'CLEAR',
@@ -67,20 +68,22 @@ const Tile: FC<TileProps> = ({
   style,
   onPress,
 }) => {
+  const theme = useContext(ThemeContext);
+
   const backgroundColor = useMemo(
     () => {
       switch (mode) {
         case TileMode.CLEAR:
           return Colors.white;
         case TileMode.LIGHT:
-          return `${color}22`;
+          return theme.lightenColor(color, 2);
         case TileMode.FULL:
         case TileMode.TALL:
         default:
           return color;
       }
     },
-    [color, mode],
+    [color, mode, theme],
   );
 
   const textColor = useMemo(
@@ -89,14 +92,14 @@ const Tile: FC<TileProps> = ({
         case TileMode.CLEAR:
           return Colors.darkGray;
         case TileMode.LIGHT:
-          return Colors.darkGray;
+          return theme.textColor;
         case TileMode.FULL:
         case TileMode.TALL:
         default:
           return Colors.white;
       }
     },
-    [color, mode],
+    [color, mode, theme],
   );
 
   return (

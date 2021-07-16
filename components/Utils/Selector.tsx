@@ -1,9 +1,10 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useContext } from 'react';
 import {
   TouchableOpacity, View, Text, StyleSheet,
 } from 'react-native';
 
 import Colors from '../../assets/Colors';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 const styles = StyleSheet.create({
   selector_container: {
@@ -43,23 +44,32 @@ const Selector: FC<SelectorProps> = ({
   setActiveItem,
   color,
   renderItem,
-}) => (
-  <View style={{ ...styles.selector_container, borderColor: color }}>
-    {items.map((item: string | any) => (
-      <TouchableOpacity
-        key={renderItem?.(item) || item}
-        style={{
-          ...styles.selector_item,
-          ...((activeItem === item) ? { backgroundColor: color } : []),
-        }}
-        onPress={() => setActiveItem(item)}
-      >
-        <Text style={{ ...styles.selector_item_text, ...((activeItem !== item) ? { color } : []) }}>
-          {renderItem?.(item) || item}
-        </Text>
-      </TouchableOpacity>
-    ))}
-  </View>
-);
+}) => {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <View style={{ ...styles.selector_container, borderColor: color }}>
+      {items.map((item: string | any) => (
+        <TouchableOpacity
+          key={renderItem?.(item) || item}
+          style={{
+            ...styles.selector_item,
+            ...((activeItem === item) ? { backgroundColor: color } : []),
+          }}
+          onPress={() => setActiveItem(item)}
+        >
+          <Text
+            style={{
+              ...styles.selector_item_text,
+              ...((activeItem !== item) ? { color: theme.textColor } : []),
+            }}
+          >
+            {renderItem?.(item) || item}
+          </Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+};
 
 export default memo(Selector);

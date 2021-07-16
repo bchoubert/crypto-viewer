@@ -6,83 +6,17 @@ import {
   Modal, TextInput, TouchableHighlight, Text, View, StyleSheet, Dimensions,
 } from 'react-native';
 
-import Colors from '../../assets/Colors';
-
 import Crypto from '../../models/Crypto';
 import CryptoIcon from '../Utils/CryptoIcon';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  modal_container: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, .7)',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  modal: {
-    width: Dimensions.get('window').width,
-    height: 220,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    backgroundColor: '#FFFFFF',
-  },
-  topBar: {
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: Colors.lightGray,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-  modal_title: {
-    fontSize: 18,
-  },
-  modal_action: {
-    color: Colors.blue,
-    fontSize: 18,
-    minWidth: 50,
-    textAlign: 'left',
-  },
-  modal_main_action: {
-    fontWeight: 'bold',
-    textAlign: 'right',
-  },
-  modal_label: {
-    fontSize: 10,
-    color: Colors.gray,
-  },
-  modal_content: {
-    padding: 10,
-  },
-  disabled_modal_action: {
-    color: Colors.gray,
-    fontWeight: 'normal',
-  },
-  modal_crypto: {
-    flex: 1,
-  },
-  amount_input: {
-    padding: 5,
-    borderBottomColor: Colors.gray,
-    borderBottomWidth: 1,
-  },
-  modal_crypto_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 50,
-    flexBasis: 50,
-  },
-
-});
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface WalletModalProps {
   isOpen: boolean;
   closeModal: () => any;
-  selectedAmount: number;
+  selectedAmount: string;
   selectedCryptoKey: string;
+  isFormValid: boolean;
   saveWallet: () => any;
   onSelectedCryptoKeyChange: (newCryptoKey: string) => any;
   onSelectedAmountChange: (newAmount: string) => any;
@@ -94,6 +28,7 @@ const WalletModal: FC<WalletModalProps> = ({
   closeModal,
   selectedAmount,
   selectedCryptoKey,
+  isFormValid,
   saveWallet,
   onSelectedCryptoKeyChange,
   onSelectedAmountChange,
@@ -101,11 +36,75 @@ const WalletModal: FC<WalletModalProps> = ({
 }) => {
   const t = useContext(TranslationContext);
 
-  // Validate function for the modal form
-  const isValid = useMemo(
-    () => !!selectedAmount && !!selectedCryptoKey,
-    [selectedAmount, selectedCryptoKey],
-  );
+  const theme = useContext(ThemeContext);
+
+  const styles = useMemo(() => StyleSheet.create({
+    modal_container: {
+      flex: 1,
+      backgroundColor: 'rgba(0, 0, 0, .7)',
+      justifyContent: 'flex-end',
+      alignItems: 'center',
+    },
+    modal: {
+      width: Dimensions.get('window').width,
+      height: 220,
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      backgroundColor: theme.backgroundTile,
+    },
+    topBar: {
+      height: 60,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      backgroundColor: theme.backgroundTile,
+      borderTopLeftRadius: 15,
+      borderTopRightRadius: 15,
+      paddingLeft: 15,
+      paddingRight: 15,
+    },
+    modal_title: {
+      fontSize: 18,
+      color: theme.textColor,
+    },
+    modal_action: {
+      color: theme.actionText,
+      fontSize: 18,
+      minWidth: 50,
+      textAlign: 'left',
+    },
+    modal_main_action: {
+      fontWeight: 'bold',
+      textAlign: 'right',
+    },
+    modal_label: {
+      fontSize: 10,
+      color: theme.textColor,
+    },
+    modal_content: {
+      padding: 10,
+    },
+    disabled_modal_action: {
+      color: theme.textColor,
+      fontWeight: 'normal',
+    },
+    modal_crypto: {
+      flex: 1,
+      color: theme.textColor,
+    },
+    amount_input: {
+      padding: 5,
+      borderBottomColor: theme.textColor,
+      borderBottomWidth: 1,
+      color: theme.textColor,
+    },
+    modal_crypto_container: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      height: 50,
+      flexBasis: 50,
+    },
+  }), [theme]);
 
   const cryptoOptions = useMemo(
     () => cryptos.map(
@@ -138,7 +137,7 @@ const WalletModal: FC<WalletModalProps> = ({
                 style={{
                   ...styles.modal_action,
                   ...styles.modal_main_action,
-                  ...(isValid ? [] : styles.disabled_modal_action),
+                  ...(isFormValid ? [] : styles.disabled_modal_action),
                 }}
               >
                 {t.common.save}

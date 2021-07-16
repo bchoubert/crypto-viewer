@@ -2,11 +2,12 @@ import { AvailableTranslations } from '../assets/translations/TranslationUtils';
 import { SettingsKeysType } from '../constants';
 import dateFormats, { DateFormatType } from './DateFormat';
 import { GraphModeType } from './GraphMode';
+import { DarkModeType } from './DarkMode';
 import QuoteType from './QuoteType';
 import WalletItem from './WalletItem';
 
 export type SettingsValue = AvailableTranslations |
-QuoteType | DateFormatType | WalletItem[] | GraphModeType | string[];
+QuoteType | DateFormatType | WalletItem[] | GraphModeType | DarkModeType | string[];
 type SettingsType = Record<SettingsKeysType, SettingsValue>;
 
 export const settingDetails: Record<SettingsKeysType, {
@@ -19,6 +20,7 @@ export const settingDetails: Record<SettingsKeysType, {
   GRAPH_MODE_KEY: { needsParsing: false, defaultValue: 'Simple' as GraphModeType },
   WALLET_KEY: { needsParsing: true, defaultValue: [] as WalletItem[] },
   LANGUAGE: { needsParsing: false, defaultValue: AvailableTranslations.en },
+  DARK_MODE_KEY: { needsParsing: false, defaultValue: 'light' as DarkModeType },
 };
 
 export const defaultSettings: SettingsType = Object.keys(settingDetails).reduce((result, key) => ({

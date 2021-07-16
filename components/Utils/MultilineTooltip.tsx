@@ -7,8 +7,8 @@ import {
 } from 'react-native-svg';
 import Colors from '../../assets/Colors';
 import { NavigationContext } from '../../contexts/NavigationProvider';
-
-import UtilsService from '../../services/Utils.service';
+import ColorService from '../../services/Color.service';
+import DateTimeService from '../../services/DateTime.service';
 
 interface MultilineTooltipProps {
   x?: number;
@@ -30,7 +30,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   } = useContext(NavigationContext);
 
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(details.id),
+    () => ColorService.getColorFromCrypto(details.id),
     [details],
   );
 
@@ -75,7 +75,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
         stroke={Colors.black}
       />
       <TextSVG x={textPosition} y={y - 35} textAnchor={textAnchor} fill={Colors.white}>
-        {`${UtilsService.printDate(datum.x, dateFormat)} ${UtilsService.printTime(datum.x)}`}
+        {`${DateTimeService.printDate(datum.x, dateFormat)} ${DateTimeService.printTime(datum.x)}`}
       </TextSVG>
       <TextSVG x={textPosition} y={y - 20} textAnchor={textAnchor} fill={Colors.white}>
         {`${quoteSymbol} ${datum.y}`}

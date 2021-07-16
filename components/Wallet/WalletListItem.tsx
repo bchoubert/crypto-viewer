@@ -20,91 +20,8 @@ import CryptoIcon from '../Utils/CryptoIcon';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  list_actions__delete: {
-    backgroundColor: Colors.red,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  list_actions__edit: {
-    backgroundColor: Colors.blue,
-    borderTopLeftRadius: 10,
-    borderBottomLeftRadius: 10,
-  },
-  list_actions_title: {
-    color: Colors.white,
-  },
-  list_actions_title__edit: {
-    textAlign: 'left',
-    paddingLeft: 26,
-  },
-  list_actions_title__delete: {
-    textAlign: 'left',
-    paddingLeft: 20,
-  },
-  list_actions: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-
-  crypto_item: {
-    width: '100%',
-    height: 75,
-    flexDirection: 'row',
-    padding: 10,
-  },
-  crypto_item_content: {
-    height: 62,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flex: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    borderRadius: 10,
-    backgroundColor: Colors.veryLightGray,
-  },
-  crypto_item_properties: {
-    flexDirection: 'row',
-  },
-  crypto_item_names: {
-    fontSize: 25,
-    justifyContent: 'flex-start',
-    width: 200,
-  },
-  crypto_item_name: {
-    fontSize: 18,
-  },
-  crypto_item_details: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  crypto_amount: {
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  crypto_item_id: {
-    fontSize: 12,
-    color: Colors.gray,
-  },
-  crypto_item_price: {
-    paddingRight: 5,
-  },
-  crypto_item_next_icon: {
-    color: Colors.gray,
-    fontSize: 14,
-  },
-  crypto_total_amount: {
-    paddingRight: 5,
-    color: Colors.gray,
-  },
-
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer',
-  },
-});
+import ColorService from '../../services/Color.service';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface WalletListItemProps {
   cryptos: Crypto[];
@@ -119,6 +36,103 @@ const WalletListItem: FC<WalletListItemProps> = ({
   deleteFromWallet,
   editFromWallet,
 }) => {
+  const theme = useContext(ThemeContext);
+
+  const crypto = useMemo(
+    () => (cryptos || []).find((asset) => asset.id === walletItem.crypto) as Crypto,
+    [cryptos, walletItem],
+  );
+
+  const cryptoColor = useMemo(
+    () => ColorService.getColorFromCrypto(crypto?.id),
+    [crypto],
+  );
+
+  const styles = useMemo(() => StyleSheet.create({
+    list_actions__delete: {
+      backgroundColor: Colors.red,
+      borderTopLeftRadius: 10,
+      borderBottomLeftRadius: 10,
+    },
+    list_actions__edit: {
+      backgroundColor: Colors.blue,
+      borderTopLeftRadius: 10,
+      borderBottomLeftRadius: 10,
+    },
+    list_actions_title: {
+      color: Colors.white,
+    },
+    list_actions_title__edit: {
+      textAlign: 'left',
+      paddingLeft: 26,
+    },
+    list_actions_title__delete: {
+      textAlign: 'left',
+      paddingLeft: 20,
+    },
+    list_actions: {
+      flex: 1,
+      justifyContent: 'center',
+    },
+    crypto_item: {
+      width: '100%',
+      height: 75,
+      flexDirection: 'row',
+      padding: 10,
+    },
+    crypto_item_content: {
+      height: 62,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flex: 1,
+      paddingLeft: 10,
+      paddingRight: 10,
+      borderRadius: 10,
+      backgroundColor: cryptoColor ? theme.lightenColor(cryptoColor) : theme.backgroundTile,
+    },
+    crypto_item_properties: {
+      flexDirection: 'row',
+    },
+    crypto_item_names: {
+      fontSize: 25,
+      justifyContent: 'flex-start',
+      width: 200,
+    },
+    crypto_item_name: {
+      fontSize: 18,
+      color: theme.textColor,
+    },
+    crypto_item_details: {
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    crypto_amount: {
+      flexDirection: 'column',
+      justifyContent: 'flex-start',
+    },
+    crypto_item_id: {
+      fontSize: 12,
+      color: theme.textColor,
+    },
+    crypto_item_price: {
+      paddingRight: 5,
+      color: theme.textColor,
+    },
+    crypto_item_next_icon: {
+      color: theme.textColor,
+      fontSize: 14,
+    },
+    crypto_total_amount: {
+      paddingRight: 5,
+      color: theme.textColor,
+    },
+    cryptoViewerIcon: {
+      fontSize: 20,
+      fontFamily: 'crypto-viewer',
+    },
+  }), [theme]);
+
   const {
     settings,
   } = useContext(SettingsContext);
@@ -132,11 +146,6 @@ const WalletListItem: FC<WalletListItemProps> = ({
   } = useContext(NavigationContext);
 
   const [swipeableRef, setSwipeableRef] = useState(null);
-
-  const crypto = useMemo(
-    () => (cryptos || []).find((asset) => asset.id === walletItem.crypto) as Crypto,
-    [cryptos, walletItem],
-  );
 
   // Prices compute
   const priceAmount = useMemo(
@@ -156,11 +165,6 @@ const WalletListItem: FC<WalletListItemProps> = ({
     [changeTab, crypto],
   );
 
-  const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto?.id),
-    [crypto],
-  );
-
   // close actions if wallet item is changed
   useEffect(
     () => swipeableRef?.recenter(),
@@ -170,7 +174,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
   if (walletItem.crypto === 'total') {
     return (
       <View style={styles.crypto_item}>
-        <View style={{ ...styles.crypto_item_content, backgroundColor: `${cryptoColor}15` }}>
+        <View style={styles.crypto_item_content}>
           <View style={styles.crypto_item_properties}>
             <View style={styles.crypto_item_names}>
               <Text style={styles.crypto_item_name}>

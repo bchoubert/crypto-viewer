@@ -14,44 +14,8 @@ import { AvailableTranslationDetails, AvailableTranslations } from '../../assets
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { SettingType } from '../../models/SettingType';
 import { TranslationContext } from '../../contexts/TranslationProvider';
-
-const styles = StyleSheet.create({
-  settings: {
-    flexDirection: 'column',
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingBottom: 10,
-    paddingTop: 10,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.lightGray,
-  },
-  settingsText: {
-    fontSize: 17,
-    width: '100%',
-    marginBottom: 8,
-  },
-
-  credits: {
-    flexDirection: 'column',
-    marginTop: 15,
-    height: 130,
-  },
-  credits_first: {
-    paddingBottom: 15,
-  },
-  portfolioLink: {
-    color: Colors.blue,
-  },
-  creditsText: {
-    paddingTop: 5,
-    paddingBottom: 5,
-    color: Colors.gray,
-    textAlign: 'center',
-    width: '100%',
-  },
-});
+import { darkModes, DarkModeType } from '../../models/DarkMode';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 interface SettingItemProps {
   settingKey: SettingType;
@@ -65,19 +29,80 @@ const SettingItem: FC<SettingItemProps> = ({
     [],
   );
 
+  const theme = useContext(ThemeContext);
+
   const {
     settings, changeSettings,
   } = useContext(SettingsContext);
 
   const t = useContext(TranslationContext);
 
+  const styles = useMemo(
+    () => StyleSheet.create({
+      settings: {
+        flexDirection: 'column',
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingBottom: 10,
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.lightGray,
+      },
+      settingsText: {
+        fontSize: 17,
+        width: '100%',
+        marginBottom: 8,
+        color: theme.textColor,
+      },
+      credits: {
+        flexDirection: 'column',
+        paddingLeft: 15,
+        paddingRight: 15,
+        paddingBottom: 10,
+        paddingTop: 10,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.lightGray,
+        marginTop: 15,
+        height: 130,
+      },
+      credits_first: {
+        paddingTop: 5,
+        color: Colors.gray,
+        textAlign: 'center',
+        width: '100%',
+        paddingBottom: 15,
+      },
+      portfolioLink: {
+        color: Colors.blue,
+      },
+      creditsText: {
+        paddingTop: 5,
+        paddingBottom: 5,
+        color: Colors.gray,
+        textAlign: 'center',
+        width: '100%',
+      },
+    }),
+    [theme],
+  );
+
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
+  const darkMode = useMemo(() => settings.DARK_MODE_KEY as DarkModeType, [settings]);
   const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
 
   const renderGraphModeSetting = useCallback(
     (item: GraphModeType) => t.settings.values.graph_mode[item],
+    [t],
+  );
+
+  const renderDarkModeSetting = useCallback(
+    (item: DarkModeType) => t.settings.values.dark_mode[item],
     [t],
   );
 
@@ -90,7 +115,9 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'currency':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>{t.settings.preferred_currency}</Text>
+          <Text style={styles.settingsText}>
+            {t.settings.preferred_currency}
+          </Text>
           <Selector
             items={possibleQuotes.map((qu) => qu.code)}
             activeItem={quote.code}
@@ -102,7 +129,9 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'dateFormat':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>{t.settings.preferred_date_format}</Text>
+          <Text style={styles.settingsText}>
+            {t.settings.preferred_date_format}
+          </Text>
           <Selector
             items={Object.values(dateFormats)}
             activeItem={dateFormat}
@@ -114,7 +143,9 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'graphMode':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>{t.settings.graph_mode}</Text>
+          <Text style={styles.settingsText}>
+            {t.settings.graph_mode}
+          </Text>
           <Selector
             items={graphModes}
             activeItem={graphMode}
@@ -127,7 +158,9 @@ const SettingItem: FC<SettingItemProps> = ({
     case 'language':
       return (
         <View style={styles.settings}>
-          <Text style={styles.settingsText}>{t.settings.language}</Text>
+          <Text style={styles.settingsText}>
+            {t.settings.language}
+          </Text>
           <Selector
             items={Object.keys(AvailableTranslations)}
             activeItem={language}
@@ -137,10 +170,25 @@ const SettingItem: FC<SettingItemProps> = ({
           />
         </View>
       );
+    case 'darkMode':
+      return (
+        <View style={styles.settings}>
+          <Text style={styles.settingsText}>
+            {t.settings.dark_mode}
+          </Text>
+          <Selector
+            items={darkModes}
+            activeItem={darkMode}
+            setActiveItem={(newDarkMode) => changeSettings('DARK_MODE_KEY', newDarkMode as DarkModeType)}
+            color={Colors.blue}
+            renderItem={renderDarkModeSetting}
+          />
+        </View>
+      );
     case 'credits':
       return (
-        <View style={{ ...styles.settings, ...styles.credits }}>
-          <Text style={{ ...styles.creditsText, ...styles.credits_first }}>
+        <View style={styles.credits}>
+          <Text style={styles.credits_first}>
             {t.settings.credits.product}
             <Text style={styles.portfolioLink} onPress={openPortfolio}>
               {t.settings.credits.website}

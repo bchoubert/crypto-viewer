@@ -41,6 +41,7 @@ type TranslationType = {
     preferred_currency: string,
     preferred_date_format: string,
     graph_mode: string,
+    dark_mode: string,
     language: string,
     credits: {
       product: string,
@@ -52,6 +53,10 @@ type TranslationType = {
       graph_mode: {
         simple: string,
         advanced: string,
+      },
+      dark_mode: {
+        light: string,
+        dark: string,
       },
     },
   },

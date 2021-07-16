@@ -81,7 +81,7 @@ const Wallet: FC<WalletProps> = () => {
 
   const [isWalletModalVisible, setWalletModalVisible] = useState<boolean>(false);
   const [selectedCryptoKey, setSelectedCryptoKey] = useState<string | null>(null);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [selectedAmount, setSelectedAmount] = useState<string | null>(null);
 
   const [cryptos, setCryptos] = useState<Crypto[]>([]);
 
@@ -127,27 +127,27 @@ const Wallet: FC<WalletProps> = () => {
   const onSelectedCryptoKeyChange = useCallback((newCryptoKey: string) => {
     if (wallet?.find((walletItem) => walletItem.crypto === newCryptoKey)) {
       // If the crypto is already present in the wallet, load the amount
-      setSelectedAmount(wallet.find((walletItem) => walletItem.crypto === newCryptoKey).amount);
+      setSelectedAmount(
+        wallet.find((walletItem) => walletItem.crypto === newCryptoKey).amount.toString(),
+      );
     } else {
       setSelectedAmount(null);
     }
     setSelectedCryptoKey(newCryptoKey);
   }, [wallet, setSelectedCryptoKey, setSelectedAmount]);
 
-  // Callback for the modal amount text field
-  const onSelectedAmountChange = useCallback((newAmount: string) => {
-    // Validate new input only if plain numbers, or plain numbers separated with a point (.)
-    if (/^[0-9]*(\.[0-9]*)?$/.test(newAmount)) {
-      setSelectedAmount(Number(newAmount));
-    }
-  }, [setSelectedAmount]);
+  // Validate function for the modal form
+  const isValid = useMemo(
+    () => !!selectedAmount && !!selectedCryptoKey && /^[0-9]*(\.[0-9]*)?$/.test(selectedAmount),
+    [selectedAmount, selectedCryptoKey],
+  );
 
   // Callback to laod and show the modal.
   // Takes the crypto as optional parameter for edit functionality
   const openWalletPopup = useCallback(
     (newSelectedCrpytoKey: string = null, newSelectedAmount: number = null) => {
       setSelectedCryptoKey(newSelectedCrpytoKey);
-      setSelectedAmount(newSelectedAmount);
+      setSelectedAmount(newSelectedAmount?.toString() || '');
       setWalletModalVisible(true);
     },
     [setSelectedCryptoKey, setSelectedAmount, setWalletModalVisible],
@@ -156,7 +156,7 @@ const Wallet: FC<WalletProps> = () => {
   // Callback function to save the wallet
   // (modify a temp version, then pass it to App via the callback)
   const saveWallet = useCallback(() => {
-    if (!selectedCryptoKey || !selectedAmount) {
+    if (!selectedCryptoKey || !selectedAmount || !/^[0-9]*(\.[0-9]*)?$/.test(selectedAmount)) {
       return;
     }
     const walletTemp = [...(wallet || [])];
@@ -165,9 +165,9 @@ const Wallet: FC<WalletProps> = () => {
     ).length) {
       walletTemp.find(
         (walletItem) => walletItem.crypto === selectedCryptoKey,
-      ).amount = selectedAmount;
+      ).amount = Number(selectedAmount);
     } else {
-      walletTemp.push({ crypto: selectedCryptoKey, amount: selectedAmount });
+      walletTemp.push({ crypto: selectedCryptoKey, amount: Number(selectedAmount) });
     }
     changeWallet(walletTemp);
     setWalletModalVisible(false);
@@ -232,7 +232,8 @@ const Wallet: FC<WalletProps> = () => {
         selectedAmount={selectedAmount}
         selectedCryptoKey={selectedCryptoKey}
         onSelectedCryptoKeyChange={onSelectedCryptoKeyChange}
-        onSelectedAmountChange={onSelectedAmountChange}
+        onSelectedAmountChange={setSelectedAmount}
+        isFormValid={isValid}
         cryptos={cryptos}
       />
     </View>
