@@ -14,7 +14,8 @@ export const NavigationContext = createContext({
   details: null as Crypto | null,
   statusBarColor: Colors.white as string,
   statusBarMode: 'dark-content' as StatusBarStyle,
-  changeTab: null as (tabName: TabType, newDetails?: Object) => void | null,
+  changeTab: null as ((tabName: TabType, newDetails?: Object) => void) | null,
+  handleBackAction: null as (() => void) | null,
 });
 
 interface NavigationProviderProps {
@@ -25,6 +26,8 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
   const theme = useContext(ThemeContext);
 
   const [activeTab, setActiveTab] = useState<TabType>(Tabs.list);
+
+  const [lastListOrWallet, setLastListOrWallet] = useState<TabType>('list');
 
   // Store details about current active tab
   const [details, setDetails] = useState<Crypto | null>(null);
@@ -38,20 +41,25 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
       ? ColorService.getColorFromCrypto(newDetails.id)
       : theme.backgroundColor);
     setStatusBarMode(tabName === Tabs.details ? 'light-content' as StatusBarStyle : 'dark-content' as StatusBarStyle);
-    setDetails(newDetails);
-    setActiveTab(tabName);
-  }, []);
 
-  const handleBackButton = useCallback(() => {
+    setDetails(newDetails);
+
+    setActiveTab(tabName);
+    if ([Tabs.list, Tabs.wallet].includes(tabName)) {
+      setLastListOrWallet(tabName);
+    }
+  }, [theme]);
+
+  const handleBackAction = useCallback(() => {
     if ([Tabs.settings, Tabs.details].includes(activeTab)) {
-      changeTab(Tabs.list);
+      changeTab(lastListOrWallet || Tabs.list);
       return true;
     }
     return false;
-  }, [activeTab, changeTab]);
+  }, [activeTab, changeTab, lastListOrWallet]);
 
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackAction);
     return () => backHandler.remove();
   }, [activeTab]);
 
@@ -61,7 +69,8 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
     statusBarColor,
     statusBarMode,
     changeTab,
-  }), [activeTab, details, statusBarColor, statusBarMode, changeTab]);
+    handleBackAction,
+  }), [activeTab, details, statusBarColor, statusBarMode, changeTab, handleBackAction]);
 
   useEffect(() => {
     setStatusBarColor(theme.backgroundColor);

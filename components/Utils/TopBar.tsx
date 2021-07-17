@@ -63,13 +63,11 @@ const TopBar: FC<TopBarProps> = () => {
   const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
 
   const {
-    details, activeTab, changeTab,
+    details, activeTab, changeTab, handleBackAction,
   } = useContext(NavigationContext);
 
   const handleChangeTabToList = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleChangeTabToSettings = useCallback(() => changeTab(Tabs.settings), [changeTab]);
-
-  const handleChangeTabBack = useCallback(() => changeTab(Tabs.list), [changeTab]);
 
   const handleChangeFavourites = useCallback(() => {
     if (!details) { return; }
@@ -104,7 +102,7 @@ const TopBar: FC<TopBarProps> = () => {
     () => {
       if (isInsideCrypto) {
         return (
-          <TouchableOpacity onPress={handleChangeTabBack}>
+          <TouchableOpacity onPress={handleBackAction}>
             <Text
               style={{
                 ...styles.cryptoViewerIcon,
@@ -117,7 +115,7 @@ const TopBar: FC<TopBarProps> = () => {
         );
       } if (activeTab === Tabs.settings) {
         return (
-          <TouchableOpacity onPress={handleChangeTabBack}>
+          <TouchableOpacity onPress={handleBackAction}>
             <Text
               style={{
                 ...styles.cryptoViewerIcon,
@@ -137,7 +135,7 @@ const TopBar: FC<TopBarProps> = () => {
         </TouchableOpacity>
       );
     },
-    [activeTab, isInsideCrypto, handleChangeTabBack, handleChangeTabToList, theme],
+    [activeTab, isInsideCrypto, handleBackAction, handleChangeTabToList, theme],
   );
 
   const innerRight = useMemo(
