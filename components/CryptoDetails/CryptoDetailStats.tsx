@@ -61,6 +61,11 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
         fontSize: 12,
         fontFamily: 'crypto-viewer',
       },
+      color_stat_icon: {
+        fontSize: 12,
+        fontFamily: 'crypto-viewer',
+        color: theme.textColor,
+      },
       white_stat_icon: {
         fontSize: 12,
         fontFamily: 'crypto-viewer',
@@ -109,7 +114,7 @@ const CryptoDetailStats: FC<CryptoDetailStatsProps> = ({
             mode={TileMode.LIGHT}
             label={(
               <View style={styles.stat_label}>
-                <Text style={styles.white_stat_icon}>
+                <Text style={styles.color_stat_icon}>
                   {CryptoViewerIconsMap.high.unicode}
                 </Text>
                 <Text style={styles.white_stat_label_text}>
