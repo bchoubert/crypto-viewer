@@ -48,10 +48,10 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
 
   const lightenColor = useCallback(
     (color: string, coeff: number = 1) => {
-      const opacity = (themeMode === 'light' ? 5 : 40) * coeff;
+      const opacity = (themeMode === 'light' ? 10 : 40) * coeff;
       return `${color}${opacity < 10 ? `0${opacity}` : opacity}`;
     },
-    [],
+    [themeMode],
   );
 
   const adjustColorIfTooDarkOrLight = useCallback(
@@ -81,7 +81,7 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
 
       return color;
     },
-    [],
+    [themeMode],
   );
 
   const currentTheme = useMemo(

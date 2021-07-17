@@ -32,7 +32,7 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
 
   const adjustedCryptoColor = useMemo(
     () => theme.adjustColorIfTooDarkOrLight(cryptoColor),
-    [cryptoColor, theme],
+    [cryptoColor, theme, theme.isDark],
   );
 
   const styles = useMemo(

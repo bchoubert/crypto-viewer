@@ -163,7 +163,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
         backgroundColor: cryptoColor ? theme.lightenColor(cryptoColor) : theme.backgroundTile,
       },
     }),
-    [theme, cryptoColor],
+    [theme, cryptoColor, theme.isDark],
   );
 
   // Render the complete list item with action

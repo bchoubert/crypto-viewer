@@ -83,7 +83,7 @@ const Tile: FC<TileProps> = ({
           return color;
       }
     },
-    [color, mode, theme],
+    [color, mode, theme, theme.isDark],
   );
 
   const textColor = useMemo(

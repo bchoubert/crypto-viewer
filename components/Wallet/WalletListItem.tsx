@@ -131,7 +131,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
       fontSize: 20,
       fontFamily: 'crypto-viewer',
     },
-  }), [theme]);
+  }), [theme, theme.isDark]);
 
   const {
     settings,
