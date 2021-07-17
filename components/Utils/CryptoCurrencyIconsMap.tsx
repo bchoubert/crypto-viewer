@@ -286,6 +286,9 @@ const CryptoCurrenciesIconMap
   cloak: {
     icon: require('cryptocurrency-icons/128/color/cloak.png'), color: '#FF3A00', description: '', website: '',
   },
+  clv: {
+    icon: require('../../assets/cryptos/clv.png'), color: '#42C37B', description: 'Clover Finance is a blockchain infrastructure platform that’s focused on cross-chain compatibility for DeFi applications. The CLV token is used to pay for Clover transactions and to vote for network upgrades. Clover also aims to enable interoperability between Bitcoin and other blockchains. Note: Coinbase currently supports CLV running on Ethereum (ERC-20).', website: 'https://clover.finance/',
+  },
   cmm: {
     icon: require('cryptocurrency-icons/128/color/cmm.png'), color: '#2FD2E5', description: '', website: '',
   },
@@ -733,6 +736,9 @@ const CryptoCurrenciesIconMap
   mana: {
     icon: require('cryptocurrency-icons/128/color/mana.png'), color: '#FF2C55', description: 'Decentraland (MANA) is an Ethereum token that powers the Decentraland virtual reality platform. MANA can be used to pay for virtual plots of land in Decentraland as well as in-world goods and services.', website: 'https://decentraland.org/',
   },
+  mask: {
+    icon: require('../../assets/cryptos/mask.png'), color: '#1C68F3', description: 'Mask Network enables users of popular social media platforms to send cryptocurrency, interact with decentralized applications, and share encrypted content. MASK token holders can vote on ecosystem initiatives via a decentralized autonomous organization called MaskDAO.', website: 'https://mask.io/',
+  },
   matic: {
     icon: require('../../assets/cryptos/matic.png'), color: '#8247E5', description: 'Polygon was formerly called Matic Network. Polygon (MATIC) is an Ethereum token that powers the Polygon Network, a scaling solution for Ethereum. Polygon aims to provide faster and cheaper transactions on Ethereum using Layer 2 sidechains, which are blockchains that run alongside the Ethereum main chain. Users can deposit Ethereum tokens to a Polygon smart contract, interact with them within Polygon, and then later withdraw them back to the Ethereum main chain. The MATIC token is used to pay transaction fees and participate in proof-of-stake consensus.', website: 'https://polygon.technology/',
   },
@@ -1032,6 +1038,9 @@ const CryptoCurrenciesIconMap
   },
   rlc: {
     icon: require('cryptocurrency-icons/128/color/rlc.png'), color: '#FFD800', description: 'RLC is an Ethereum token for the iExec cloud platform in which users can monetize and rent computing power and data. iExec enables developers to power applications on what is described as “a decentralized marketplace for cloud resources."', website: 'https://iex.ec/',
+  },
+  rly: {
+    icon: require('../../assets/cryptos/rly.png'), color: '#FF8A03', description: 'RLY is an Ethereum token that powers the Rally network. Rally enables creators and online communities to launch their own cryptocurrencies. By creating these so-called “social tokens,” fans can gain access to benefits like unreleased content or merch, while creators can unlock new forms of revenue.', website: 'https://rally.io/',
   },
   rpx: {
     icon: require('cryptocurrency-icons/128/color/rpx.png'), color: '#8D181B', description: '', website: '',
