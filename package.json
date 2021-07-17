@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@babel/core": "~7.9.0",
-    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/picker": "1.6.0",
     "cryptocurrency-icons": "^0.17.1",
     "deep-object-diff": "^1.1.0",
@@ -26,13 +25,14 @@
     "react-native-svg": "12.1.1",
     "react-native-swipeable-row": "^0.8.1",
     "react-native-web": "~0.13.12",
-    "victory-native": "^32.0.2"
+    "victory-native": "^32.0.2",
+    "expo-secure-store": "~10.2.0"
   },
   "devDependencies": {
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "babel-preset-expo": "8.3.0",
+    "babel-preset-expo": "^8.4.0",
     "eslint": "^7.30.0",
     "eslint-config-airbnb-base-typescript": "^1.0.0",
     "eslint-config-airbnb-typescript": "^12.3.1",

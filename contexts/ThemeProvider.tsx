@@ -70,13 +70,13 @@ const ThemeProvider: FC<ThemeProviderProps> = ({
       const compositeAddition = colorRGB[0] + colorRGB[1] + colorRGB[2];
 
       // If color is too dark for dark mode
-      if (themeMode === 'dark' && compositeAddition < (128 * 3)) {
-        return ColorService.lightenDarkenColor(compositeAddition < 80 ? '#808080' : color, 20);
+      if (themeMode === 'dark' && compositeAddition < (80 * 3)) {
+        return ColorService.lightenDarkenColor(compositeAddition < 180 ? '#808080' : color, 20);
       }
 
       // If color is too light for light mode
-      if (themeMode === 'light' && compositeAddition > (128 * 3)) {
-        return ColorService.lightenDarkenColor(compositeAddition > 80 ? '#808080' : color, -20);
+      if (themeMode === 'light' && compositeAddition > (176 * 3)) {
+        return ColorService.lightenDarkenColor(compositeAddition > 588 ? '#808080' : color, -20);
       }
 
       return color;

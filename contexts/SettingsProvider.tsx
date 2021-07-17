@@ -5,6 +5,7 @@ import React, {
 import { SettingsKeysType } from '../constants';
 import SettingsType, { defaultSettings, SettingsValue } from '../models/SettingsType';
 import SettingsService from '../services/Settings.service';
+import StorageService from '../services/Storage.service';
 
 export const SettingsContext = createContext({
   settings: defaultSettings as SettingsType,
@@ -36,6 +37,7 @@ const SettingsProvider: FC<SettingsProviderProps> = ({
   const handleChangeSettings = useCallback(
     async (key: SettingsKeysType, newValue: SettingsValue) => {
       await SettingsService.changeSetting(key, newValue);
+      console.log(newValue, await StorageService.getData(key));
       setValues((v) => ({
         ...v,
         [key]: newValue,
