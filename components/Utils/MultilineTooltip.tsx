@@ -1,9 +1,14 @@
-import React, { Component, FC, memo, useMemo } from 'react';
+import React, {
+  FC, memo, useContext, useMemo,
+} from 'react';
 import { Dimensions } from 'react-native';
-import { Line, G, Text as TextSVG, TextAnchor, Rect, Circle } from 'react-native-svg';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-
-import UtilsService from '../../services/Utils.service';
+import {
+  Line, G, Text as TextSVG, TextAnchor, Rect, Circle,
+} from 'react-native-svg';
+import Colors from '../../assets/Colors';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import ColorService from '../../services/Color.service';
+import DateTimeService from '../../services/DateTime.service';
 
 interface MultilineTooltipProps {
   x?: number;
@@ -20,15 +25,23 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   dateFormat,
   datum,
 }) => {
+  const {
+    details,
+  } = useContext(NavigationContext);
+
+  const cryptoColor = useMemo(
+    () => ColorService.getColorFromCrypto(details.id),
+    [details],
+  );
 
   // Position tooltip calculation
   const showPosition: 'left' | 'right' = useMemo(
-    () => (x > ((Dimensions.get('window').width - 20) / 2)) ? 'left' : 'right',
+    () => ((x > ((Dimensions.get('window').width - 20) / 2)) ? 'left' : 'right'),
     [x],
   );
 
   const popinPosition: number = useMemo(
-    () => x + (showPosition === 'right' ? 50 : -50),
+    () => x + (showPosition === 'right' ? 49 : -49),
     [showPosition, x],
   );
 
@@ -38,7 +51,7 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   );
 
   const textAnchor: TextAnchor = useMemo(
-    () => (showPosition === 'right') ? 'start' : 'end',
+    () => ((showPosition === 'right') ? 'start' : 'end'),
     [showPosition],
   );
 
@@ -46,29 +59,29 @@ const MultilineTooltip: FC<MultilineTooltipProps> = ({
   return (
     <G>
       <Rect
-        x={(showPosition === 'left') ? x - 124 : x + 50}
-        y={y - 44}
-        width={74}
+        x={(showPosition === 'left') ? x - 125 : x + 49}
+        y={y - 49}
+        width={76}
         height={36}
         rx={10}
-        fill={Colors.white}
-        stroke="#000000"></Rect>
-      <Circle cx={x} cy={y} r={10} stroke="#000000" />
-      <Line
-        x1={x + (showPosition === 'left' ? -8 : 8)}
-        x2={popinPosition}
-        y1={y - 5}
-        y2={y - 30}
-        stroke="#000000"
+        fill={cryptoColor || Colors.midGray}
       />
-      <TextSVG x={textPosition} y={y - 30} textAnchor={textAnchor} fill="#000000">
-        {`${UtilsService.printDate(datum.x, dateFormat)} ${UtilsService.printTime(datum.x)}`}
+      <Circle cx={x} cy={y} r={30} fill="#CCCCCC55" />
+      <Line
+        x1={x + (showPosition === 'left' ? -26 : 26)}
+        x2={popinPosition}
+        y1={y - 15}
+        y2={y - 30}
+        stroke={Colors.black}
+      />
+      <TextSVG x={textPosition} y={y - 35} textAnchor={textAnchor} fill={Colors.white}>
+        {`${DateTimeService.printDate(datum.x, dateFormat)} ${DateTimeService.printTime(datum.x)}`}
       </TextSVG>
-      <TextSVG x={textPosition} y={y - 15} textAnchor={textAnchor} fill="#000000">
+      <TextSVG x={textPosition} y={y - 20} textAnchor={textAnchor} fill={Colors.white}>
         {`${quoteSymbol} ${datum.y}`}
       </TextSVG>
     </G>
   );
-}
+};
 
 export default memo(MultilineTooltip);

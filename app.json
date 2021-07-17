@@ -30,7 +30,7 @@
     "android": {
       "package": "com.bchoubert.cryptoviewer",
       "permissions": [],
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }

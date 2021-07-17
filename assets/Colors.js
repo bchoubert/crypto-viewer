@@ -1,4 +1,3 @@
-
 /* Colors used all over the app */
 const Colors = {
   blue: '#005BE3',
@@ -11,6 +10,7 @@ const Colors = {
   green: '#00B344',
   red: '#FF0D00',
 
+  black: '#000000',
   white: '#FFFFFF',
 };
 

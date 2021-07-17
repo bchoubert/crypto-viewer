@@ -1,6 +1,9 @@
-import React, { FC, memo, useCallback, useEffect, useState, useMemo } from 'react';
-import { Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList } from 'react-native';
-
+import React, {
+  FC, memo, useCallback, useEffect, useState, useMemo, useContext,
+} from 'react';
+import {
+  Text, TouchableOpacity, StyleSheet, View, ToastAndroid, FlatList,
+} from 'react-native';
 
 import Colors from '../../assets/Colors';
 
@@ -9,31 +12,32 @@ import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIcons
 import NetworkService from '../../services/Network.service';
 import UtilsService from '../../services/Utils.service';
 
-import quoteType from '../../models/QuoteType';
+import QuoteType from '../../models/QuoteType';
 import WalletItem from '../../models/WalletItem';
 import Crypto from '../../models/Crypto';
 import ExchangeRates from '../../models/ExhangeRates';
 import WalletModal from './WalletModal';
 
 import WalletListItem from './WalletListItem';
-import { tabType } from '../../models/Tabs';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   list: {
-    flex: 1
+    flex: 1,
   },
   list_empty: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 50
+    paddingVertical: 50,
   },
   list_empty_text: {
-    color: Colors.gray
+    color: Colors.gray,
   },
 
   add_wallet_popup_button: {
@@ -45,57 +49,58 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.blue,
-    borderRadius: 30
+    borderRadius: 30,
   },
   add_wallet_popup_button_text: {
-    color: '#FFFFFF'
+    color: '#FFFFFF',
   },
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
+    fontFamily: 'crypto-viewer',
   },
 });
 
-interface WalletProps {
-  // Quote as selected
-  quote: quoteType;
-  // Callback function to change the interface when a crypto is selected
-  changeTab: (tabName: tabType, newDetails: Object) => any;
-  // Wallet as loaded from storage
-  wallet: WalletItem[];
-  // Callback function to change the wallet content
-  changeWallet: (newWallet: WalletItem[]) => any;
-};
+interface WalletProps {}
 
 // Render the wallet interface
-const Wallet: FC<WalletProps> = ({
-  quote,
-  changeTab,
-  wallet,
-  changeWallet,
-}) => {
+const Wallet: FC<WalletProps> = () => {
+  const {
+    settings, changeSettings,
+  } = useContext(SettingsContext);
+
+  const t = useContext(TranslationContext);
+
+  const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
+  const wallet = useMemo(() => settings.WALLET_KEY as WalletItem[], [settings]);
+  const changeWallet = useCallback((newWallet: WalletItem[]) => {
+    changeSettings('WALLET_KEY', newWallet);
+  }, [changeSettings]);
+
   const [isLoading, setLoading] = useState<boolean>(true);
 
   const [isWalletModalVisible, setWalletModalVisible] = useState<boolean>(false);
   const [selectedCryptoKey, setSelectedCryptoKey] = useState<string | null>(null);
-  const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
+  const [selectedAmount, setSelectedAmount] = useState<string | null>(null);
 
   const [cryptos, setCryptos] = useState<Crypto[]>([]);
 
   const fetchCryptos = useCallback(async () => {
     // Get all cryptos
     const fetchedCryptos = await NetworkService.fetchCryptos()
-      .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
+      .catch((error) => ToastAndroid.show(error, ToastAndroid.BOTTOM));
 
-    const unsortedCryptos = (fetchedCryptos || []).filter(crypto => (crypto as Crypto).details.type === 'crypto') as Crypto[];
+    const unsortedCryptos = (fetchedCryptos || []).filter((crypto) => (crypto as Crypto).details.type === 'crypto') as Crypto[];
 
     const fetchedExchangeRates = await NetworkService.fetchCryptoExchangeRates(quote.code)
-      .catch(error => ToastAndroid.show(error, ToastAndroid.BOTTOM));
+      .catch((error) => ToastAndroid.show(error, ToastAndroid.BOTTOM));
 
     const newCryptos = unsortedCryptos
-      .filter(crypto => !!(fetchedExchangeRates as ExchangeRates).data.rates[crypto.id])
-      .map(crypto => Object.assign({ price: 1 / parseFloat((fetchedExchangeRates as ExchangeRates).data.rates[crypto.id]) }, crypto));
+      .filter((crypto) => !!(fetchedExchangeRates as ExchangeRates).data.rates[crypto.id])
+      .map((crypto) => ({
+        price: 1 / parseFloat((fetchedExchangeRates as ExchangeRates).data.rates[crypto.id]),
+        ...crypto,
+      }));
 
     setLoading(false);
     setCryptos(newCryptos.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
@@ -109,49 +114,60 @@ const Wallet: FC<WalletProps> = ({
 
   const walletWithTotal: WalletItem[] = useMemo(() => {
     const total = wallet.reduce(
-      (acc, walletItem) => acc + (((cryptos || []).find(asset => asset.id === walletItem.crypto)?.price || 0) * walletItem.amount),
+      (acc, walletItem) => acc + (((cryptos || []).find(
+        (asset) => asset.id === walletItem.crypto,
+      )?.price || 0) * walletItem.amount),
       0,
     );
 
-    return ([...wallet, {  crypto: 'total', amount: total }]);
+    return ([...wallet, { crypto: 'total', amount: total }]);
   }, [wallet, cryptos]);
 
   // Callback for the modal crpyot picker
   const onSelectedCryptoKeyChange = useCallback((newCryptoKey: string) => {
-    if (!!wallet?.find(walletItem => walletItem.crypto === newCryptoKey)) {
+    if (wallet?.find((walletItem) => walletItem.crypto === newCryptoKey)) {
       // If the crypto is already present in the wallet, load the amount
-      setSelectedAmount(wallet.find(walletItem => walletItem.crypto === newCryptoKey).amount);
+      setSelectedAmount(
+        wallet.find((walletItem) => walletItem.crypto === newCryptoKey).amount.toString(),
+      );
     } else {
       setSelectedAmount(null);
     }
     setSelectedCryptoKey(newCryptoKey);
   }, [wallet, setSelectedCryptoKey, setSelectedAmount]);
 
-  // Callback for the modal amount text field
-  const onSelectedAmountChange = useCallback((newAmount: string) => {
-    // Validate new input only if plain numbers, or plain numbers separated with a point (.)
-    if (/^[0-9]*(\.[0-9]*)?$/.test(newAmount)) {
-      setSelectedAmount(Number(newAmount));
-    }
-  }, [setSelectedAmount]);
+  // Validate function for the modal form
+  const isValid = useMemo(
+    () => !!selectedAmount && !!selectedCryptoKey && /^[0-9]*(\.[0-9]*)?$/.test(selectedAmount),
+    [selectedAmount, selectedCryptoKey],
+  );
 
-  // Callback to laod and show the modal. Takes the crypto as optional parameter for edit functionality
-  const openWalletPopup = useCallback((newSelectedCrpytoKey: string = null, newSelectedAmount: number = null) => {
-    setSelectedCryptoKey(newSelectedCrpytoKey);
-    setSelectedAmount(newSelectedAmount);
-    setWalletModalVisible(true);
-  }, [setSelectedCryptoKey, setSelectedAmount, setWalletModalVisible]);
+  // Callback to laod and show the modal.
+  // Takes the crypto as optional parameter for edit functionality
+  const openWalletPopup = useCallback(
+    (newSelectedCrpytoKey: string = null, newSelectedAmount: number = null) => {
+      setSelectedCryptoKey(newSelectedCrpytoKey);
+      setSelectedAmount(newSelectedAmount?.toString() || '');
+      setWalletModalVisible(true);
+    },
+    [setSelectedCryptoKey, setSelectedAmount, setWalletModalVisible],
+  );
 
-  // Callback function to save the wallet (modify a temp version, then pass it to App via the callback)
+  // Callback function to save the wallet
+  // (modify a temp version, then pass it to App via the callback)
   const saveWallet = useCallback(() => {
-    if (!selectedCryptoKey || !selectedAmount) {
+    if (!selectedCryptoKey || !selectedAmount || !/^[0-9]*(\.[0-9]*)?$/.test(selectedAmount)) {
       return;
     }
-    let walletTemp = [...(wallet || [])];
-    if (!!wallet && !!wallet.filter(walletItem => walletItem.crypto === selectedCryptoKey).length) {
-      walletTemp.find(walletItem => walletItem.crypto === selectedCryptoKey).amount = selectedAmount;
+    const walletTemp = [...(wallet || [])];
+    if (!!wallet && !!wallet.filter(
+      (walletItem) => walletItem.crypto === selectedCryptoKey,
+    ).length) {
+      walletTemp.find(
+        (walletItem) => walletItem.crypto === selectedCryptoKey,
+      ).amount = Number(selectedAmount);
     } else {
-      walletTemp.push({ crypto: selectedCryptoKey, amount: selectedAmount });
+      walletTemp.push({ crypto: selectedCryptoKey, amount: Number(selectedAmount) });
     }
     changeWallet(walletTemp);
     setWalletModalVisible(false);
@@ -159,15 +175,15 @@ const Wallet: FC<WalletProps> = ({
 
   // Load the modal with corresponding crypto and amount
   const editFromWallet = useCallback((cryptoKey: string) => {
-    const crypto = cryptos.find(crypto => crypto.id === cryptoKey),
-      amount = wallet.find(walletItem => walletItem.crypto === cryptoKey).amount;
+    const crypto = cryptos.find((c) => c.id === cryptoKey);
+    const { amount } = wallet.find((walletItem) => walletItem.crypto === cryptoKey);
 
     openWalletPopup(crypto.id, amount);
   }, [cryptos, wallet, openWalletPopup]);
 
   // Change the wallet to delete the selected crypto
   const deleteFromWallet = useCallback((crypto: string) => {
-    changeWallet(wallet.filter(walletItem => walletItem.crypto !== crypto));
+    changeWallet(wallet.filter((walletItem) => walletItem.crypto !== crypto));
   }, [changeWallet, wallet]);
 
   useEffect(
@@ -189,24 +205,20 @@ const Wallet: FC<WalletProps> = ({
         renderItem={({ item }) => (
           <WalletListItem
             walletItem={item}
-            quote={quote}
-            changeTab={changeTab}
             cryptos={cryptos}
             deleteFromWallet={deleteFromWallet}
             editFromWallet={editFromWallet}
           />
         )}
-        keyExtractor={item => item.crypto}
+        keyExtractor={(item) => item.crypto}
         extraData=""
-        ListEmptyComponent={() =>
-        (
+        ListEmptyComponent={() => (
           <View style={styles.list_empty}>
             <Text style={styles.list_empty_text}>
-              No item in your wallet yet
-              </Text>
+              {t.wallet.no_item}
+            </Text>
           </View>
-        )
-        }
+        )}
       />
       <TouchableOpacity style={styles.add_wallet_popup_button} onPress={() => openWalletPopup()}>
         <Text style={{ ...styles.cryptoViewerIcon, ...styles.add_wallet_popup_button_text }}>
@@ -220,11 +232,12 @@ const Wallet: FC<WalletProps> = ({
         selectedAmount={selectedAmount}
         selectedCryptoKey={selectedCryptoKey}
         onSelectedCryptoKeyChange={onSelectedCryptoKeyChange}
-        onSelectedAmountChange={onSelectedAmountChange}
+        onSelectedAmountChange={setSelectedAmount}
+        isFormValid={isValid}
         cryptos={cryptos}
       />
     </View>
   );
-}
+};
 
 export default memo(Wallet);

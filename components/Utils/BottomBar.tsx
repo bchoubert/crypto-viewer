@@ -1,11 +1,18 @@
-import React, { FC, memo, useCallback } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import React, {
+  FC, memo, useCallback, useContext, useMemo,
+} from 'react';
+import {
+  StyleSheet, TouchableOpacity, View, Text,
+} from 'react-native';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 
 import Colors from '../../assets/Colors';
 
-import Tabs, { tabType } from '../../models/Tabs';
+import Tabs from '../../models/Tabs';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
 const styles = StyleSheet.create({
   bottomBar: {
@@ -15,60 +22,75 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     borderTopColor: Colors.gray,
-    borderTopWidth: 1
+    borderTopWidth: 1,
   },
   bottomBarButtonContainer: {
     flex: 1,
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   cryptoViewerIcon: {
     fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
+    fontFamily: 'crypto-viewer',
+  },
 });
 
-interface BottomBarProps {
-  activeTab: tabType;
-  changeTab: (newTabType: tabType) => any;
-}
+interface BottomBarProps {}
 
-const BottomBar: FC<BottomBarProps> = ({
-  activeTab,
-  changeTab,
-}) => {
+const BottomBar: FC<BottomBarProps> = () => {
+  const {
+    activeTab, changeTab,
+  } = useContext(NavigationContext);
+
+  const t = useContext(TranslationContext);
+
+  const theme = useContext(ThemeContext);
+
   const handleListAction = useCallback(() => changeTab(Tabs.list), [changeTab]);
   const handleWalletAction = useCallback(() => changeTab(Tabs.wallet), [changeTab]);
+
+  const activeTextColor = useMemo(
+    () => (theme.isDark ? Colors.white : Colors.blue),
+    [theme],
+  );
 
   if ([Tabs.list, Tabs.wallet].includes(activeTab)) {
     return (
       <View style={styles.bottomBar}>
         <TouchableOpacity onPress={handleListAction} style={styles.bottomBarButtonContainer}>
-          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.list) ? Colors.blue : 'black' }}>
+          <Text
+            style={{
+              ...styles.cryptoViewerIcon,
+              color: (activeTab === Tabs.list) ? activeTextColor : theme.textColor,
+            }}
+          >
             {CryptoViewerIconsMap.prices.unicode}
           </Text>
-          {activeTab === Tabs.list ?
-            (
-              <Text style={{ color: 'blue' }}>
-                Prices
+          {activeTab === Tabs.list
+            ? (
+              <Text style={{ color: activeTextColor }}>
+                {t.menu.prices}
               </Text>
-            ) : null
-          }
+            ) : null}
         </TouchableOpacity>
         <TouchableOpacity onPress={handleWalletAction} style={styles.bottomBarButtonContainer}>
-          <Text style={{ ...styles.cryptoViewerIcon, color: (activeTab === Tabs.wallet) ? Colors.blue : 'black' }}>
+          <Text
+            style={{
+              ...styles.cryptoViewerIcon,
+              color: (activeTab === Tabs.wallet) ? activeTextColor : theme.textColor,
+            }}
+          >
             {CryptoViewerIconsMap.wallet.unicode}
           </Text>
-          {activeTab === Tabs.wallet ?
-            (
-              <Text style={{ color: 'blue' }}>
-                Wallet
+          {activeTab === Tabs.wallet
+            ? (
+              <Text style={{ color: activeTextColor }}>
+                {t.menu.wallet}
               </Text>
-            ) : null
-          }
+            ) : null}
         </TouchableOpacity>
       </View>
     );
@@ -76,6 +98,6 @@ const BottomBar: FC<BottomBarProps> = ({
 
   // If not on the list or wallet view, show nothing
   return null;
-}
+};
 
 export default memo(BottomBar);

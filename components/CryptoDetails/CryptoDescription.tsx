@@ -1,92 +1,113 @@
-import React, { FC, useCallback, useMemo } from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Linking } from 'react-native';
+import React, {
+  FC, useCallback, useMemo, useContext, memo,
+} from 'react';
+import {
+  View, StyleSheet, Text, TouchableOpacity, Linking,
+} from 'react-native';
 
-import UtilsService from '../../services/Utils.service';
-
-import Colors from '../../assets/Colors';
+import ColorService from '../../services/Color.service';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import CryptoCurrenciesIconMap from '../Utils/CryptoCurrencyIconsMap';
 
-import Crypto from '../../models/Crypto';
+import { NavigationContext } from '../../contexts/NavigationProvider';
+import { TranslationContext } from '../../contexts/TranslationProvider';
+import { ThemeContext } from '../../contexts/ThemeProvider';
 
-const styles = StyleSheet.create({
-  descritpion: {
-    flexDirection: 'column'
-  },
-  descritpion_title: {
-    paddingLeft: 20,
-    paddingRight: 10,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  description_text: {
-    color: Colors.darkGray,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    fontSize: 15,
-    lineHeight: 20,
-  },
-  description_website: {
-    paddingHorizontal: 20,
-    paddingBottom: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  description_website_icon: {
-    fontSize: 12,
-  },
-  description_website_text: {
-    fontWeight: 'bold',
-    width: 95
-  },
+interface CryptoDescriptionProps {}
 
-  cryptoViewerIcon: {
-    fontSize: 20,
-    fontFamily: 'crypto-viewer'
-  }
-});
+const CryptoDescription: FC<CryptoDescriptionProps> = () => {
+  const {
+    details,
+  } = useContext(NavigationContext);
 
-interface CryptoDescriptionProps {
-  crypto: Crypto;
-}
+  const t = useContext(TranslationContext);
 
-const CryptoDescription: FC<CryptoDescriptionProps> = ({
-  crypto,
-}) => {
+  const theme = useContext(ThemeContext);
+
   const cryptoColor = useMemo(
-    () => UtilsService.getColorFromCrypto(crypto.id),
-    [crypto],
+    () => ColorService.getColorFromCrypto(details?.id),
+    [details],
+  );
+
+  const adjustedCryptoColor = useMemo(
+    () => theme.adjustColorIfTooDarkOrLight(cryptoColor),
+    [cryptoColor, theme, theme.isDark],
+  );
+
+  const styles = useMemo(
+    () => StyleSheet.create({
+      description: {
+        flexDirection: 'column',
+      },
+      description_title: {
+        paddingLeft: 20,
+        paddingRight: 10,
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: theme.textColor,
+      },
+      description_text: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        fontSize: 15,
+        lineHeight: 20,
+        color: theme.textColor,
+      },
+      description_website: {
+        paddingHorizontal: 20,
+        paddingBottom: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+      },
+      description_website_icon: {
+        fontSize: 12,
+        width: 10,
+        marginLeft: 5,
+        fontFamily: 'crypto-viewer',
+        color: adjustedCryptoColor,
+      },
+      description_website_text: {
+        fontWeight: 'bold',
+        marginLeft: 10,
+        width: 100,
+        color: adjustedCryptoColor,
+      },
+    }),
+    [cryptoColor, theme],
   );
 
   const openWebsite = useCallback(
-    () => Linking.openURL(CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website),
-    [crypto],
+    () => Linking.openURL(CryptoCurrenciesIconMap[details?.id?.toLowerCase()]?.website),
+    [details],
   );
 
+  if (!details || !CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description
+  || !CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website) {
+    return null;
+  }
+
   return (
-    CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
-      <View style={styles.descritpion}>
-        <Text style={styles.descritpion_title}>
-          Details
-        </Text>
-        <Text style={styles.description_text}>
-          {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.description || ''}
-        </Text>
-        {CryptoCurrenciesIconMap[crypto.id?.toLowerCase()]?.website ? (
-          <TouchableOpacity onPress={openWebsite} style={ styles.description_website }>
-            <Text numberOfLines={1} style={{ ...styles.description_website_text, color: cryptoColor }}>
-              Official Website
-            </Text>
-            <Text style={{ ...styles.cryptoViewerIcon, ...styles.description_website_icon, color: cryptoColor }}>
-              {CryptoViewerIconsMap.link.unicode}
-            </Text>
-          </TouchableOpacity>
-        ) : null}
-      </View>
-    ) : null
+    <View style={styles.description}>
+      <Text style={styles.description_title}>
+        {t.details.details}
+      </Text>
+      <Text style={styles.description_text}>
+        {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description || ''}
+      </Text>
+      {CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.website ? (
+        <TouchableOpacity onPress={openWebsite} style={styles.description_website}>
+          <Text style={styles.description_website_icon}>
+            {CryptoViewerIconsMap.link.unicode}
+          </Text>
+          <Text style={styles.description_website_text}>
+            {t.details.website}
+          </Text>
+        </TouchableOpacity>
+      ) : null}
+    </View>
   );
 };
 
-export default CryptoDescription;
+export default memo(CryptoDescription);

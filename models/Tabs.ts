@@ -1,11 +1,10 @@
-
-export type tabType = 'list' | 'wallet' | 'settings' | 'details';
+export type TabType = 'list' | 'wallet' | 'settings' | 'details';
 
 const Tabs = {
-  list: 'list' as tabType,
-  details: 'details' as tabType,
-  settings: 'settings' as tabType,
-  wallet: 'wallet' as tabType,
-}
+  list: 'list' as TabType,
+  details: 'details' as TabType,
+  settings: 'settings' as TabType,
+  wallet: 'wallet' as TabType,
+};
 
 export default Tabs;
