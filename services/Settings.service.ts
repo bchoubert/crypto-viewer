@@ -14,7 +14,7 @@ const SettingsService = {
     settingKey: SettingsKeysType,
     newValue: SettingsValue,
   ): Promise<void> => StorageService.storeData(
-    settingKey,
+    SETTINGS_KEYS[settingKey],
     (settingDetails[settingKey].needsParsing ? JSON.stringify(newValue) : newValue) as string,
   ),
   loadAll: async (): Promise<SettingsType> => {
