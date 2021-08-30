@@ -17,12 +17,13 @@ interface SettingsProps {}
 // Settings view
 // Render a list with all settings key in the correct order
 const Settings: FC<SettingsProps> = () => {
-  const settingList = useMemo(() => ([
+  const settingList: { key: SettingType }[] = useMemo(() => ([
     { key: 'currency' },
     { key: 'dateFormat' },
     { key: 'graphMode' },
     { key: 'language' },
     { key: 'darkMode' },
+    { key: 'show_other_assets' },
     { key: 'credits' },
   ]), []);
 

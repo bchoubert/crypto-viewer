@@ -5,9 +5,11 @@ import { GraphModeType } from './GraphMode';
 import { DarkModeType } from './DarkMode';
 import QuoteType from './QuoteType';
 import WalletItem from './WalletItem';
+import { ShowOtherAssetsType } from './ShowOtherAssets';
 
 export type SettingsValue = AvailableTranslations |
-QuoteType | DateFormatType | WalletItem[] | GraphModeType | DarkModeType | string[];
+QuoteType | DateFormatType | WalletItem[] | GraphModeType |
+DarkModeType | string[] | ShowOtherAssetsType;
 type SettingsType = Record<SettingsKeysType, SettingsValue>;
 
 export const settingDetails: Record<SettingsKeysType, {
@@ -21,6 +23,7 @@ export const settingDetails: Record<SettingsKeysType, {
   WALLET_KEY: { needsParsing: true, defaultValue: [] as WalletItem[] },
   LANGUAGE: { needsParsing: false, defaultValue: AvailableTranslations.en },
   DARK_MODE_KEY: { needsParsing: false, defaultValue: 'light' as DarkModeType },
+  SHOW_OTHER_ASSETS_KEY: { needsParsing: false, defaultValue: 'hide' as ShowOtherAssetsType },
 };
 
 export const defaultSettings: SettingsType = Object.keys(settingDetails).reduce((result, key) => ({

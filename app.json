@@ -9,7 +9,7 @@
       "web"
     ],
     "githubUrl": "https://github.com/bchoubert/crypto-viewer",
-    "version": "2.1.1",
+    "version": "2.4.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -30,7 +30,7 @@
     "android": {
       "package": "com.bchoubert.cryptoviewer",
       "permissions": [],
-      "versionCode": 5
+      "versionCode": 6
     }
   }
 }

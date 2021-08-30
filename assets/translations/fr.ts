@@ -12,6 +12,7 @@ const FrTranslation: TranslationType = {
     favourites: 'Favoris',
     main: 'Principaux actifs',
     other: 'Autres actifs',
+    assets: 'Actifs',
   },
   details: {
     details: 'Détails',
@@ -59,6 +60,10 @@ const FrTranslation: TranslationType = {
       dark_mode: {
         light: 'Clair',
         dark: 'Sombre',
+      },
+      show_other_assets: {
+        show: 'Montrer',
+        hide: 'Cacher',
       },
     },
   },

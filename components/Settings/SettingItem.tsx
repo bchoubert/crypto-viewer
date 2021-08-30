@@ -16,6 +16,7 @@ import { SettingType } from '../../models/SettingType';
 import { TranslationContext } from '../../contexts/TranslationProvider';
 import { darkModes, DarkModeType } from '../../models/DarkMode';
 import { ThemeContext } from '../../contexts/ThemeProvider';
+import { showOtherAssetsList, ShowOtherAssetsType } from '../../models/ShowOtherAssets';
 
 interface SettingItemProps {
   settingKey: SettingType;
@@ -92,6 +93,10 @@ const SettingItem: FC<SettingItemProps> = ({
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
   const dateFormat = useMemo(() => settings.DATE_FORMAT_KEY as DateFormatType, [settings]);
+  const showOtherAssets = useMemo(
+    () => settings.SHOW_OTHER_ASSETS_KEY as ShowOtherAssetsType,
+    [settings],
+  );
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
   const darkMode = useMemo(() => settings.DARK_MODE_KEY as DarkModeType, [settings]);
   const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
@@ -109,6 +114,11 @@ const SettingItem: FC<SettingItemProps> = ({
   const renderLanguageSetting = useCallback(
     (item: AvailableTranslations) => AvailableTranslationDetails[item].name,
     [],
+  );
+
+  const renderShowOtherAssets = useCallback(
+    (item: ShowOtherAssetsType) => t.settings.values.show_other_assets[item],
+    [t],
   );
 
   switch (settingKey) {
@@ -182,6 +192,21 @@ const SettingItem: FC<SettingItemProps> = ({
             setActiveItem={(newDarkMode) => changeSettings('DARK_MODE_KEY', newDarkMode as DarkModeType)}
             color={Colors.blue}
             renderItem={renderDarkModeSetting}
+          />
+        </View>
+      );
+    case 'show_other_assets':
+      return (
+        <View style={styles.settings}>
+          <Text style={styles.settingsText}>
+            {t.list.other}
+          </Text>
+          <Selector
+            items={showOtherAssetsList}
+            activeItem={showOtherAssets}
+            setActiveItem={(newShowOtherAssets) => changeSettings('SHOW_OTHER_ASSETS_KEY', newShowOtherAssets as ShowOtherAssetsType)}
+            color={Colors.blue}
+            renderItem={renderShowOtherAssets}
           />
         </View>
       );
