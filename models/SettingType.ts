@@ -1,1 +1,1 @@
-export type SettingType = 'currency' | 'dateFormat' | 'graphMode' | 'language' | 'darkMode' | 'credits';
+export type SettingType = 'currency' | 'dateFormat' | 'graphMode' | 'language' | 'darkMode' | 'credits' | 'show_other_assets';

@@ -10,6 +10,7 @@ type TranslationType = {
     favourites: string,
     main: string,
     other: string,
+    assets: string,
   },
   details: {
     details: string,
@@ -57,6 +58,10 @@ type TranslationType = {
       dark_mode: {
         light: string,
         dark: string,
+      },
+      show_other_assets: {
+        show: string,
+        hide: string,
       },
     },
   },

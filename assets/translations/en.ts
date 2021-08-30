@@ -12,6 +12,7 @@ const EnTranslation: TranslationType = {
     favourites: 'Favourites',
     main: 'Main Assets',
     other: 'Other Assets',
+    assets: 'Assets',
   },
   details: {
     details: 'Details',
@@ -59,6 +60,10 @@ const EnTranslation: TranslationType = {
       dark_mode: {
         light: 'Light',
         dark: 'Dark',
+      },
+      show_other_assets: {
+        show: 'Show',
+        hide: 'Hide',
       },
     },
   },
