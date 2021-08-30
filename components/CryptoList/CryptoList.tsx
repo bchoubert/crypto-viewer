@@ -15,6 +15,7 @@ import CryptoListItem from './CryptoListItem';
 import { SettingsContext } from '../../contexts/SettingsProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
 import { ThemeContext } from '../../contexts/ThemeProvider';
+import { ShowOtherAssetsType } from '../../models/ShowOtherAssets';
 
 interface CryptoListProps {}
 
@@ -47,6 +48,10 @@ const CryptoList: FC<CryptoListProps> = () => {
   );
 
   const quote = useMemo(() => settings.QUOTE_STORAGE_KEY as QuoteType, [settings]);
+  const isShowOtherAssets = useMemo(
+    () => settings.SHOW_OTHER_ASSETS_KEY as ShowOtherAssetsType,
+    [settings],
+  );
   const favouritesList = useMemo(() => settings.FAVOURITES_KEY as string[], [settings]);
 
   const [isLoading, setLoading] = useState<boolean>(true);
@@ -92,11 +97,16 @@ const CryptoList: FC<CryptoListProps> = () => {
 
   const sections = useMemo(
     () => {
-      const baseSections = [
+      const hasFavourites = (favouritesList || []).length > 0;
+
+      const baseSections = isShowOtherAssets === 'show' ? [
         { title: t.list.main, id: 'main', data: mainAssets },
         { title: t.list.other, id: 'other', data: otherAssets },
+      ] : [
+        { title: hasFavourites ? t.list.assets : null, id: 'main', data: mainAssets },
       ];
-      if ((favouritesList || []).length > 0) {
+
+      if (hasFavourites) {
         const items = mainAssets.filter((asset) => (favouritesList || []).includes(asset.id));
         const finalItems = [];
 
@@ -114,7 +124,7 @@ const CryptoList: FC<CryptoListProps> = () => {
       }
       return baseSections;
     },
-    [mainAssets, otherAssets, favouritesList, t],
+    [mainAssets, otherAssets, favouritesList, t, isShowOtherAssets],
   );
 
   const handleRenderItem = useCallback(
@@ -133,12 +143,14 @@ const CryptoList: FC<CryptoListProps> = () => {
 
   const handleRenderSectionHeader = useCallback(
     ({ section }) => (
-      <Text
-        style={styles.sectionHeader}
-        key={section.title}
-      >
-        {section.title}
-      </Text>
+      section.title ? (
+        <Text
+          style={styles.sectionHeader}
+          key={section.title}
+        >
+          {section.title}
+        </Text>
+      ) : null
     ),
     [styles],
   );
