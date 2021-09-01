@@ -9,14 +9,23 @@ import Crypto from '../models/Crypto';
 import ColorService from '../services/Color.service';
 import { ThemeContext } from './ThemeProvider';
 
+export interface NavigationContextInterface {
+  activeTab: TabType;
+  details: Crypto | null;
+  statusBarColor: string;
+  statusBarMode: StatusBarStyle;
+  changeTab: ((tabName: TabType, newDetails?: Object) => void) | null;
+  handleBackAction: (() => void) | null;
+}
+
 export const NavigationContext = createContext({
-  activeTab: Tabs.list as TabType,
-  details: null as Crypto | null,
-  statusBarColor: Colors.white as string,
-  statusBarMode: 'dark-content' as StatusBarStyle,
-  changeTab: null as ((tabName: TabType, newDetails?: Object) => void) | null,
-  handleBackAction: null as (() => void) | null,
-});
+  activeTab: Tabs.list,
+  details: null,
+  statusBarColor: Colors.white,
+  statusBarMode: 'dark-content',
+  changeTab: null,
+  handleBackAction: null,
+} as NavigationContextInterface);
 
 interface NavigationProviderProps {
   children: ReactNode;
@@ -63,7 +72,7 @@ const NavigationProvider: FC<NavigationProviderProps> = ({ children }) => {
     return () => backHandler.remove();
   }, [activeTab]);
 
-  const contextValues = useMemo(() => ({
+  const contextValues: NavigationContextInterface = useMemo(() => ({
     activeTab,
     details,
     statusBarColor,
