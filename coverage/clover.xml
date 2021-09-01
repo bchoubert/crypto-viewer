@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1630523135678" clover="3.2.0">
+  <project timestamp="1630523135679" name="All files">
+    <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="1" coveredelements="1" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
+    <file name="Colors.js" path="D:\w\crypto-viewer\assets\Colors.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="2" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
