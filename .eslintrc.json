@@ -3,6 +3,7 @@
     "node_modules"
   ],
   "extends": [
+    "airbnb",
     "airbnb-typescript"
   ],
   "parserOptions": {
