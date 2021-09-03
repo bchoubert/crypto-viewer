@@ -9,7 +9,8 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint_ts": "tsc --noEmit",
     "lint_fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@babel/core": "~7.9.0",
@@ -48,7 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "husky": "^7.0.0",
+    "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest-expo": "^42.1.0",
     "react-native-share": "^1.2.1",
