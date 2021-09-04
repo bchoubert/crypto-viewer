@@ -37,10 +37,13 @@ export const renderNode = (node: ReactElement): RenderAPI => render(enrichProvid
 
 beforeAll(() => {
   consoleMocker.mockConsole();
+  // eslint-disable-next-line no-extend-native
+  Date.prototype.getTimezoneOffset = jest.fn(() => 0);
 });
 
 afterAll(() => {
   consoleMocker.restoreConsole();
+  jest.resetAllMocks();
 });
 
 jest.spyOn(PassThoughComponents, 'Image');
