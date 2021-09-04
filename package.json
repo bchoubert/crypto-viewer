@@ -52,6 +52,7 @@
     "husky": "^7.0.2",
     "identity-obj-proxy": "^3.0.0",
     "jest-expo": "^42.1.0",
+    "prettier": "^2.3.2",
     "react-native-share": "^1.2.1",
     "react-test-renderer": "^17.0.2",
     "typescript": "~4.0.0"

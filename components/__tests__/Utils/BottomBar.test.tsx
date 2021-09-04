@@ -1,9 +1,12 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
 import EnTranslation from '../../../assets/translations/en';
-import { NavigationContext, NavigationContextInterface } from '../../../contexts/NavigationProvider';
+import {
+  NavigationContext,
+  NavigationContextInterface,
+} from '../../../contexts/NavigationProvider';
 import Tabs from '../../../models/Tabs';
-import { renderNode } from '../../testUtils';
+import { renderNode } from '../../testUtils/bootstrap';
 
 import BottomBar from '../../Utils/BottomBar';
 

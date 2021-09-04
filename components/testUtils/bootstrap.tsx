@@ -1,14 +1,17 @@
+/* eslint-disable no-console */
 /* eslint-disable import/no-extraneous-dependencies */
 import { render, RenderAPI } from '@testing-library/react-native';
 import '@testing-library/jest-dom/extend-expect';
 import React, { ReactElement } from 'react';
+import * as PassThoughComponents from '../PassThroughComponents';
 
-import NavigationProvider from '../contexts/NavigationProvider';
-import { SettingsContext } from '../contexts/SettingsProvider';
-import ThemeProvider from '../contexts/ThemeProvider';
-import TranslationProvider from '../contexts/TranslationProvider';
+import NavigationProvider from '../../contexts/NavigationProvider';
+import { SettingsContext } from '../../contexts/SettingsProvider';
+import ThemeProvider from '../../contexts/ThemeProvider';
+import TranslationProvider from '../../contexts/TranslationProvider';
 
-import { defaultSettings } from '../models/SettingsType';
+import { defaultSettings } from '../../models/SettingsType';
+import consoleMocker from './consoleMocker';
 
 jest.useFakeTimers();
 
@@ -31,3 +34,14 @@ export const enrichProviders = (node: ReactElement): ReactElement => (
 
 // eslint-disable-next-line max-len
 export const renderNode = (node: ReactElement): RenderAPI => render(enrichProviders(node));
+
+beforeAll(() => {
+  consoleMocker.mockConsole();
+});
+
+afterAll(() => {
+  consoleMocker.restoreConsole();
+});
+
+jest.spyOn(PassThoughComponents, 'Image');
+(PassThoughComponents.Image as unknown as jest.Mock).mockImplementation(() => (<div>IMAGE</div>));
