@@ -38,9 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface BottomBarProps {}
-
-const BottomBar: FC<BottomBarProps> = () => {
+const BottomBar: FC = () => {
   const {
     activeTab, changeTab,
   } = useContext(NavigationContext);

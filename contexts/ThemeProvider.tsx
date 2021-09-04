@@ -14,7 +14,7 @@ type ThemeType = {
   isDark: boolean;
 };
 
-const themes: Record<DarkModeType, ThemeType> = {
+export const themes: Record<DarkModeType, ThemeType> = {
   dark: {
     backgroundColor: '#222222',
     backgroundTile: '#444444',

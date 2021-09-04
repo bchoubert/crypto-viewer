@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1630759284595" clover="3.2.0">
-  <project timestamp="1630759284595" name="All files">
-    <metrics statements="655" coveredstatements="84" conditionals="316" coveredconditionals="17" methods="255" coveredmethods="25" elements="1226" coveredelements="126" complexity="0" loc="655" ncloc="655" packages="14" files="58" classes="58"/>
+<coverage generated="1630774888165" clover="3.2.0">
+  <project timestamp="1630774888165" name="All files">
+    <metrics statements="655" coveredstatements="85" conditionals="316" coveredconditionals="19" methods="255" coveredmethods="25" elements="1226" coveredelements="129" complexity="0" loc="655" ncloc="655" packages="14" files="58" classes="58"/>
     <package name="crypto-viewer">
       <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="D:\w\crypto-viewer\App.tsx">
@@ -331,21 +331,21 @@
       </file>
     </package>
     <package name="crypto-viewer.components.Utils">
-      <metrics statements="107" coveredstatements="15" conditionals="85" coveredconditionals="16" methods="33" coveredmethods="5"/>
+      <metrics statements="107" coveredstatements="16" conditionals="85" coveredconditionals="18" methods="33" coveredmethods="5"/>
       <file name="BottomBar.tsx" path="D:\w\crypto-viewer\components\Utils\BottomBar.tsx">
-        <metrics statements="12" coveredstatements="11" conditionals="12" coveredconditionals="10" methods="4" coveredmethods="4"/>
+        <metrics statements="12" coveredstatements="12" conditionals="12" coveredconditionals="12" methods="4" coveredmethods="4"/>
         <line num="17" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="46" count="4" type="stmt"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="50" count="4" type="stmt"/>
-        <line num="52" count="4" type="stmt"/>
-        <line num="53" count="4" type="stmt"/>
-        <line num="55" count="4" type="stmt"/>
-        <line num="56" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="60" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="61" count="4" type="stmt"/>
-        <line num="108" count="0" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="44" count="7" type="stmt"/>
+        <line num="46" count="7" type="stmt"/>
+        <line num="48" count="7" type="stmt"/>
+        <line num="50" count="7" type="stmt"/>
+        <line num="51" count="7" type="stmt"/>
+        <line num="53" count="7" type="stmt"/>
+        <line num="54" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="6" type="stmt"/>
+        <line num="106" count="1" type="stmt"/>
       </file>
       <file name="CryptoCurrencyIconsMap.tsx" path="D:\w\crypto-viewer\components\Utils\CryptoCurrencyIconsMap.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -588,8 +588,8 @@
         <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
         <line num="16" count="2" type="stmt"/>
         <line num="18" count="2" type="stmt"/>
-        <line num="19" count="6" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="36" count="9" type="stmt"/>
         <line num="38" count="2" type="stmt"/>
         <line num="39" count="2" type="stmt"/>
         <line num="42" count="2" type="stmt"/>
@@ -618,31 +618,31 @@
         <metrics statements="27" coveredstatements="17" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="5"/>
         <line num="21" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
-        <line num="35" count="6" type="stmt"/>
-        <line num="37" count="6" type="stmt"/>
-        <line num="39" count="6" type="stmt"/>
-        <line num="42" count="6" type="stmt"/>
-        <line num="45" count="6" type="stmt"/>
-        <line num="46" count="6" type="stmt"/>
-        <line num="48" count="6" type="cond" truecount="0" falsecount="1"/>
+        <line num="35" count="9" type="stmt"/>
+        <line num="37" count="9" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="42" count="9" type="stmt"/>
+        <line num="45" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="48" count="9" type="cond" truecount="0" falsecount="1"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="54" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
         <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="62" count="6" type="stmt"/>
+        <line num="62" count="9" type="stmt"/>
         <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="65" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="70" count="6" type="stmt"/>
-        <line num="71" count="6" type="stmt"/>
-        <line num="72" count="6" type="stmt"/>
-        <line num="75" count="6" type="stmt"/>
-        <line num="84" count="6" type="stmt"/>
-        <line num="85" count="6" type="stmt"/>
-        <line num="88" count="6" type="stmt"/>
+        <line num="70" count="9" type="stmt"/>
+        <line num="71" count="9" type="stmt"/>
+        <line num="72" count="9" type="stmt"/>
+        <line num="75" count="9" type="stmt"/>
+        <line num="84" count="9" type="stmt"/>
+        <line num="85" count="9" type="stmt"/>
+        <line num="88" count="9" type="stmt"/>
       </file>
       <file name="SettingsProvider.tsx" path="D:\w\crypto-viewer\contexts\SettingsProvider.tsx">
         <metrics statements="17" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
@@ -669,12 +669,12 @@
         <line num="17" count="2" type="stmt"/>
         <line num="34" count="2" type="stmt"/>
         <line num="43" count="2" type="stmt"/>
-        <line num="46" count="6" type="stmt"/>
-        <line num="47" count="6" type="stmt"/>
-        <line num="49" count="6" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="47" count="9" type="stmt"/>
+        <line num="49" count="9" type="stmt"/>
         <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="57" count="6" type="stmt"/>
+        <line num="57" count="9" type="stmt"/>
         <line num="59" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -685,19 +685,19 @@
         <line num="78" count="0" type="cond" truecount="0" falsecount="4"/>
         <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="82" count="0" type="stmt"/>
-        <line num="87" count="6" type="stmt"/>
-        <line num="88" count="6" type="stmt"/>
-        <line num="96" count="6" type="stmt"/>
+        <line num="87" count="9" type="stmt"/>
+        <line num="88" count="9" type="stmt"/>
+        <line num="96" count="9" type="stmt"/>
       </file>
       <file name="TranslationProvider.tsx" path="D:\w\crypto-viewer\contexts\TranslationProvider.tsx">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
         <line num="9" count="2" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
-        <line num="18" count="6" type="stmt"/>
-        <line num="19" count="6" type="stmt"/>
-        <line num="21" count="6" type="stmt"/>
-        <line num="22" count="6" type="stmt"/>
-        <line num="26" count="6" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.models">
@@ -850,7 +850,7 @@
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="5" count="2" type="stmt"/>
         <line num="10" count="2" type="stmt"/>
-        <line num="11" count="6" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
       </file>
       <file name="Utils.service.ts" path="D:\w\crypto-viewer\services\Utils.service.ts">
         <metrics statements="17" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="6" coveredmethods="0"/>
