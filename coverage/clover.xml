@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1630959228557" clover="3.2.0">
-  <project timestamp="1630959228557" name="All files">
-    <metrics statements="657" coveredstatements="122" conditionals="316" coveredconditionals="43" methods="256" coveredmethods="39" elements="1229" coveredelements="204" complexity="0" loc="657" ncloc="657" packages="14" files="58" classes="58"/>
+<coverage generated="1630960430433" clover="3.2.0">
+  <project timestamp="1630960430433" name="All files">
+    <metrics statements="657" coveredstatements="139" conditionals="316" coveredconditionals="59" methods="256" coveredmethods="45" elements="1229" coveredelements="243" complexity="0" loc="657" ncloc="657" packages="14" files="58" classes="58"/>
     <package name="crypto-viewer">
       <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="D:\w\crypto-viewer\App.tsx">
@@ -773,7 +773,7 @@
       </file>
     </package>
     <package name="crypto-viewer.services">
-      <metrics statements="76" coveredstatements="41" conditionals="40" coveredconditionals="24" methods="34" coveredmethods="14"/>
+      <metrics statements="76" coveredstatements="58" conditionals="40" coveredconditionals="40" methods="34" coveredmethods="20"/>
       <file name="Color.service.ts" path="D:\w\crypto-viewer\services\Color.service.ts">
         <metrics statements="21" coveredstatements="21" conditionals="18" coveredconditionals="18" methods="3" coveredmethods="3"/>
         <line num="4" count="4" type="stmt"/>
@@ -855,24 +855,24 @@
         <line num="11" count="9" type="stmt"/>
       </file>
       <file name="Utils.service.ts" path="D:\w\crypto-viewer\services\Utils.service.ts">
-        <metrics statements="17" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
+        <metrics statements="17" coveredstatements="17" conditionals="16" coveredconditionals="16" methods="6" coveredmethods="6"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="5" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="11" count="6" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="19" count="7" type="stmt"/>
+        <line num="22" count="7" type="stmt"/>
+        <line num="23" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="26" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="32" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
       </file>
     </package>
   </project>
