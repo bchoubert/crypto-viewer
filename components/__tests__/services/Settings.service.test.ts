@@ -1,33 +1,35 @@
 import { SettingsKeysType, SETTINGS_KEYS } from '../../../constants';
+import { DarkModeType } from '../../../models/DarkMode';
 import { defaultSettings } from '../../../models/SettingsType';
+import WalletItem from '../../../models/WalletItem';
 import SettingsService from '../../../services/Settings.service';
 import StorageService from '../../../services/Storage.service';
 
 describe('SettingsService', () => {
-  const darkModeKeyToTest = 'DARK_MODE_KEY' as SettingsKeysType;
-  const darkModeCalledValue = SETTINGS_KEYS[darkModeKeyToTest];
-  const darkModeValueRetrieved = SETTINGS_KEYS[darkModeKeyToTest];
+  const darkModeKey = 'DARK_MODE_KEY' as SettingsKeysType;
+  const darkModeStorageKey = SETTINGS_KEYS[darkModeKey];
+  const darkModeValueRetrieved = SETTINGS_KEYS[darkModeKey];
 
-  const walletKeyToTest = 'WALLET_KEY' as SettingsKeysType;
-  const walletCalledValue = SETTINGS_KEYS[walletKeyToTest];
-  const walletValueRetrieved = { test: SETTINGS_KEYS[walletKeyToTest] };
+  const walletKey = 'WALLET_KEY' as SettingsKeysType;
+  const walletStorageKey = SETTINGS_KEYS[walletKey];
+  const walletValueRetrieved = { test: SETTINGS_KEYS[walletKey] };
 
-  const languageKeyToTest = 'LANGUAGE' as SettingsKeysType;
-  const languageCalledValue = SETTINGS_KEYS[languageKeyToTest];
-  const languageValueRetrieved = defaultSettings[languageKeyToTest];
+  const languageKey = 'LANGUAGE' as SettingsKeysType;
+  const languageStorageKey = SETTINGS_KEYS[languageKey];
+  const languageValueRetrieved = defaultSettings[languageKey];
 
-  let SettingsServiceMock = {} as {
+  let StorageServiceMock = {} as {
     getData: (key: string) => string,
     storeData: () => Promise<void>,
   };
 
   beforeAll(() => {
-    SettingsServiceMock = {
+    StorageServiceMock = {
       getData: jest.fn((key: string) => {
-        if (walletCalledValue === key) {
+        if (walletStorageKey === key) {
           return `{"test": "${key}"}`;
         }
-        if (darkModeCalledValue === key) {
+        if (darkModeStorageKey === key) {
           return key;
         }
         return null;
@@ -39,42 +41,88 @@ describe('SettingsService', () => {
     jest.spyOn(StorageService, 'storeData');
 
     (StorageService.getData as unknown as jest.Mock)
-      .mockImplementation(SettingsServiceMock.getData);
+      .mockImplementation(StorageServiceMock.getData);
 
     (StorageService.storeData as unknown as jest.Mock)
-      .mockImplementation(SettingsServiceMock.storeData);
+      .mockImplementation(StorageServiceMock.storeData);
   });
 
   it('loadOneSetting - simple', async () => {
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(0);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(0);
 
-    const res = await SettingsService.loadOneSetting(darkModeKeyToTest);
+    const res = await SettingsService.loadOneSetting(darkModeKey);
 
     expect(res).toEqual(darkModeValueRetrieved);
 
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(1);
-    expect(SettingsServiceMock.getData).toHaveBeenCalledWith(darkModeCalledValue);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(1);
+    expect(StorageServiceMock.getData).toHaveBeenCalledWith(darkModeStorageKey);
   });
 
   it('loadOneSetting - json', async () => {
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(1);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(1);
 
-    const res = await SettingsService.loadOneSetting(walletKeyToTest);
+    const res = await SettingsService.loadOneSetting(walletKey);
 
     expect(res).toEqual(walletValueRetrieved);
 
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(2);
-    expect(SettingsServiceMock.getData).toHaveBeenCalledWith(walletCalledValue);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(2);
+    expect(StorageServiceMock.getData).toHaveBeenCalledWith(walletStorageKey);
   });
 
   it('loadOneSetting - default', async () => {
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(2);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(2);
 
-    const res = await SettingsService.loadOneSetting(languageKeyToTest);
+    const res = await SettingsService.loadOneSetting(languageKey);
 
     expect(res).toEqual(languageValueRetrieved);
 
-    expect(SettingsServiceMock.getData).toHaveBeenCalledTimes(3);
-    expect(SettingsServiceMock.getData).toHaveBeenCalledWith(languageCalledValue);
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(3);
+    expect(StorageServiceMock.getData).toHaveBeenCalledWith(languageStorageKey);
+  });
+
+  const allSettingValues = {
+    ...defaultSettings,
+    [walletKey]: { test: SETTINGS_KEYS[walletKey] },
+    [darkModeKey]: darkModeValueRetrieved,
+  };
+
+  it('loadAll', async () => {
+    expect(StorageServiceMock.getData).toHaveBeenCalledTimes(3);
+
+    const res = await SettingsService.loadAll();
+
+    expect(res).toEqual(allSettingValues);
+
+    expect(StorageServiceMock.getData)
+      .toHaveBeenCalledTimes(3 + Object.keys(defaultSettings).length);
+  });
+
+  it('changeSetting - simple', async () => {
+    expect(StorageServiceMock.storeData).toHaveBeenCalledTimes(0);
+
+    const valueToBeSet = 'light' as DarkModeType;
+
+    await SettingsService.changeSetting(darkModeKey, valueToBeSet);
+
+    expect(StorageServiceMock.storeData).toHaveBeenCalledTimes(1);
+    expect(StorageServiceMock.storeData).toHaveBeenCalledWith(darkModeStorageKey, valueToBeSet);
+  });
+
+  it('changeSetting - json', async () => {
+    expect(StorageServiceMock.storeData).toHaveBeenCalledTimes(1);
+
+    const valueToBeSet = [
+      {
+        crypto: 'btc',
+        amount: 2,
+      },
+    ] as WalletItem[];
+
+    const stringifiedValue = JSON.stringify(valueToBeSet);
+
+    await SettingsService.changeSetting(walletKey, valueToBeSet);
+
+    expect(StorageServiceMock.storeData).toHaveBeenCalledTimes(2);
+    expect(StorageServiceMock.storeData).toHaveBeenCalledWith(walletStorageKey, stringifiedValue);
   });
 });
