@@ -1,9 +1,9 @@
-import { SettingsKeysType, SETTINGS_KEYS } from '../../../constants';
-import { DarkModeType } from '../../../models/DarkMode';
-import { defaultSettings } from '../../../models/SettingsType';
-import WalletItem from '../../../models/WalletItem';
-import SettingsService from '../../../services/Settings.service';
-import StorageService from '../../../services/Storage.service';
+import { SettingsKeysType, SETTINGS_KEYS } from '../../constants';
+import { DarkModeType } from '../../models/DarkMode';
+import { defaultSettings } from '../../models/SettingsType';
+import WalletItem from '../../models/WalletItem';
+import SettingsService from '../../services/Settings.service';
+import StorageService from '../../services/Storage.service';
 
 describe('SettingsService', () => {
   const darkModeKey = 'DARK_MODE_KEY' as SettingsKeysType;

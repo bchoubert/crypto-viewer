@@ -1,5 +1,5 @@
-import { AvailableTranslations } from '../../../assets/translations/TranslationUtils';
-import TranslationService from '../../../services/Translation.service';
+import { AvailableTranslations } from '../../assets/translations/TranslationUtils';
+import TranslationService from '../../services/Translation.service';
 
 describe('TranslationService', () => {
   it('getTranslationForLanguage', () => {

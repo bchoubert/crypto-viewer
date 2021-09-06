@@ -1,5 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
-import StorageService from '../../../services/Storage.service';
+import StorageService from '../../services/Storage.service';
 
 describe('StorageService', () => {
   let SecureStoreMock = {} as {

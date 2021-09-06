@@ -1,7 +1,7 @@
 import React from 'react';
-import { Image } from '../../PassThroughComponents';
-import { renderNode } from '../../testUtils/bootstrap';
-import CryptoIcon from '../../Utils/CryptoIcon';
+import { Image } from '../../components/PassThroughComponents';
+import { renderNode } from '../../components/testUtils/bootstrap';
+import CryptoIcon from '../../components/Utils/CryptoIcon';
 
 describe('<CryptoIcon />', () => {
   it('Prints correctly', () => {

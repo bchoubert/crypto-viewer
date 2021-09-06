@@ -1,4 +1,4 @@
-import UtilsService from '../../../services/Utils.service';
+import UtilsService from '../../services/Utils.service';
 
 describe('UtilsService', () => {
   it('sortFnOnStringProeprty', () => {

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import LoggerService from '../../../services/Logger.service';
+import LoggerService from '../../services/Logger.service';
 
 describe('LoggerService', () => {
   const consoleOriginals = {

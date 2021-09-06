@@ -1,4 +1,4 @@
-import ColorService from '../../../services/Color.service';
+import ColorService from '../../services/Color.service';
 
 describe('ColorService', () => {
   it('hexToRgba', () => {

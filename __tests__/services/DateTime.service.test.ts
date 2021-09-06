@@ -1,5 +1,5 @@
-import DateTimeService from '../../../services/DateTime.service';
-import '../../testUtils/bootstrap';
+import DateTimeService from '../../services/DateTime.service';
+import '../../components/testUtils/bootstrap';
 
 describe('DateTimeService', () => {
   it('Prepare', () => {
