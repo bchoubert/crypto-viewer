@@ -58,8 +58,8 @@ TN:
 SF:assets\translations\TranslationUtils.ts
 FNF:0
 FNH:0
-DA:9,4
-DA:18,4
+DA:9,5
+DA:18,5
 LF:2
 LH:2
 BRF:0
@@ -69,7 +69,7 @@ TN:
 SF:assets\translations\en.ts
 FNF:0
 FNH:0
-DA:3,4
+DA:3,5
 LF:1
 LH:1
 BRF:0
@@ -79,7 +79,7 @@ TN:
 SF:assets\translations\fr.ts
 FNF:0
 FNH:0
-DA:3,4
+DA:3,5
 LF:1
 LH:1
 BRF:0
@@ -1939,13 +1939,13 @@ BRH:0
 end_of_record
 TN:
 SF:services\Translation.service.ts
-FN:11,(anonymous_0)
+FN:12,(anonymous_0)
 FNF:1
 FNH:1
-FNDA:9,(anonymous_0)
-DA:5,3
-DA:10,3
-DA:11,9
+FNDA:11,(anonymous_0)
+DA:6,4
+DA:11,4
+DA:12,11
 LF:3
 LH:3
 BRF:0
