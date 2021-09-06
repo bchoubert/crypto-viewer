@@ -1,16 +1,16 @@
 import React from 'react';
 import { fireEvent } from '@testing-library/react-native';
-import EnTranslation from '../../assets/translations/en';
+import EnTranslation from '../../../assets/translations/en';
 import {
   NavigationContext,
   NavigationContextInterface,
-} from '../../contexts/NavigationProvider';
-import Tabs from '../../models/Tabs';
-import { DarkModeType } from '../../models/DarkMode';
-import { renderNode } from '../../components/testUtils/bootstrap';
+} from '../../../contexts/NavigationProvider';
+import Tabs from '../../../models/Tabs';
+import { DarkModeType } from '../../../models/DarkMode';
+import { renderNode } from '../../../components/testUtils/bootstrap';
 
-import BottomBar from '../../components/Utils/BottomBar';
-import { ThemeContext, themes } from '../../contexts/ThemeProvider';
+import BottomBar from '../../../components/Utils/BottomBar';
+import { ThemeContext, themes } from '../../../contexts/ThemeProvider';
 
 describe('<BottomBar />', () => {
   const defaultNavigationContextValues: NavigationContextInterface = {
