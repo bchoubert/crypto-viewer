@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,42 +109,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -155,42 +155,42 @@ import Price from '../models/Price';
 import Stats from '../models/Stats';
 import candleGranularity, { CandleType } from '../models/CandleGranularity';
 &nbsp;
-const apiProDomain = <span class="cstat-no" title="statement not covered" >'https://api.pro.coinbase.com';</span>
-const apiDomain = <span class="cstat-no" title="statement not covered" >'https://api.coinbase.com/v2';</span>
+export const apiProDomain = 'https://api.pro.coinbase.com';
+export const apiDomain = 'https://api.coinbase.com/v2';
 &nbsp;
 // Service to interact with APIs and network
-const NetworkService = <span class="cstat-no" title="statement not covered" >{</span>
-<span class="fstat-no" title="function not covered" >  fe</span>tchCryptos(): Promise&lt;Currency[]&gt; {
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiProDomain}/currencies`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
+const NetworkService = {
+  fetchCryptos(): Promise&lt;Currency[]&gt; {
+    return fetch(`${apiProDomain}/currencies`)
+      .then((response) =&gt; response.json());
   },
-<span class="fstat-no" title="function not covered" >  fe</span>tchCryptoExchangeRates(quoteCode: string): Promise&lt;ExchangeRates&gt; {
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiDomain}/exchange-rates?currency=${quoteCode}`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
-  },
-&nbsp;
-<span class="fstat-no" title="function not covered" >  fe</span>tchCrypto24hrStats(crypto: string, quote: string): Promise&lt;Stats&gt; {
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/stats`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
+  fetchCryptoExchangeRates(quoteCode: string): Promise&lt;ExchangeRates&gt; {
+    return fetch(`${apiDomain}/exchange-rates?currency=${quoteCode}`)
+      .then((response) =&gt; response.json());
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  fe</span>tchCryptoBuyPrice(crypto: string, quote: string): Promise&lt;Price&gt; {
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/buy`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
-  },
-<span class="fstat-no" title="function not covered" >  fe</span>tchCryptoSellPrice(crypto: string, quote: string): Promise&lt;Price&gt; {
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/sell`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
+  fetchCrypto24hrStats(crypto: string, quote: string): Promise&lt;Stats&gt; {
+    return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/stats`)
+      .then((response) =&gt; response.json());
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  fe</span>tchCryptoHistoricRates(
+  fetchCryptoBuyPrice(crypto: string, quote: string): Promise&lt;Price&gt; {
+    return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/buy`)
+      .then((response) =&gt; response.json());
+  },
+  fetchCryptoSellPrice(crypto: string, quote: string): Promise&lt;Price&gt; {
+    return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/sell`)
+      .then((response) =&gt; response.json());
+  },
+&nbsp;
+  fetchCryptoHistoricRates(
     crypto: string,
     quote: string,
     candle: CandleType,
   ): Promise&lt;number[][]&gt; {
-    const parameters = <span class="cstat-no" title="statement not covered" >`?granularity=${candleGranularity[candle].granularity}&amp;end=${candleGranularity[candle].getEndDate()}&amp;start=${candleGranularity[candle].getStartDate()}`;</span>
-<span class="cstat-no" title="statement not covered" >    return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/candles${parameters}`)</span>
-      .then(<span class="fstat-no" title="function not covered" >(r</span>esponse) =&gt; <span class="cstat-no" title="statement not covered" >response.json())</span>;
+    const parameters = `?granularity=${candleGranularity[candle].granularity}&amp;end=${candleGranularity[candle].getEndDate()}&amp;start=${candleGranularity[candle].getStartDate()}`;
+    return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/candles${parameters}`)
+      .then((response) =&gt; response.json());
   },
 };
 &nbsp;
@@ -202,7 +202,7 @@ export default NetworkService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Sep 06 2021 23:02:47 GMT+0200 (Central European Summer Time)
+                at Fri Sep 10 2021 20:01:49 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
