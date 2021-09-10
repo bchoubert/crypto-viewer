@@ -3,7 +3,7 @@ import CryptoCurrenciesIconMap from '../components/Utils/CryptoCurrencyIconsMap'
 
 const ColorService = {
   // Generates a rgba string from the hex and using the opacity
-  hexToRgba(hex, opacity) {
+  hexToRgba(hex: string, opacity: number) {
     let c;
     if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
       c = hex.substring(1).split('');
@@ -17,7 +17,7 @@ const ColorService = {
     throw new Error('Bad Hex');
   },
   // Get the color from the specific crypto currencies map
-  getColorFromCrypto(crypto) {
+  getColorFromCrypto(crypto: keyof typeof CryptoCurrenciesIconMap) {
     return CryptoCurrenciesIconMap[crypto?.toLowerCase()]?.color || '#000000';
   },
 

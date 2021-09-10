@@ -38,9 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-interface BottomBarProps {}
-
-const BottomBar: FC<BottomBarProps> = () => {
+const BottomBar: FC = () => {
   const {
     activeTab, changeTab,
   } = useContext(NavigationContext);
@@ -60,12 +58,16 @@ const BottomBar: FC<BottomBarProps> = () => {
   if ([Tabs.list, Tabs.wallet].includes(activeTab)) {
     return (
       <View style={styles.bottomBar}>
-        <TouchableOpacity onPress={handleListAction} style={styles.bottomBarButtonContainer}>
+        <TouchableOpacity
+          onPress={handleListAction}
+          style={styles.bottomBarButtonContainer}
+        >
           <Text
             style={{
               ...styles.cryptoViewerIcon,
               color: (activeTab === Tabs.list) ? activeTextColor : theme.textColor,
             }}
+            testID={Tabs.list}
           >
             {CryptoViewerIconsMap.prices.unicode}
           </Text>
@@ -76,12 +78,16 @@ const BottomBar: FC<BottomBarProps> = () => {
               </Text>
             ) : null}
         </TouchableOpacity>
-        <TouchableOpacity onPress={handleWalletAction} style={styles.bottomBarButtonContainer}>
+        <TouchableOpacity
+          onPress={handleWalletAction}
+          style={styles.bottomBarButtonContainer}
+        >
           <Text
             style={{
               ...styles.cryptoViewerIcon,
               color: (activeTab === Tabs.wallet) ? activeTextColor : theme.textColor,
             }}
+            testID={Tabs.wallet}
           >
             {CryptoViewerIconsMap.wallet.unicode}
           </Text>

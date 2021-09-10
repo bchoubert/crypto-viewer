@@ -1,5 +1,5 @@
 /* Colors used all over the app */
-const Colors = {
+const Colors: Record<string, string> = {
   blue: '#005BE3',
   veryLightGray: '#F8F8F8',
   lightGray: '#F0F0F0',
