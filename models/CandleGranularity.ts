@@ -2,14 +2,8 @@ import moment from 'moment';
 
 const formatString = 'YYYY-MM-DD';
 
-type CandleGranularityType = {
-  granularity: number,
-  getStartDate: () => string,
-  getEndDate: () => string,
-};
-
 // All granularity for graphs
-const candleGranularity: Record<CandleType, CandleGranularityType> = {
+const candleGranularity = {
   '6M': {
     granularity: 86400,
     getStartDate(): string {

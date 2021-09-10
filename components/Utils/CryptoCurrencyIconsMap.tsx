@@ -1,8 +1,6 @@
-import { ImageRequireSource } from 'react-native';
-
 /* eslint-disable global-require */
 const CryptoCurrenciesIconMap: Record<string, {
-  icon: ImageRequireSource,
+  icon: any,
   color: string,
   description: string,
   website: string,

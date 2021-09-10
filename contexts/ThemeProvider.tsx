@@ -14,7 +14,7 @@ type ThemeType = {
   isDark: boolean;
 };
 
-export const themes: Record<DarkModeType, ThemeType> = {
+const themes: Record<DarkModeType, ThemeType> = {
   dark: {
     backgroundColor: '#222222',
     backgroundTile: '#444444',
@@ -32,7 +32,7 @@ export const themes: Record<DarkModeType, ThemeType> = {
 };
 
 export const ThemeContext = createContext(themes.light as ThemeType & {
-  lightenColor?: (color: string, coeff?: number) => string,
+  lightenColor?: (color: string) => string,
   adjustColorIfTooDarkOrLight?: (color: string) => string,
 });
 

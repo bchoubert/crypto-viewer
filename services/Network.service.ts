@@ -4,8 +4,8 @@ import Price from '../models/Price';
 import Stats from '../models/Stats';
 import candleGranularity, { CandleType } from '../models/CandleGranularity';
 
-export const apiProDomain = 'https://api.pro.coinbase.com';
-export const apiDomain = 'https://api.coinbase.com/v2';
+const apiProDomain = 'https://api.pro.coinbase.com';
+const apiDomain = 'https://api.coinbase.com/v2';
 
 // Service to interact with APIs and network
 const NetworkService = {

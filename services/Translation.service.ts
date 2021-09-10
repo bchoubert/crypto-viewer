@@ -1,7 +1,6 @@
 import EnTranslation from '../assets/translations/en';
 import FrTranslation from '../assets/translations/fr';
-import { AvailableTranslations } from '../assets/translations/TranslationUtils';
-import TranslationType from '../models/TranslationType';
+import TranslationType, { AvailableTranslations } from '../assets/translations/TranslationUtils';
 
 const translationsForLanguage: Record<AvailableTranslations, TranslationType> = {
   [AvailableTranslations.en]: EnTranslation,

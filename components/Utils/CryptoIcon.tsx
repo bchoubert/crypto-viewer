@@ -1,8 +1,5 @@
 import React, { FC, memo } from 'react';
-import {
-  StyleSheet, View,
-} from 'react-native';
-import { Image } from '../PassThroughComponents';
+import { Image, StyleSheet, View } from 'react-native';
 
 import CryptoCurrencyIconsMap from './CryptoCurrencyIconsMap';
 
@@ -19,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 interface CryptoIconProps {
-  code: keyof typeof CryptoCurrencyIconsMap;
+  code: string;
   style?: object;
   styleForIcon?: object;
 }
