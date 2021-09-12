@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1631296909477" clover="3.2.0">
-  <project timestamp="1631296909477" name="All files">
-    <metrics statements="657" coveredstatements="159" conditionals="316" coveredconditionals="59" methods="256" coveredmethods="59" elements="1229" coveredelements="277" complexity="0" loc="657" ncloc="657" packages="14" files="58" classes="58"/>
+<coverage generated="1631449166875" clover="3.2.0">
+  <project timestamp="1631449166876" name="All files">
+    <metrics statements="657" coveredstatements="171" conditionals="316" coveredconditionals="59" methods="256" coveredmethods="71" elements="1229" coveredelements="301" complexity="0" loc="657" ncloc="657" packages="14" files="58" classes="58"/>
     <package name="crypto-viewer">
       <metrics statements="5" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.tsx" path="D:\w\crypto-viewer\App.tsx">
@@ -703,23 +703,23 @@
       </file>
     </package>
     <package name="crypto-viewer.models">
-      <metrics statements="22" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="1"/>
+      <metrics statements="22" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="13"/>
       <file name="CandleGranularity.ts" path="D:\w\crypto-viewer\models\CandleGranularity.ts">
-        <metrics statements="14" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="0"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="46" count="0" type="stmt"/>
-        <line num="52" count="0" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="64" count="0" type="stmt"/>
+        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="12"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="52" count="1" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
       </file>
       <file name="Crypto.ts" path="D:\w\crypto-viewer\models\Crypto.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
