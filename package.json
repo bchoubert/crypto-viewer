@@ -10,6 +10,7 @@
     "lint_ts": "tsc --noEmit",
     "lint_fix": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
     "test": "jest",
+    "test-no-cov": "jest --coverage=false",
     "prepare": "husky install"
   },
   "dependencies": {
