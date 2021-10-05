@@ -1,4 +1,5 @@
 type TranslationType = {
+  language: string,
   common: {
     cancel: string,
     save: string,
