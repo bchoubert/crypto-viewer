@@ -1,6 +1,7 @@
 import TranslationType from '../../models/TranslationType';
 
 const FrTranslation: TranslationType = {
+  language: 'Français',
   common: {
     cancel: 'Annuler',
     save: 'Sauvegarder',

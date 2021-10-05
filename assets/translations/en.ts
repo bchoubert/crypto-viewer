@@ -1,6 +1,7 @@
 import TranslationType from '../../models/TranslationType';
 
 const EnTranslation: TranslationType = {
+  language: 'English',
   common: {
     cancel: 'Cancel',
     save: 'Save',
