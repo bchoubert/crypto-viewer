@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Selector /> Prints correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "borderBottomWidth": 1,
+      "borderColor": "#335588",
+      "borderRadius": 18,
+      "borderTopWidth": 1,
+      "flexDirection": "row",
+      "height": 35,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#335588",
+        "borderRadius": 17,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 34,
+        "opacity": 1,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#FFFFFF",
+          "flex": 1,
+          "textAlign": "center",
+        }
+      }
+    >
+      item1
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "borderRadius": 17,
+        "flex": 1,
+        "flexDirection": "row",
+        "height": 34,
+        "opacity": 1,
+        "textAlign": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222222",
+          "flex": 1,
+          "textAlign": "center",
+        }
+      }
+    >
+      item2
+    </Text>
+  </View>
+</View>
+`;
