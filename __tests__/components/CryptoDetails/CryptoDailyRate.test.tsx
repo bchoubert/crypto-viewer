@@ -17,6 +17,7 @@ describe('<CryptoDailyRate />', () => {
       <CryptoDailyRate rate={2.5123} />,
     );
 
+    node.getByTestId('sign-plus');
     node.getByText('2.51%');
   });
 
@@ -25,6 +26,7 @@ describe('<CryptoDailyRate />', () => {
       <CryptoDailyRate rate={-2.5123} />,
     );
 
+    node.getByTestId('sign-minus');
     node.getByText('2.51%');
   });
 });

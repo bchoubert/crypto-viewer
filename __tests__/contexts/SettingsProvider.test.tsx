@@ -44,6 +44,9 @@ describe('SettingsProvider', () => {
     }), {} as SettingsType);
 
   beforeAll(() => {
+    // eslint-disable-next-line no-console -- we don't need error messages fron act
+    console.error = () => null;
+
     SettingsServiceMock = {
       loadAll: jest.fn(
         () => new Promise((resolve) => resolve(settingsDefaultValues)),

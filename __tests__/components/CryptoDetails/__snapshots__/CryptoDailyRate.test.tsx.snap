@@ -38,6 +38,7 @@ exports[`<CryptoDailyRate /> Prints correctly 1`] = `
           "paddingRight": 5,
         }
       }
+      testID="sign-plus"
     >
       
     </Text>

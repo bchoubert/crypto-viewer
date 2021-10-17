@@ -62,7 +62,7 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
     <View style={styles.rate_container}>
       {rate < 0 ? (
         <View style={styles.rate_content}>
-          <Text style={styles.rate_icon_minus}>
+          <Text style={styles.rate_icon_minus} testID="sign-minus">
             {CryptoViewerIconsMap.minus.unicode}
           </Text>
           <Text style={styles.rate_number_minus}>
@@ -71,7 +71,7 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
         </View>
       ) : (
         <View style={styles.rate_content}>
-          <Text style={styles.rate_icon_plus}>
+          <Text style={styles.rate_icon_plus} testID="sign-plus">
             {CryptoViewerIconsMap.plus.unicode}
           </Text>
           <Text style={styles.rate_number_plus}>
