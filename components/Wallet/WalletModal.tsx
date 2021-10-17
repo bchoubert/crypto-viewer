@@ -156,6 +156,7 @@ const WalletModal: FC<WalletModalProps> = ({
                 selectedValue={selectedCryptoKey}
                 style={styles.modal_crypto}
                 onValueChange={onSelectedCryptoKeyChange}
+                testID="crypto-selector"
               >
                 <Picker.Item label={t.common.select_option} value={null} />
                 {cryptoOptions}
@@ -165,6 +166,7 @@ const WalletModal: FC<WalletModalProps> = ({
               {t.wallet.amount}
             </Text>
             <TextInput
+              accessibilityLabel="amount-input"
               placeholder="1.02"
               underlineColorAndroid="transparent"
               keyboardType="numeric"
