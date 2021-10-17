@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -156,14 +156,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,7 +200,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,11 +242,11 @@ interface CryptoDailyRateProps {
   rate: number;
 }
 &nbsp;
-const CryptoDailyRate: FC&lt;CryptoDailyRateProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
+const CryptoDailyRate: FC&lt;CryptoDailyRateProps&gt; = ({
   rate,
 }) =&gt; {
-  const styles = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >    ()</span> =&gt; <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span>
+  const styles = useMemo(
+    () =&gt; StyleSheet.create({
       rate_container: {
         height: 30,
         width: 80,
@@ -289,7 +289,7 @@ const CryptoDailyRate: FC&lt;CryptoDailyRateProps&gt; = <span class="cstat-no" t
     [],
   );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;View style={styles.rate_container}&gt;
       {rate &lt; 0 ? (
         &lt;View style={styles.rate_content}&gt;
@@ -297,7 +297,7 @@ const CryptoDailyRate: FC&lt;CryptoDailyRateProps&gt; = <span class="cstat-no" t
             {CryptoViewerIconsMap.minus.unicode}
           &lt;/Text&gt;
           &lt;Text style={styles.rate_number_minus}&gt;
-            {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
           &lt;/Text&gt;
         &lt;/View&gt;
       ) : (
@@ -306,7 +306,7 @@ const CryptoDailyRate: FC&lt;CryptoDailyRateProps&gt; = <span class="cstat-no" t
             {CryptoViewerIconsMap.plus.unicode}
           &lt;/Text&gt;
           &lt;Text style={styles.rate_number_plus}&gt;
-            {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
           &lt;/Text&gt;
         &lt;/View&gt;
       )}
@@ -322,7 +322,7 @@ export default memo(CryptoDailyRate);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sat Oct 16 2021 21:48:58 GMT+0200 (Central European Summer Time)
+                at Sat Oct 16 2021 22:46:12 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

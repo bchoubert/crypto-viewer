@@ -66,7 +66,7 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
             {CryptoViewerIconsMap.minus.unicode}
           </Text>
           <Text style={styles.rate_number_minus}>
-            {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
           </Text>
         </View>
       ) : (
@@ -75,7 +75,7 @@ const CryptoDailyRate: FC<CryptoDailyRateProps> = ({
             {CryptoViewerIconsMap.plus.unicode}
           </Text>
           <Text style={styles.rate_number_plus}>
-            {`${UtilsService.truncateNumber(Math.abs(rate || 0))}%`}
+            {`${UtilsService.truncateNumber(Math.abs(rate))}%`}
           </Text>
         </View>
       )}
