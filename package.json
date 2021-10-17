@@ -82,7 +82,7 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --no-coverage"
+    "*.{js,jsx,ts,tsx}": "eslint"
   },
   "husky": {
     "hooks": {
