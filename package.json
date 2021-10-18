@@ -79,6 +79,10 @@
     "setupFiles": [],
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
+    ],
+    "modulePathIgnorePatterns": [
+      "App.tsx",
+      "AppProviders.tsx"
     ]
   },
   "lint-staged": {

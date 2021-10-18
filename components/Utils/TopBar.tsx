@@ -2,8 +2,9 @@ import React, {
   FC, useCallback, useContext, useMemo, memo,
 } from 'react';
 import {
-  TouchableOpacity, View, Image, StyleSheet, Text, ToastAndroid,
+  TouchableOpacity, View, StyleSheet, Text, ToastAndroid,
 } from 'react-native';
+import { Image } from '../PassThroughComponents';
 
 import CryptoViewerIconsMap from '../../assets/fonts/baseIcons/CryptoViewerIconsMap';
 import Colors from '../../assets/Colors';
@@ -102,7 +103,7 @@ const TopBar: FC<TopBarProps> = () => {
     () => {
       if (isInsideCrypto) {
         return (
-          <TouchableOpacity onPress={handleBackAction}>
+          <TouchableOpacity onPress={handleBackAction} testID="backFromCrypto">
             <Text
               style={{
                 ...styles.cryptoViewerIcon,
@@ -115,7 +116,7 @@ const TopBar: FC<TopBarProps> = () => {
         );
       } if (activeTab === Tabs.settings) {
         return (
-          <TouchableOpacity onPress={handleBackAction}>
+          <TouchableOpacity onPress={handleBackAction} testID="backFromSettings">
             <Text
               style={{
                 ...styles.cryptoViewerIcon,
@@ -128,7 +129,7 @@ const TopBar: FC<TopBarProps> = () => {
         );
       }
       return (
-        <TouchableOpacity onPress={handleChangeTabToList} style={styles.topBarIconContainer}>
+        <TouchableOpacity onPress={handleChangeTabToList} style={styles.topBarIconContainer} testID="logo">
           {/* eslint-disable-next-line global-require */}
           <Image style={{ width: 50, height: 50 }} source={require('../../assets/icon.png')} />
           <Text style={styles.topBarText}>Crypto Viewer</Text>
@@ -143,19 +144,21 @@ const TopBar: FC<TopBarProps> = () => {
       if (isInsideCrypto) {
         return (
           <View style={styles.topBarInsideContainer}>
-            <TouchableOpacity onPress={handleChangeFavourites}>
+            <TouchableOpacity onPress={handleChangeFavourites} testID="favourites">
               <Text
                 style={{
                   ...styles.cryptoViewerIcon,
                   color: Colors.white,
                 }}
+                testID="favourites-text"
+                accessibilityLabel={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
               >
                 {isFavourite
                   ? CryptoViewerIconsMap.star.unicode
                   : CryptoViewerIconsMap.star_empty.unicode}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleChangeTabToSettings}>
+            <TouchableOpacity onPress={handleChangeTabToSettings} testID="settings">
               <Text
                 style={{
                   ...styles.cryptoViewerIcon,
@@ -168,8 +171,12 @@ const TopBar: FC<TopBarProps> = () => {
           </View>
         );
       }
+      if (activeTab === Tabs.settings) {
+        return null;
+      }
+
       return (
-        <TouchableOpacity onPress={handleChangeTabToSettings}>
+        <TouchableOpacity onPress={handleChangeTabToSettings} testID="settings">
           <Text
             style={{
               ...styles.cryptoViewerIcon,
@@ -181,7 +188,7 @@ const TopBar: FC<TopBarProps> = () => {
         </TouchableOpacity>
       );
     },
-    [isInsideCrypto, isFavourite, handleChangeFavourites, theme],
+    [isInsideCrypto, isFavourite, handleChangeFavourites, theme, activeTab],
   );
 
   return (

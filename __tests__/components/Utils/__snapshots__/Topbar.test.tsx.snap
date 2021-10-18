@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TopBar /> Prints correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#FFFFFF",
+      "display": "flex",
+      "flexBasis": 60,
+      "flexDirection": "row",
+      "flexGrow": 0,
+      "justifyContent": "space-between",
+      "paddingLeft": 8,
+      "paddingRight": 8,
+      "position": "relative",
+      "zIndex": 3,
+    }
+  }
+>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "opacity": 1,
+      }
+    }
+    testID="logo"
+  >
+    <div>
+      IMAGE
+    </div>
+    <Text
+      style={
+        Object {
+          "color": "#005BE3",
+          "fontSize": 20,
+          "marginLeft": 5,
+        }
+      }
+    >
+      Crypto Viewer
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+    testID="settings"
+  >
+    <Text
+      style={
+        Object {
+          "color": "#222222",
+          "fontFamily": "crypto-viewer",
+          "fontSize": 20,
+          "padding": 10,
+        }
+      }
+    >
+      
+    </Text>
+  </View>
+</View>
+`;
