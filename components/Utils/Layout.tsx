@@ -13,7 +13,7 @@ import BottomBar from './BottomBar';
 
 import Tabs from '../../models/Tabs';
 
-import TopBar from './Topbar';
+import TopBar from './Topbar2';
 import { NavigationContext } from '../../contexts/NavigationProvider';
 import { ThemeContext } from '../../contexts/ThemeProvider';
 

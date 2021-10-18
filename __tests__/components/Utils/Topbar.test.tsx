@@ -2,7 +2,7 @@ import { fireEvent } from '@testing-library/react-native';
 import React from 'react';
 import { Image } from '../../../components/PassThroughComponents';
 import { renderNode } from '../../../components/testUtils/bootstrap';
-import Topbar from '../../../components/Utils/Topbar';
+import Topbar from '../../../components/Utils/Topbar2';
 import { SettingsKeysType } from '../../../constants';
 import { NavigationContext, NavigationContextInterface } from '../../../contexts/NavigationProvider';
 import { SettingsContext } from '../../../contexts/SettingsProvider';
