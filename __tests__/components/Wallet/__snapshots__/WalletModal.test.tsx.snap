@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WalletModal /> Prints correctly 1`] = `
+<Modal
+  animationType="slide"
+  hardwareAccelerated={false}
+  transparent={true}
+  visible={true}
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "rgba(0, 0, 0, .7)",
+        "flex": 1,
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#F8F8F8",
+          "borderTopLeftRadius": 15,
+          "borderTopRightRadius": 15,
+          "height": 220,
+          "width": 750,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F8F8F8",
+            "borderTopLeftRadius": 15,
+            "borderTopRightRadius": 15,
+            "flexDirection": "row",
+            "height": 60,
+            "justifyContent": "space-between",
+            "paddingLeft": 15,
+            "paddingRight": 15,
+          }
+        }
+      >
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#005BE3",
+                "fontSize": 18,
+                "minWidth": 50,
+                "textAlign": "left",
+              }
+            }
+          >
+            Cancel
+          </Text>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#222222",
+              "fontSize": 18,
+            }
+          }
+        >
+          Add to your Wallet
+        </Text>
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Text
+            style={
+              Object {
+                "color": "#005BE3",
+                "fontSize": 18,
+                "fontWeight": "bold",
+                "minWidth": 50,
+                "textAlign": "right",
+              }
+            }
+          >
+            Save
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "padding": 10,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#222222",
+              "fontSize": 10,
+            }
+          }
+        >
+          Crypto
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexBasis": 50,
+              "flexDirection": "row",
+              "height": 50,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F7931B",
+                "borderRadius": 10,
+                "marginRight": 10,
+              }
+            }
+          >
+            <div>
+              IMAGE
+            </div>
+          </View>
+          <View
+            style={
+              Object {
+                "color": "#222222",
+                "flex": 1,
+              }
+            }
+          >
+            <RNCPicker
+              items={
+                Array [
+                  Object {
+                    "label": "Please select an option...",
+                    "textColor": undefined,
+                    "value": null,
+                  },
+                  Object {
+                    "label": "Bitcoin",
+                    "textColor": undefined,
+                    "value": "btc",
+                  },
+                  Object {
+                    "label": "Litecoin",
+                    "textColor": undefined,
+                    "value": "ltc",
+                  },
+                ]
+              }
+              onChange={[Function]}
+              selectedIndex={1}
+              style={
+                Array [
+                  Object {
+                    "height": 216,
+                  },
+                  undefined,
+                ]
+              }
+              testID="crypto-selector"
+            />
+          </View>
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "#222222",
+              "fontSize": 10,
+            }
+          }
+        >
+          Amount
+        </Text>
+        <TextInput
+          accessibilityLabel="amount-input"
+          allowFontScaling={true}
+          keyboardType="numeric"
+          onChangeText={[MockFunction]}
+          placeholder="1.02"
+          rejectResponderTermination={true}
+          style={
+            Object {
+              "borderBottomColor": "#222222",
+              "borderBottomWidth": 1,
+              "color": "#222222",
+              "padding": 5,
+            }
+          }
+          underlineColorAndroid="transparent"
+          value="3"
+        />
+      </View>
+    </View>
+  </View>
+</Modal>
+`;

@@ -1,0 +1,352 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WalletListItem /> Prints correctly 1`] = `
+<View
+  bounceOnMount={true}
+  disable={false}
+  leftActionActivationDistance={125}
+  leftActionReleaseAnimationConfig={null}
+  leftActionReleaseAnimationFn={null}
+  leftButtonWidth={75}
+  leftButtonsActivationDistance={75}
+  leftButtonsCloseReleaseAnimationConfig={null}
+  leftButtonsCloseReleaseAnimationFn={null}
+  leftButtonsOpenReleaseAnimationConfig={null}
+  leftButtonsOpenReleaseAnimationFn={null}
+  onLayout={[Function]}
+  onLeftActionActivate={[Function]}
+  onLeftActionComplete={[Function]}
+  onLeftActionDeactivate={[Function]}
+  onLeftActionRelease={[Function]}
+  onLeftButtonsActivate={[Function]}
+  onLeftButtonsCloseComplete={[Function]}
+  onLeftButtonsCloseRelease={[Function]}
+  onLeftButtonsDeactivate={[Function]}
+  onLeftButtonsOpenComplete={[Function]}
+  onLeftButtonsOpenRelease={[Function]}
+  onMoveShouldSetResponder={[Function]}
+  onMoveShouldSetResponderCapture={[Function]}
+  onPanAnimatedValueRef={[Function]}
+  onRef={[Function]}
+  onResponderEnd={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderReject={[Function]}
+  onResponderRelease={[Function]}
+  onResponderStart={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onRightActionActivate={[Function]}
+  onRightActionComplete={[Function]}
+  onRightActionDeactivate={[Function]}
+  onRightActionRelease={[Function]}
+  onRightButtonsActivate={[Function]}
+  onRightButtonsCloseComplete={[Function]}
+  onRightButtonsCloseRelease={[Function]}
+  onRightButtonsDeactivate={[Function]}
+  onRightButtonsOpenComplete={[Function]}
+  onRightButtonsOpenRelease={[Function]}
+  onStartShouldSetResponder={[Function]}
+  onStartShouldSetResponderCapture={[Function]}
+  onSwipeComplete={[Function]}
+  onSwipeMove={[Function]}
+  onSwipeRelease={[Function]}
+  onSwipeStart={[Function]}
+  rightActionActivationDistance={125}
+  rightActionReleaseAnimationConfig={null}
+  rightActionReleaseAnimationFn={null}
+  rightButtonWidth={75}
+  rightButtonsActivationDistance={75}
+  rightButtonsCloseReleaseAnimationConfig={null}
+  rightButtonsCloseReleaseAnimationFn={null}
+  rightButtonsOpenReleaseAnimationConfig={null}
+  rightButtonsOpenReleaseAnimationFn={null}
+  style={
+    Array [
+      Object {
+        "flexDirection": "row",
+      },
+      undefined,
+    ]
+  }
+  swipeReleaseAnimationConfig={
+    Object {
+      "duration": 250,
+      "easing": [Function],
+      "toValue": Object {
+        "x": 0,
+        "y": 0,
+      },
+    }
+  }
+  swipeReleaseAnimationFn={[Function]}
+  swipeStartMinDistance={15}
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "transform": Array [
+          Object {
+            "translateX": 0.5,
+          },
+        ],
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "flexDirection": "row",
+          "height": 75,
+          "opacity": 1,
+          "padding": 10,
+          "width": "100%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#F7931B15",
+            "borderRadius": 10,
+            "flex": 1,
+            "flexDirection": "row",
+            "height": 62,
+            "justifyContent": "space-between",
+            "paddingLeft": 10,
+            "paddingRight": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F7931B",
+                "borderRadius": 10,
+                "marginRight": 10,
+              }
+            }
+          >
+            <div>
+              IMAGE
+            </div>
+          </View>
+          <View
+            style={
+              Object {
+                "fontSize": 25,
+                "justifyContent": "flex-start",
+                "width": 200,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#222222",
+                  "fontSize": 18,
+                }
+              }
+            >
+              Bitcoin
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#222222",
+                  "fontSize": 12,
+                }
+              }
+            >
+              BTC
+            </Text>
+          </View>
+        </View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+                "justifyContent": "flex-start",
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "#222222",
+                  "paddingRight": 5,
+                }
+              }
+            >
+              3.50 B
+            </Text>
+            <Text
+              style={
+                Object {
+                  "color": "#222222",
+                  "paddingRight": 5,
+                }
+              }
+            >
+              7.00 $
+            </Text>
+          </View>
+          <Text
+            style={
+              Object {
+                "color": "#222222",
+                "fontFamily": "crypto-viewer",
+                "fontSize": 14,
+              }
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "marginRight": -0,
+        "transform": Array [
+          Object {
+            "translateX": 0.5,
+          },
+        ],
+        "width": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+          "width": 0,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#005BE3",
+            "borderBottomLeftRadius": 10,
+            "borderTopLeftRadius": 10,
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+        testID="Edit item Bitcoin"
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "paddingLeft": 26,
+              "textAlign": "left",
+            }
+          }
+        >
+          Edit
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "transform": Array [
+            Object {
+              "translateX": 0,
+            },
+          ],
+          "width": 0,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "backgroundColor": "#FF0D00",
+            "borderBottomLeftRadius": 10,
+            "borderTopLeftRadius": 10,
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+        testID="Delete item Bitcoin"
+      >
+        <Text
+          style={
+            Object {
+              "color": "#FFFFFF",
+              "paddingLeft": 20,
+              "textAlign": "left",
+            }
+          }
+        >
+          Delete
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

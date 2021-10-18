@@ -208,6 +208,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
         <TouchableHighlight
           style={{ ...styles.list_actions, ...styles.list_actions__edit }}
           onPress={handleEdit}
+          testID={`Edit item ${crypto.name}`}
         >
           <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__edit }}>
             {t.common.edit}
@@ -216,6 +217,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
         <TouchableHighlight
           style={{ ...styles.list_actions, ...styles.list_actions__delete }}
           onPress={handleDelete}
+          testID={`Delete item ${crypto.name}`}
         >
           <Text style={{ ...styles.list_actions_title, ...styles.list_actions_title__delete }}>
             {t.common.delete}

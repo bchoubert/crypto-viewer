@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -239,7 +239,9 @@
 <a name='L180'></a><a href='#L180'>180</a>
 <a name='L181'></a><a href='#L181'>181</a>
 <a name='L182'></a><a href='#L182'>182</a>
-<a name='L183'></a><a href='#L183'>183</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,7 +266,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -275,11 +277,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -347,14 +349,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,7 +450,7 @@ interface WalletModalProps {
   cryptos: Crypto[];
 }
 &nbsp;
-const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span></span>
+const WalletModal: FC&lt;WalletModalProps&gt; = ({
   isOpen,
   closeModal,
   selectedAmount,
@@ -457,11 +461,11 @@ const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="st
   onSelectedAmountChange,
   cryptos,
 }) =&gt; {
-  const t = <span class="cstat-no" title="statement not covered" >useContext(TranslationContext);</span>
+  const t = useContext(TranslationContext);
 &nbsp;
-  const theme = <span class="cstat-no" title="statement not covered" >useContext(ThemeContext);</span>
+  const theme = useContext(ThemeContext);
 &nbsp;
-  const styles = <span class="cstat-no" title="statement not covered" >useMemo(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >StyleSheet.create({</span></span>
+  const styles = useMemo(() =&gt; StyleSheet.create({
     modal_container: {
       flex: 1,
       backgroundColor: 'rgba(0, 0, 0, .7)',
@@ -529,14 +533,14 @@ const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="st
     },
   }), [theme]);
 &nbsp;
-  const cryptoOptions = <span class="cstat-no" title="statement not covered" >useMemo(</span>
-<span class="fstat-no" title="function not covered" >    ()</span> =&gt; <span class="cstat-no" title="statement not covered" >cryptos.map(</span>
-<span class="fstat-no" title="function not covered" >      (a</span>sset) =&gt; <span class="cstat-no" title="statement not covered" >&lt;Picker.Item key={asset.id} label={asset.name} value={asset.id} /&gt;,</span>
+  const cryptoOptions = useMemo(
+    () =&gt; cryptos.map(
+      (asset) =&gt; &lt;Picker.Item key={asset.id} label={asset.name} value={asset.id} /&gt;,
     ),
     [cryptos],
   );
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;Modal
       animationType="slide"
       visible={isOpen}
@@ -560,7 +564,7 @@ const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="st
                 style={{
                   ...styles.modal_action,
                   ...styles.modal_main_action,
-                  ...(isFormValid ? [] : styles.disabled_modal_action),
+                  ...(isFormValid ? [] : <span class="branch-1 cbranch-no" title="branch not covered" >styles.disabled_modal_action)</span>,
                 }}
               &gt;
                 {t.common.save}
@@ -579,6 +583,7 @@ const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="st
                 selectedValue={selectedCryptoKey}
                 style={styles.modal_crypto}
                 onValueChange={onSelectedCryptoKeyChange}
+                testID="crypto-selector"
               &gt;
                 &lt;Picker.Item label={t.common.select_option} value={null} /&gt;
                 {cryptoOptions}
@@ -588,11 +593,12 @@ const WalletModal: FC&lt;WalletModalProps&gt; = <span class="cstat-no" title="st
               {t.wallet.amount}
             &lt;/Text&gt;
             &lt;TextInput
+              accessibilityLabel="amount-input"
               placeholder="1.02"
               underlineColorAndroid="transparent"
               keyboardType="numeric"
               style={styles.amount_input}
-              value={selectedAmount ? (`${selectedAmount}`) : null}
+              value={selectedAmount ? (`${selectedAmount}`) : <span class="branch-1 cbranch-no" title="branch not covered" >null}</span>
               onChangeText={onSelectedAmountChange}
             /&gt;
           &lt;/View&gt;
@@ -610,7 +616,7 @@ export default memo(WalletModal);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Oct 05 2021 22:01:19 GMT+0200 (Central European Summer Time)
+                at Mon Oct 18 2021 21:08:41 GMT+0200 (Central European Summer Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>

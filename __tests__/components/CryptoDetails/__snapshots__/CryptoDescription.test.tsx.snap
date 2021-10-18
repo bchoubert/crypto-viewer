@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CryptoDescription /> Prints correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#222222",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "paddingLeft": 20,
+        "paddingRight": 10,
+      }
+    }
+  >
+    Details
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#222222",
+        "fontSize": 15,
+        "lineHeight": 20,
+        "paddingHorizontal": 20,
+        "paddingVertical": 10,
+      }
+    }
+  >
+    The world’s first cryptocurrency, Bitcoin is stored and exchanged securely on the internet through a digital ledger known as a blockchain. Bitcoins are divisible into smaller units known as satoshis — each satoshi is worth 0.00000001 bitcoin.
+  </Text>
+  <View
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "opacity": 1,
+        "paddingBottom": 10,
+        "paddingHorizontal": 20,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "#F7931B",
+          "fontFamily": "crypto-viewer",
+          "fontSize": 12,
+          "marginLeft": 5,
+          "width": 10,
+        }
+      }
+    >
+      
+    </Text>
+    <Text
+      accessibilityLabel="Go to https://bitcoin.org/"
+      style={
+        Object {
+          "color": "#F7931B",
+          "fontWeight": "bold",
+          "marginLeft": 10,
+          "width": 100,
+        }
+      }
+      testID="website-text"
+    >
+      Official Website
+    </Text>
+  </View>
+</View>
+`;
