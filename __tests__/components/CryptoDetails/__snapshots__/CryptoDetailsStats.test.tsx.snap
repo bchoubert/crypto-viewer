@@ -1,0 +1,394 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CryptoDetailsStats /> Prints correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+      "marginTop": 20,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#222222",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "paddingLeft": 20,
+        "paddingRight": 10,
+      }
+    }
+  >
+    24h Stats
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "marginVertical": 10,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#F7931B20",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#222222",
+            "flex": 1,
+            "fontSize": 28,
+          }
+        }
+      >
+        1.34 $
+      </Text>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#222222",
+                "fontFamily": "crypto-viewer",
+                "fontSize": 12,
+              }
+            }
+          >
+            
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#222222",
+              }
+            }
+          >
+            High
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#333333",
+            "flex": 1,
+            "fontSize": 28,
+          }
+        }
+      >
+        2.45 $
+      </Text>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "fontFamily": "crypto-viewer",
+                "fontSize": 12,
+              }
+            }
+          >
+            
+          </Text>
+          <Text>
+            Low
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#F7931B",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "flex": 1,
+            "fontSize": 25,
+          }
+        }
+      >
+        100000
+      </Text>
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+                "fontFamily": "crypto-viewer",
+                "fontSize": 12,
+              }
+            }
+          >
+            
+          </Text>
+          <Text
+            style={
+              Object {
+                "color": "#FFF",
+              }
+            }
+          >
+            Volume
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#222222",
+        "fontSize": 20,
+        "fontWeight": "bold",
+        "paddingLeft": 20,
+        "paddingRight": 10,
+      }
+    }
+  >
+    Current Price
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "marginVertical": 10,
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#333333",
+            "flex": 1,
+            "fontSize": 28,
+          }
+        }
+      >
+        12.35 $
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#333333",
+            "fontSize": 14,
+          }
+        }
+      >
+        Buy
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#F7931B",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "flex": 1,
+            "fontSize": 28,
+          }
+        }
+      >
+        555555 $
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontSize": 14,
+          }
+        }
+      >
+        Price
+      </Text>
+    </View>
+    <View
+      accessible={true}
+      focusable={false}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "#F7931B20",
+          "borderRadius": 10,
+          "display": "flex",
+          "flex": 1,
+          "flexDirection": "column",
+          "height": 90,
+          "margin": 10,
+          "opacity": 1,
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#222222",
+            "flex": 1,
+            "fontSize": 28,
+          }
+        }
+      >
+        43.21 $
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#222222",
+            "fontSize": 14,
+          }
+        }
+      >
+        Sell
+      </Text>
+    </View>
+  </View>
+</View>
+`;
