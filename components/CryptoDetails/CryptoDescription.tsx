@@ -78,9 +78,14 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
     [cryptoColor, theme],
   );
 
-  const openWebsite = useCallback(
-    () => Linking.openURL(CryptoCurrenciesIconMap[details?.id?.toLowerCase()]?.website),
+  const websiteUrl = useMemo(
+    () => CryptoCurrenciesIconMap[details?.id?.toLowerCase()]?.website,
     [details],
+  );
+
+  const openWebsite = useCallback(
+    () => Linking.openURL(websiteUrl),
+    [details, websiteUrl],
   );
 
   if (!details || !CryptoCurrenciesIconMap[details.id?.toLowerCase()]?.description
@@ -101,7 +106,11 @@ const CryptoDescription: FC<CryptoDescriptionProps> = () => {
           <Text style={styles.description_website_icon}>
             {CryptoViewerIconsMap.link.unicode}
           </Text>
-          <Text style={styles.description_website_text}>
+          <Text
+            style={styles.description_website_text}
+            accessibilityLabel={`Go to ${websiteUrl}`}
+            testID="website-text"
+          >
             {t.details.website}
           </Text>
         </TouchableOpacity>
