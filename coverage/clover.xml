@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1634584121766" clover="3.2.0">
-  <project timestamp="1634584121766" name="All files">
+<coverage generated="1634584673135" clover="3.2.0">
+  <project timestamp="1634584673135" name="All files">
     <metrics statements="661" coveredstatements="331" conditionals="317" coveredconditionals="164" methods="257" coveredmethods="126" elements="1235" coveredelements="621" complexity="0" loc="661" ncloc="661" packages="14" files="56" classes="56"/>
     <package name="crypto-viewer">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
