@@ -51,7 +51,7 @@ const FrTranslation: TranslationType = {
       product: 'Crypto-Viewer est une app conçue, developée et maintenue par Bertrand Choubert',
       website: 'Son portfolio ici !',
       apis: 'Dévelopé avec React-Native Expo, basé sur les APIs basique et professionelle de CoinBase',
-      libraries: 'Utilisation de cryptocurrency-icon-font, icons de Font-Awesome Pro, utilisation de ressources CoinBase',
+      libraries: 'Utilisation d\'icones de Font-Awesome Pro, utilisation de ressources CoinBase',
     },
     values: {
       graph_mode: {

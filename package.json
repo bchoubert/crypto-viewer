@@ -16,7 +16,6 @@
   "dependencies": {
     "@babel/core": "~7.9.0",
     "@react-native-community/picker": "1.6.0",
-    "cryptocurrency-icons": "^0.17.1",
     "deep-object-diff": "^1.1.0",
     "expo": "^42.0.0",
     "expo-font": "~9.2.1",
