@@ -2,7 +2,6 @@ import React, { FC, memo } from 'react';
 import {
   StyleSheet, View,
 } from 'react-native';
-import { Image } from '../PassThroughComponents';
 
 import CryptoCurrencyIconsMap from './CryptoCurrencyIconsMap';
 
@@ -10,11 +9,16 @@ const styles = StyleSheet.create({
   iconContainer: {
     marginRight: 10,
     borderRadius: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 7,
   },
   icon: {
-    width: 40,
-    height: 40,
-    maxHeight: 40,
+    width: 26,
+    height: 26,
+    maxHeight: 26,
+    color: 'white',
   },
 });
 
@@ -28,19 +32,26 @@ const CryptoIcon: FC<CryptoIconProps> = ({
   code,
   style,
   styleForIcon,
-}) => (
-  <View
-    style={{
-      ...styles.iconContainer,
-      backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333',
-      ...(style || {}),
-    }}
-  >
-    <Image
-      style={{ ...styles.icon, ...(styleForIcon || {}) }}
-      source={CryptoCurrencyIconsMap[code]?.icon}
-    />
-  </View>
-);
+}) => {
+  const Icon = CryptoCurrencyIconsMap[code]?.icon;
+
+  if (!Icon || typeof Icon === 'number') {
+    return (
+      <View>{code}</View>
+    );
+  }
+
+  return (
+    <View
+      style={{
+        ...styles.iconContainer,
+        backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333',
+        ...(style || {}),
+      }}
+    >
+      <Icon style={{ ...styles.icon, ...(styleForIcon || {}) }} fill="#FFFFFF" />
+    </View>
+  );
+};
 
 export default memo(CryptoIcon);

@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1634584121766" clover="3.2.0">
-  <project timestamp="1634584121766" name="All files">
-    <metrics statements="661" coveredstatements="331" conditionals="317" coveredconditionals="164" methods="257" coveredmethods="126" elements="1235" coveredelements="621" complexity="0" loc="661" ncloc="661" packages="14" files="56" classes="56"/>
+<coverage generated="1636577359983" clover="3.2.0">
+  <project timestamp="1636577359983" name="All files">
+    <metrics statements="670" coveredstatements="333" conditionals="321" coveredconditionals="161" methods="260" coveredmethods="126" elements="1251" coveredelements="620" complexity="0" loc="670" ncloc="670" packages="14" files="58" classes="58"/>
     <package name="crypto-viewer">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="7" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
       <file name="constants.ts" path="D:\w\crypto-viewer\constants.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="16" type="stmt"/>
+        <line num="1" count="15" type="stmt"/>
+      </file>
+      <file name="metro.config.js" path="D:\w\crypto-viewer\metro.config.js">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.assets">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="Colors.ts" path="D:\w\crypto-viewer\assets\Colors.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="2" count="15" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+      </file>
+      <file name="declarations.d.ts" path="D:\w\crypto-viewer\assets\declarations.d.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       </file>
     </package>
     <package name="crypto-viewer.assets.fonts.baseIcons">
@@ -27,23 +39,23 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="TranslationUtils.ts" path="D:\w\crypto-viewer\assets\translations\TranslationUtils.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="9" count="17" type="stmt"/>
-        <line num="18" count="17" type="stmt"/>
+        <line num="9" count="16" type="stmt"/>
+        <line num="18" count="16" type="stmt"/>
       </file>
       <file name="en.ts" path="D:\w\crypto-viewer\assets\translations\en.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="17" type="stmt"/>
+        <line num="3" count="16" type="stmt"/>
       </file>
       <file name="fr.ts" path="D:\w\crypto-viewer\assets\translations\fr.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="17" type="stmt"/>
+        <line num="3" count="16" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.components">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="PassThroughComponents.tsx" path="D:\w\crypto-viewer\components\PassThroughComponents.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="4" count="15" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.components.CryptoDetails">
@@ -323,7 +335,7 @@
       </file>
     </package>
     <package name="crypto-viewer.components.Utils">
-      <metrics statements="109" coveredstatements="73" conditionals="89" coveredconditionals="63" methods="33" coveredmethods="20"/>
+      <metrics statements="112" coveredstatements="75" conditionals="93" coveredconditionals="60" methods="33" coveredmethods="20"/>
       <file name="BottomBar.tsx" path="D:\w\crypto-viewer\components\Utils\BottomBar.tsx">
         <metrics statements="12" coveredstatements="12" conditionals="12" coveredconditionals="12" methods="4" coveredmethods="4"/>
         <line num="17" count="1" type="stmt"/>
@@ -341,13 +353,16 @@
       </file>
       <file name="CryptoCurrencyIconsMap.tsx" path="D:\w\crypto-viewer\components\Utils\CryptoCurrencyIconsMap.tsx">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="9" count="16" type="stmt"/>
+        <line num="131" count="15" type="stmt"/>
       </file>
       <file name="CryptoIcon.tsx" path="D:\w\crypto-viewer\components\Utils\CryptoIcon.tsx">
-        <metrics statements="3" coveredstatements="3" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="27" count="3" type="stmt"/>
-        <line num="32" count="8" type="stmt"/>
+        <metrics statements="6" coveredstatements="5" conditionals="10" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="38" count="6" type="cond" truecount="3" falsecount="1"/>
+        <line num="39" count="6" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
       </file>
       <file name="Layout.tsx" path="D:\w\crypto-viewer\components\Utils\Layout.tsx">
         <metrics statements="23" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="5" coveredmethods="0"/>
@@ -580,70 +595,70 @@
       <metrics statements="23" coveredstatements="22" conditionals="6" coveredconditionals="3" methods="10" coveredmethods="10"/>
       <file name="bootstrap.tsx" path="D:\w\crypto-viewer\components\testUtils\bootstrap.tsx">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
-        <line num="16" count="15" type="stmt"/>
-        <line num="18" count="15" type="stmt"/>
-        <line num="19" count="50" type="stmt"/>
-        <line num="36" count="50" type="stmt"/>
-        <line num="38" count="15" type="stmt"/>
-        <line num="39" count="15" type="stmt"/>
-        <line num="41" count="15" type="stmt"/>
-        <line num="44" count="15" type="stmt"/>
-        <line num="45" count="15" type="stmt"/>
-        <line num="46" count="15" type="stmt"/>
-        <line num="49" count="15" type="stmt"/>
-        <line num="50" count="15" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="19" count="48" type="stmt"/>
+        <line num="36" count="48" type="stmt"/>
+        <line num="38" count="14" type="stmt"/>
+        <line num="39" count="14" type="stmt"/>
+        <line num="41" count="14" type="stmt"/>
+        <line num="44" count="14" type="stmt"/>
+        <line num="45" count="14" type="stmt"/>
+        <line num="46" count="14" type="stmt"/>
+        <line num="49" count="14" type="stmt"/>
+        <line num="50" count="14" type="stmt"/>
       </file>
       <file name="consoleMocker.ts" path="D:\w\crypto-viewer\components\testUtils\consoleMocker.ts">
         <metrics statements="11" coveredstatements="10" conditionals="6" coveredconditionals="3" methods="4" coveredmethods="4"/>
-        <line num="2" count="15" type="stmt"/>
-        <line num="10" count="15" type="stmt"/>
-        <line num="11" count="15" type="stmt"/>
+        <line num="2" count="14" type="stmt"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
         <line num="12" count="2" type="stmt"/>
         <line num="14" count="2" type="stmt"/>
         <line num="15" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="16" count="0" type="stmt"/>
         <line num="20" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="21" count="2" type="stmt"/>
-        <line num="27" count="15" type="cond" truecount="1" falsecount="1"/>
-        <line num="28" count="15" type="stmt"/>
+        <line num="27" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="14" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.contexts">
       <metrics statements="77" coveredstatements="67" conditionals="37" coveredconditionals="21" methods="23" coveredmethods="21"/>
       <file name="NavigationProvider.tsx" path="D:\w\crypto-viewer\contexts\NavigationProvider.tsx">
         <metrics statements="27" coveredstatements="17" conditionals="11" coveredconditionals="0" methods="7" coveredmethods="5"/>
-        <line num="21" count="15" type="stmt"/>
-        <line num="34" count="15" type="stmt"/>
-        <line num="35" count="50" type="stmt"/>
-        <line num="37" count="50" type="stmt"/>
-        <line num="39" count="50" type="stmt"/>
-        <line num="42" count="50" type="stmt"/>
-        <line num="45" count="50" type="stmt"/>
-        <line num="46" count="50" type="stmt"/>
-        <line num="48" count="50" type="cond" truecount="0" falsecount="1"/>
+        <line num="21" count="14" type="stmt"/>
+        <line num="34" count="14" type="stmt"/>
+        <line num="35" count="48" type="stmt"/>
+        <line num="37" count="48" type="stmt"/>
+        <line num="39" count="48" type="stmt"/>
+        <line num="42" count="48" type="stmt"/>
+        <line num="45" count="48" type="stmt"/>
+        <line num="46" count="48" type="stmt"/>
+        <line num="48" count="48" type="cond" truecount="0" falsecount="1"/>
         <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="54" count="0" type="stmt"/>
         <line num="56" count="0" type="stmt"/>
         <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="58" count="0" type="stmt"/>
-        <line num="62" count="50" type="stmt"/>
+        <line num="62" count="48" type="stmt"/>
         <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="64" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="65" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
-        <line num="70" count="50" type="stmt"/>
-        <line num="71" count="50" type="stmt"/>
-        <line num="72" count="50" type="stmt"/>
-        <line num="75" count="50" type="stmt"/>
-        <line num="84" count="50" type="stmt"/>
-        <line num="85" count="50" type="stmt"/>
-        <line num="88" count="50" type="stmt"/>
+        <line num="70" count="48" type="stmt"/>
+        <line num="71" count="48" type="stmt"/>
+        <line num="72" count="48" type="stmt"/>
+        <line num="75" count="48" type="stmt"/>
+        <line num="84" count="48" type="stmt"/>
+        <line num="85" count="48" type="stmt"/>
+        <line num="88" count="48" type="stmt"/>
       </file>
       <file name="SettingsProvider.tsx" path="D:\w\crypto-viewer\contexts\SettingsProvider.tsx">
         <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="6"/>
-        <line num="9" count="15" type="stmt"/>
-        <line num="18" count="15" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="18" count="14" type="stmt"/>
         <line num="21" count="4" type="stmt"/>
         <line num="22" count="4" type="stmt"/>
         <line num="24" count="4" type="stmt"/>
@@ -662,12 +677,12 @@
       </file>
       <file name="ThemeProvider.tsx" path="D:\w\crypto-viewer\contexts\ThemeProvider.tsx">
         <metrics statements="26" coveredstatements="26" conditionals="24" coveredconditionals="19" methods="7" coveredmethods="7"/>
-        <line num="18" count="15" type="stmt"/>
-        <line num="37" count="15" type="stmt"/>
-        <line num="46" count="15" type="cond" truecount="0" falsecount="1"/>
+        <line num="18" count="14" type="stmt"/>
+        <line num="37" count="14" type="stmt"/>
+        <line num="46" count="14" type="cond" truecount="0" falsecount="1"/>
         <line num="47" count="24" type="cond" truecount="2" falsecount="0"/>
         <line num="48" count="24" type="cond" truecount="1" falsecount="1"/>
-        <line num="51" count="15" type="stmt"/>
+        <line num="51" count="14" type="stmt"/>
         <line num="52" count="14" type="cond" truecount="1" falsecount="1"/>
         <line num="53" count="14" type="cond" truecount="2" falsecount="0"/>
         <line num="59" count="14" type="cond" truecount="2" falsecount="0"/>
@@ -678,26 +693,26 @@
         <line num="71" count="8" type="cond" truecount="4" falsecount="0"/>
         <line num="72" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="75" count="6" type="stmt"/>
-        <line num="78" count="15" type="stmt"/>
-        <line num="81" count="52" type="stmt"/>
-        <line num="82" count="52" type="stmt"/>
-        <line num="84" count="52" type="stmt"/>
+        <line num="78" count="14" type="stmt"/>
+        <line num="81" count="50" type="stmt"/>
+        <line num="82" count="50" type="stmt"/>
+        <line num="84" count="50" type="stmt"/>
         <line num="85" count="18" type="cond" truecount="1" falsecount="0"/>
-        <line num="89" count="52" type="stmt"/>
+        <line num="89" count="50" type="stmt"/>
         <line num="90" count="8" type="stmt"/>
-        <line num="94" count="52" type="stmt"/>
-        <line num="95" count="52" type="stmt"/>
-        <line num="103" count="52" type="stmt"/>
+        <line num="94" count="50" type="stmt"/>
+        <line num="95" count="50" type="stmt"/>
+        <line num="103" count="50" type="stmt"/>
       </file>
       <file name="TranslationProvider.tsx" path="D:\w\crypto-viewer\contexts\TranslationProvider.tsx">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-        <line num="9" count="15" type="stmt"/>
-        <line num="15" count="15" type="stmt"/>
-        <line num="18" count="50" type="stmt"/>
-        <line num="19" count="50" type="stmt"/>
-        <line num="21" count="50" type="stmt"/>
-        <line num="22" count="50" type="stmt"/>
-        <line num="26" count="50" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="18" count="48" type="stmt"/>
+        <line num="19" count="48" type="stmt"/>
+        <line num="21" count="48" type="stmt"/>
+        <line num="22" count="48" type="stmt"/>
+        <line num="26" count="48" type="stmt"/>
       </file>
     </package>
     <package name="crypto-viewer.models">
@@ -728,7 +743,7 @@
       </file>
       <file name="DateFormat.ts" path="D:\w\crypto-viewer\models\DateFormat.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="5" count="16" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
       </file>
       <file name="ExhangeRates.ts" path="D:\w\crypto-viewer\models\ExhangeRates.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -749,8 +764,8 @@
       </file>
       <file name="SettingsType.ts" path="D:\w\crypto-viewer\models\SettingsType.ts">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="18" count="16" type="stmt"/>
-        <line num="29" count="128" type="stmt"/>
+        <line num="18" count="15" type="stmt"/>
+        <line num="29" count="120" type="stmt"/>
       </file>
       <file name="ShowOtherAssets.ts" path="D:\w\crypto-viewer\models\ShowOtherAssets.ts">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -761,7 +776,7 @@
       </file>
       <file name="Tabs.ts" path="D:\w\crypto-viewer\models\Tabs.ts">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="3" count="15" type="stmt"/>
+        <line num="3" count="14" type="stmt"/>
       </file>
       <file name="TranslationType.ts" path="D:\w\crypto-viewer\models\TranslationType.ts">
         <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -774,7 +789,7 @@
       <metrics statements="76" coveredstatements="76" conditionals="40" coveredconditionals="40" methods="34" coveredmethods="34"/>
       <file name="Color.service.ts" path="D:\w\crypto-viewer\services\Color.service.ts">
         <metrics statements="21" coveredstatements="21" conditionals="18" coveredconditionals="18" methods="3" coveredmethods="3"/>
-        <line num="4" count="16" type="stmt"/>
+        <line num="4" count="15" type="stmt"/>
         <line num="8" count="7" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="4" type="stmt"/>
         <line num="10" count="4" type="cond" truecount="2" falsecount="0"/>
@@ -830,7 +845,7 @@
       </file>
       <file name="Settings.service.ts" path="D:\w\crypto-viewer\services\Settings.service.ts">
         <metrics statements="9" coveredstatements="9" conditionals="6" coveredconditionals="6" methods="5" coveredmethods="5"/>
-        <line num="5" count="16" type="stmt"/>
+        <line num="5" count="15" type="stmt"/>
         <line num="7" count="11" type="stmt"/>
         <line num="8" count="11" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="4" type="cond" truecount="2" falsecount="0"/>
@@ -842,15 +857,15 @@
       </file>
       <file name="Storage.service.ts" path="D:\w\crypto-viewer\services\Storage.service.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-        <line num="4" count="17" type="stmt"/>
+        <line num="4" count="16" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
       </file>
       <file name="Translation.service.ts" path="D:\w\crypto-viewer\services\Translation.service.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="6" count="16" type="stmt"/>
-        <line num="11" count="16" type="stmt"/>
-        <line num="12" count="54" type="stmt"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="11" count="15" type="stmt"/>
+        <line num="12" count="52" type="stmt"/>
       </file>
       <file name="Utils.service.ts" path="D:\w\crypto-viewer\services\Utils.service.ts">
         <metrics statements="17" coveredstatements="17" conditionals="16" coveredconditionals="16" methods="6" coveredmethods="6"/>

@@ -51,7 +51,7 @@ const EnTranslation: TranslationType = {
       product: 'Crytpo-Viewer is a product designed, developed and maintained by Bertrand Choubert.',
       website: 'His website here!',
       apis: 'Developed with React-Native Expo, based on Coinbase Basic & Pro APIs',
-      libraries: 'Use of cryptocurrency-icons-font, Font-Awesome Pro Icons and some CoinBase assets',
+      libraries: 'Use of Font-Awesome Pro Icons and some CoinBase assets',
     },
     values: {
       graph_mode: {

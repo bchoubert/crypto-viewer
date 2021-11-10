@@ -1,6 +1,5 @@
 import { fireEvent } from '@testing-library/react-native';
 import React from 'react';
-import { Image } from '../../../components/PassThroughComponents';
 import { renderNode } from '../../../components/testUtils/bootstrap';
 import Topbar from '../../../components/Utils/Topbar';
 import { SettingsKeysType } from '../../../constants';
@@ -50,8 +49,6 @@ describe('<TopBar />', () => {
     );
 
     expect(toJSON()).toMatchSnapshot();
-
-    expect(Image).toHaveBeenCalledTimes(1);
   });
 
   it('List behaviour', () => {

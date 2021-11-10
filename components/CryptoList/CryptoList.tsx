@@ -85,8 +85,8 @@ const CryptoList: FC<CryptoListProps> = () => {
       }
     });
 
-    setMainAssets(newMainAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
-    setOtherAssets(newOtherAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'name')));
+    setMainAssets(newMainAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'id')));
+    setOtherAssets(newOtherAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'id')));
     setLoading(false);
   }, [setMainAssets, setOtherAssets, setLoading]);
 
