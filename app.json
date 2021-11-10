@@ -31,6 +31,10 @@
       "package": "com.bchoubert.cryptoviewer",
       "permissions": [],
       "versionCode": 6
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     }
   }
 }

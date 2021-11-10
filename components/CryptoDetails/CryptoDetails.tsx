@@ -196,7 +196,7 @@ const CryptoDetails: FC<CryptoDetailsProps> = () => {
   return (
     <>
       <View style={styles.crypto_details}>
-        <CryptoIcon code={details.id.toLowerCase()} />
+        <CryptoIcon code={details.id.toLowerCase()} style={{ marginRight: 0 }} />
         <Text style={styles.crypto_name}>
           {`${details.name} - ${details.id}`}
         </Text>
