@@ -17,6 +17,7 @@ import { TranslationContext } from '../../contexts/TranslationProvider';
 import { darkModes, DarkModeType } from '../../models/DarkMode';
 import { ThemeContext } from '../../contexts/ThemeProvider';
 import { showOtherAssetsList, ShowOtherAssetsType } from '../../models/ShowOtherAssets';
+import links from '../../assets/links';
 
 interface SettingItemProps {
   settingKey: SettingType;
@@ -26,7 +27,12 @@ const SettingItem: FC<SettingItemProps> = ({
   settingKey,
 }) => {
   const openPortfolio = useCallback(
-    () => openURL('https://chbe.fr'),
+    () => openURL(links.portfolio),
+    [],
+  );
+
+  const openPolicy = useCallback(
+    () => openURL(links.policy),
     [],
   );
 
@@ -216,6 +222,7 @@ const SettingItem: FC<SettingItemProps> = ({
           <Text style={styles.credits_first}>
             {t.settings.credits.product}
             <Text style={styles.portfolioLink} onPress={openPortfolio}>
+              {' '}
               {t.settings.credits.website}
             </Text>
           </Text>
@@ -226,6 +233,10 @@ const SettingItem: FC<SettingItemProps> = ({
           <Text style={styles.creditsText}>
             {t.settings.credits.libraries}
           </Text>
+          <Text style={styles.creditsText} onPress={openPolicy}>
+            {t.settings.credits.policy}
+          </Text>
+          <Text>{' '}</Text>
         </View>
       );
     default:

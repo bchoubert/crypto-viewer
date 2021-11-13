@@ -52,6 +52,7 @@ const FrTranslation: TranslationType = {
       website: 'Son portfolio ici !',
       apis: 'Dévelopé avec React-Native Expo, basé sur les APIs basique et professionelle de CoinBase',
       libraries: 'Utilisation d\'icones de Font-Awesome Pro, utilisation de ressources CoinBase',
+      policy: 'Politique de Confientialité et de Protection des Données',
     },
     values: {
       graph_mode: {
