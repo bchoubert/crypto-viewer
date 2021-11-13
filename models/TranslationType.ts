@@ -50,6 +50,7 @@ type TranslationType = {
       website: string,
       apis: string,
       libraries: string,
+      policy: string,
     },
     values: {
       graph_mode: {

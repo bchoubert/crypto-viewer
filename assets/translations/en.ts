@@ -52,6 +52,7 @@ const EnTranslation: TranslationType = {
       website: 'His website here!',
       apis: 'Developed with React-Native Expo, based on Coinbase Basic & Pro APIs',
       libraries: 'Use of Font-Awesome Pro Icons and some CoinBase assets',
+      policy: 'Privacy & Data Safety Policies',
     },
     values: {
       graph_mode: {
