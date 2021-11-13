@@ -18,6 +18,7 @@ import { darkModes, DarkModeType } from '../../models/DarkMode';
 import { ThemeContext } from '../../contexts/ThemeProvider';
 import { showOtherAssetsList, ShowOtherAssetsType } from '../../models/ShowOtherAssets';
 import links from '../../assets/links';
+import { sortAssetsList, SortAssetsType } from '../../models/SortAssetsType';
 
 interface SettingItemProps {
   settingKey: SettingType;
@@ -103,6 +104,7 @@ const SettingItem: FC<SettingItemProps> = ({
     () => settings.SHOW_OTHER_ASSETS_KEY as ShowOtherAssetsType,
     [settings],
   );
+  const sortAssets = useMemo(() => settings.SORT_ASSETS_KEY as SortAssetsType, [settings]);
   const graphMode = useMemo(() => settings.GRAPH_MODE_KEY as GraphModeType, [settings]);
   const darkMode = useMemo(() => settings.DARK_MODE_KEY as DarkModeType, [settings]);
   const language = useMemo(() => settings.LANGUAGE as AvailableTranslations, [settings]);
@@ -124,6 +126,11 @@ const SettingItem: FC<SettingItemProps> = ({
 
   const renderShowOtherAssets = useCallback(
     (item: ShowOtherAssetsType) => t.settings.values.show_other_assets[item],
+    [t],
+  );
+
+  const renderSortAssets = useCallback(
+    (item: SortAssetsType) => t.settings.values.sort_assets[item],
     [t],
   );
 
@@ -213,6 +220,21 @@ const SettingItem: FC<SettingItemProps> = ({
             setActiveItem={(newShowOtherAssets) => changeSettings('SHOW_OTHER_ASSETS_KEY', newShowOtherAssets as ShowOtherAssetsType)}
             color={Colors.blue}
             renderItem={renderShowOtherAssets}
+          />
+        </View>
+      );
+    case 'sort_assets':
+      return (
+        <View style={styles.settings}>
+          <Text style={styles.settingsText}>
+            {t.list.sort}
+          </Text>
+          <Selector
+            items={sortAssetsList}
+            activeItem={sortAssets}
+            setActiveItem={(newSortAssets) => changeSettings('SORT_ASSETS_KEY', newSortAssets as SortAssetsType)}
+            color={Colors.blue}
+            renderItem={renderSortAssets}
           />
         </View>
       );

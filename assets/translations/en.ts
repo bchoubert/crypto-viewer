@@ -14,6 +14,7 @@ const EnTranslation: TranslationType = {
     main: 'Main Assets',
     other: 'Other Assets',
     assets: 'Assets',
+    sort: 'Sort assets',
   },
   details: {
     details: 'Details',
@@ -66,6 +67,10 @@ const EnTranslation: TranslationType = {
       show_other_assets: {
         show: 'Show',
         hide: 'Hide',
+      },
+      sort_assets: {
+        code: 'By code',
+        name: 'By name',
       },
     },
   },

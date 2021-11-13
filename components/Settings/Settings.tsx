@@ -24,6 +24,7 @@ const Settings: FC<SettingsProps> = () => {
     { key: 'language' },
     { key: 'darkMode' },
     { key: 'show_other_assets' },
+    { key: 'sort_assets' },
     { key: 'credits' },
   ]), []);
 

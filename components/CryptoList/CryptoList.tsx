@@ -16,6 +16,7 @@ import { SettingsContext } from '../../contexts/SettingsProvider';
 import { TranslationContext } from '../../contexts/TranslationProvider';
 import { ThemeContext } from '../../contexts/ThemeProvider';
 import { ShowOtherAssetsType } from '../../models/ShowOtherAssets';
+import { SortAssetsType } from '../../models/SortAssetsType';
 
 interface CryptoListProps {}
 
@@ -85,8 +86,14 @@ const CryptoList: FC<CryptoListProps> = () => {
       }
     });
 
-    setMainAssets(newMainAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'id')));
-    setOtherAssets(newOtherAssets.sort((cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, 'id')));
+    const sortAttribute = settings.SORT_ASSETS_KEY as SortAssetsType === 'code' ? 'id' : 'name';
+
+    setMainAssets(newMainAssets.sort(
+      (cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, sortAttribute),
+    ));
+    setOtherAssets(newOtherAssets.sort(
+      (cur1, cur2) => UtilsService.sortFnOnStringProperty(cur1, cur2, sortAttribute),
+    ));
     setLoading(false);
   }, [setMainAssets, setOtherAssets, setLoading]);
 

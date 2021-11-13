@@ -14,6 +14,7 @@ const FrTranslation: TranslationType = {
     main: 'Principaux actifs',
     other: 'Autres actifs',
     assets: 'Actifs',
+    sort: 'Trier les actifs',
   },
   details: {
     details: 'Détails',
@@ -66,6 +67,10 @@ const FrTranslation: TranslationType = {
       show_other_assets: {
         show: 'Montrer',
         hide: 'Cacher',
+      },
+      sort_assets: {
+        code: 'Par code',
+        name: 'Par nom',
       },
     },
   },

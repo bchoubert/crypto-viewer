@@ -6,10 +6,11 @@ import { DarkModeType } from './DarkMode';
 import QuoteType from './QuoteType';
 import WalletItem from './WalletItem';
 import { ShowOtherAssetsType } from './ShowOtherAssets';
+import { SortAssetsType } from './SortAssetsType';
 
 export type SettingsValue = AvailableTranslations |
 QuoteType | DateFormatType | WalletItem[] | GraphModeType |
-DarkModeType | string[] | ShowOtherAssetsType;
+DarkModeType | string[] | ShowOtherAssetsType | SortAssetsType;
 type SettingsType = Record<SettingsKeysType, SettingsValue>;
 
 export const settingDetails: Record<SettingsKeysType, {
@@ -24,6 +25,7 @@ export const settingDetails: Record<SettingsKeysType, {
   LANGUAGE: { needsParsing: false, defaultValue: AvailableTranslations.en },
   DARK_MODE_KEY: { needsParsing: false, defaultValue: 'light' as DarkModeType },
   SHOW_OTHER_ASSETS_KEY: { needsParsing: false, defaultValue: 'hide' as ShowOtherAssetsType },
+  SORT_ASSETS_KEY: { needsParsing: false, defaultValue: 'code' as SortAssetsType },
 };
 
 export const defaultSettings: SettingsType = Object.keys(settingDetails).reduce((result, key) => ({
