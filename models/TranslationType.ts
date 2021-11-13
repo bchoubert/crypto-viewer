@@ -12,6 +12,7 @@ type TranslationType = {
     main: string,
     other: string,
     assets: string,
+    sort: string,
   },
   details: {
     details: string,
@@ -65,6 +66,10 @@ type TranslationType = {
         show: string,
         hide: string,
       },
+      sort_assets: {
+        code: string,
+        name: string,
+      }
     },
   },
 };

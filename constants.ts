@@ -7,6 +7,7 @@ export const SETTINGS_KEYS = {
   LANGUAGE: 'CV_LANGUAGE',
   DARK_MODE_KEY: 'CV_DARK_MODE_KEY',
   SHOW_OTHER_ASSETS_KEY: 'CV_SHOW_OTHER_ASSETS',
+  SORT_ASSETS_KEY: 'CV_SORT_ASSETS',
 };
 
 export type SettingsKeysType = keyof typeof SETTINGS_KEYS;
