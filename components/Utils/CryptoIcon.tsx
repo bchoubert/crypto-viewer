@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import {
-  StyleSheet, View,
+  StyleSheet, View, Text,
 } from 'react-native';
 
 import CryptoCurrencyIconsMap from './CryptoCurrencyIconsMap';
@@ -37,7 +37,15 @@ const CryptoIcon: FC<CryptoIconProps> = ({
 
   if (!Icon || typeof Icon === 'number') {
     return (
-      <View>{code}</View>
+      <View
+        style={{
+          ...styles.iconContainer,
+          backgroundColor: CryptoCurrencyIconsMap[code]?.color || '#333333',
+          ...(style || {}),
+        }}
+      >
+        <Text style={{ ...styles.icon, ...(styleForIcon || {}) }}>{code}</Text>
+      </View>
     );
   }
 

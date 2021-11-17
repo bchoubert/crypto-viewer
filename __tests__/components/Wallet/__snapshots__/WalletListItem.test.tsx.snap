@@ -136,8 +136,31 @@ exports[`<WalletListItem /> Prints correctly 1`] = `
             }
           }
         >
-          <View>
-            btc
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#F7931B",
+                "borderRadius": 10,
+                "display": "flex",
+                "justifyContent": "center",
+                "marginRight": 10,
+                "padding": 7,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "color": "white",
+                  "height": 26,
+                  "maxHeight": 26,
+                  "width": 26,
+                }
+              }
+            >
+              btc
+            </Text>
           </View>
           <View
             style={
