@@ -187,6 +187,7 @@ const CryptoListItem: FC<CryptoListItemProps> = ({
       </View>
     );
   }
+
   return (
     <TouchableOpacity style={styles.crypto_item} onPress={() => handleGoToDetails(finalCrypto)} key={`main_${finalCrypto.id}`}>
       <View style={additionalStyles.crypto_item_content}>
