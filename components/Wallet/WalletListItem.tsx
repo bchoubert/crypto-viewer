@@ -153,7 +153,7 @@ const WalletListItem: FC<WalletListItemProps> = ({
     [crypto],
   );
   const walletAmount = useMemo(
-    () => (crypto?.price ? `${UtilsService.truncateIntelligentNumber(walletItem.amount)} ${crypto.details.symbol}` : ''),
+    () => (crypto?.price ? `${UtilsService.truncateIntelligentNumber(walletItem.amount)} ${crypto.details.symbol || ''}` : ''),
     [crypto, walletItem],
   );
 
