@@ -28,7 +28,7 @@
     "react-native-svg": "12.1.1",
     "react-native-swipeable-row": "^0.8.1",
     "react-native-web": "~0.13.12",
-    "victory-native": "^32.0.2"
+    "victory-native": "^36.6.8"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
