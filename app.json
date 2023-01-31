@@ -9,7 +9,7 @@
       "web"
     ],
     "githubUrl": "https://github.com/bchoubert/crypto-viewer",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -30,11 +30,22 @@
     "android": {
       "package": "com.bchoubert.cryptoviewer",
       "permissions": [],
-      "versionCode": 10
+      "versionCode": 11
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg",
+        "ts",
+        "tsx"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4a4bb6e0-c847-11e9-bfea-4b06c365df40"
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 import React, {
   FC, memo, useContext, useMemo,
 } from 'react';
-import { Picker } from '@react-native-community/picker';
+import { Picker } from '@react-native-picker/picker';
 import {
   Modal, TextInput, TouchableHighlight, Text, View, StyleSheet, Dimensions,
 } from 'react-native';
