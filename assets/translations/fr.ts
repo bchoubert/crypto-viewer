@@ -1,4 +1,4 @@
-import TranslationType from '../../types/translation.types';
+import { TranslationType } from '../../types/translation.types';
 
 const FrTranslation: TranslationType = {
   language: 'Français',

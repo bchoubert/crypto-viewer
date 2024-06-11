@@ -1,13 +1,32 @@
-export enum SettingKeys {
-  QUOTE_STORAGE_KEY = 'QUOTE_STORAGE_KEY',
-  DATE_FORMAT_KEY = 'DATE_FORMAT_KEY',
-  WALLET_KEY = 'WALLET_KEY',
-  FAVOURITES_KEY = 'FAVOURITES_KEY',
-  GRAPH_MODE_KEY = 'GRAPH_MODE_KEY',
-  LANGUAGE = 'LANGUAGE',
-  DARK_MODE_KEY = 'DARK_MODE_KEY',
-  SHOW_OTHER_ASSETS_KEY = 'SHOW_OTHER_ASSETS_KEY',
-  SORT_ASSETS_KEY = 'SORT_ASSETS_KEY',
-};
+import { Quote, SortAssetsType } from "./crypto.types";
+import { DarkModeType } from "./darkMode.types";
+import { DateFormatType } from "./date.types";
+import { GraphModeType } from "./graph.types";
+import { TranslationPossibility } from "./translation.types";
+import { WalletItem } from "./wallet.types";
 
-export type SettingType = 'currency' | 'dateFormat' | 'graphMode' | 'language' | 'darkMode' | 'credits' | 'show_other_assets' | 'sort_assets';
+export const settingsStorageKey: string = 'CV_SETTINGS_KEY';
+
+export interface SettingsType {
+  quote: Quote;
+  dateFormat: DateFormatType;
+  favourites: string[];
+  graphMode: GraphModeType;
+  wallet: WalletItem[],
+  language: TranslationPossibility;
+  darkMode: DarkModeType;
+  showOtherAssets: boolean;
+  sortAssets: SortAssetsType;
+}
+
+export const defaultSettings: SettingsType = {
+  quote: 'USD',
+  dateFormat: 'DD-MM-YYYY',
+  favourites: [],
+  graphMode: 'simple',
+  wallet: [],
+  language: 'EN',
+  darkMode: 'light',
+  showOtherAssets: false,
+  sortAssets: 'id',
+}

@@ -2,7 +2,7 @@ import Colors, { EColor } from "@/assets/Colors";
 import { FC, memo, useCallback, useMemo } from "react";
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
 import Icon, { EIcon } from "../Icon";
-import { Link, usePathname, useRouter } from 'expo-router';
+import { usePathname, useRouter } from 'expo-router';
 
 interface TopBarProps {
 

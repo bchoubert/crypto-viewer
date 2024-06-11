@@ -1,3 +1,19 @@
+import EnTranslation from "@/assets/translations/en";
+import FrTranslation from "@/assets/translations/fr";
+
+export type TranslationPossibility = 'EN' | 'FR';
+
+export const AvailableTranslationDetails: Record<TranslationPossibility, { name: string, translations: TranslationType }> = {
+  'FR': {
+    name: 'Français',
+    translations: FrTranslation,
+  },
+  'EN': {
+    name: 'English',
+    translations: EnTranslation,
+  },
+};
+
 export type TranslationType = {
   language: string,
   common: {
