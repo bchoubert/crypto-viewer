@@ -29,6 +29,7 @@ export type TranslationType = {
     other: string,
     assets: string,
     sort: string,
+    error: string,
   },
   details: {
     details: string,

@@ -1,6 +1,7 @@
 import StatusBar from '@/components/Utils/StatusBar';
 import TopBar from '@/components/Utils/TopBar';
 import SettingsProvider from '@/contexts/settings.provider';
+import TranslationsProvider from '@/contexts/translations.provider';
 import {  DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
@@ -29,12 +30,14 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <SettingsProvider>
-        <StatusBar />
-        <TopBar />
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
+        <TranslationsProvider>
+          <StatusBar />
+          <TopBar />
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </TranslationsProvider>
       </SettingsProvider>
     </ThemeProvider>
   );

@@ -5,7 +5,10 @@ export interface ICrypto {
   status: string;
   details: {
     type: string;
-  },
+  };
+
+  // computed
+  rate?: number;
 }
 
 export type Quote = 'USD' | 'EUR' | 'BTC';
@@ -23,3 +26,5 @@ export const quoteDetails: Record<Quote, { symbol: string }> = {
 };
 
 export type SortAssetsType = 'id' | 'name';
+
+export type ExchangeRates = Record<string, string>;

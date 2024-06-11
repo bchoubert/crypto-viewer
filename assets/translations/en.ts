@@ -15,6 +15,7 @@ const EnTranslation: TranslationType = {
     other: 'Other Assets',
     assets: 'Assets',
     sort: 'Sort assets',
+    error: 'There was an error fetching cryptos',
   },
   details: {
     details: 'Details',

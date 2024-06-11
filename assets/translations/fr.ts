@@ -15,6 +15,7 @@ const FrTranslation: TranslationType = {
     other: 'Autres actifs',
     assets: 'Actifs',
     sort: 'Trier les actifs',
+    error: 'Une erreur est survenue lors de l\'obtention des cryptos'
   },
   details: {
     details: 'Détails',

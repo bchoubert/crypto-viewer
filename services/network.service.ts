@@ -1,4 +1,4 @@
-import { ICrypto } from '../types/crypto.types';
+import { ExchangeRates, ICrypto } from '../types/crypto.types';
 
 export const apiProDomain = 'https://api.pro.coinbase.com';
 export const apiDomain = 'https://api.coinbase.com/v2';
@@ -9,10 +9,10 @@ const NetworkService = {
     return fetch(`${apiProDomain}/currencies`)
       .then((response) => response.json());
   },
-  // fetchCryptoExchangeRates(quoteCode: string): Promise<ExchangeRates> {
-  //   return fetch(`${apiDomain}/exchange-rates?currency=${quoteCode}`)
-  //     .then((response) => response.json());
-  // },
+  fetchCryptoExchangeRates(quoteCode: string): Promise<{ data: { rates: ExchangeRates } }> {
+    return fetch(`${apiDomain}/exchange-rates?currency=${quoteCode}`)
+      .then((response) => response.json());
+  },
 
   // fetchCrypto24hrStats(crypto: ECrypto, quote: string): Promise<Stats> {
   //   return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/stats`)
