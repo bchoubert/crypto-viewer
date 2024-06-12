@@ -25,6 +25,7 @@ export type TranslationType = {
   },
   list: {
     favourites: string,
+    noFavouritesYet: string,
     main: string,
     other: string,
     assets: string,

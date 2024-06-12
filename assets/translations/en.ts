@@ -11,6 +11,7 @@ const EnTranslation: TranslationType = {
   },
   list: {
     favourites: 'Favourites',
+    noFavouritesYet: 'You have no favourites yet!',
     main: 'Main Assets',
     other: 'Other Assets',
     assets: 'Assets',

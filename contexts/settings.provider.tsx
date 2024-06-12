@@ -1,4 +1,4 @@
-import { loadSettings } from "@/services/settings.service";
+import { loadSettings, saveSettings } from "@/services/settings.service";
 import { Quote, SortAssetsType } from "@/types/crypto.types";
 import { DarkModeType } from "@/types/darkMode.types";
 import { DateFormatType } from "@/types/date.types";
@@ -19,8 +19,8 @@ interface SettingsContextInterface {
   changeShowOtherAssets: (show: boolean) => void;
   changeSortAssets: (sort: SortAssetsType) => void;
   
-  addFavourite: (id: string) => void;
-  removeFavourite: (id: string) => void;
+  toggleFavourite: (id: string) => void;
+  hasFavourite: (id: string) => boolean;
 
   addWalletItem: (item: WalletItem) => void;
   removeWalletItem: (id: string) => void;
@@ -49,10 +49,13 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
   useEffect(() => { load() }, []);
 
   const changeSetting = useCallback((settingKey: keyof SettingsType, value: any) => {
-    setValues({
+    const newValues = {
       ...values,
       [settingKey]: value
-    });
+    };
+
+    setValues(newValues);
+    saveSettings(newValues);
   }, [values, setValues]);
 
   const changeQuote = useCallback((quote: Quote) => changeSetting('quote', quote), [changeSetting]);
@@ -62,16 +65,19 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
   const changeDarkMode = useCallback((mode: DarkModeType) => changeSetting('darkMode', mode), [changeSetting]);
   const changeShowOtherAssets = useCallback((show: boolean) => changeSetting('showOtherAssets', show), [changeSetting]);
   const changeSortAssets = useCallback((sort: SortAssetsType) => changeSetting('sortAssets', sort), [changeSetting]);
-
-  const addFavourite = useCallback((id: string) => {
+  
+  const hasFavourite = useCallback((id: string) => values.favourites.includes(id), [values]);
+  const toggleFavourite = useCallback((id: string) => {
+    const isNotFavourite = !hasFavourite(id);
     const newFav = [...values.favourites].filter(i => i !== id);
-    changeSetting('favourites', [...newFav, id]);
+
+    if (isNotFavourite) {
+      changeSetting('favourites', [...newFav, id]);
+    } else {
+      changeSetting('favourites', newFav);
+    }
   }, [changeSetting, values]);
 
-  const removeFavourite = useCallback((id: string) => {
-    const newFav = [...values.favourites].filter(i => i !== id);
-    changeSetting('favourites', newFav);
-  }, [changeSetting, values]);
 
   const addWalletItem = useCallback((item: WalletItem) => {
     const newWallet = [...values.wallet].filter(w => w.id !== item.id);
@@ -96,8 +102,8 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
         changeShowOtherAssets,
         changeSortAssets,
 
-        addFavourite,
-        removeFavourite,
+        toggleFavourite,
+        hasFavourite,
 
         addWalletItem,
         removeWalletItem,
@@ -106,7 +112,7 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
       return context;
     },
     [ values, changeQuote, changeDateFormat, changeGraphMode, changeLanguage, changeDarkMode,
-    changeShowOtherAssets, changeSortAssets, addFavourite, removeFavourite, addWalletItem, removeWalletItem],
+    changeShowOtherAssets, changeSortAssets, toggleFavourite, hasFavourite, addWalletItem, removeWalletItem],
   );
 
   if (isLoading) {

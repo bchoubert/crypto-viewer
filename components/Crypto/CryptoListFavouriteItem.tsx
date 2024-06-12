@@ -1,23 +1,28 @@
+import { SettingsContext } from "@/contexts/settings.provider";
 import { ICrypto, quoteDetails } from "@/types/crypto.types";
 import { FC, memo, useContext, useMemo } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
 import CryptoIcon from "../CryptoIcon";
 import ECrypto from "@/constants/cryptos.enum";
-import Colors, { EColor } from "@/assets/Colors";
-import CryptoIconCircle from "./CryptoIconCircle";
 import CryptoDetails from "@/constants/cryptodetails.constants";
-import { printNumber } from '@/services/print.service';
+import Colors, { EColor } from "@/assets/Colors";
 import { Link } from "expo-router";
-import Icon, { EIcon } from "../Icon";
-import { SettingsContext } from "@/contexts/settings.provider";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import CryptoIconCircle from "./CryptoIconCircle";
+import { printNumber } from "@/services/print.service";
 
-interface CryptoListItemProps {
+interface CryptoListFavouriteItemProps {
   item: ICrypto;
 }
 
 const styles = StyleSheet.create({
   container: {
     height: 60,
+    width: '46%',
+    marginLeft: '2%',
+    marginRight: '2%',
+    marginTop: 10,
+    marginBottom: 10,
+    borderRadius: 10,
     borderBottomColor: Colors.lightGray,
     borderBottomWidth: 1,
     paddingLeft: 10,
@@ -25,7 +30,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 0,
     justifyContent: 'space-between',
     backgroundColor: Colors.white,
   },
@@ -47,21 +51,25 @@ const styles = StyleSheet.create({
   icon: {
     height: 20,
     width: 20,
-    color: Colors.white,
   },
   titles: {
     display: 'flex',
     flexDirection: 'column',
+    color: Colors.white,
   },
   title: {
+    color: Colors.white,
     fontWeight: '500',
   },
   subtitle: {
-    color: Colors.gray,
+    color: Colors.midGray,
+  },
+  price: {
+    color: Colors.white,
   }
-})
+});
 
-const CryptoListItem: FC<CryptoListItemProps> = memo(({
+const CryptoListFavouriteItem: FC<CryptoListFavouriteItemProps> = memo(({
   item
 }) => {
   const { settings } = useContext(SettingsContext);
@@ -83,11 +91,11 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
 
   return (
     <Link href={`/crypto/${item.id}`} style={styles.container} asChild>
-      <Pressable style={styles.container}>
+      <Pressable style={{ ...styles.container, backgroundColor: color }}>
         <View style={styles.left}>
           {CryptoIconInstance ? (
-            <CryptoIconCircle color={color} statusColor={statusColor}>
-              <CryptoIconInstance style={styles.icon} fill={Colors.white} />
+            <CryptoIconCircle color={Colors.white} statusColor={statusColor}>
+              <CryptoIconInstance style={styles.icon} fill={color} />
             </CryptoIconCircle>
           ) : (<View style={styles.iconplaceholder} />)}
           <View style={styles.titles}>
@@ -97,13 +105,12 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
         </View>
         <View style={styles.right}>
           {item.rate ? (
-            <Text>{printNumber(item.rate, quoteSymbol)}</Text>
+            <Text style={styles.price}>{printNumber(item.rate, quoteSymbol)}</Text>
           ) : null}
-          <Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />
         </View>
       </Pressable>
     </Link>
   );
 });
 
-export default CryptoListItem;
+export default CryptoListFavouriteItem;

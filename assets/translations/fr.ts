@@ -11,6 +11,7 @@ const FrTranslation: TranslationType = {
   },
   list: {
     favourites: 'Favoris',
+    noFavouritesYet: 'Aucun favori pour le moment!',
     main: 'Principaux actifs',
     other: 'Autres actifs',
     assets: 'Actifs',

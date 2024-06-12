@@ -11,6 +11,8 @@ export interface ICrypto {
   rate?: number;
 }
 
+export type ICryptoFavourite = { cryptos: ICrypto[] };
+
 export type Quote = 'USD' | 'EUR' | 'BTC';
 
 export const quoteDetails: Record<Quote, { symbol: string }> = {

@@ -17,14 +17,14 @@ const Layout: FC = memo(() => {
         name="index"
         options={{
           title: translation.menu.prices,
-          tabBarIcon: ({ focused }) => <Icon name={EIcon.coins} color={focused ? EColor.blue : EColor.gray} />,
+          tabBarIcon: ({ focused }) => <Icon name={EIcon.coins} color={focused ? EColor.blue : EColor.gray} width={22} />,
         }}
       />
       <Tabs.Screen
         name="wallet"
         options={{
           title: translation.menu.wallet,
-          tabBarIcon: ({ focused }) => <Icon name={EIcon.wallet} color={focused ? EColor.blue : EColor.gray} />,
+          tabBarIcon: ({ focused }) => <Icon name={EIcon.wallet} color={focused ? EColor.blue : EColor.gray} width={22} />,
         }}
       />
     </Tabs>

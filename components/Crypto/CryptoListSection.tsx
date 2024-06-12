@@ -8,7 +8,7 @@ interface CryptoListSectionProps {
 
 const styles = StyleSheet.create({
   section: {
-    backgroundColor: Colors.midGray,
+    backgroundColor: Colors.lightGray,
     paddingLeft: 8,
     paddingTop: 2,
     paddingBottom: 2,

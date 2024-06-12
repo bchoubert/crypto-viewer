@@ -1,8 +1,9 @@
 import Colors, { EColor } from "@/assets/Colors";
-import { FC, memo, useCallback, useMemo } from "react";
+import { FC, memo, useCallback, useContext, useMemo } from "react";
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
 import Icon, { EIcon } from "../Icon";
-import { usePathname, useRouter } from 'expo-router';
+import { useGlobalSearchParams, useLocalSearchParams, usePathname, useRouter } from 'expo-router';
+import { SettingsContext } from "@/contexts/settings.provider";
 
 interface TopBarProps {
 
@@ -19,6 +20,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   topBarLeft: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  topBarRight: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -49,13 +55,26 @@ const styles = StyleSheet.create({
 })
 
 const TopBar: FC<TopBarProps> = memo(() => {
+  const { hasFavourite, toggleFavourite, settings } = useContext(SettingsContext);
+
   const pathname = usePathname();
+  const { id } = useGlobalSearchParams();
   const router = useRouter();
 
   const showBackButton = useMemo(() => !(['/', '/wallet'].includes(pathname)), [pathname]);
   
   const navigateToSettings = useCallback(() => router.navigate('/settings'), [router]);
   const back = useCallback(() => router.back(), [router]);
+
+  const isFavourite = useMemo(() => hasFavourite(id as string), [id, settings]);
+
+  const toggleFavouriteProxy = useCallback(() => {
+    if (!id) {
+      return;
+    }
+
+    toggleFavourite(id as string);
+  }, [isFavourite, id, settings, toggleFavourite]);
 
   return (
     <View style={styles.topBar}>
@@ -71,9 +90,14 @@ const TopBar: FC<TopBarProps> = memo(() => {
           </View>
         )}
       </View>
-      <View>
+      <View style={styles.topBarRight}>
+        {id ? (
+          <Pressable onPress={toggleFavouriteProxy} style={styles.topBarButton}>
+            <Icon color={EColor.gray} name={isFavourite ? EIcon.starFull : EIcon.star} width={22} />
+          </Pressable>
+        ) : null}
         <Pressable onPress={navigateToSettings} style={styles.topBarButton}>
-          <Icon color={EColor.gray} name={EIcon.cog} />
+          <Icon color={EColor.gray} name={EIcon.cog} width={22} />
         </Pressable>
       </View>
     </View>
