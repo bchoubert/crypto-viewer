@@ -28,5 +28,6 @@ export const quoteDetails: Record<Quote, { symbol: string }> = {
 };
 
 export type SortAssetsType = 'id' | 'name';
+export type ShowOtherAssetsType = 'show' | 'hide';
 
 export type ExchangeRates = Record<string, string>;

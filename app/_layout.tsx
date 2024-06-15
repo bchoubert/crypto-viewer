@@ -1,5 +1,6 @@
 import StatusBar from '@/components/Utils/StatusBar';
 import TopBar from '@/components/Utils/TopBar';
+import CryptoProvider from '@/contexts/crypto.provider';
 import SettingsProvider from '@/contexts/settings.provider';
 import TranslationsProvider from '@/contexts/translations.provider';
 import {  DefaultTheme, ThemeProvider } from '@react-navigation/native';
@@ -31,12 +32,14 @@ export default function RootLayout() {
     <ThemeProvider value={DefaultTheme}>
       <SettingsProvider>
         <TranslationsProvider>
-          <StatusBar />
-          <TopBar />
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" />
-          </Stack>
+          <CryptoProvider>
+            <StatusBar />
+            <TopBar />
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              <Stack.Screen name="+not-found" />
+            </Stack>
+          </CryptoProvider>
         </TranslationsProvider>
       </SettingsProvider>
     </ThemeProvider>

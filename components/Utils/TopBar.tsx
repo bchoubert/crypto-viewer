@@ -1,7 +1,7 @@
 import Colors, { EColor } from "@/assets/Colors";
 import { FC, memo, useCallback, useContext, useMemo } from "react";
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
-import Icon, { EIcon } from "../Icon";
+import Icon, { EIcon } from "./Icon";
 import { useGlobalSearchParams, useLocalSearchParams, usePathname, useRouter } from 'expo-router';
 import { SettingsContext } from "@/contexts/settings.provider";
 
@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.lightGray,
   },
   topBarLeft: {
     display: 'flex',

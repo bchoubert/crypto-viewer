@@ -1,10 +1,9 @@
+import WalletList from "@/components/Wallet/WalletList";
 import { FC, memo } from "react";
-import { Text, View } from "react-native";
+
 
 const Wallet: FC = memo(() => (
-  <View>
-    <Text>WALLET</Text>
-  </View>
+  <WalletList />
 ));
 
 export default Wallet;

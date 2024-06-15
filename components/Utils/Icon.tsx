@@ -1,29 +1,30 @@
 import { FC } from 'react';
 import { SvgProps } from 'react-native-svg';
 
-import IconArrowDown from '../assets/icons/arrow-alt-down-solid.svg';
-import IconArrowUp from '../assets/icons/arrow-alt-up-solid.svg';
-import IconBellOn from '../assets/icons/bell-on-solid.svg';
-import IconBell from '../assets/icons/bell-solid.svg';
-import IconChevronLeft from '../assets/icons/chevron-left-solid.svg';
-import IconChevronRight from '../assets/icons/chevron-right-solid.svg';
-import IconCog from '../assets/icons/cog-solid.svg';
-import IconCoin from '../assets/icons/coin-solid.svg';
-import IconCoins from '../assets/icons/coins-solid.svg';
-import IconDonate from '../assets/icons/donate-solid.svg';
-import IconExternalLink from '../assets/icons/external-link-alt-solid.svg';
-import IconExternalLinkSquare from '../assets/icons/external-link-square-alt-solid.svg';
-import IconHome from '../assets/icons/home-solid.svg';
-import IconLayerGroup from '../assets/icons/layer-group-solid.svg';
-import IconMinus from '../assets/icons/minus-solid.svg';
-import IconPlus from '../assets/icons/plus-solid.svg';
-import IconStar from '../assets/icons/star-regular.svg';
-import IconStarFull from '../assets/icons/star-solid.svg';
-import IconList from '../assets/icons/th-list-solid.svg';
-import IconUser from '../assets/icons/user-solid.svg';
-import IconWallet from '../assets/icons/wallet-solid.svg';
+import IconArrowDown from '../../assets/icons/arrow-alt-down-solid.svg';
+import IconArrowUp from '../../assets/icons/arrow-alt-up-solid.svg';
+import IconBellOn from '../../assets/icons/bell-on-solid.svg';
+import IconBell from '../../assets/icons/bell-solid.svg';
+import IconChevronLeft from '../../assets/icons/chevron-left-solid.svg';
+import IconChevronRight from '../../assets/icons/chevron-right-solid.svg';
+import IconClose from '../../assets/icons/xmark-solid.svg';
+import IconCog from '../../assets/icons/cog-solid.svg';
+import IconCoin from '../../assets/icons/coin-solid.svg';
+import IconCoins from '../../assets/icons/coins-solid.svg';
+import IconDonate from '../../assets/icons/donate-solid.svg';
+import IconExternalLink from '../../assets/icons/external-link-alt-solid.svg';
+import IconExternalLinkSquare from '../../assets/icons/external-link-square-alt-solid.svg';
+import IconHome from '../../assets/icons/home-solid.svg';
+import IconLayerGroup from '../../assets/icons/layer-group-solid.svg';
+import IconMinus from '../../assets/icons/minus-solid.svg';
+import IconPlus from '../../assets/icons/plus-solid.svg';
+import IconStar from '../../assets/icons/star-regular.svg';
+import IconStarFull from '../../assets/icons/star-solid.svg';
+import IconList from '../../assets/icons/th-list-solid.svg';
+import IconUser from '../../assets/icons/user-solid.svg';
+import IconWallet from '../../assets/icons/wallet-solid.svg';
 import { Text, View } from 'react-native';
-import Colors, { EColor } from '@/assets/Colors';
+import { EColor } from '@/assets/Colors';
 
 export enum EIcon {
   arrowDown = 'arrowDown',
@@ -32,6 +33,7 @@ export enum EIcon {
   bell = 'bell',
   chevronLeft = 'chevronLeft',
   chevronRight = 'chevronRight',
+  close = 'close',
   cog = 'cog',
   coin = 'coin',
   coins = 'coins',
@@ -56,6 +58,7 @@ const icons: Record<EIcon, FC<SvgProps>> = {
   [EIcon.bell]: IconBell,
   [EIcon.chevronLeft]: IconChevronLeft,
   [EIcon.chevronRight]: IconChevronRight,
+  [EIcon.close]: IconClose,
   [EIcon.cog]: IconCog,
   [EIcon.coin]: IconCoin,
   [EIcon.coins]: IconCoins,

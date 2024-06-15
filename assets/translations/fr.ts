@@ -45,8 +45,8 @@ const FrTranslation: TranslationType = {
     no_item: 'Pas encore d\'actifs dans votre portefeuille',
   },
   settings: {
-    preferred_currency: 'Devise préférée',
-    preferred_date_format: 'Format de date préféré',
+    preferred_currency: 'Devise',
+    preferred_date_format: 'Format de date',
     graph_mode: 'Affichage du graphique',
     dark_mode: 'Thème',
     language: 'Langue',

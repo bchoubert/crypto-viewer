@@ -1,5 +1,5 @@
 import { EColor } from "@/assets/Colors";
-import Icon, { EIcon } from "@/components/Icon";
+import Icon, { EIcon } from "@/components/Utils/Icon";
 import { TranslationsContext } from "@/contexts/translations.provider";
 import { Tabs } from "expo-router";
 import { FC, memo, useContext } from "react";

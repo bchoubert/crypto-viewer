@@ -22,7 +22,7 @@ const CryptoListFavourite: FC<CryptoListFavouriteProps> = memo(({
 }) => (
   <View style={styles.container}>
     {item.cryptos.map(i => (
-      <CryptoListFavouriteItem item={i} />
+      <CryptoListFavouriteItem key={i.id} item={i} />
     ))}
   </View>
 ));

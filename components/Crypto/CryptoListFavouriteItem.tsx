@@ -1,13 +1,13 @@
 import { SettingsContext } from "@/contexts/settings.provider";
 import { ICrypto, quoteDetails } from "@/types/crypto.types";
 import { FC, memo, useContext, useMemo } from "react";
-import CryptoIcon from "../CryptoIcon";
+import CryptoIcon from "../Utils/CryptoIcon";
 import ECrypto from "@/constants/cryptos.enum";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import Colors, { EColor } from "@/assets/Colors";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import CryptoIconCircle from "./CryptoIconCircle";
+import CryptoIconCircle from "../Utils/CryptoIconCircle";
 import { printNumber } from "@/services/print.service";
 
 interface CryptoListFavouriteItemProps {
@@ -16,11 +16,13 @@ interface CryptoListFavouriteItemProps {
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: 90,
     width: '46%',
     marginLeft: '2%',
     marginRight: '2%',
     marginTop: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
     marginBottom: 10,
     borderRadius: 10,
     borderBottomColor: Colors.lightGray,
@@ -28,8 +30,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     backgroundColor: Colors.white,
   },
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
     color: Colors.midGray,
   },
   price: {
+    fontSize: 25,
     color: Colors.white,
   }
 });

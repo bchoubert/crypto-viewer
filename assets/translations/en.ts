@@ -45,8 +45,8 @@ const EnTranslation: TranslationType = {
     no_item: 'No item in your wallet yet',
   },
   settings: {
-    preferred_currency: 'Preferred Currency',
-    preferred_date_format: 'Preferred date format',
+    preferred_currency: 'Currency',
+    preferred_date_format: 'Date Format',
     graph_mode: 'Graph Mode',
     dark_mode: 'Theme',
     language: 'Language',
