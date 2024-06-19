@@ -1,4 +1,4 @@
-import CryptoList from "@/components/Crypto/CryptoList";
+import CryptoList from "@/components/List/CryptoList";
 import { FC, memo } from "react";
 
 const Index: FC = memo(() => <CryptoList />);

@@ -1,15 +1,15 @@
+import CryptoDetails from "@/components/Details/CryptoDetails";
+import ECrypto from "@/constants/cryptos.enum";
 import { useLocalSearchParams } from "expo-router";
-import { FC, memo } from "react";
-import { Text, View } from "react-native";
+import { FC, memo, useMemo } from "react";
 
 const CryptoPage: FC = memo(() => {
   const { id } = useLocalSearchParams();
 
-  return (
-    <View>
-      <Text>Crypto: {id}</Text>
+  const cryptoId = useMemo(() => (id as string)?.toLowerCase() as ECrypto, [id]);
 
-    </View>
+  return (
+    <CryptoDetails id={cryptoId} />
   )
 });
 

@@ -5,6 +5,7 @@ import { getData, storeData } from './storage.service';
 
 export const loadSettings = async (): Promise<SettingsType> => {
   const value = await getData(settingsStorageKey);
+
   if (value) {
     return {
       ...defaultSettings,

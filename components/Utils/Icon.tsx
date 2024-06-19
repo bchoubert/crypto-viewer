@@ -78,7 +78,7 @@ const icons: Record<EIcon, FC<SvgProps>> = {
 
 interface IconProps {
   name: EIcon,
-  color: EColor,
+  color: EColor | string,
   width?: number,
 }
 

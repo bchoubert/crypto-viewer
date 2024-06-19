@@ -1,5 +1,5 @@
 import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { SectionList } from "react-native";
+import { SectionList, StyleSheet } from "react-native";
 import CryptoListItem from "./CryptoListItem";
 import { ICrypto, ICryptoFavourite } from "@/types/crypto.types";
 import CryptoListSection from "./CryptoListSection";
@@ -7,6 +7,13 @@ import { SettingsContext } from "@/contexts/settings.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
 import CryptoListFavourite from "./CryptoListFavourite";
 import { CryptoContext } from "@/contexts/crypto.provider";
+import Colors from "@/assets/Colors";
+
+const styles = StyleSheet.create({
+  list: {
+    backgroundColor: Colors.white,
+  },
+});
 
 const CryptoList: FC = memo(() => {
   const { settings, hasFavourite } = useContext(SettingsContext);
@@ -84,6 +91,7 @@ const CryptoList: FC = memo(() => {
       renderItem={handleRenderItem}
       renderSectionHeader={handleRenderSectionHeader}
       stickySectionHeadersEnabled
+      style={styles.list}
     />
   );
 });

@@ -9,24 +9,41 @@ import LogoAch from '../../assets/cryptos/ach.svg';
 import LogoAcs from '../../assets/cryptos/acs.svg';
 import LogoAda from '../../assets/cryptos/ada.svg';
 import LogoAergo from '../../assets/cryptos/aergo.svg';
+import LogoAero from '../../assets/cryptos/aero.svg';
 import LogoAgld from '../../assets/cryptos/agld.svg';
 import LogoAioz from '../../assets/cryptos/aioz.svg';
+import LogoAkt from '../../assets/cryptos/akt.svg';
 import LogoAlcx from '../../assets/cryptos/alcx.svg';
+import LogoAleph from '../../assets/cryptos/aleph.svg';
 import LogoAlgo from '../../assets/cryptos/algo.svg';
+import LogoAlice from '../../assets/cryptos/alice.svg';
 import LogoAmp from '../../assets/cryptos/amp.svg';
 import LogoAnkr from '../../assets/cryptos/ankr.svg';
+import LogoAnt from '../../assets/cryptos/ant.svg';
+import LogoApe from '../../assets/cryptos/ape.svg';
+import LogoApi3 from '../../assets/cryptos/api3.svg';
+import LogoApt from '../../assets/cryptos/apt.svg';
 import LogoArb from '../../assets/cryptos/arb.svg';
+import LogoArkm from '../../assets/cryptos/arkm.svg';
 import LogoArpa from '../../assets/cryptos/arpa.svg';
 import LogoAsm from '../../assets/cryptos/asm.svg';
+import LogoAst from '../../assets/cryptos/ast.svg';
+import LogoAta from '../../assets/cryptos/ata.svg';
 import LogoAtom from '../../assets/cryptos/atom.svg';
 import LogoAuction from '../../assets/cryptos/auction.svg';
+import LogoAudio from '../../assets/cryptos/audio.svg';
+import LogoAurora from '../../assets/cryptos/aurora.svg';
 import LogoAvax from '../../assets/cryptos/avax.svg';
+import LogoAvt from '../../assets/cryptos/avt.svg';
+import LogoAxl from '../../assets/cryptos/axl.svg';
 import LogoAxs from '../../assets/cryptos/axs.svg';
 import LogoBadger from '../../assets/cryptos/badger.svg';
 import LogoBal from '../../assets/cryptos/bal.svg';
 import LogoBand from '../../assets/cryptos/band.svg';
 import LogoBat from '../../assets/cryptos/bat.svg';
 import LogoBch from '../../assets/cryptos/bch.svg';
+import LogoBico from '../../assets/cryptos/bico.svg';
+import LogoBigtime from '../../assets/cryptos/bigtime.svg';
 import LogoBnt from '../../assets/cryptos/bnt.svg';
 import LogoBond from '../../assets/cryptos/bond.svg';
 import LogoBtc from '../../assets/cryptos/btc.svg';
@@ -143,25 +160,42 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.ach]: LogoAch,
   [ECrypto.acs]: LogoAcs,
   [ECrypto.ada]: LogoAda,
+  [ECrypto.aero]: LogoAero,
   [ECrypto.aergo]: LogoAergo,
   [ECrypto.agld]: LogoAgld,
   [ECrypto.aioz]: LogoAioz,
+  [ECrypto.akt]: LogoAkt,
   [ECrypto.alcx]: LogoAlcx,
+  [ECrypto.aleph]: LogoAleph,
   [ECrypto.algo]: LogoAlgo,
+  [ECrypto.alice]: LogoAlice,
   [ECrypto.amp]: LogoAmp,
   [ECrypto.ankr]: LogoAnkr,
+  [ECrypto.ant]: LogoAnt,
+  [ECrypto.ape]: LogoApe,
+  [ECrypto.api3]: LogoApi3,
+  [ECrypto.apt]: LogoApt,
   [ECrypto.arb]: LogoArb,
+  [ECrypto.arkm]: LogoArkm,
   [ECrypto.arpa]: LogoArpa,
   [ECrypto.asm]: LogoAsm,
+  [ECrypto.ast]: LogoAst,
+  [ECrypto.ata]: LogoAta,
   [ECrypto.atom]: LogoAtom,
   [ECrypto.auction]: LogoAuction,
+  [ECrypto.audio]: LogoAudio,
+  [ECrypto.aurora]: LogoAurora,
   [ECrypto.avax]: LogoAvax,
+  [ECrypto.avt]: LogoAvt,
+  [ECrypto.axl]: LogoAxl,
   [ECrypto.axs]: LogoAxs,
   [ECrypto.badger]: LogoBadger,
   [ECrypto.bal]: LogoBal,
   [ECrypto.band]: LogoBand,
   [ECrypto.bat]: LogoBat,
   [ECrypto.bch]: LogoBch,
+  [ECrypto.bico]: LogoBico,
+  [ECrypto.bigtime]: LogoBigtime,
   [ECrypto.bnt]: LogoBnt,
   [ECrypto.bond]: LogoBond,
   [ECrypto.btc]: LogoBtc,

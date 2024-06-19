@@ -16,18 +16,23 @@ interface CryptoListItemProps {
 }
 
 const styles = StyleSheet.create({
+  sub_container: {
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: Colors.white,
+  },
   container: {
     height: 60,
-    borderBottomColor: Colors.lightGray,
-    borderBottomWidth: 1,
+    borderRadius: 10,
     paddingLeft: 10,
     paddingRight: 10,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    margin: 0,
     justifyContent: 'space-between',
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.lightGray,
   },
   iconplaceholder: {
     width: 36,
@@ -82,27 +87,29 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
   }, [cryptoDetails, item]);
 
   return (
-    <Link href={`/crypto/${item.id}`} style={styles.container} asChild>
-      <Pressable style={styles.container}>
-        <View style={styles.left}>
-          {CryptoIconInstance ? (
-            <CryptoIconCircle color={color} statusColor={statusColor}>
-              <CryptoIconInstance style={styles.icon} fill={Colors.white} />
-            </CryptoIconCircle>
-          ) : (<View style={styles.iconplaceholder} />)}
-          <View style={styles.titles}>
-            <Text style={styles.title}>{item.name}</Text>  
-            <Text style={styles.subtitle}>{item.id}</Text> 
+    <View style={styles.sub_container}>
+      <Link href={`/crypto/${item.id}`} style={styles.container} asChild>
+        <Pressable>
+          <View style={styles.left}>
+            {CryptoIconInstance ? (
+              <CryptoIconCircle color={color} statusColor={statusColor}>
+                <CryptoIconInstance style={styles.icon} fill={Colors.white} />
+              </CryptoIconCircle>
+            ) : (<View style={styles.iconplaceholder} />)}
+            <View style={styles.titles}>
+              <Text style={styles.title}>{item.name}</Text>  
+              <Text style={styles.subtitle}>{item.id}</Text> 
+            </View>
           </View>
-        </View>
-        <View style={styles.right}>
-          {item.rate ? (
-            <Text>{printNumber(item.rate, quoteSymbol)}</Text>
-          ) : null}
-          <Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />
-        </View>
-      </Pressable>
-    </Link>
+          <View style={styles.right}>
+            {item.rate ? (
+              <Text>{printNumber(item.rate, quoteSymbol)}</Text>
+            ) : null}
+            <Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />
+          </View>
+        </Pressable>
+      </Link>
+    </View>
   );
 });
 

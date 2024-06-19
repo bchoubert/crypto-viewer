@@ -45,6 +45,11 @@ const CryptoDetails: Record<ECrypto, {
     description: 'AERGO is an Ethereum token for the Aergo protocol, which aims to allow enterprises and developers to design, build, and deploy blockchain applications on public or private networks. AERGO tokens can be used for deploying smart contracts, staking, and for paying for other services on the Aergo platform.',
     website: 'https://www.aergo.io/',
   },
+  [ECrypto.aero]: {
+    color: '#0052FF',
+    description: 'Aerodrome Finance is an automated market maker and liquidity hub on Base. Aerodrome Finance was launched as a fork of Velodrome Finance. Holders of AERO, the protocol’s utility token, can vote-escrow their tokens. Once tokens are locked, the holder can participate in governance to earn a portion of protocol trading fees.',
+    website: 'https://aerodrome.finance/',
+  },
   [ECrypto.agld]: {
     color: '#000000',
     description: 'Adventure Gold (AGLD) is an Ethereum token that was airdropped to owners of Loot Project NFTs. Loot is a project that generated randomized adventure gear stored on-chain that can serve as the foundation for games built in the future. AGLD can potentially be used as an in-game currency for similar games and projects eventually built on top of the Loot Project.',
@@ -54,6 +59,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#35D687',
     description: 'AIOZ is an Ethereum token that powers Aioz Network, a Layer 1 blockchain enabling Ethereum and Cosmos interoperability. Aioz Network aims to enable instant finality and low transaction fees for applications such as file storage, live streaming, content delivery, and more. AIOZ can be earned by staking directly on the network and can be used to pay for apps and items on Aioz Network.',
     website: 'https://aioz.network/',
+  },
+  [ECrypto.akt]: {
+    color: '#FF414C',
+    description: 'Akash is a blockchain network that supports a decentralized compute marketplace. Akash allows users to lease computing resources from the network’s providers. AKT is the network’s utility token and can be used to secure the network through staking. AKT can also be used to participate in network governance. AKT tokens can be used to vote on proposals related to the network’s development and grant allocations.',
+    website: 'https://akash.network/',
   },
   [ECrypto.alcx]: {
     color: '#F5C09A',
@@ -109,6 +119,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#28A0F0',
     description: 'ARB is the utility token of Arbitrum, an Ethereum layer-2 network. ARB functions as the governance token of the Arbitrum DAO, as holders may create and vote on governance proposals.',
     website: 'https://arbitrum.io/',
+  },
+  [ECrypto.arkm]: {
+    color: '#000000',
+    description: 'Arkham is a blockchain intelligence platform that provides entity-level insights through onchain data analysis. Arkham aims to deanonymize blockchain transactions made by exchanges, whales, funds, and other entities by tagging their address and associated onchain activity. ARKM is the utility token of Arkham and can be used to participate in governance. ARKM can also be used to fund bounties posted on Arkham’s Intel Exchange.',
+    website: 'https://www.arkhamintelligence.com/',
   },
   [ECrypto.arpa]: {
     color: '#263145',
@@ -199,6 +214,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#EC4300',
     description: 'BICO is an Ethereum token powering Biconomy, a protocol that aims to seamlessly connect users to any decentralized application across multiple chains for relatively low fees. BICO can be used to pay for network fees and to vote on protocol upgrades.',
     website: 'https://www.biconomy.io/',
+  },
+  [ECrypto.bigtime]: {
+    color: '#FFC533',
+    description: 'Big Time is a multiplayer action RPG game developed by Big Time Studios. Big Time’s player-owned economy includes NFTs and the BIGTIME utility token. BIGTIME tokens can be used to craft ‘Cosmetic’ NFTs. BIGTIME tokens can also be used to enter exclusive zones called ‘Prestige Portals’.',
+    website: 'https://bigtime.gg/',
   },
   [ECrypto.bit]: {
     color: '#C1FF3C',
