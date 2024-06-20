@@ -29,6 +29,8 @@ const FrTranslation: TranslationType = {
     buy: 'Achat',
     price: 'Prix',
     sell: 'Vente',
+    open: 'Ouverture',
+    last: 'Dernière valeur',
     loading_rates: 'Chargement de l\'historique...',
     favourite_added: 'Favori ajouté !',
     favourite_removed: 'Favori supprimé !',

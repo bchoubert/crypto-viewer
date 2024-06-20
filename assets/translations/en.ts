@@ -29,6 +29,8 @@ const EnTranslation: TranslationType = {
     buy: 'Buy',
     price: 'Price',
     sell: 'Sell',
+    open: 'Open',
+    last: 'Last',
     loading_rates: 'Loading historical rates...',
     favourite_added: 'Favourite added !',
     favourite_removed: 'Favourite removed !',

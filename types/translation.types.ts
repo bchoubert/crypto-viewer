@@ -43,6 +43,8 @@ export type TranslationType = {
     buy: string,
     price: string,
     sell: string,
+    open: string,
+    last: string,
     loading_rates: string,
     favourite_added: string,
     favourite_removed: string,

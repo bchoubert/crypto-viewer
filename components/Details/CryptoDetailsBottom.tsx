@@ -4,6 +4,7 @@ import { FC, memo, useCallback, useMemo } from "react";
 import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { openURL } from "expo-linking";
 import Icon, { EIcon } from "../Utils/Icon";
+import CryptoStats from "./CryptoStats";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -35,6 +36,10 @@ const styles = StyleSheet.create({
     gap: 3,
     alignItems: 'center',
   },
+  title: {
+    marginTop: 10,
+    fontWeight: 'bold',
+  }
 });
 
 const CryptoDetailsBottom: FC<CryptoDetailsBottomProps> = memo(({
@@ -56,6 +61,8 @@ const CryptoDetailsBottom: FC<CryptoDetailsBottomProps> = memo(({
             <Text style={{ color: details.color }}>{details.website}</Text>
             <Icon name={EIcon.externalLink} width={12} color={details.color} />
           </Pressable>
+          <Text style={styles.title}>Stats</Text>
+          <CryptoStats id={id} />
         </View>
       </ScrollView>
     </View>

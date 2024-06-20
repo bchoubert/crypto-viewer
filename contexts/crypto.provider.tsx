@@ -1,5 +1,5 @@
 import { showError } from "@/services/error.service";
-import NetworkService from "@/services/network.service";
+import { fetchCryptoExchangeRates, fetchCryptos } from "@/services/network.service";
 import { ICrypto } from "@/types/crypto.types";
 import { FC, ReactNode, createContext, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ToastAndroid } from "react-native";
@@ -35,8 +35,8 @@ const CryptoProvider: FC<CryptoProviderProps> = memo(({
     setLoading(true);
 
     const [fetchedCurrencies, exchangeRatesResponse] = await Promise.all([
-      NetworkService.fetchCryptos().catch(showError),
-      NetworkService.fetchCryptoExchangeRates(settings.quote).catch(showError),
+      fetchCryptos().catch(showError),
+      fetchCryptoExchangeRates(settings.quote).catch(showError),
     ]);
 
     if (!fetchedCurrencies) {
