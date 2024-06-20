@@ -3,31 +3,31 @@
 <g id="Layer_x0020_1">
 	<g id="_2806123167536">
 		<g>			
-			<path fill="currentColor" d="     M2011,1729L690,2075h1492c16,0,26-16,16-26l-186-320H2011z"></path>
-			<path fill="currentColor" d="     M1810,1528l201,201L1258,433c-5-10-26-10-31,0l-191,330l774,764V1528z"></path>
-			<polygon fill="currentColor" points="     964,2002 964,1042 690,2075    "></polygon>
-			<polygon fill="currentColor" points="     964,1042 1810,1528 1036,763    "></polygon>
-			<polygon fill="currentColor" points="     964,2002 2011,1729 1810,1528    "></polygon>
-			<polygon fill="currentColor" points="     964,2002 1144,1899 964,1249    "></polygon>
-			<polygon fill="currentColor" points="     1810,1528 1629,1424 1144,1899    "></polygon>
-			<polygon fill="currentColor" points="     964,1043 964,1249 1636,1428    "></polygon>
-				<polygon fill="currentColor" points="     1005,1388 1387,1388 1490,1388 964,1249    "></polygon>
-				<polygon fill="currentColor" points="     1000,1388 1144,1899 1247,1801 1056,1476    "></polygon>
-				<polygon fill="currentColor" points="     1490,1388 1247,1801 1629,1424    "></polygon>
-				<polygon fill="currentColor" points="     1387,1388 1000,1388 1056,1481    "></polygon>
-				<polygon fill="currentColor" points="     1299,1718 1056,1481 1247,1806    "></polygon>
-				<polygon fill="currentColor" points="     1490,1388 1387,1388 1299,1713    "></polygon>
-			<path fill="currentColor" d="     M318,2075h377l341-1312L302,2049C292,2059,302,2075,318,2075z"></path>
-			<path fill="currentColor" d="     M2011,1729L690,2075h1492c16,0,26-16,16-26l-186-320H2011z"></path>
-			<path fill="currentColor" d="     M1810,1528l201,201L1258,433c-5-10-26-10-31,0l-191,330l774,764V1528z"></path>
-				<polygon fill="currentColor" points="     964,2002 964,1042 690,2075    "></polygon>
-				<polygon fill="currentColor" points="     964,2002 2011,1729 1810,1528    "></polygon>
-				<polygon fill="currentColor" points="     964,2002 1144,1899 964,1249    "></polygon>
-				<polygon fill="currentColor" points="     1810,1528 1629,1424 1144,1899    "></polygon>
-				<polygon fill="currentColor" points="     1000,1388 1144,1899 1247,1801 1056,1476    "></polygon>
-				<polygon fill="currentColor" points="     1490,1388 1247,1801 1629,1424    "></polygon>
-				<polygon fill="currentColor" points="     1299,1718 1056,1481 1247,1801    "></polygon>
-				<polygon fill="currentColor" points="     1490,1388 1387,1388 1299,1713    "></polygon>
+			<path d="     M2011,1729L690,2075h1492c16,0,26-16,16-26l-186-320H2011z"></path>
+			<path d="     M1810,1528l201,201L1258,433c-5-10-26-10-31,0l-191,330l774,764V1528z"></path>
+			<polygon points="     964,2002 964,1042 690,2075    "></polygon>
+			<polygon points="     964,1042 1810,1528 1036,763    "></polygon>
+			<polygon points="     964,2002 2011,1729 1810,1528    "></polygon>
+			<polygon points="     964,2002 1144,1899 964,1249    "></polygon>
+			<polygon points="     1810,1528 1629,1424 1144,1899    "></polygon>
+			<polygon points="     964,1043 964,1249 1636,1428    "></polygon>
+				<polygon points="     1005,1388 1387,1388 1490,1388 964,1249    "></polygon>
+				<polygon points="     1000,1388 1144,1899 1247,1801 1056,1476    "></polygon>
+				<polygon points="     1490,1388 1247,1801 1629,1424    "></polygon>
+				<polygon points="     1387,1388 1000,1388 1056,1481    "></polygon>
+				<polygon points="     1299,1718 1056,1481 1247,1806    "></polygon>
+				<polygon points="     1490,1388 1387,1388 1299,1713    "></polygon>
+			<path d="     M318,2075h377l341-1312L302,2049C292,2059,302,2075,318,2075z"></path>
+			<path d="     M2011,1729L690,2075h1492c16,0,26-16,16-26l-186-320H2011z"></path>
+			<path d="     M1810,1528l201,201L1258,433c-5-10-26-10-31,0l-191,330l774,764V1528z"></path>
+				<polygon points="     964,2002 964,1042 690,2075    "></polygon>
+				<polygon points="     964,2002 2011,1729 1810,1528    "></polygon>
+				<polygon points="     964,2002 1144,1899 964,1249    "></polygon>
+				<polygon points="     1810,1528 1629,1424 1144,1899    "></polygon>
+				<polygon points="     1000,1388 1144,1899 1247,1801 1056,1476    "></polygon>
+				<polygon points="     1490,1388 1247,1801 1629,1424    "></polygon>
+				<polygon points="     1299,1718 1056,1481 1247,1801    "></polygon>
+				<polygon points="     1490,1388 1387,1388 1299,1713    "></polygon>
 		</g>
 	</g>
 </g>
