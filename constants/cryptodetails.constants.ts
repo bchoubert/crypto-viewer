@@ -231,7 +231,7 @@ const CryptoDetails: Record<ECrypto, {
     website: 'https://blur.io/',
   },
   [ECrypto.blz]: {
-    color: '#FF00FF',
+    color: '#1CD8D2',
     description: 'BLZ is the token powering the Bluzelle platform and decentralized storage network. BLZ can be used to pay for transactions, storage, staking, and voting on the future of the network. Note: Coinbase currently only supports BLZ running on the Ethereum blockchain (ERC-20).',
     website: 'https://bluzelle.com/',
   },
@@ -249,6 +249,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#FF4339',
     description: 'BOND is an Ethereum token that governs BarnBridge, a protocol that enables users to hedge against DeFi yield sensitivity and price volatility. Its first application, SMART Yield, allows users to choose between risk profiles for lending on DeFi protocols such as Aave and Compound. By using SMART Yield, senior bond investors can receive fixed rates at potentially lower risk while junior bond investors can receive higher rates at higher risk.',
     website: 'https://barnbridge.com/',
+  },
+  [ECrypto.bonk]: {
+    color: '#F8A506',
+    description: 'BONK is the self-described “dog coin of the people”. BONK was initially airdropped to select Solana wallet addresses in December 2022, and has rapidly grown in popularity. BONK is currently the most held dog-themed cryptocurrency on the Solana blockchain.',
+    website: 'https://bonkcoin.com/',
   },
   [ECrypto.btc]: {
     color: '#F7931B',
@@ -299,6 +304,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#01D396',
     description: 'Compound (COMP) is an Ethereum token that enables community governance of the Compound protocol. The protocol is a series of decentralized interest rate markets that allow users to supply and borrow Ethereum tokens at variable interest rates. COMP token holders and their delegates can also debate, propose, and vote on changes to the protocol.',
     website: 'https://compound.finance/',
+  },
+  [ECrypto.corechain]: {
+    color: '#FF9211',
+    description: 'Core Chain is a Bitcoin-powered, EVM-compatible layer one blockchain that combines Delegated Proof of Work (DPoW) and Delegated Proof of Stake (DPoS). Core Chain uses Bitcoin miners to secure its smart contracts by providing them with supplemental income in the form of CORECHAIN tokens. CORECHAIN is the utility and governance token of the Core network. CORECHAIN can be staked on the Core network, used for gas, or used to participate in Core network governance.',
+    website: 'https://coredao.org/',
   },
   [ECrypto.coti]: {
     color: '#229FD0',
@@ -408,7 +418,7 @@ const CryptoDetails: Record<ECrypto, {
   [ECrypto.dyp]: {
     color: '#DB2728',
     description: 'Dypius is a powerful, decentralized ecosystem with a focus on scalability, security, and global adoption through next-gen infrastructure. Dypius offers a variety of products and services that cater to both beginners and advanced users in the digital space, including yield farming, staking, DeFi tools, NFTs, and Metaverse.',
-    website: 'https://dyp.finance/',
+    website: 'https://www.dypius.com/',
   },
   [ECrypto.egld]: {
     color: '#23F7DD',
@@ -449,6 +459,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#627EEB',
     description: 'Ethereum is a decentralized computing platform that uses ETH (also called Ether) to pay transaction fees (or “gas”). Developers can use Ethereum to run decentralized applications (dApps) and issue new crypto assets, known as Ethereum tokens.',
     website: 'https://ethereum.org/',
+  },
+  [ECrypto.eurc]: {
+    color: '#2775CA',
+    description: 'EURC is an ERC-20 stablecoin that is pegged on a 1:1 basis to the euro. EURC is issued by Circle and 100% backed by euros held in euro-denominated banking accounts.',
+    website: 'https://www.circle.com/en/',
   },
   [ECrypto.euroc]: {
     color: '#2775CA',
@@ -550,25 +565,100 @@ const CryptoDetails: Record<ECrypto, {
     description: 'Golem is an Ethereum token that allows users to pay or receive payment for resources via the Golem protocol. The protocol aims to allow participants in the network to loan out their computer’s spare processing power to others.',
     website: 'https://golem.network/',
   },
+  [ECrypto.gods]: {
+    color: '#2499B3',
+    description: 'GODS is an Ethereum token that powers Gods Unchained, a blockchain-based trading card game. GODS can be used to craft NFTs and other digital items within Gods Unchained as well as vote on the future of the platform.',
+    website: 'https://godsunchained.com/',
+  },
   [ECrypto.grt]: {
     color: '#6747ED',
     description: 'The Graph (GRT) is an Ethereum token that powers The Graph, a decentralized protocol for indexing and querying data from blockchains. Just as Google indexes the web, The Graph indexes blockchain data from networks like Ethereum and Filecoin. This data is grouped into open APIs called subgraphs that anyone can query.',
     website: 'https://thegraph.com/',
+  },
+  [ECrypto.gst]: {
+    color: '#ABA3B1',
+    description: 'GST is a Solana token that powers STEPN, a Web3 lifestyle app that encourages users to “move-to-earn.” STEPN users with NFT sneakers can earn GST by walking or running outdoors, or by “renting” out their NFT sneakers to other users. GST can be used to pay for digital items and upgrades.',
+    website: 'https://www.stepn.com/',
   },
   [ECrypto.gtc]: {
     color: '#02E2AC',
     description: 'Gitcoin (GTC) is an Ethereum token that enables community governance of the Gitcoin platform. The platform is designed to fund and coordinate open source development by novel means such as quadratic funding. As of June 2021, Gitcoin has facilitated over $21 million in grants and bounties for open source developers.',
     website: 'https://gitcoin.co/',
   },
+  [ECrypto.gusd]: {
+    color: '#26DDF9',
+    description: 'GUSD is a stablecoin running on Ethereum that attempts to maintain a value of US $1.00. The supply of GUSD is collateralized by US dollars held at State Street Bank. Users can buy and redeem GUSD through the Gemini cryptocurrency exchange.',
+    website: 'https://www.gemini.com/dollar',
+  },
   [ECrypto.gyen]: {
     color: '#005BAC',
     description: 'GYEN is a stablecoin running on Ethereum that’s intended to maintain a value of one Japanese Yen. The company behind GYEN, GMO-Z.com Trust Company, claims to hold reserves that fully back each GYEN.',
     website: 'https://stablecoin.z.com/gyen/',
   },
+  [ECrypto.hbar]: {
+    color: '#0A0B0D',
+    description: 'HBAR is the native token of Hedera, an enterprise-grade public network. The network utilizes Hashgraph, which is an alternative type of distributed ledger to blockchain. HBAR tokens are used to pay for transaction gas fees on the network.',
+    website: 'https://hedera.com/',
+  },
+  [ECrypto.hft]: {
+    color: '#005BAC',
+    description: 'HFT is the ERC-20 governance token of the Hashflow protocol, which features a decentralized exchange that supports MEV-protected, bridgeless cross-chain token swaps with zero slippage. The protocol also includes a unique, gamified governance platform known as \'The Hashverse\'.',
+    website: 'https://www.hashflow.com/',
+  },
+  [ECrypto.high]: {
+    color: '#4683FB',
+    description: 'HIGH is an Ethereum token that powers Highstreet, a metaverse and multiplayer online game incorporating shopping, gaming, NFTs, and traditional brands. Users can play-to-earn HIGH by completing quests, socializing, and shopping for NFTs. HIGH can be used to access special events and areas in-game, purchase items, and vote on the direction of the platform.',
+    website: 'https://www.highstreet.market/',
+  },
+  [ECrypto.hnt]: {
+    color: '#474DFF',
+    description: 'HNT is the utility token of the Helium network. By leveraging LoRaWAN devices and 5G hotspots, the Helium network provides decentralized wireless infrastructure. HNT tokens are used to access the Helium network\'s wireless connectivity, as HNT tokens can be burned for \'Data Credits\'. HNT tokens also ‘back’ other governance tokens within the Helium ecosystem such as MOBILE and IOT.',
+    website: 'https://www.helium.com/',
+  },
+  [ECrypto.honey]: {
+    color: '#5574DE',
+    description: 'Hivemapper is a decentralized mapping network that aggregates road-level imagery and data. Vehicles equipped with Hivemapper dashcams contribute to building the network’s map. HONEY is the utility token of the Hivemapper Network. HONEY is rewarded to network contributors, and used by consumers to pay for access to the network’s mapping data.',
+    website: 'https://www.hivemapper.com/explorer',
+  },
+  [ECrypto.hopr]: {
+    color: '#00006C',
+    description: 'HOPR is an Ethereum token that powers the HOPR protocol, a multifaceted project developing technology for digital privacy, layer-zero data transfer, and decentralized governance. The HOPR token has three main functions: pay, stake, and vote.',
+    website: 'https://hoprnet.org/',
+  },
   [ECrypto.icp]: {
     color: '#29ABE2',
     description: 'Internet Computer (ICP) is a utility token that allows users to participate in and govern the Internet Computer blockchain network. The network aims to help developers create websites, enterprise IT systems, internet services, and DeFi applications by "installing their code directly on the public Internet." ICP can also be staked or "converted into cycles" that can be used to power computation for dApps and traditional applications.',
     website: 'https://dfinity.org/',
+  },
+  [ECrypto.idex]: {
+    color: '#7A4CDD',
+    description: 'IDEX is an Ethereum token that powers the IDEX decentralized exchange, which combines an order book and automated market maker (AMM). IDEX holders can stake tokens in order to help secure the protocol and earn rewards.',
+    website: 'https://idex.io/',
+  },
+  [ECrypto.ilv]: {
+    color: '#352C58',
+    description: 'ILV is an ERC-20 token that powers the Illuvium game. In Illuvium, players are immersed in a 3D open world to explore and capture deity-like beasts called Illuvials. The ILV token allows holders to partake in yield farming, staking and governance of the Illuvium DAO.',
+    website: 'https://illuvium.io/',
+  },
+  [ECrypto.imx]: {
+    color: '#17B5CB',
+    description: 'IMX is an Ethereum token that powers Immutable X, a scaling solution for NFTs that aims to enable near-instant, low fee transactions. IMX can be used for staking on Immutable X, voting on the future of the protocol, and paying transaction fees.',
+    website: 'https://www.immutable.com/',
+  },
+  [ECrypto.index]: {
+    color: '#0A0B0D',
+    description: 'INDEX is an Ethereum token that governs Index Cooperative, a protocol for creating custom crypto indexes and structured products. INDEX can be used to vote on the future of the protocol and can be earned by providing liquidity to Index Cooperative products. Note: Coinbase only supports INDEX on the Ethereum blockchain (ERC-20).',
+    website: 'https://indexcoop.com/',
+  },
+  [ECrypto.inj]: {
+    color: '#2ABAFF',
+    description: 'Injective is an open, interoperable blockchain optimized for DeFi applications. Injective is smart contracts-enabled and utilizes a Tendermint PoS consensus mechanism. INJ is the native token that enables community members to participate in governance, validation, burn auctions and more.',
+    website: 'https://injective.com/',
+  },
+  [ECrypto.inv]: {
+    color: '#201D3D',
+    description: 'INV is an Ethereum token that powers Inverse Finance, a decentralized platform for lending, borrowing, and creating synthetic assets. INV is used to govern Inverse Finance products and can be used to vote for future upgrades.',
+    website: 'https://www.inverse.finance/',
   },
   [ECrypto.iotx]: {
     color: '#30D5A5',

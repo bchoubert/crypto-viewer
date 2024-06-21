@@ -33,7 +33,7 @@ const CryptoStats: FC<CryptoStatsProps> = memo(({
   const { settings } = useContext(SettingsContext);
   const translation = useContext(TranslationsContext);
 
-  const details = useMemo(() => CryptoDetails[id], [id]);
+  const details = useMemo(() => CryptoDetails[id] || { color: '#222222' }, [id]);
   const quoteSymbol = useMemo(() => quoteDetails[settings.quote]?.symbol, [settings]);
 
   const [stats, setStats] = useState<Stats>();

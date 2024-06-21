@@ -44,41 +44,93 @@ import LogoBat from '../../assets/cryptos/bat.svg';
 import LogoBch from '../../assets/cryptos/bch.svg';
 import LogoBico from '../../assets/cryptos/bico.svg';
 import LogoBigtime from '../../assets/cryptos/bigtime.svg';
+import LogoBit from '../../assets/cryptos/bit.svg';
+import LogoBlur from '../../assets/cryptos/blur.svg';
+import LogoBlz from '../../assets/cryptos/blz.svg';
 import LogoBnt from '../../assets/cryptos/bnt.svg';
+import LogoBoba from '../../assets/cryptos/boba.svg';
 import LogoBond from '../../assets/cryptos/bond.svg';
+import LogoBonk from '../../assets/cryptos/bonk.svg';
 import LogoBtc from '../../assets/cryptos/btc.svg';
 import LogoBtrst from '../../assets/cryptos/btrst.svg';
+import LogoBusd from '../../assets/cryptos/busd.svg';
+import LogoC98 from '../../assets/cryptos/c98.svg';
+import LogoCbeth from '../../assets/cryptos/cbeth.svg';
+import LogoCelr from '../../assets/cryptos/celr.svg';
 import LogoCgld from '../../assets/cryptos/cgld.svg';
 import LogoChz from '../../assets/cryptos/chz.svg';
 import LogoClv from '../../assets/cryptos/clv.svg';
 import LogoComp from '../../assets/cryptos/comp.svg';
+import LogoCorechain from '../../assets/cryptos/corechain.svg';
 import LogoCoti from '../../assets/cryptos/coti.svg';
+import LogoCoval from '../../assets/cryptos/coval.svg';
 import LogoCro from '../../assets/cryptos/cro.svg';
+import LogoCrpt from '../../assets/cryptos/crpt.svg';
 import LogoCrv from '../../assets/cryptos/crv.svg';
 import LogoCtsi from '../../assets/cryptos/ctsi.svg';
+import LogoCtx from '../../assets/cryptos/ctx.svg';
 import LogoCvc from '../../assets/cryptos/cvc.svg';
+import LogoCvx from '../../assets/cryptos/cvx.svg';
 import LogoDai from '../../assets/cryptos/dai.svg';
+import LogoDar from '../../assets/cryptos/dar.svg';
 import LogoDash from '../../assets/cryptos/dash.svg';
 import LogoDdx from '../../assets/cryptos/ddx.svg';
+import LogoDeso from '../../assets/cryptos/deso.svg';
+import LogoDext from '../../assets/cryptos/dext.svg';
+import LogoDia from '../../assets/cryptos/dia.svg';
+import LogoDimo from '../../assets/cryptos/dimo.svg';
 import LogoDnt from '../../assets/cryptos/dnt.svg';
 import LogoDoge from '../../assets/cryptos/doge.svg';
 import LogoDot from '../../assets/cryptos/dot.svg';
+import LogoDrep from '../../assets/cryptos/drep.svg';
+import LogoDyp from '../../assets/cryptos/dyp.svg';
+import LogoEgld from '../../assets/cryptos/egld.svg';
+import LogoEla from '../../assets/cryptos/ela.svg';
 import LogoEnj from '../../assets/cryptos/enj.svg';
 import LogoEns from '../../assets/cryptos/ens.svg';
 import LogoEos from '../../assets/cryptos/eos.svg';
+import LogoErn from '../../assets/cryptos/ern.svg';
 import LogoEtc from '../../assets/cryptos/etc.svg';
 import LogoEth from '../../assets/cryptos/eth.svg';
+import LogoEurc from '../../assets/cryptos/eurc.svg';
 import LogoFarm from '../../assets/cryptos/farm.svg';
 import LogoFet from '../../assets/cryptos/fet.svg';
+import LogoFida from '../../assets/cryptos/fida.svg';
 import LogoFil from '../../assets/cryptos/fil.svg';
+import LogoFis from '../../assets/cryptos/fis.svg';
+import LogoFlow from '../../assets/cryptos/flow.svg';
+import LogoFlr from '../../assets/cryptos/flr.svg';
+import LogoFort from '../../assets/cryptos/fort.svg';
 import LogoForth from '../../assets/cryptos/forth.svg';
+import LogoFox from '../../assets/cryptos/fox.svg';
 import LogoFx from '../../assets/cryptos/fx.svg';
+import LogoGal from '../../assets/cryptos/gal.svg';
 import LogoGala from '../../assets/cryptos/gala.svg';
+import LogoGfi from '../../assets/cryptos/gfi.svg';
+import LogoGhst from '../../assets/cryptos/ghst.svg';
+import LogoGlm from '../../assets/cryptos/glm.svg';
+import LogoGmt from '../../assets/cryptos/gmt.svg';
+import LogoGno from '../../assets/cryptos/gno.svg';
 import LogoGnt from '../../assets/cryptos/gnt.svg';
+import LogoGods from '../../assets/cryptos/gods.svg';
 import LogoGrt from '../../assets/cryptos/grt.svg';
+import LogoGst from '../../assets/cryptos/gst.svg';
 import LogoGtc from '../../assets/cryptos/gtc.svg';
+import LogoGusd from '../../assets/cryptos/gusd.svg';
 import LogoGyen from '../../assets/cryptos/gyen.svg';
+import LogoHbar from '../../assets/cryptos/hbar.svg';
+import LogoHft from '../../assets/cryptos/hft.svg';
+import LogoHigh from '../../assets/cryptos/high.svg';
+import LogoHnt from '../../assets/cryptos/hnt.svg';
+import LogoHoney from '../../assets/cryptos/honey.svg';
+import LogoHopr from '../../assets/cryptos/hopr.svg';
 import LogoIcp from '../../assets/cryptos/icp.svg';
+import LogoIdex from '../../assets/cryptos/idex.svg';
+import LogoIlv from '../../assets/cryptos/ilv.svg';
+import LogoImx from '../../assets/cryptos/imx.svg';
+import LogoIndex from '../../assets/cryptos/index.svg';
+import LogoInj from '../../assets/cryptos/inj.svg';
+import LogoInv from '../../assets/cryptos/inv.svg';
 import LogoIotx from '../../assets/cryptos/iotx.svg';
 import LogoJasmy from '../../assets/cryptos/jasmy.svg';
 import LogoKeep from '../../assets/cryptos/keep.svg';
@@ -196,41 +248,93 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.bch]: LogoBch,
   [ECrypto.bico]: LogoBico,
   [ECrypto.bigtime]: LogoBigtime,
+  [ECrypto.bit]: LogoBit,
+  [ECrypto.blur]: LogoBlur,
+  [ECrypto.blz]: LogoBlz,
   [ECrypto.bnt]: LogoBnt,
+  [ECrypto.boba]: LogoBoba,
   [ECrypto.bond]: LogoBond,
+  [ECrypto.bonk]: LogoBonk,
   [ECrypto.btc]: LogoBtc,
   [ECrypto.btrst]: LogoBtrst,
+  [ECrypto.busd]: LogoBusd,
+  [ECrypto.c98]: LogoC98,
+  [ECrypto.cbeth]: LogoCbeth,
+  [ECrypto.celr]: LogoCelr,
   [ECrypto.cgld]: LogoCgld,
   [ECrypto.chz]: LogoChz,
   [ECrypto.clv]: LogoClv,
   [ECrypto.comp]: LogoComp,
+  [ECrypto.corechain]: LogoCorechain,
   [ECrypto.coti]: LogoCoti,
+  [ECrypto.coval]: LogoCoval,
   [ECrypto.cro]: LogoCro,
+  [ECrypto.crpt]: LogoCrpt,
   [ECrypto.crv]: LogoCrv,
   [ECrypto.ctsi]: LogoCtsi,
+  [ECrypto.ctx]: LogoCtx,
   [ECrypto.cvc]: LogoCvc,
+  [ECrypto.cvx]: LogoCvx,
   [ECrypto.dai]: LogoDai,
+  [ECrypto.dar]: LogoDar,
   [ECrypto.dash]: LogoDash,
   [ECrypto.ddx]: LogoDdx,
+  [ECrypto.deso]: LogoDeso,
+  [ECrypto.dext]: LogoDext,
+  [ECrypto.dia]: LogoDia,
+  [ECrypto.dimo]: LogoDimo,
   [ECrypto.dnt]: LogoDnt,
   [ECrypto.doge]: LogoDoge,
   [ECrypto.dot]: LogoDot,
+  [ECrypto.drep]: LogoDrep,
+  [ECrypto.dyp]: LogoDyp,
+  [ECrypto.egld]: LogoEgld,
+  [ECrypto.ela]: LogoEla,
   [ECrypto.enj]: LogoEnj,
   [ECrypto.ens]: LogoEns,
   [ECrypto.eos]: LogoEos,
+  [ECrypto.ern]: LogoErn,
   [ECrypto.etc]: LogoEtc,
   [ECrypto.eth]: LogoEth,
+  [ECrypto.eurc]: LogoEurc,
   [ECrypto.farm]: LogoFarm,
   [ECrypto.fet]: LogoFet,
+  [ECrypto.fida]: LogoFida,
   [ECrypto.fil]: LogoFil,
+  [ECrypto.fis]: LogoFis,
+  [ECrypto.flow]: LogoFlow,
+  [ECrypto.flr]: LogoFlr,
+  [ECrypto.fort]: LogoFort,
   [ECrypto.forth]: LogoForth,
+  [ECrypto.fox]: LogoFox,
   [ECrypto.fx]: LogoFx,
+  [ECrypto.gal]: LogoGal,
   [ECrypto.gala]: LogoGala,
+  [ECrypto.gfi]: LogoGfi,
+  [ECrypto.ghst]: LogoGhst,
+  [ECrypto.glm]: LogoGlm,
+  [ECrypto.gmt]: LogoGmt,
+  [ECrypto.gno]: LogoGno,
   [ECrypto.gnt]: LogoGnt,
+  [ECrypto.gods]: LogoGods,
   [ECrypto.grt]: LogoGrt,
+  [ECrypto.gst]: LogoGst,
   [ECrypto.gtc]: LogoGtc,
+  [ECrypto.gusd]: LogoGusd,
   [ECrypto.gyen]: LogoGyen,
+  [ECrypto.hbar]: LogoHbar,
+  [ECrypto.hft]: LogoHft,
+  [ECrypto.high]: LogoHigh,
+  [ECrypto.hnt]: LogoHnt,
+  [ECrypto.honey]: LogoHoney,
+  [ECrypto.hopr]: LogoHopr,
   [ECrypto.icp]: LogoIcp,
+  [ECrypto.idex]: LogoIdex,
+  [ECrypto.ilv]: LogoIlv,
+  [ECrypto.imx]: LogoImx,
+  [ECrypto.index]: LogoIndex,
+  [ECrypto.inj]: LogoInj,
+  [ECrypto.inv]: LogoInv,
   [ECrypto.iotx]: LogoIotx,
   [ECrypto.jasmy]: LogoJasmy,
   [ECrypto.keep]: LogoKeep,

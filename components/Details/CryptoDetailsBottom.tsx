@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 const CryptoDetailsBottom: FC<CryptoDetailsBottomProps> = memo(({
   id,
 }) => {
-  const details = useMemo(() => CryptoDetails[id], [id]);
+  const details = useMemo(() => CryptoDetails[id] || { color: '#222222' }, [id]);
 
   const openWebsite = useCallback(() => {
     openURL(details.website);

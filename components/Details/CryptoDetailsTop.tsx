@@ -25,7 +25,7 @@ const CryptoDetailsTop: FC<CryptoDetailsTopProps> = memo(({
   const { cryptos } = useContext(CryptoContext);
 
   const CryptoIconInstance = useMemo(() => CryptoIcon[id.toLowerCase() as ECrypto], [id]);
-  const details = useMemo(() => CryptoDetails[id], [id]);
+  const details = useMemo(() => CryptoDetails[id] || { color: '#222222' }, [id]);
   const data = useMemo(() => cryptos.find(c => c.id.toLowerCase() === id?.toLowerCase()), [cryptos, id]);
   const quoteSymbol = useMemo(() => quoteDetails[settings.quote]?.symbol, [settings]);
 
