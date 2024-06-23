@@ -830,10 +830,75 @@ const CryptoDetails: Record<ECrypto, {
     description: 'MLN is an Ethereum token that powers Enzyme (formerly known as Melon Protocol), a protocol that aims to facilitate on-chain asset management for the DeFi ecosystem. MLN allows users to build, share, and explore DeFi investment strategies (called “vaults”) while filtering by historical performance and risk profiles. MLN is used to pay for various functions throughout the vault creation process and investment lifecycle.',
     website: 'https://enzyme.finance/',
   },
+  [ECrypto.mnde]: {
+    color: '#308D8A',
+    description: 'MNDE is the governance token of Marinade.Finance, a liquid and native staking protocol on Solana. Users lock MNDE in Realms SPL governance to participate in voting, control the DAO treasury, and can direct stake to validators using locked MNDE. The Marinade DAO oversees various aspects of Marinade.Finance’s development, including the staking delegation strategy.',
+    website: 'https://marinade.finance/',
+  },
+  [ECrypto.mobile]: {
+    color: '#469DF2',
+    description: 'Helium Mobile provides cellular service through its decentralized wireless infrastructure. MOBILE is the governance token of the MOBILE subDAO which oversees the development of the network. MOBILE tokens are also rewarded to those contributing cellular service to the network.',
+    website: 'https://docs.helium.com/',
+  },
+  [ECrypto.mona]: {
+    color: '#000000',
+    description: 'MONA is an Ethereum token used for the DIGITALAX platform. It is intrinsically incorporated throughout the protocol\'s architecture, serving to further incentivize utility and application in the Player-Creator economy. MONA is the gas that ties together a triad of interdependence between Players, Developers and Designers in a world that is merging the digital and real.',
+    website: 'https://www.digitalax.xyz/',
+  },
+  [ECrypto.mpl]: {
+    color: '#FF8801',
+    description: 'MPL is an Ethereum token that powers Maple, a protocol that enables undercollateralized loans for institutional borrowers. MPL can be use to participate in governance, earn fees, and stake to lending pools.',
+    website: 'https://maple.finance/',
+  },
+  [ECrypto.msol]: {
+    color: '#4B8B89',
+    description: 'mSOL tokens represent SOL tokens staked using the Marinade.Finance liquid staking protocol. Marinade.Finance users receive mSOL tokens that accrue staking rewards upon staking SOL tokens. Since mSOL tokens are liquid, they can be used to participate in DeFi across the Solana ecosystem.',
+    website: 'https://enzyme.finance/',
+  },
+  [ECrypto.mtl]: {
+    color: '#4400E2',
+    description: 'MTL is an Ethereum token that powers the Metal\'s products and ecosystem. Metal DAO is a payment processing application that provides its users with the facility to convert their fiat currencies into cryptocurrencies and vice-versa.',
+    website: 'https://www.metalpay.com/',
+  },
+  [ECrypto.multi]: {
+    color: '#734CE2',
+    description: 'Multichain is a cross-chain router protocol governed by the MULTI token. Multichain supports seamless cross-chain token swaps across many blockchain networks. In order to participate in governance, MULTI tokens must be staked in exchange for a veMULTI NFT.',
+    website: 'https://multichain.org/',
+  },
   [ECrypto.musd]: {
     color: '#000000',
     description: 'MUSD is a decentralized stablecoin running on Ethereum that attempts to maintain a value of US$1.00. Unlike centralized stablecoins, MUSD isn’t backed by US dollars in a bank account. Instead, it’s backed by an array of other stablecoins deposited as collateral on the mStable protocol.',
     website: 'https://mstable.org/',
+  },
+  [ECrypto.muse]: {
+    color: '#6ADAD7',
+    description: 'MUSE is an Ethereum token and serves as the governance token of nft20.io. NFT20 is a permissionless p2p protocol to tokenize NFTs and make them tradable on decentralized exchanges such as UniSwap or Sushiswap.',
+    website: 'https://nft20.io/',
+  },
+  [ECrypto.mxc]: {
+    color: '#6300FF',
+    description: 'MXC is the ERC-20 utility token of the MXProtocol, a decentralized data network which utilizes low-power wide area network technology. MXC functions as a governance token, and also underpins transactions among MXProtocol participants.',
+    website: 'https://www.mxc.org/',
+  },
+  [ECrypto.nct]: {
+    color: '#6D3AEC',
+    description: 'NCT is an Ethereum token that powers PolySwarm, a community and network for detecting malware. NCT rewards are distributed to users who provide relevant cybersecurity data while NCT is used to access insights provided by the network.',
+    website: 'https://polyswarm.io/',
+  },
+  [ECrypto.near]: {
+    color: '#24272A',
+    description: 'NEAR is the native token of the NEAR Protocol, a highly scalable blockchain network that provides a developer-friendly, decentralized application platform. NEAR tokens are used to pay network fees and can be staked to enhance network security.',
+    website: 'https://near.org/',
+  },
+  [ECrypto.neon]: {
+    color: '#DF42AB',
+    description: 'Neon EVM, the first parallelized EVM on Solana, allows developers to seamlessly deploy Ethereum dapps to Solana. This allows Ethereum dapp developers to benefit from Solana’s low gas fees and high throughput without having to make any code changes. NEON is the utility token of Neon EVM. NEON tokens can be used to pay for Neon EVM gas fees. NEON tokens can also be used to participate in decentralized governance.',
+    website: 'https://neonevm.org/',
+  },
+  [ECrypto.nest]: {
+    color: '#000000',
+    description: 'NEST is an Ethereum token that powers the NEST Protocol, a price prediction platform that aims to improve the crypto market. NEST is used to meet liquidity needs for the platform.',
+    website: 'https://www.nestprotocol.org/',
   },
   [ECrypto.nkn]: {
     color: '#253A7E',
@@ -849,6 +914,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#1D64FA',
     description: 'NuCypher (NU) is an Ethereum token that can be staked to run a node on the NuCypher network. NuCypher describes itself as a threshold cryptography network that provides data privacy and key management for decentralized applications and protocols.',
     website: 'https://www.nucypher.com/',
+  },
+  [ECrypto.ocean]: {
+    color: '#121212',
+    description: 'Ocean Protocol supports blockchain-based trading data between data consumers and individuals. OCEAN tokens function as Ocean Protocol’s governance token.',
+    website: 'https://oceanprotocol.com/',
   },
   [ECrypto.ogn]: {
     color: '#2087FB',
@@ -1055,6 +1125,11 @@ const CryptoDetails: Record<ECrypto, {
     description: 'Wrapped Luna (WLUNA) is an Ethereum token that’s intended to represent Terra (LUNA) on the Ethereum blockchain. It is not LUNA, but rather a separate ERC-20 token that’s designed to track LUNA’s value. WLUNA was created to allow LUNA holders to trade, hold, and participate in decentralized finance (“DeFi”) apps on Ethereum. Through a WLUNA partner, 1 LUNA can be exchanged for 1 WLUNA, and vice-versa.',
     website: 'https://www.terra.money/',
   },
+  [ECrypto.xcn]: {
+    color: '#161A1F',
+    description: 'Onyx Protocol is an infrastructure for a multi-asset, shared, and cryptographically secure ledger. Onyx refers to a blockchain-based technology protocol that aims to develop and run a smarter and internally connected economy, with a mission to create cryptographic ledgers capable of improving existing financial products and services.',
+    website: 'https://onyx.org/',
+  },
   [ECrypto.xlm]: {
     color: '#000000',
     description: 'Stellar’s cryptocurrency, the Stellar Lumen (XLM), powers the Stellar payment network. Stellar aims to connect banks, payment systems, and individuals quickly and reliably.',
@@ -1099,6 +1174,11 @@ const CryptoDetails: Record<ECrypto, {
     color: '#20CBA3',
     description: 'Horizen is a blockchain ecosystem that enables privacy-preserving decentralized applications. Using ZEN as its native asset, Horizen has both a main blockchain and a sidechain platform that enables developers to build custom private or public blockchains and decentralized applications.',
     website: 'https://www.horizen.io/',
+  },
+  [ECrypto.zeta]: {
+    color: '#1D4A3A',
+    description: 'ZetaChain is a blockchain built on the Cosmos SDK focused on enabling interoperability among all blockchains. To achieve this, ZetaChain features omnichain smart contracts, cross-chain message passing, and hyper-connected nodes. ZETA is the utility token of ZetaChain. ZETA can be used to pay for transaction fees, participate in the network’s consensus mechanism, and engage in governance. Coinbase supports ZETA as an Ethereum ERC-20 token',
+    website: 'https://www.zetachain.com/',
   },
   [ECrypto.zrx]: {
     color: '#302C2B',

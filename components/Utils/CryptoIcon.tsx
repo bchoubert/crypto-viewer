@@ -165,10 +165,24 @@ import LogoMina from '../../assets/cryptos/mina.svg';
 import LogoMir from '../../assets/cryptos/mir.svg';
 import LogoMkr from '../../assets/cryptos/mkr.svg';
 import LogoMln from '../../assets/cryptos/mln.svg';
+import LogoMnde from '../../assets/cryptos/mnde.svg';
+import LogoMobile from '../../assets/cryptos/mobile.svg';
+import LogoMona from '../../assets/cryptos/mona.svg';
+import LogoMpl from '../../assets/cryptos/mpl.svg';
+import LogoMsol from '../../assets/cryptos/msol.svg';
+import LogoMtl from '../../assets/cryptos/mtl.svg';
+import LogoMulti from '../../assets/cryptos/multi.svg';
 import LogoMusd from '../../assets/cryptos/musd.svg';
+import LogoMuse from '../../assets/cryptos/muse.svg';
+import LogoMxc from '../../assets/cryptos/mxc.svg';
+import LogoNct from '../../assets/cryptos/nct.svg';
+import LogoNear from '../../assets/cryptos/near.svg';
+import LogoNeon from '../../assets/cryptos/neon.svg';
+import LogoNest from '../../assets/cryptos/nest.svg';
 import LogoNkn from '../../assets/cryptos/nkn.svg';
 import LogoNmr from '../../assets/cryptos/nmr.svg';
 import LogoNu from '../../assets/cryptos/nu.svg';
+import LogoOcean from '../../assets/cryptos/ocean.svg';
 import LogoOgn from '../../assets/cryptos/ogn.svg';
 import LogoOmg from '../../assets/cryptos/omg.svg';
 import LogoOrn from '../../assets/cryptos/orn.svg';
@@ -210,7 +224,9 @@ import LogoVgx from '../../assets/cryptos/vgx.svg';
 import LogoWbtc from '../../assets/cryptos/wbtc.svg';
 import LogoWcfg from '../../assets/cryptos/wcfg.svg';
 import LogoWluna from '../../assets/cryptos/wluna.svg';
+import LogoXcn from '../../assets/cryptos/xcn.svg';
 import LogoXlm from '../../assets/cryptos/xlm.svg';
+import LogoXmon from '../../assets/cryptos/xmon.svg';
 import LogoXrp from '../../assets/cryptos/xrp.svg';
 import LogoXtz from '../../assets/cryptos/xtz.svg';
 import LogoXyo from '../../assets/cryptos/xyo.svg';
@@ -218,6 +234,7 @@ import LogoYfi from '../../assets/cryptos/yfi.svg';
 import LogoYfii from '../../assets/cryptos/yfii.svg';
 import LogoZec from '../../assets/cryptos/zec.svg';
 import LogoZen from '../../assets/cryptos/zen.svg';
+import LogoZeta from '../../assets/cryptos/zeta.svg';
 import LogoZrx from '../../assets/cryptos/zrx.svg';
 import ECrypto from '@/constants/cryptos.enum';
 
@@ -386,10 +403,24 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.mir]: LogoMir,
   [ECrypto.mkr]: LogoMkr,
   [ECrypto.mln]: LogoMln,
+  [ECrypto.mnde]: LogoMnde,
+  [ECrypto.mobile]: LogoMobile,
+  [ECrypto.mona]: LogoMona,
+  [ECrypto.mpl]: LogoMpl,
+  [ECrypto.msol]: LogoMsol,
+  [ECrypto.mtl]: LogoMtl,
+  [ECrypto.multi]: LogoMulti,
   [ECrypto.musd]: LogoMusd,
+  [ECrypto.muse]: LogoMuse,
+  [ECrypto.mxc]: LogoMxc,
+  [ECrypto.nct]: LogoNct,
+  [ECrypto.near]: LogoNear,
+  [ECrypto.neon]: LogoNeon,
+  [ECrypto.nest]: LogoNest,
   [ECrypto.nkn]: LogoNkn,
   [ECrypto.nmr]: LogoNmr,
   [ECrypto.nu]: LogoNu,
+  [ECrypto.ocean]: LogoOcean,
   [ECrypto.ogn]: LogoOgn,
   [ECrypto.omg]: LogoOmg,
   [ECrypto.orn]: LogoOrn,
@@ -431,7 +462,9 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.wbtc]: LogoWbtc,
   [ECrypto.wcfg]: LogoWcfg,
   [ECrypto.wluna]: LogoWluna,
+  [ECrypto.xcn]: LogoXcn,
   [ECrypto.xlm]: LogoXlm,
+  [ECrypto.xmon]: LogoXmon,
   [ECrypto.xrp]: LogoXrp,
   [ECrypto.xtz]: LogoXtz,
   [ECrypto.xyo]: LogoXyo,
@@ -439,6 +472,7 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.yfii]: LogoYfii,
   [ECrypto.zec]: LogoZec,
   [ECrypto.zen]: LogoZen,
+  [ECrypto.zeta]: LogoZeta,
   [ECrypto.zrx]: LogoZrx,
 };
 
