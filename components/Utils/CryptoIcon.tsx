@@ -133,18 +133,35 @@ import LogoInj from '../../assets/cryptos/inj.svg';
 import LogoInv from '../../assets/cryptos/inv.svg';
 import LogoIotx from '../../assets/cryptos/iotx.svg';
 import LogoJasmy from '../../assets/cryptos/jasmy.svg';
+import LogoJto from '../../assets/cryptos/jto.svg';
+import LogoJup from '../../assets/cryptos/jup.svg';
+import LogoKarrat from '../../assets/cryptos/karrat.svg';
+import LogoKava from '../../assets/cryptos/kava.svg';
 import LogoKeep from '../../assets/cryptos/keep.svg';
 import LogoKnc from '../../assets/cryptos/knc.svg';
 import LogoKrl from '../../assets/cryptos/krl.svg';
+import LogoKsm from '../../assets/cryptos/ksm.svg';
 import LogoLcx from '../../assets/cryptos/lcx.svg';
+import LogoLdo from '../../assets/cryptos/ldo.svg';
 import LogoLink from '../../assets/cryptos/link.svg';
+import LogoLit from '../../assets/cryptos/lit.svg';
+import LogoLoka from '../../assets/cryptos/loka.svg';
 import LogoLoom from '../../assets/cryptos/loom.svg';
 import LogoLpt from '../../assets/cryptos/lpt.svg';
+import LogoLqty from '../../assets/cryptos/lqty.svg';
 import LogoLrc from '../../assets/cryptos/lrc.svg';
+import LogoLseth from '../../assets/cryptos/lseth.svg';
 import LogoLtc from '../../assets/cryptos/ltc.svg';
+import LogoMagic from '../../assets/cryptos/magic.svg';
 import LogoMana from '../../assets/cryptos/mana.svg';
 import LogoMask from '../../assets/cryptos/mask.svg';
+import LogoMath from '../../assets/cryptos/math.svg';
 import LogoMatic from '../../assets/cryptos/matic.svg';
+import LogoMco2 from '../../assets/cryptos/mco2.svg';
+import LogoMdt from '../../assets/cryptos/mdt.svg';
+import LogoMedia from '../../assets/cryptos/media.svg';
+import LogoMetis from '../../assets/cryptos/metis.svg';
+import LogoMina from '../../assets/cryptos/mina.svg';
 import LogoMir from '../../assets/cryptos/mir.svg';
 import LogoMkr from '../../assets/cryptos/mkr.svg';
 import LogoMln from '../../assets/cryptos/mln.svg';
@@ -337,18 +354,35 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.inv]: LogoInv,
   [ECrypto.iotx]: LogoIotx,
   [ECrypto.jasmy]: LogoJasmy,
+  [ECrypto.jto]: LogoJto,
+  [ECrypto.jup]: LogoJup,
+  [ECrypto.karrat]: LogoKarrat,
+  [ECrypto.kava]: LogoKava,
   [ECrypto.keep]: LogoKeep,
   [ECrypto.knc]: LogoKnc,
   [ECrypto.krl]: LogoKrl,
+  [ECrypto.ksm]: LogoKsm,
   [ECrypto.lcx]: LogoLcx,
+  [ECrypto.ldo]: LogoLdo,
   [ECrypto.link]: LogoLink,
+  [ECrypto.lit]: LogoLit,
+  [ECrypto.loka]: LogoLoka,
   [ECrypto.loom]: LogoLoom,
   [ECrypto.lpt]: LogoLpt,
   [ECrypto.lrc]: LogoLrc,
+  [ECrypto.lqty]: LogoLqty,
+  [ECrypto.lseth]: LogoLseth,
   [ECrypto.ltc]: LogoLtc,
+  [ECrypto.magic]: LogoMagic,
   [ECrypto.mana]: LogoMana,
   [ECrypto.mask]: LogoMask,
+  [ECrypto.math]: LogoMath,
   [ECrypto.matic]: LogoMatic,
+  [ECrypto.mco2]: LogoMco2,
+  [ECrypto.mdt]: LogoMdt,
+  [ECrypto.media]: LogoMedia,
+  [ECrypto.metis]: LogoMetis,
+  [ECrypto.mina]: LogoMina,
   [ECrypto.mir]: LogoMir,
   [ECrypto.mkr]: LogoMkr,
   [ECrypto.mln]: LogoMln,

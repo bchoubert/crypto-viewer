@@ -670,6 +670,26 @@ const CryptoDetails: Record<ECrypto, {
     description: 'JASMY is an Ethereum token that powers Jasmy, an organization that develops IoT (“Internet of Things”) platforms. Rather than coordinating networks of devices and data through centralized servers, Jasmy aims to decentralize the process via edge computing and storing data on IPFS, a decentralized storage network. JASMY can be used to transfer tokens between devices and payment for network services.',
     website: 'https://www.jasmy.co.jp',
   },
+  [ECrypto.jto]: {
+    color: '#0A0B0D',
+    description: 'Jito Network is a liquid staking protocol on Solana. Protocol users can stake SOL and receive JitoSOL in return. Beyond staking rewards, Jito Network’s liquid staking token also captures MEV rewards. JTO is the governance token of the Jito Network. JTO can be used to vote on proposals regarding stake pool fees, treasury management, delegation strategies, and more.',
+    website: 'https://www.jito.network/',
+  },
+  [ECrypto.jup]: {
+    color: '#009046',
+    description: 'JUP is an Ethereum token for the Jupiter Project, which aims to make blockchain accessible and safe for everyone. Jupiter’s military-grade encryption helps ensure that user data is private and secure. Through our elite encryption capabilities, Jupiter can power secure dApps on public and private networks.',
+    website: 'https://jup.io/',
+  },
+  [ECrypto.karrat]: {
+    color: '#EBBB58',
+    description: 'The KARRAT Protocol is a decentralized gaming infrastructure layer and aims to cultivate a community-driven environment that propels the next wave of gaming and entertainment innovation. The gaming studio that built My Pet Hooligan, AMGI Studios, is an early ecosystem participant within the KARRAT Protocol. KARRAT tokens govern the KARRAT Protocol. KARRAT tokens can be used to participate in the protocol’s governance process which spans onchain and offchain voting.',
+    website: 'https://www.karratcoin.com/',
+  },
+  [ECrypto.kava]: {
+    color: '#FF433E',
+    description: 'KAVA is the native token of Kava, a blockchain network built with the Cosmos SDK. Kava also features Ethereum compatibility through the Kava EVM, providing users and developers with a highly scalable and interoperable network.',
+    website: 'https://www.kava.io/',
+  },
   [ECrypto.keep]: {
     color: '#000000',
     description: 'KEEP is an Ethereum token that powers the Keep Network, a platform that aims to bridge public blockchains and private data. One of Keep Network’s first products is an Ethereum token that represents 1 Bitcoin, called tBTC. Keep Network enables users to deposit Bitcoin and redeem tokenized tBTC, which can then be used in the Ethereum ecosystem without centralized intermediaries.',
@@ -685,15 +705,35 @@ const CryptoDetails: Record<ECrypto, {
     description: 'KRL is an Ethereum token that powers Kryll, a platform for automated trading strategies. Kryll users can browse, create, and backtest trading strategies while using KRL to pay for their activity on the platform.',
     website: 'https://kryll.io/',
   },
+  [ECrypto.ksm]: {
+    color: '#000000',
+    description: 'KSM is a cryptocurrency that powers Kusama, a protocol that enables cross-blockchain transfers of any type of data or asset. By uniting multiple blockchains, Kusama aims to achieve high degrees of security and scalability. KSM serves as the protocol’s governance token and can be used for staking to secure the network or to connect (“bond”) new chains. Kusama acts as a "canary" or experimental network for Polkadot (a separate protocol that shares the same codebase) in which developers can more quickly test new programs that can be deployed on both.',
+    website: 'https://kusama.network/',
+  },
   [ECrypto.lcx]: {
     color: '#1D357C',
     description: 'LCX is an Ethereum token used to pay for fees on LCX Exchange, a centralized exchange for security tokens, token sales, and cryptocurrencies. LCX is also used to power other LCX products such as the LCX Terminal, which lets users trade across multiple exchanges, and the DeFi Terminal, which offers advanced charting and limit orders built on top of Uniswap.',
     website: 'https://www.lcx.com/',
   },
+  [ECrypto.ldo]: {
+    color: '#F69988',
+    description: 'LDO is the governance token of Lido, a liquid staking protocol. Lido supports liquid staking on multiple blockchain networks including Ethereum and Solana. LDO tokens are used to govern the Lido DAO, which oversees Lido’s development.',
+    website: 'https://lido.fi/',
+  },
   [ECrypto.link]: {
     color: '#2A5ADA',
     description: 'Chainlink (LINK) is an Ethereum token that powers the Chainlink decentralized oracle network. This network allows smart contracts on Ethereum to securely connect to external data sources, APIs, and payment systems.',
     website: 'https://chain.link/',
+  },
+  [ECrypto.lit]: {
+    color: '#2AE38D',
+    description: 'LIT is the native token of the Litentry parachain network. Litentry is a Decentralized Identity Aggregator, supporting on-chain identity verification and management for decentralized applications and their users.',
+    website: 'https://www.litentry.com/',
+  },
+  [ECrypto.loka]: {
+    color: '#116CFE',
+    description: 'LOKA is an Ethereum token that powers the League of Kingdoms MMO strategy game where gamers fight for the dominion of land. Players can build their own kingdom and armies to defeat or ally with other kingdoms and monsters. The LOKA token enables governance rights, additional utility with the League of Kingdom\'s community, and access to exclusive NFT rewards.',
+    website: 'https://www.leagueofkingdoms.com/',
   },
   [ECrypto.loom]: {
     color: '#48BEFE',
@@ -705,15 +745,30 @@ const CryptoDetails: Record<ECrypto, {
     description: 'LPT is an Ethereum token that powers the Livepeer network, a platform for decentralized video streaming. LPT is required to perform the work of transcoding and distributing video on the network while also incentivizing peers to ensure that the network is cost-effective and secure.',
     website: 'https://livepeer.org/primer',
   },
+  [ECrypto.lqty]: {
+    color: '#1542CD',
+    description: 'LQTY is an Ethereum token that powers the Liquity protocol, a decentralized borrowing platform for 0% interest loans using ETH as collateral. Loans are paid out in a stablecoin called LUSD, and LQTY holders can stake their token to earn a portion of fees generated by opening and closing loans.',
+    website: 'https://www.liquity.org/',
+  },
   [ECrypto.lrc]: {
     color: '#2AB5F6',
     description: 'Loopring is an Ethereum token that describes itself as “an open-sourced, audited, and non-custodial exchange protocol.” It aims to allow anyone to build non-custodial, order book-based exchanges on Ethereum by leveraging zero-knowledge proofs.',
     website: 'https://loopring.org/',
   },
+  [ECrypto.lseth]: {
+    color: '#DDE582',
+    description: 'LsETH is an ERC-20 token that represents ETH staked through Liquid Collective’s liquid staking protocol. The protocol aims to offer deep liquidity, while utilizing an enterprise-grade validator set.',
+    website: 'https://liquidcollective.io/',
+  },
   [ECrypto.ltc]: {
     color: '#BFBBBB',
     description: 'Litecoin is a cryptocurrency that uses a faster payment confirmation schedule and a different cryptographic algorithm than Bitcoin.',
     website: 'https://litecoin.org/',
+  },
+  [ECrypto.magic]: {
+    color: '#CB3A31',
+    description: 'MAGIC is the utility token of Treasure, a decentralized gaming ecosystem built on Arbitrum. MAGIC tokens are used in gameplay, to participate in governance, to buy and sell NFTs on the Treasure marketplace, and can also be staked.',
+    website: 'https://treasure.lol/',
   },
   [ECrypto.mana]: {
     color: '#FF2C55',
@@ -725,10 +780,40 @@ const CryptoDetails: Record<ECrypto, {
     description: 'Mask Network enables users of popular social media platforms to send cryptocurrency, interact with decentralized applications, and share encrypted content. MASK token holders can vote on ecosystem initiatives via a decentralized autonomous organization called MaskDAO.',
     website: 'https://mask.io/',
   },
+  [ECrypto.math]: {
+    color: '#0A0B0D',
+    description: 'MATH is an Ethereum token for MathWallet, a multi-platform (mobile/desktop/extension/hardware) universal crypto wallet that enables storage of all BTC, ETH, Polkadot, Filecoin, EOS, Solana, BinanceChain, Cosmos tokens. MathWallet also features cross-chain token exchanges and a multi-chain DApp store.',
+    website: 'https://mathwallet.org/en-us/',
+  },
   [ECrypto.matic]: {
     color: '#8247E5',
     description: 'Polygon was formerly called Matic Network. Polygon (MATIC) is an Ethereum token that powers the Polygon Network, a scaling solution for Ethereum. Polygon aims to provide faster and cheaper transactions on Ethereum using Layer 2 sidechains, which are blockchains that run alongside the Ethereum main chain. Users can deposit Ethereum tokens to a Polygon smart contract, interact with them within Polygon, and then later withdraw them back to the Ethereum main chain. The MATIC token is used to pay transaction fees and participate in proof-of-stake consensus.',
     website: 'https://polygon.technology/',
+  },
+  [ECrypto.mco2]: {
+    color: '#E3F65B',
+    description: 'MCO2 is an Ethereum token for carbon credits. The project’s goal is to combat climate change. Burning one MCO2 token on the Moss Carbon Credit platform is equivalent to offsetting one ton of CO2 footprint, which is made possible by purchasing and protecting land in the Amazon rainforest. Note: Coinbase currently only supports MCO2 running on the Ethereum blockchain (ERC-20).',
+    website: 'https://moss.earth/en',
+  },
+  [ECrypto.mdt]: {
+    color: '#4187F7',
+    description: 'MDT is an Ethereum token that powers the Measurable Data Token ecosystem for anonymously sharing and monetizing consumer data. MDT is used as a medium of exchange between users sharing their data and businesses accessing it.',
+    website: 'https://mdt.io/',
+  },
+  [ECrypto.media]: {
+    color: '#000000',
+    description: 'MEDIA is a Solana token for the Media Network, a new protocol that foregoes traditional centralized CDN approaches and opts for a self-governed, open-source solution. Users can monetize spare bandwidth resources and earn MEDIA in exchange for their contributions.',
+    website: 'https://www.media.network/',
+  },
+  [ECrypto.metis]: {
+    color: '#00D2FF',
+    description: 'METIS is an Ethereum token and operates as the internal currency for staking and payments in the Metis crypto ecosystem. Users can pay for goods and services offered through Decentralized Autonomous Companies (DACs) built on the Metis protocol. METIS tokens also play a role in reducing spam and ensure trust between developers and users alike.',
+    website: 'https://www.metis.io/',
+  },
+  [ECrypto.mina]: {
+    color: '#EA6B48',
+    description: 'MINA is a cryptocurrency that powers Mina Protocol, a layer one blockchain that aims to be lightweight, privacy-preserving, and easily verifiable. Developers on Mina can build privacy-preserving smart contracts and decentralized applications based on zero-knowledge proofs. MINA is used to set up new accounts and pay for transactions. MINA holders can also stake directly on the network to validate transactions and process computation.',
+    website: 'https://minaprotocol.com/',
   },
   [ECrypto.mir]: {
     color: '#232C45',

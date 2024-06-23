@@ -55,8 +55,8 @@ const CryptoDetailsTop: FC<CryptoDetailsTopProps> = memo(({
     },
     crypto_icon: {
       margin: 20,
-      height: 30,
-      width: 30,
+      height: 50,
+      width: 50,
     },
     crypto_name: {
       color: Colors.white,
