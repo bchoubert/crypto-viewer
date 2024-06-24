@@ -268,7 +268,14 @@ import LogoUpi from '../../assets/cryptos/upi.svg';
 import LogoUsdc from '../../assets/cryptos/usdc.svg';
 import LogoUsdt from '../../assets/cryptos/usdt.svg';
 import LogoUst from '../../assets/cryptos/ust.svg';
+import LogoVara from '../../assets/cryptos/vara.svg';
+import LogoVelo from '../../assets/cryptos/velo.svg';
+import LogoVet from '../../assets/cryptos/vet.svg';
 import LogoVgx from '../../assets/cryptos/vgx.svg';
+import LogoVoxel from '../../assets/cryptos/voxel.svg';
+import LogoVtho from '../../assets/cryptos/vtho.svg';
+import LogoWampl from '../../assets/cryptos/wampl.svg';
+import LogoWaxl from '../../assets/cryptos/waxl.svg';
 import LogoWbtc from '../../assets/cryptos/wbtc.svg';
 import LogoWcfg from '../../assets/cryptos/wcfg.svg';
 import LogoWluna from '../../assets/cryptos/wluna.svg';
@@ -554,7 +561,14 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.usdc]: LogoUsdc,
   [ECrypto.usdt]: LogoUsdt,
   [ECrypto.ust]: LogoUst,
+  [ECrypto.vara]: LogoVara,
+  [ECrypto.velo]: LogoVelo,
+  [ECrypto.vet]: LogoVet,
+  [ECrypto.voxel]: LogoVoxel,
   [ECrypto.vgx]: LogoVgx,
+  [ECrypto.vtho]: LogoVtho,
+  [ECrypto.waxl]: LogoWaxl,
+  [ECrypto.wampl]: LogoWampl,
   [ECrypto.wbtc]: LogoWbtc,
   [ECrypto.wcfg]: LogoWcfg,
   [ECrypto.wluna]: LogoWluna,

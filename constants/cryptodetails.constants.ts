@@ -1345,10 +1345,45 @@ const CryptoDetails: Record<ECrypto, {
     description: 'TerraUSD is a decentralized stablecoin running on Ethereum that attempts to maintain a value of US$1.00. Unlike centralized stablecoins, UST isn’t backed by US dollars in a bank account. Instead, in order to mint 1 TerraUSD, US$1.00 worth of TerraUSD’s reserve asset (LUNA) must be burned.',
     website: 'https://www.terra.money/',
   },
+  [ECrypto.vara]: {
+    color: '#00FFC4',
+    description: 'VARA is the native token of the Vara Network, a blockchain network built on Gear Protocol. The Vara Network allows developers to seamlessly build and deploy decentralized applications. VARA tokens can be staked to secure the network. VARA tokens can also be used to pay network gas fees and participate in governance.',
+    website: 'https://vara.network/',
+  },
+  [ECrypto.velo]: {
+    color: '#5E93FF',
+    description: 'Velodrome Finance is an automated market maker on Optimism. VELO is the utility token of Velodrome Finance earned by liquidity providers. VELO tokens can be locked in order to participate in governance. Voters are also rewarded with protocol trading fees.',
+    website: 'https://velodrome.finance/',
+  },
+  [ECrypto.vet]: {
+    color: '#82BE00',
+    description: 'VET is one of two native tokens on the VechainThor blockchain. VechainThor is an energy-efficient, sustainable network that global enterprises and governments can use to leverage smart contracts and decentralized applications. VET tokens are the “value-transfer medium” across the VechainThor blockchain. VET tokens govern the network and generate VTHO tokens. VTHO is the other native token of the VechainThor blockchain which is used to pay network gas fees.',
+    website: 'https://www.vechain.org/',
+  },
   [ECrypto.vgx]: {
     color: '#585DF6',
     description: 'VGX is an Ethereum token that’s used to reward and incentivize use of the Voyager centralized exchange. On Voyager, VGX holders can earn staking rewards, receive cashback on trades, and more.',
     website: 'https://www.investvoyager.com/vgx',
+  },
+  [ECrypto.voxel]: {
+    color: '#FBE23B',
+    description: 'VOXEL is the in-game token of Voxie Tactics. The video game can be played by owners of Voxies, an NFT collection of 3D avatars. The token is used to purchase various items that can be used while playing Voxie Tactics.',
+    website: 'https://www.voxies.io/',
+  },
+  [ECrypto.vtho]: {
+    color: '#82BE00',
+    description: 'VTHO is one of two native tokens on the VechainThor blockchain. VechainThor is an energy-efficient, sustainable network that global enterprises and governments can use to leverage smart contracts and decentralized applications. VTHO tokens are used to pay network gas fees. VET, the other native token of the VechainThor blockchain, generates VTHO tokens. Holders of VET tokens automatically accrue and receive VTHO tokens.',
+    website: 'https://vechain.org/',
+  },
+  [ECrypto.wampl]: {
+    color: '#000000',
+    description: 'Wrapped Ampleforth (WAMPL) is a form of Ampleforth (AMPL) that is compatible with the popular ERC-20 token standard. Unlike AMPL, which automatically adjusts (rebases) its supply in response to demand, WAMPL doesn\'t rebase. As a result, AMPL and WAMPL should not have the same price.',
+    website: 'https://www.ampleforth.org/',
+  },
+  [ECrypto.waxl]: {
+    color: '#82BE00',
+    description: 'VET is one of two native tokens on the VechainThor blockchain. VechainThor is an energy-efficient, sustainable network that global enterprises and governments can use to leverage smart contracts and decentralized applications. VET tokens are the “value-transfer medium” across the VechainThor blockchain. VET tokens govern the network and generate VTHO tokens. VTHO is the other native token of the VechainThor blockchain which is used to pay network gas fees.',
+    website: 'https://www.vechain.org/',
   },
   [ECrypto.wbtc]: {
     color: '#1F1B2C',
