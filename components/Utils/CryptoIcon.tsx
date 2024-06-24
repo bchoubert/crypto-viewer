@@ -185,24 +185,44 @@ import LogoNu from '../../assets/cryptos/nu.svg';
 import LogoOcean from '../../assets/cryptos/ocean.svg';
 import LogoOgn from '../../assets/cryptos/ogn.svg';
 import LogoOmg from '../../assets/cryptos/omg.svg';
+import LogoOndo from '../../assets/cryptos/ondo.svg';
+import LogoOoki from '../../assets/cryptos/ooki.svg';
+import LogoOp from '../../assets/cryptos/op.svg';
+import LogoOrca from '../../assets/cryptos/orca.svg';
 import LogoOrn from '../../assets/cryptos/orn.svg';
+import LogoOsmo from '../../assets/cryptos/osmo.svg';
 import LogoOxt from '../../assets/cryptos/oxt.svg';
 import LogoPax from '../../assets/cryptos/pax.svg';
 import LogoPerp from '../../assets/cryptos/perp.svg';
 import LogoPla from '../../assets/cryptos/pla.svg';
+import LogoPlu from '../../assets/cryptos/plu.svg';
+import LogoPng from '../../assets/cryptos/png.svg';
+import LogoPols from '../../assets/cryptos/pols.svg';
 import LogoPoly from '../../assets/cryptos/poly.svg';
+import LogoPond from '../../assets/cryptos/pond.svg';
 import LogoPowr from '../../assets/cryptos/powr.svg';
+import LogoPrime from '../../assets/cryptos/prime.svg';
+import LogoPro from '../../assets/cryptos/pro.svg';
+import LogoPrq from '../../assets/cryptos/prq.svg';
+import LogoPundix from '../../assets/cryptos/pundix.svg';
+import LogoPyr from '../../assets/cryptos/pyr.svg';
+import LogoPyusd from '../../assets/cryptos/pyusd.svg';
+import LogoQi from '../../assets/cryptos/qi.svg';
 import LogoQnt from '../../assets/cryptos/qnt.svg';
 import LogoQuick from '../../assets/cryptos/quick.svg';
 import LogoRad from '../../assets/cryptos/rad.svg';
 import LogoRai from '../../assets/cryptos/rai.svg';
+import LogoRare from '../../assets/cryptos/rare.svg';
 import LogoRari from '../../assets/cryptos/rari.svg';
+import LogoRbn from '../../assets/cryptos/rbn.svg';
 import LogoRen from '../../assets/cryptos/ren.svg';
+import LogoRender from '../../assets/cryptos/render.svg';
 import LogoRep from '../../assets/cryptos/rep.svg';
 import LogoReq from '../../assets/cryptos/req.svg';
 import LogoRgt from '../../assets/cryptos/rgt.svg';
 import LogoRlc from '../../assets/cryptos/rlc.svg';
 import LogoRly from '../../assets/cryptos/rly.svg';
+import LogoRndr from '../../assets/cryptos/rndr.svg';
 import LogoShib from '../../assets/cryptos/shib.svg';
 import LogoSkl from '../../assets/cryptos/skl.svg';
 import LogoSnx from '../../assets/cryptos/snx.svg';
@@ -423,24 +443,44 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.ocean]: LogoOcean,
   [ECrypto.ogn]: LogoOgn,
   [ECrypto.omg]: LogoOmg,
+  [ECrypto.ondo]: LogoOndo,
+  [ECrypto.ooki]: LogoOoki,
+  [ECrypto.op]: LogoOp,
+  [ECrypto.orca]: LogoOrca,
   [ECrypto.orn]: LogoOrn,
+  [ECrypto.osmo]: LogoOsmo,
   [ECrypto.oxt]: LogoOxt,
   [ECrypto.pax]: LogoPax,
   [ECrypto.perp]: LogoPerp,
   [ECrypto.pla]: LogoPla,
+  [ECrypto.plu]: LogoPlu,
+  [ECrypto.png]: LogoPng,
+  [ECrypto.pols]: LogoPols,
   [ECrypto.poly]: LogoPoly,
+  [ECrypto.pond]: LogoPond,
   [ECrypto.powr]: LogoPowr,
+  [ECrypto.prime]: LogoPrime,
+  [ECrypto.pro]: LogoPro,
+  [ECrypto.prq]: LogoPrq,
+  [ECrypto.pundix]: LogoPundix,
+  [ECrypto.pyr]: LogoPyr,
+  [ECrypto.pyusd]: LogoPyusd,
+  [ECrypto.qi]: LogoQi,
   [ECrypto.qnt]: LogoQnt,
   [ECrypto.quick]: LogoQuick,
   [ECrypto.rad]: LogoRad,
   [ECrypto.rai]: LogoRai,
+  [ECrypto.rare]: LogoRare,
   [ECrypto.rari]: LogoRari,
+  [ECrypto.rbn]: LogoRbn,
   [ECrypto.ren]: LogoRen,
+  [ECrypto.render]: LogoRender,
   [ECrypto.rep]: LogoRep,
   [ECrypto.req]: LogoReq,
   [ECrypto.rgt]: LogoRgt,
   [ECrypto.rlc]: LogoRlc,
   [ECrypto.rly]: LogoRly,
+  [ECrypto.rndr]: LogoRndr,
   [ECrypto.shib]: LogoShib,
   [ECrypto.skl]: LogoSkl,
   [ECrypto.snx]: LogoSnx,
