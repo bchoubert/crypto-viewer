@@ -1120,15 +1120,65 @@ const CryptoDetails: Record<ECrypto, {
     description: 'The Render Network is a decentralized GPU rendering platform that enables distributed graphics processing. The Render Network connects users looking to render images and video with those who have idle graphics processing power. RENDER tokens are rewarded to node operators and can be used to participate in protocol governance.',
     website: 'https://rendernetwork.com/',
   },
+  [ECrypto.ronin]: {
+    color: '#004DE5',
+    description: 'Ronin is a low-cost and highly efficient network purpose-built for onchain gaming. Ronin was developed by Sky Mavis, the creator of Axie Infinity, and allows developers to launch games with player-owned economies. RONIN is the utility token of the Ronin ecosystem. RONIN can be used to pay for gas fees and engage in network governance. RONIN can also be used to secure the network through staking.',
+    website: 'https://roninchain.com/',
+  },
+  [ECrypto.rose]: {
+    color: '#0293F6',
+    description: 'ROSE is a cryptocurrency that powers Oasis Protocol, a layer one blockchain that aims to be privacy-preserving and scalable. Oasis Protocol enables fast transaction speeds and the creation of private smart contracts. The ROSE token is used to pay for transaction fees and for staking to validate Oasis Protocol’s proof of stake blockchain.',
+    website: 'https://oasisprotocol.org/',    
+  },
+  [ECrypto.rpl]: {
+    color: '#FF9774',
+    description: 'RPL is the ERC-20 utility token of Rocket Pool, a liquid staking protocol on the Ethereum blockchain. RPL tokens are used to govern the PDAO and can be staked by node operators.',
+    website: 'https://rocketpool.net/',
+  },
+  [ECrypto.safe]: {
+    color: '#00AEEF',
+    description: 'Safe provides developers with an open-source and modular account abstraction stack. Safe also functions as a multi-sig wallet service provider to users and organizations. These wallets require permissions from multiple stakeholders to approve transactions from the address. Safe supports multi-sig wallets on several EVM networks, including Ethereum, Arbitrum, and Base. SAFE is the governance token of the SafeDAO. SAFE tokens can be used to vote on proposals related to Safe’s development.',
+    website: 'https://safe.global/',
+  },
+  [ECrypto.sand]: {
+    color: '#FF8A03',
+    description: 'SAND is an Ethereum token that powers The Sandbox, a multiplayer metaverse where players can create, monetize, and participate in blockchain-based gaming experiences. In The Sandbox, game designers can create custom 3D NFTs that can be used across the ecosystem. SAND can be used to buy and sell NFTs and other in-game items, and can also be used to vote on the future of the platform.',
+    website: 'https://www.sandbox.game/',
+  },
+  [ECrypto.seam]: {
+    color: '#0A0B0D',
+    description: 'Seamless Protocol is a decentralized lending and borrowing platform native to Base. Users can supply and borrow cbETH, ETH, and USDbC. SEAM is Seamless Protocol’s governance token as holders can participate in protocol governance throughout its various stages. In order for a governance proposal to be approved, it must pass an initial offchain vote followed by final vote executed onchain.',
+    website: 'https://www.seamlessprotocol.com/',
+  },
+  [ECrypto.sei]: {
+    color: '#9C0910',
+    description: 'SEI is the native token of the Sei blockchain network. Sei was designed to provide developers with the infrastructure needed to build efficient and secure decentralized exchanges. SEI tokens can be used to pay network gas fees and participate in governance. SEI tokens can also be staked to secure the network.',
+    website: 'https://www.sei.io/',
+  },
+  [ECrypto.shdw]: {
+    color: '#11FA98',
+    description: 'The Shadow ecosystem is a decentralized physical infrastructure network developed by GenesysGo. Shadow’s infrastructure layers include a decentralized data storage layer called Shadow Drive. SHDW tokens are used to pay for data storage on Shadow Drive.',
+    website: 'https://www.shdwdrive.com/',
+  },
   [ECrypto.shib]: {
     color: '#1C2951',
     description: 'Shiba Inu (SHIB) is a token that aspires to be an Ethereum-based alternative to Dogecoin (DOGE), the popular memecoin. Unlike Bitcoin, which is designed to be scarce, SHIB is intentionally abundant — with a circulating supply of one quadrillion. The Shiba Inu Token ecosystem supports projects such as an NFT art incubator and the development of a decentralized exchange called Shibaswap.',
     website: 'https://shibatoken.com/',
   },
+  [ECrypto.shping]: {
+    color: '#FE3357',
+    description: 'SHPING is an Ethereum token that powers Shping, an application for comparing, reviewing, and tracking consumer products. Brands can use Shping Coin to reward customers for watching videos, writing reviews, and scanning receipts.',
+    website: 'https://shping.com/',
+  },
   [ECrypto.skl]: {
     color: '#000000',
     description: 'SKALE (SKL) is an Ethereum token that powers the Skale Network, which describes itself as “an Ethereum-compatible network with a leaderless consensus designed to run on an uncapped number of independent nodes.” Nodes on the Skale Network provide resources to multiple decentralized elastic blockchains. The SKL token grants a right to participate as a network validator, stake as a delegator, or access a share of the network’s resources as a developer.',
     website: 'https://skale.network/',
+  },
+  [ECrypto.snt]: {
+    color: '#5B6DEE',
+    description: 'SNT is an Ethereum token that powers Status Network, a secure messaging app, crypto wallet, and web3 browser. SNT is used to reward network validators and is required for certain actions such as registering user names, and voting on the future of the network.',
+    website: 'https://status.app/',
   },
   [ECrypto.snx]: {
     color: '#090220',
@@ -1140,25 +1190,100 @@ const CryptoDetails: Record<ECrypto, {
     description: 'Solana is a decentralized computing platform that uses SOL to pay for transactions. Solana aims to improve blockchain scalability by using a combination of proof of stake consensus and so-called proof of history. As a result, Solana claims to be able to support 50,000 transactions per second without sacrificing decentralization.',
     website: 'https://solana.com/',
   },
+  [ECrypto.spa]: {
+    color: '#31C1BF',
+    description: 'SPA is the governance token of the Sperax ecosystem. Sperax is a DeFi protocol built on Arbitrum that mints Sperax USD - a stablecoin featuring ‘auto-yield’ generation. SPA tokens must be staked in order to participate in the Sperax DAO. Sperax ecosystem is governed by community of SPA stakers or veSPA holders, who make up Sperax DAO.',
+    website: 'https://sperax.io/',
+  },
+  [ECrypto.spell]: {
+    color: '#211A45',
+    description: 'SPELL is an Ethereum token that governs Abracadabra.money, a platform that lets users deposit collateral in the form of interest-bearing crypto assets (such as yvYFI, yvUSDT, yvUSDC, xSUSHI) in order to mint MIM, a stablecoin that attempts to maintain a value of US$1.00. SPELL can be staked to earn sSPELL, which grants governance rights and other rewards.',
+    website: 'https://abracadabra.money/',
+  },
+  [ECrypto.stg]: {
+    color: '#0A0B0C',
+    description: 'STG is an Ethereum token that powers the Stargate Finance ecosystem. Stargate Finance is a cross-chain bridge solution built on LayerZero that makes cross-chain token trading easy, simple, and seamless between various blockchains. The STG token is used to reward liquidity providers for funding Stargate Protocol operations, and to lock and receive the Stargate Protocol governance token (veSTG).',
+    website: 'https://stargate.finance/',
+  },
   [ECrypto.storj]: {
     color: '#2683FF',
     description: 'Storj (STORJ) is an Ethereum token that powers a decentralized cloud storage network for developers called Storj DCS (Decentralized Cloud Storage). After a customer uploads a file to Storj DCS, pieces of each file are distributed to a global network of independent nodes. When someone requests the file, it is then recompiled securely and made available for download. This means that anyone can store files on Storj DCS without having to trust a centralized data center. Developers can purchase cloud storage services with STORJ. Network participants earn STORJ in return for providing unused hard drive space and bandwidth to the network.',
     website: 'https://storj.io/',
+  },
+  [ECrypto.strk]: {
+    color: '#29296E',
+    description: 'Starknet is a zk-rollup Ethereum scaling solution. STRK is the utility token of Starknet as STRK is used to pay for network transaction fees. STRK tokens can also be used to participate in Starknet governance. Lastly, STRK tokens are used to secure the network as they can be staked. Coinbase only supports STRK as an Ethereum ERC-20 token.',
+    website: 'https://www.starknet.io/',
+  },
+  [ECrypto.stx]: {
+    color: '#FC6432',
+    description: 'STX is the native token of the Stacks network, which aims to enable DeFi, NFTs, apps, and smart contracts for Bitcoin. STX is used to pay transaction fees and can be locked directly on the network to earn BTC rewards.',
+    website: 'https://www.stacks.co/',
+  },
+  [ECrypto.sui]: {
+    color: '#81BAEB',
+    description: 'SUI is the native token of the Sui blockchain network. Sui is a permissionless smart contract platform that uses the Move programming language. SUI tokens can be used to govern the network, pay for gas fees, and participate in staking.',
+    website: 'https://sui.io/',
   },
   [ECrypto.suku]: {
     color: '#000000',
     description: 'SUKU is an Ethereum token that powers the SUKU Platform, a blockchain-based ecosystem that aims to make supply chains more transparent. SUKU tokens can be used for platform governance and to reward users and SUKU node operators. SUKU Platform is also developing applications for DeFi lending and NFT marketplaces.',
     website: 'https://www.suku.world/',
   },
+  [ECrypto.super]: {
+    color: '#79F49A',
+    description: 'SUPER is an Ethereum token that powers SuperVerse, a marketplace and platform for issuing NFTs. On SuperVerse, users can stake SUPER to earn points that can be redeemed for NFTs. SUPER can also be used to vote on the future direction of SuperVerse.',
+    website: 'https://superverse.co/',
+  },
   [ECrypto.sushi]: {
     color: '#F056A3',
     description: 'SushiSwap (SUSHI) is an Ethereum token that powers SushiSwap, a decentralized cryptocurrency exchange and automated market maker built on Ethereum. Holders of SUSHI can participate in community governance and stake their tokens to receive a portion of SushiSwap’s transaction fees.',
     website: 'https://sushi.com/',
   },
+  [ECrypto.swftc]: {
+    color: '#B98318',
+    description: 'SWFTC is an Ethereum token that powers the SWFT blockchain, a cross-chain wallet, exchange and payments platform that allows users to swap, trade, pay with and share hundreds of cryptocurrencies. SWFTC is used as a blockchain asset to pay transaction fees and provides token holders a 50% discount on it.',
+    website: 'https://www.swft.pro/',
+  },
+  [ECrypto.sylo]: {
+    color: '#DF643A',
+    description: 'SYLO is an Ethereum token for the Sylo Network, a decentralized communication infrastructure created by many independent users running Sylo Node software on their own computers and servers. By running a Sylo Node and activating their Seeker, users earn SYLO in exchange for their device providing communication services to the network.',
+    website: 'https://www.sylo.io/',
+  },
+  [ECrypto.syn]: {
+    color: '#D745FF',
+    description: 'SYN is an Ethereum token that powers Synapse, a protocol for bridging and swapping assets across chains, earning yield, and more. SYN can be used to vote on the future of the protocol, and can be awarded to network liquidity providers. Synapse also plans to develop a proof of stake blockchain called Synapse Chain in which validators can stake SYN to help secure the network.',
+    website: 'https://synapseprotocol.com/',
+  },
+  [ECrypto.t]: {
+    color: '#754BE5',
+    description: 'T is the ERC-20 utility token of the Threshold Network, which offers a variety of threshold cryptography services, including tBTC, a decentralized Bitcoin bridge. T tokens are staked by node operators, and also function as a governance token.',
+    website: 'https://threshold.network/',
+  },
   [ECrypto.tbtc]: {
     color: '#000000',
     description: 'tBTC is an Ethereum token that’s intended to represent Bitcoin (BTC) on the Ethereum blockchain. It is not Bitcoin, but rather a separate ERC-20 token that’s designed to track Bitcoin’s value. tBTC is powered by the Keep Network. Keep Network enables users to deposit Bitcoin and redeem tokenized tBTC, which can then be used across the Ethereum ecosystem.',
     website: 'https://keep.network/',
+  },
+  [ECrypto.tia]: {
+    color: '#7130F0',
+    description: 'Celestia is a modular data availability network built with the Cosmos SDK. Celestia’s unique architecture offers developers a platform to build highly scalable decentralized applications and rollups. As Celestia directly provides the data availability and consensus layer, and Optimint provides the settlement layer, developers only have to focus on building the execution layer. TIA is the native token of Celestia, and can be used for gas fee payment, network governance, and staking participation.',
+    website: 'https://celestia.org/',
+  },
+  [ECrypto.time]: {
+    color: '#6C85F7',
+    description: 'TIME is an Ethereum token used in the Chrono.tech ecosystem. Chrono.tech provides blockchain-based solutions for recruitment, HR and payment processes, reducing the barriers to accessing work and transferring funds securely in the global labor marketplace. The TIME token can be used within its suite of products.',
+    website: 'https://chrono.tech/',
+  },
+  [ECrypto.tnsr]: {
+    color: '#111314',
+    description: 'The Tensor Protocol is an autonomous protocol on Solana that NFT marketplaces can use to access deep liquidity and connect their users with other NFT traders. Tensor.trade, the leading NFT marketplace on Solana, is built on the Tensor Protocol. TNSR is the governance token of the Tensor Protocol. TNSR holders can vote on proposals pertaining to the protocol’s development, including the use of the community treasury.',
+    website: 'https://www.tensor.trade/',
+  },
+  [ECrypto.tone]: {
+    color: '#4A8FC8',
+    description: 'TONE is an Ethereum token that powers the TE-Food platform, an end-to-end food traceability solution on the blockchain. TE-Food\'s products helps companies with any level of technological readiness to join and track their products, and also integrates service providers for the contracting, management, and clearing of services in its ecosystem.',
+    website: 'https://te-food.com/',
   },
   [ECrypto.trac]: {
     color: '#6344DF',
@@ -1180,15 +1305,30 @@ const CryptoDetails: Record<ECrypto, {
     description: 'TRU is an Ethereum token that powers TrueFi, a decentralized finance protocol for uncollateralized lending using on-chain credit scores. TRU can be used for staking (i.e. to approve or reject new loans) and governance on the TrueFi protocol.',
     website: 'https://truefi.io/',
   },
+  [ECrypto.tvk]: {
+    color: '#9247FF',
+    description: 'TVK is the utility token of the Virtua metaverse, which features a hyper-realistic planet known as Virtua Prime. TVK can be used to purchase land on Virtua Prime. TVK can also be staked to join the ‘Virtua Prestige Club’ that provides members with benefits such as NFT airdrops and extra platform features.',
+    website: 'https://virtua.com/',
+  },
   [ECrypto.uma]: {
     color: '#FF4A49',
     description: 'UMA is an Ethereum token that describes itself as “an open-source protocol that allows developers to design and create their own financial contracts and synthetic assets.” The protocol’s name comes from the team’s goal of creating universal market access (UMA).',
     website: 'https://umaproject.org/',
   },
+  [ECrypto.unfi]: {
+    color: '#38F997',
+    description: 'UNFI is an Ethereum token that powers the Unifi Protocol, a platform for creating cross-chain DeFi (decentralized finance) applications. On Unifi Protocol, UNFI can be used to propose and vote on protocol upgrades and can also be staked to earn rewards. Note: Coinbase currently only supports UNFI running on the Ethereum blockchain (ERC-20).',
+    website: 'https://unifiprotocol.com/',
+  },
   [ECrypto.uni]: {
     color: '#FF007A',
     description: 'Uniswap (UNI) is an Ethereum token that powers Uniswap, an automated liquidity provider that’s designed to make it easy to exchange Ethereum (ERC-20) tokens. There is no orderbook or central facilitator on Uniswap. Instead, tokens are exchanged through liquidity pools that are defined by smart contracts.',
     website: 'https://uniswap.org/',
+  },
+  [ECrypto.upi]: {
+    color: '#FD774E',
+    description: 'UPI is an Ethereum token that powers Pawtocol, a platform for collecting and monetizing data about pets. Users can gain health insights on their pets using an IoT-enabled sensor and can earn UPI by anonymously sharing that data with the Pawtocol network.',
+    website: 'https://pawtocol.com/',
   },
   [ECrypto.usdc]: {
     color: '#2775C9',

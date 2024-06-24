@@ -223,20 +223,48 @@ import LogoRgt from '../../assets/cryptos/rgt.svg';
 import LogoRlc from '../../assets/cryptos/rlc.svg';
 import LogoRly from '../../assets/cryptos/rly.svg';
 import LogoRndr from '../../assets/cryptos/rndr.svg';
+import LogoRonin from '../../assets/cryptos/ronin.svg';
+import LogoRose from '../../assets/cryptos/rose.svg';
+import LogoRpl from '../../assets/cryptos/rpl.svg';
+import LogoSafe from '../../assets/cryptos/safe.svg';
+import LogoSand from '../../assets/cryptos/sand.svg';
+import LogoSeam from '../../assets/cryptos/seam.svg';
+import LogoSei from '../../assets/cryptos/sei.svg';
+import LogoShdw from '../../assets/cryptos/shdw.svg';
 import LogoShib from '../../assets/cryptos/shib.svg';
+import LogoShping from '../../assets/cryptos/shping.svg';
 import LogoSkl from '../../assets/cryptos/skl.svg';
+import LogoSnt from '../../assets/cryptos/snt.svg';
 import LogoSnx from '../../assets/cryptos/snx.svg';
 import LogoSol from '../../assets/cryptos/sol.svg';
+import LogoSpa from '../../assets/cryptos/spa.svg';
+import LogoSpell from '../../assets/cryptos/spell.svg';
+import LogoStg from '../../assets/cryptos/stg.svg';
 import LogoStorj from '../../assets/cryptos/storj.svg';
+import LogoStrk from '../../assets/cryptos/strk.svg';
+import LogoStx from '../../assets/cryptos/stx.svg';
+import LogoSui from '../../assets/cryptos/sui.svg';
 import LogoSuku from '../../assets/cryptos/suku.svg';
+import LogoSuper from '../../assets/cryptos/super.svg';
 import LogoSushi from '../../assets/cryptos/sushi.svg';
+import LogoSwftc from '../../assets/cryptos/swftc.svg';
+import LogoSylo from '../../assets/cryptos/sylo.svg';
+import LogoSyn from '../../assets/cryptos/syn.svg';
+import LogoT from '../../assets/cryptos/t.svg';
 import LogoTbtc from '../../assets/cryptos/tbtc.svg';
+import LogoTia from '../../assets/cryptos/tia.svg';
+import LogoTime from '../../assets/cryptos/time.svg';
+import LogoTnsr from '../../assets/cryptos/tnsr.svg';
+import LogoTone from '../../assets/cryptos/tone.svg';
 import LogoTrac from '../../assets/cryptos/trac.svg';
 import LogoTrb from '../../assets/cryptos/trb.svg';
 import LogoTribe from '../../assets/cryptos/tribe.svg';
 import LogoTru from '../../assets/cryptos/tru.svg';
+import LogoTvk from '../../assets/cryptos/tvk.svg';
 import LogoUma from '../../assets/cryptos/uma.svg';
+import LogoUnfi from '../../assets/cryptos/unfi.svg';
 import LogoUni from '../../assets/cryptos/uni.svg';
+import LogoUpi from '../../assets/cryptos/upi.svg';
 import LogoUsdc from '../../assets/cryptos/usdc.svg';
 import LogoUsdt from '../../assets/cryptos/usdt.svg';
 import LogoUst from '../../assets/cryptos/ust.svg';
@@ -481,20 +509,48 @@ const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {
   [ECrypto.rlc]: LogoRlc,
   [ECrypto.rly]: LogoRly,
   [ECrypto.rndr]: LogoRndr,
+  [ECrypto.ronin]: LogoRonin,
+  [ECrypto.rose]: LogoRose,
+  [ECrypto.rpl]: LogoRpl,
+  [ECrypto.safe]: LogoSafe,
+  [ECrypto.sand]: LogoSand,
+  [ECrypto.seam]: LogoSeam,
+  [ECrypto.sei]: LogoSei,
+  [ECrypto.shdw]: LogoShdw,
   [ECrypto.shib]: LogoShib,
+  [ECrypto.shping]: LogoShping,
   [ECrypto.skl]: LogoSkl,
+  [ECrypto.snt]: LogoSnt,
   [ECrypto.snx]: LogoSnx,
   [ECrypto.sol]: LogoSol,
+  [ECrypto.spa]: LogoSpa,
+  [ECrypto.spell]: LogoSpell,
+  [ECrypto.stg]: LogoStg,
   [ECrypto.storj]: LogoStorj,
+  [ECrypto.strk]: LogoStrk,
+  [ECrypto.stx]: LogoStx,
+  [ECrypto.sui]: LogoSui,
   [ECrypto.suku]: LogoSuku,
+  [ECrypto.super]: LogoSuper,
   [ECrypto.sushi]: LogoSushi,
+  [ECrypto.swftc]: LogoSwftc,
+  [ECrypto.sylo]: LogoSylo,
+  [ECrypto.syn]: LogoSyn,
+  [ECrypto.t]: LogoT,
   [ECrypto.tbtc]: LogoTbtc,
+  [ECrypto.tia]: LogoTia,
+  [ECrypto.time]: LogoTime,
+  [ECrypto.tnsr]: LogoTnsr,
+  [ECrypto.tone]: LogoTone,
   [ECrypto.trac]: LogoTrac,
   [ECrypto.trb]: LogoTrb,
   [ECrypto.tribe]: LogoTribe,
   [ECrypto.tru]: LogoTru,
+  [ECrypto.tvk]: LogoTvk,
   [ECrypto.uma]: LogoUma,
+  [ECrypto.unfi]: LogoUnfi,
   [ECrypto.uni]: LogoUni,
+  [ECrypto.upi]: LogoUpi,
   [ECrypto.usdc]: LogoUsdc,
   [ECrypto.usdt]: LogoUsdt,
   [ECrypto.ust]: LogoUst,
