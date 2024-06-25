@@ -12,6 +12,8 @@ import { SettingsContext } from "@/contexts/settings.provider";
 import { fetchCryptoHistoricRates } from "@/services/network.service";
 import { CandleEnum, RatesAttributes } from "@/types/candles.types";
 import CryptoDetails from "@/constants/cryptodetails.constants";
+import { printNumber } from "@/services/print.service";
+import { quoteDetails } from "@/types/crypto.types";
 
 
 
@@ -53,6 +55,7 @@ const CryptoGraph: FC<CryptoGraphProps> = memo(({
   id,
 }) => {
   const { settings } = useContext(SettingsContext);
+  const quoteSymbol = useMemo(() => quoteDetails[settings.quote]?.symbol, [settings]);
 
   const details = useMemo(() => CryptoDetails[id] || { color: '#222222' }, [id]);
 
@@ -95,11 +98,13 @@ const CryptoGraph: FC<CryptoGraphProps> = memo(({
     if (!settings.quote) { return; }
 
     fetchCryptoHistoricRates(id, settings.quote, candle).then((resp) => {
-      const rates = resp.reverse().map((rate, i) => ({
-        value: rate[4],
-        date: new Date(rate[0] * 1000),
-        index: i,
-      }));
+      const rates = resp.reverse()
+        .filter((_, i) => i % (settings.graphMode === 'simple' ? 5 : 1) === 0)
+        .map((rate, i) => ({
+          value: rate[4],
+          date: new Date(rate[0] * 1000),
+          index: i,
+        }));
 
       setRates(rates);
       resetSelectedRate();
@@ -133,8 +138,8 @@ const CryptoGraph: FC<CryptoGraphProps> = memo(({
           onPointSelected={onPointSelected}
           onGestureEnd={resetSelectedRate}
         />
-        <Text style={styles.min}>{ratesAttributes.minValue}</Text>
-        <Text style={styles.max}>{ratesAttributes.maxValue}</Text>
+        <Text style={styles.min}>{printNumber(ratesAttributes.minValue, quoteSymbol)}</Text>
+        <Text style={styles.max}>{printNumber(ratesAttributes.maxValue, quoteSymbol)}</Text>
       </View>
       <ToggleButton
         items={candleItems}
