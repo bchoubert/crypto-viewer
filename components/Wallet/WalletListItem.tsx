@@ -126,7 +126,7 @@ const WalletListItem: FC<WalletListItemProps> = memo(({
       quoteSymbol,
       statusColor,
     ]
-  }, [cryptoDetails, item]);
+  }, [cryptoDetails, settings, item]);
 
   const [quantity, amount] = useMemo(() => [
     item.quantity,

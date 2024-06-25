@@ -1,11 +1,6 @@
-import { AvailableTranslations } from "@/assets/translations/TranslationUtils";
 import { loadSettings, saveSettings } from "@/services/settings.service";
-import { Quote, SortAssetsType } from "@/types/crypto.types";
-import { DarkModeType } from "@/types/darkMode.types";
-import { DateFormatType } from "@/types/date.types";
-import { GraphModeType } from "@/types/graph.types";
 import { SettingsEnum, SettingsType, defaultSettings, settingsDetails } from "@/types/settings.types";
-import { TranslationPossibility, TranslationType } from "@/types/translation.types";
+import { TranslationType } from "@/types/translation.types";
 import { WalletItem } from "@/types/wallet.types";
 import { FC, ReactNode, createContext, memo, useCallback, useEffect, useMemo, useState } from "react";
 

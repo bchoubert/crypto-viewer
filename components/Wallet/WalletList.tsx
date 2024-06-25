@@ -7,6 +7,7 @@ import { WalletItem } from "@/types/wallet.types";
 import { FC, memo, useCallback, useContext, useMemo, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SwipeListView } from "react-native-swipe-list-view";
+import WalletTotalItem from "./WalletTotalItem";
 
 const styles = StyleSheet.create({
   container: {
@@ -42,6 +43,11 @@ const styles = StyleSheet.create({
 const WalletList: FC = memo(() => {
   const { wallet } = useContext(SettingsContext);
 
+  const walletData = useMemo(() => [
+    ...wallet,
+    { id: 'total', quantity: wallet.map(w => w.quantity).reduce((acc, v) => acc + v, 0) },
+  ], [wallet]);
+
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
 
   // FORM
@@ -76,6 +82,15 @@ const WalletList: FC = memo(() => {
 
   const renderItem = useCallback(
     (props: { item: WalletItem }) => {
+      if (props.item.id === 'total') {
+        return (
+          <WalletTotalItem
+            key={props.item.id}
+            item={props.item}
+          />
+        )
+      }
+
       return (
         <View>
           <WalletListItem
@@ -86,13 +101,13 @@ const WalletList: FC = memo(() => {
         </View>
       );
     },
-    [setSelectedCryptoProxyAndOpenModal],
+    [setSelectedCryptoProxyAndOpenModal, wallet],
   );
 
   return (
     <View style={styles.container}>
       <SwipeListView
-        data={wallet}
+        data={walletData}
         renderItem={renderItem}
         renderHiddenItem={() => (<View />)}
         rightOpenValue={-140}
