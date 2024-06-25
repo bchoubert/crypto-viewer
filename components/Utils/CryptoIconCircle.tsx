@@ -1,6 +1,7 @@
-import Colors, { EColor } from "@/assets/Colors";
 import { FC, ReactNode, memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
+
+import Colors, { EColor } from "@/assets/Colors";
 
 interface CryptoIconCircleProps {
   children: ReactNode;

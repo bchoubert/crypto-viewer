@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { SvgProps } from 'react-native-svg';
+import { Text, View } from 'react-native';
 
 import IconArrowDown from '../../assets/icons/arrow-alt-down-solid.svg';
 import IconArrowUp from '../../assets/icons/arrow-alt-up-solid.svg';
@@ -23,7 +24,7 @@ import IconStarFull from '../../assets/icons/star-solid.svg';
 import IconList from '../../assets/icons/th-list-solid.svg';
 import IconUser from '../../assets/icons/user-solid.svg';
 import IconWallet from '../../assets/icons/wallet-solid.svg';
-import { Text, View } from 'react-native';
+
 import { EColor } from '@/assets/Colors';
 
 export enum EIcon {

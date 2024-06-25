@@ -1,8 +1,9 @@
+import { FC, ReactNode, createContext, memo, useCallback, useEffect, useMemo, useState } from "react";
+
+import { SettingsEnum, SettingsType, SettingsValue, defaultSettings, settingsDetails } from "@/types/settings.types";
 import { loadSettings, saveSettings } from "@/services/settings.service";
-import { SettingsEnum, SettingsType, defaultSettings, settingsDetails } from "@/types/settings.types";
 import { TranslationType } from "@/types/translation.types";
 import { WalletItem } from "@/types/wallet.types";
-import { FC, ReactNode, createContext, memo, useCallback, useEffect, useMemo, useState } from "react";
 
 interface SettingsContextInterface {
   settings: SettingsType;
@@ -40,7 +41,7 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
 
   useEffect(() => { load() }, []);
 
-  const changeSettingWithValue = useCallback((settingKey: keyof SettingsType, value: any) => {
+  const changeSettingWithValue = useCallback((settingKey: keyof SettingsType, value: SettingsValue) => {
     const newValues = {
       ...values,
       [settingKey]: value
@@ -50,7 +51,7 @@ const SettingsProvider: FC<SettingsProviderProps> = memo(({
     saveSettings(newValues);
   }, [values, setValues]);
 
-  const changeSettingViaAccessor = useCallback((settingKey: SettingsEnum, value: any, translation: TranslationType) => {
+  const changeSettingViaAccessor = useCallback((settingKey: SettingsEnum, value: SettingsValue, translation: TranslationType) => {
     const accessor = settingsDetails[settingKey](translation).accessor;
 
     changeSettingWithValue(accessor, value);

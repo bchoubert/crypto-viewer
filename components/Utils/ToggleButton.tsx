@@ -1,6 +1,7 @@
-import Colors from "@/assets/Colors";
 import { FC, memo, useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+
+import Colors from "@/assets/Colors";
 
 export interface ToggleButtonItem {
   id: string;
@@ -23,7 +24,7 @@ const ToggleButton: FC<ToggleButtonProps> = memo(({
   fullWidth,
   color,
 }) => {
-  const styles = useMemo(() => StyleSheet.create<any>({
+  const styles = useMemo(() => StyleSheet.create({
     container: {
       display: 'flex',
       flexDirection: 'row',

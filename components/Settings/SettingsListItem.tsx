@@ -1,10 +1,13 @@
+import { FC, memo, useCallback, useContext, useMemo } from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+import ToggleButton from "../Utils/ToggleButton";
+
 import Colors from "@/assets/Colors";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
 import { SettingsEnum, settingsDetails } from "@/types/settings.types";
-import { FC, memo, useCallback, useContext, useMemo } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import ToggleButton from "../Utils/ToggleButton";
+
 
 interface SettingsListItemProps {
   item: SettingsEnum;

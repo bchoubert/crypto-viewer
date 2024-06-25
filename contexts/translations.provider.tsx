@@ -1,8 +1,10 @@
-import EnTranslation from "@/assets/translations/en";
-import { TranslationType } from "@/types/translation.types";
 import { FC, ReactNode, createContext, memo, useContext, useEffect, useState } from "react";
+
 import { SettingsContext } from "./settings.provider";
+
+import EnTranslation from "@/assets/translations/en";
 import FrTranslation from "@/assets/translations/fr";
+import { TranslationType } from "@/types/translation.types";
 
 export const TranslationsContext = createContext(EnTranslation);
 

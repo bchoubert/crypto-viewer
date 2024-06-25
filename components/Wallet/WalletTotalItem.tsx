@@ -1,9 +1,9 @@
-import { quoteDetails } from "@/types/crypto.types";
 import { FC, memo, useContext, useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Colors, { EColor } from "@/assets/Colors";
+
+import { quoteDetails } from "@/types/crypto.types";
+import Colors from "@/assets/Colors";
 import { printNumber } from '@/services/print.service';
-import Icon, { EIcon } from "../Utils/Icon";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { WalletItem } from "@/types/wallet.types";
 import { CryptoContext } from "@/contexts/crypto.provider";

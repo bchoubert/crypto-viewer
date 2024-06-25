@@ -1,13 +1,14 @@
-import StatusBar from '@/components/Utils/StatusBar';
-import TopBar from '@/components/Utils/TopBar';
-import CryptoProvider from '@/contexts/crypto.provider';
-import SettingsProvider from '@/contexts/settings.provider';
-import TranslationsProvider from '@/contexts/translations.provider';
 import {  DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+
+import StatusBar from '@/components/Utils/StatusBar';
+import TopBar from '@/components/Utils/TopBar';
+import CryptoProvider from '@/contexts/crypto.provider';
+import SettingsProvider from '@/contexts/settings.provider';
+import TranslationsProvider from '@/contexts/translations.provider';
 import 'react-native-reanimated';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.

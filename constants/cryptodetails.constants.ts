@@ -1,4 +1,4 @@
-import ECrypto from "./cryptos.enum"
+import ECrypto from "./cryptos.enum";
 
 const CryptoDetails: Record<ECrypto, {
   color: string,

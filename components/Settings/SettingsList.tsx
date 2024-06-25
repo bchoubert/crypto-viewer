@@ -1,7 +1,9 @@
-import { SettingsEnum } from "@/types/settings.types";
 import { FC, memo, useCallback } from "react";
 import { FlatList } from "react-native";
+
 import SettingsListItem from "./SettingsListItem";
+
+import { SettingsEnum } from "@/types/settings.types";
 
 const SettingsList: FC = memo(() => {
   const settingsKeys = Object.values(SettingsEnum);

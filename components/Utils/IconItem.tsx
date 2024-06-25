@@ -1,6 +1,8 @@
 import { FC, memo } from "react";
+import { StyleSheet, Text, View } from "react-native";
+
 import Icon, { EIcon } from "./Icon";
-import { StyleProp, StyleSheet, Text, View, ViewStyle } from "react-native";
+
 import Colors from "@/assets/Colors";
 
 

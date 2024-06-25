@@ -1,11 +1,14 @@
-import CryptoDetails from "@/constants/cryptodetails.constants";
-import ECrypto from "@/constants/cryptos.enum";
 import { FC, memo, useCallback, useMemo } from "react";
 import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { openURL } from "expo-linking";
-import Icon, { EIcon } from "../Utils/Icon";
+
 import CryptoStats from "./CryptoStats";
 import CryptoGraph from "./CryptoGraph";
+
+import Icon, { EIcon } from "../Utils/Icon";
+
+import ECrypto from "@/constants/cryptos.enum";
+import CryptoDetails from "@/constants/cryptodetails.constants";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

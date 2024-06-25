@@ -1,8 +1,9 @@
+import { FC, memo, useMemo } from "react";
+import { Dimensions, Text, View } from "react-native";
+
 import Colors from "@/assets/Colors";
 import { printNumber } from "@/services/print.service";
 import { RatesAttributes } from "@/types/candles.types";
-import { FC, memo, useMemo } from "react";
-import { Dimensions, Text, View } from "react-native";
 
 interface AxisLabelProps {
   value?: number;

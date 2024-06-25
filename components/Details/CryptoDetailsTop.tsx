@@ -1,10 +1,13 @@
 import { FC, memo, useContext, useMemo } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
+
+import FadeInView from "./FadeInView";
+
 import CryptoIcon from "../Utils/CryptoIcon";
+
 import ECrypto from "@/constants/cryptos.enum";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { quoteDetails } from "@/types/crypto.types";
-import FadeInView from "./FadeInView";
 import Colors from "@/assets/Colors";
 import { printNumber } from "@/services/print.service";
 import { CryptoContext } from "@/contexts/crypto.provider";

@@ -1,14 +1,15 @@
+import { FC, memo, useCallback, useContext, useEffect, useMemo } from "react";
+import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+
+import Icon, { EIcon } from "../Utils/Icon";
+
 import Colors, { EColor } from "@/assets/Colors";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
-import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import Icon, { EIcon } from "../Utils/Icon";
 import { CryptoContext } from "@/contexts/crypto.provider";
-import { Picker } from "@react-native-picker/picker";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import ECrypto from "@/constants/cryptos.enum";
-import { WalletItem } from "@/types/wallet.types";
 
 interface WalletModalProps {
   selectedCrypto: string;

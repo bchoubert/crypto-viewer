@@ -291,6 +291,7 @@ import LogoZec from '../../assets/cryptos/zec.svg';
 import LogoZen from '../../assets/cryptos/zen.svg';
 import LogoZeta from '../../assets/cryptos/zeta.svg';
 import LogoZrx from '../../assets/cryptos/zrx.svg';
+
 import ECrypto from '@/constants/cryptos.enum';
 
 const CryptoIcon: Partial<Record<ECrypto, FC<SvgProps>>> = {

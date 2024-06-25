@@ -1,7 +1,8 @@
-import CryptoDetails from "@/components/Details/CryptoDetails";
-import ECrypto from "@/constants/cryptos.enum";
 import { useLocalSearchParams } from "expo-router";
 import { FC, memo, useMemo } from "react";
+
+import CryptoDetails from "@/components/Details/CryptoDetails";
+import ECrypto from "@/constants/cryptos.enum";
 
 const CryptoPage: FC = memo(() => {
   const { id } = useLocalSearchParams();

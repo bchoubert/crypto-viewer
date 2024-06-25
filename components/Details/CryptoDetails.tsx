@@ -1,9 +1,10 @@
 import { FC, memo } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 
-import ECrypto from "@/constants/cryptos.enum";
 import CryptoDetailsTop from "./CryptoDetailsTop";
 import CryptoDetailsBottom from "./CryptoDetailsBottom";
+
+import ECrypto from "@/constants/cryptos.enum";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

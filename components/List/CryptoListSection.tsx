@@ -1,6 +1,7 @@
-import Colors from "@/assets/Colors";
 import { FC, memo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+
+import Colors from "@/assets/Colors";
 
 interface CryptoListSectionProps {
   title: string;

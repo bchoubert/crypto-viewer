@@ -1,5 +1,6 @@
 import { ExchangeRates, ICrypto } from '../types/crypto.types';
 import ECrypto from '../constants/cryptos.enum';
+
 import { CandleEnum, candleDetails } from '@/types/candles.types';
 
 export const apiProDomain = 'https://api.pro.coinbase.com';
@@ -17,17 +18,17 @@ export const fetchCryptoExchangeRates = (quoteCode: string): Promise<{ data: { r
 };
 
 // DETAILS
-export const fetchCrypto24hrStats = (crypto: ECrypto, quote: string): Promise<any> => {
+export const fetchCrypto24hrStats = (crypto: ECrypto, quote: string): Promise<{ high: string, low: string, last: string, open: string }> => {
   return fetch(`${apiProDomain}/products/${crypto.toUpperCase()}-${quote.toUpperCase()}/stats`)
     .then((response) => response.json());
 };
 
-export const fetchCryptoBuyPrice = (crypto: ECrypto, quote: string): Promise<any> => {
+export const fetchCryptoBuyPrice = (crypto: ECrypto, quote: string): Promise<{ data: { amount: string } }> => {
   return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/buy`)
     .then((response) => response.json());
 };
 
-export const fetchCryptoSellPrice = (crypto: ECrypto, quote: string): Promise<any> => {
+export const fetchCryptoSellPrice = (crypto: ECrypto, quote: string): Promise<{ data: { amount: string } }> => {
   return fetch(`${apiDomain}/prices/${crypto.toUpperCase()}-${quote.toUpperCase()}/sell`)
     .then((response) => response.json());
 };

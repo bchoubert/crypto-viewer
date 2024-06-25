@@ -1,14 +1,19 @@
+import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { GraphPoint, LineGraph } from "react-native-graph";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
+import AxisLabel from "./AxisLabel";
+
+import ToggleButton from "../Utils/ToggleButton";
+
 import ECrypto from "@/constants/cryptos.enum";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { fetchCryptoHistoricRates } from "@/services/network.service";
 import { CandleEnum, RatesAttributes } from "@/types/candles.types";
-import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import ToggleButton from "../Utils/ToggleButton";
 import CryptoDetails from "@/constants/cryptodetails.constants";
-import { GraphPoint, LineGraph } from "react-native-graph";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import AxisLabel from "./AxisLabel";
+
+
 
 type GraphPointWithIndex = GraphPoint & { index: number };
 

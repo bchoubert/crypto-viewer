@@ -1,13 +1,16 @@
+import { FC, memo, useCallback, useContext, useMemo, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { SwipeListView } from "react-native-swipe-list-view";
+
+import WalletTotalItem from "./WalletTotalItem";
+
 import Colors, { EColor } from "@/assets/Colors";
 import Icon, { EIcon } from "@/components/Utils/Icon";
 import WalletListItem from "@/components/Wallet/WalletListItem";
 import WalletModal from "@/components/Wallet/WalletModal";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { WalletItem } from "@/types/wallet.types";
-import { FC, memo, useCallback, useContext, useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { SwipeListView } from "react-native-swipe-list-view";
-import WalletTotalItem from "./WalletTotalItem";
+
 
 const styles = StyleSheet.create({
   container: {

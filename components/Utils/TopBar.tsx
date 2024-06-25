@@ -1,8 +1,10 @@
-import Colors, { EColor } from "@/assets/Colors";
 import { FC, memo, useCallback, useContext, useMemo } from "react";
 import { Image, StyleSheet, View, Text, Pressable } from "react-native";
-import Icon, { EIcon } from "./Icon";
 import { useGlobalSearchParams, usePathname, useRouter } from 'expo-router';
+
+import Icon, { EIcon } from "./Icon";
+
+import Colors, { EColor } from "@/assets/Colors";
 import { SettingsContext } from "@/contexts/settings.provider";
 
 interface TopBarProps {

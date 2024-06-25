@@ -1,7 +1,9 @@
-import { ICryptoFavourite } from "@/types/crypto.types";
 import { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
+
 import CryptoListFavouriteItem from "./CryptoListFavouriteItem";
+
+import { ICryptoFavourite } from "@/types/crypto.types";
 import Colors from "@/assets/Colors";
 
 interface CryptoListFavouriteProps {

@@ -1,7 +1,8 @@
 
 
-import { SettingsType, defaultSettings, settingsStorageKey } from '@/types/settings.types';
 import { getData, storeData } from './storage.service';
+
+import { SettingsType, defaultSettings, settingsStorageKey } from '@/types/settings.types';
 
 export const loadSettings = async (): Promise<SettingsType> => {
   const value = await getData(settingsStorageKey);

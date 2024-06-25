@@ -1,10 +1,12 @@
-import { showError } from "@/services/error.service";
-import { fetchCryptoExchangeRates, fetchCryptos } from "@/services/network.service";
-import { ICrypto } from "@/types/crypto.types";
 import { FC, ReactNode, createContext, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ToastAndroid } from "react-native";
+
 import { SettingsContext } from "./settings.provider";
 import { TranslationsContext } from "./translations.provider";
+
+import { fetchCryptoExchangeRates, fetchCryptos } from "@/services/network.service";
+import { ICrypto } from "@/types/crypto.types";
+import { showError } from "@/services/error.service";
 
 interface CryptoContextInterface {
   cryptos: ICrypto[];

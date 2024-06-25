@@ -1,11 +1,13 @@
 import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { SectionList, StyleSheet } from "react-native";
+
 import CryptoListItem from "./CryptoListItem";
-import { ICrypto, ICryptoFavourite } from "@/types/crypto.types";
 import CryptoListSection from "./CryptoListSection";
+import CryptoListFavourite from "./CryptoListFavourite";
+
+import { ICrypto, ICryptoFavourite } from "@/types/crypto.types";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
-import CryptoListFavourite from "./CryptoListFavourite";
 import { CryptoContext } from "@/contexts/crypto.provider";
 import Colors from "@/assets/Colors";
 

@@ -1,10 +1,11 @@
-import { ToggleButtonItem } from "@/components/Utils/ToggleButton";
 import { Quote, ShowOtherAssetsType, SortAssetsType, quoteDetails } from "./crypto.types";
 import { DarkModeType } from "./darkMode.types";
 import { DateFormatType } from "./date.types";
 import { GraphModeType } from "./graph.types";
 import { AvailableTranslationDetails, TranslationPossibility, TranslationType } from "./translation.types";
 import { WalletItem } from "./wallet.types";
+
+import { ToggleButtonItem } from "@/components/Utils/ToggleButton";
 
 export const settingsStorageKey: string = 'CV_SETTINGS_KEY';
 
@@ -81,6 +82,9 @@ export const settingsDetails: Record<SettingsEnum, (t: TranslationType) => ({
     ]
   })
 };
+
+export type SettingsValue = string | Quote | DateFormatType | string[] | GraphModeType | WalletItem | WalletItem[] | 
+  TranslationPossibility | DarkModeType | ShowOtherAssetsType | SortAssetsType;
 
 export interface SettingsType {
   quote: Quote;

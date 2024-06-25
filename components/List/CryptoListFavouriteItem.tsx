@@ -1,13 +1,15 @@
+import { FC, memo, useContext, useMemo } from "react";
+import { Link } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+
+import CryptoIcon from "../Utils/CryptoIcon";
+import CryptoIconCircle from "../Utils/CryptoIconCircle";
+
 import { SettingsContext } from "@/contexts/settings.provider";
 import { ICrypto, quoteDetails } from "@/types/crypto.types";
-import { FC, memo, useContext, useMemo } from "react";
-import CryptoIcon from "../Utils/CryptoIcon";
 import ECrypto from "@/constants/cryptos.enum";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import Colors, { EColor } from "@/assets/Colors";
-import { Link } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import CryptoIconCircle from "../Utils/CryptoIconCircle";
 import { printNumber } from "@/services/print.service";
 
 interface CryptoListFavouriteItemProps {

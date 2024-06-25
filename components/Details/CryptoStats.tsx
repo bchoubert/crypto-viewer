@@ -1,13 +1,15 @@
+import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { StyleSheet, View } from "react-native";
+
+import IconItem from "../Utils/IconItem";
+import { EIcon } from "../Utils/Icon";
+
 import ECrypto from "@/constants/cryptos.enum";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { fetchCrypto24hrStats, fetchCryptoBuyPrice, fetchCryptoSellPrice } from "@/services/network.service";
 import { Stats } from "@/types/stats.types";
-import { FC, memo, useCallback, useContext, useEffect, useMemo, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import IconItem from "../Utils/IconItem";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import { TranslationsContext } from "@/contexts/translations.provider";
-import { EIcon } from "../Utils/Icon";
 import { printNumber } from "@/services/print.service";
 import { quoteDetails } from "@/types/crypto.types";
 

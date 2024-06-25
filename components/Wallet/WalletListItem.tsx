@@ -1,15 +1,17 @@
-import { quoteDetails } from "@/types/crypto.types";
 import { FC, memo, useCallback, useContext, useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+
 import CryptoIcon from "../Utils/CryptoIcon";
-import ECrypto from "@/constants/cryptos.enum";
+import Icon, { EIcon } from "../Utils/Icon";
+import CryptoIconCircle from "../Utils/CryptoIconCircle";
+
 import Colors, { EColor } from "@/assets/Colors";
+import ECrypto from "@/constants/cryptos.enum";
+import { quoteDetails } from "@/types/crypto.types";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import { printNumber } from '@/services/print.service';
-import { Link } from "expo-router";
-import Icon, { EIcon } from "../Utils/Icon";
 import { SettingsContext } from "@/contexts/settings.provider";
-import CryptoIconCircle from "../Utils/CryptoIconCircle";
 import { WalletItem } from "@/types/wallet.types";
 import { CryptoContext } from "@/contexts/crypto.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
