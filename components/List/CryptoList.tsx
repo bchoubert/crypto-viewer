@@ -74,7 +74,7 @@ const CryptoList: FC = memo(() => {
     }
     
     const item = props.item as ICrypto;
-    return (<CryptoListItem key={item.id} item={item} />);
+    return (<CryptoListItem key={item.id} item={item} clickable={props.section.id === 'main'} />);
   }, []);
 
   const handleRenderSectionHeader = useCallback(

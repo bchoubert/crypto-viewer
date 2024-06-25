@@ -58,7 +58,7 @@ const WalletList: FC = memo(() => {
     }
 
     setSelectedCrypto(c);
-  }, []);
+  }, [wallet]);
 
   const setSelectedCryptoProxyAndOpenModal = useCallback((c: string) => {
     setSelectedCryptoProxy(c);

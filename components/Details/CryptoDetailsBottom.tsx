@@ -5,6 +5,7 @@ import { Dimensions, Pressable, ScrollView, StyleSheet, Text, View } from "react
 import { openURL } from "expo-linking";
 import Icon, { EIcon } from "../Utils/Icon";
 import CryptoStats from "./CryptoStats";
+import CryptoGraph from "./CryptoGraph";
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -61,6 +62,10 @@ const CryptoDetailsBottom: FC<CryptoDetailsBottomProps> = memo(({
             <Text style={{ color: details.color }}>{details.website}</Text>
             <Icon name={EIcon.externalLink} width={12} color={details.color} />
           </Pressable>
+                
+          <Text style={styles.title}>Graph</Text>
+          <CryptoGraph id={id} />
+
           <Text style={styles.title}>Stats</Text>
           <CryptoStats id={id} />
         </View>

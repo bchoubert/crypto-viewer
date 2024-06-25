@@ -13,6 +13,7 @@ import { SettingsContext } from "@/contexts/settings.provider";
 
 interface CryptoListItemProps {
   item: ICrypto;
+  clickable?: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -67,7 +68,8 @@ const styles = StyleSheet.create({
 })
 
 const CryptoListItem: FC<CryptoListItemProps> = memo(({
-  item
+  item,
+  clickable,
 }) => {
   const { settings } = useContext(SettingsContext);
 
@@ -88,7 +90,7 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
 
   return (
     <View style={styles.sub_container}>
-      <Link href={`/crypto/${item.id}`} style={styles.container} asChild>
+      <Link href={clickable ? `/crypto/${item.id}` : ''} style={styles.container} asChild>
         <Pressable>
           <View style={styles.left}>
             {CryptoIconInstance ? (
@@ -105,7 +107,7 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
             {item.rate ? (
               <Text>{printNumber(item.rate, quoteSymbol)}</Text>
             ) : null}
-            <Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />
+            {clickable && (<Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />)}
           </View>
         </Pressable>
       </Link>

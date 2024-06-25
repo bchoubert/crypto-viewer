@@ -71,48 +71,60 @@ const CryptoStats: FC<CryptoStatsProps> = memo(({
 
   return (
     <View style={styles.container}>
-      <IconItem
-        color={details.color}
-        icon={EIcon.arrowUp}
-        text={translation.details.high}
-        subtext={printNumber(stats.high, quoteSymbol)}
-        style={styles.item}
-      />
-      <IconItem
-        color={details.color}
-        icon={EIcon.arrowDown}
-        text={translation.details.low}
-        subtext={printNumber(stats.low, quoteSymbol)}
-        style={styles.item}
-      />
-      <IconItem
-        color={details.color}
-        icon={EIcon.plus}
-        text={translation.details.buy}
-        subtext={printNumber(stats.buy, quoteSymbol)}
-        style={styles.item}
-      />
-      <IconItem
-        color={details.color}
-        icon={EIcon.minus}
-        text={translation.details.sell}
-        subtext={printNumber(stats.sell, quoteSymbol)}
-        style={styles.item}
-      />
-      <IconItem
-        color={details.color}
-        icon={EIcon.chevronRight}
-        text={translation.details.open}
-        subtext={printNumber(stats.open, quoteSymbol)}
-        style={styles.item}
-      />
-      <IconItem
-        color={details.color}
-        icon={EIcon.chevronLeft}
-        text={translation.details.last}
-        subtext={printNumber(stats.last, quoteSymbol)}
-        style={styles.item}
-      />
+      {!isNaN(stats.high) && (
+        <IconItem
+          color={details.color}
+          icon={EIcon.arrowUp}
+          text={translation.details.high}
+          subtext={printNumber(stats.high, quoteSymbol)}
+          style={styles.item}
+        />
+      )} 
+      {!isNaN(stats.low) && (
+        <IconItem
+          color={details.color}
+          icon={EIcon.arrowDown}
+          text={translation.details.low}
+          subtext={printNumber(stats.low, quoteSymbol)}
+          style={styles.item}
+        />
+      )}
+      {!isNaN(stats.buy) && (
+        <IconItem
+          color={details.color}
+          icon={EIcon.plus}
+          text={translation.details.buy}
+          subtext={printNumber(stats.buy, quoteSymbol)}
+          style={styles.item}
+        />
+      )}
+      {!isNaN(stats.sell) && (  
+        <IconItem
+          color={details.color}
+          icon={EIcon.minus}
+          text={translation.details.sell}
+          subtext={printNumber(stats.sell, quoteSymbol)}
+          style={styles.item}
+        />
+      )}
+      {!isNaN(stats.open) && (
+        <IconItem
+          color={details.color}
+          icon={EIcon.chevronRight}
+          text={translation.details.open}
+          subtext={printNumber(stats.open, quoteSymbol)}
+          style={styles.item}
+        />
+      )}
+      {!isNaN(stats.last) && (
+        <IconItem
+          color={details.color}
+          icon={EIcon.chevronLeft}
+          text={translation.details.last}
+          subtext={printNumber(stats.last, quoteSymbol)}
+          style={styles.item}
+        />
+      )}
     </View>
   );
 });
