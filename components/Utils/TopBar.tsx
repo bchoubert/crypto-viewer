@@ -46,7 +46,7 @@ const TopBar: FC = memo(() => {
       height: 50,
     },
     topBarText: {
-      color: Colors.blue,
+      color: theme.type === 'dark' ? Colors.white : Colors.blue,
       fontSize: 20,
       paddingLeft: 10,
     },
