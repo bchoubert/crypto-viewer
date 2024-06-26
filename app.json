@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "crypto-viewer-3",
-    "slug": "crypto-viewer-3",
-    "version": "1.0.0",
+    "name": "crypto-viewer",
+    "slug": "cryptoviewer",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "myapp",
@@ -19,7 +19,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bchoubert.cryptoviewer",
+      "versionCode": 13
     },
     "web": {
       "bundler": "metro",
@@ -32,6 +34,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4a4bb6e0-c847-11e9-bfea-4b06c365df40"
+      }
     }
   }
 }
