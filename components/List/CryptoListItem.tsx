@@ -12,68 +12,74 @@ import Colors, { EColor } from "@/assets/Colors";
 import CryptoDetails from "@/constants/cryptodetails.constants";
 import { printNumber } from '@/services/print.service';
 import { SettingsContext } from "@/contexts/settings.provider";
+import { ThemeContext } from "@/contexts/theme.provider";
 
 interface CryptoListItemProps {
   item: ICrypto;
   clickable?: boolean;
 }
 
-const styles = StyleSheet.create({
-  sub_container: {
-    paddingLeft: 12,
-    paddingRight: 12,
-    paddingTop: 8,
-    paddingBottom: 8,
-    backgroundColor: Colors.white,
-  },
-  container: {
-    height: 60,
-    borderRadius: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: Colors.lightGray,
-  },
-  iconplaceholder: {
-    width: 36,
-  },
-  left: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  right: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5
-  },
-  icon: {
-    height: 20,
-    width: 20,
-    color: Colors.white,
-  },
-  titles: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  title: {
-    fontWeight: '500',
-  },
-  subtitle: {
-    color: Colors.gray,
-  }
-})
-
 const CryptoListItem: FC<CryptoListItemProps> = memo(({
   item,
   clickable,
 }) => {
   const { settings } = useContext(SettingsContext);
+  const theme = useContext(ThemeContext);
+    
+  const styles = useMemo(() => StyleSheet.create({
+    sub_container: {
+      paddingLeft: 12,
+      paddingRight: 12,
+      paddingTop: 8,
+      paddingBottom: 8,
+      backgroundColor: theme[100],
+    },
+    container: {
+      height: 60,
+      borderRadius: 10,
+      paddingLeft: 10,
+      paddingRight: 10,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: theme[300],
+    },
+    iconplaceholder: {
+      width: 36,
+    },
+    left: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 8,
+    },
+    right: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 5
+    },
+    icon: {
+      height: 20,
+      width: 20,
+      color: theme[900],
+    },
+    titles: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    title: {
+      fontWeight: '500',
+      color: theme[900],
+    },
+    subtitle: {
+      color: theme[700],
+    },
+    price: {
+      color: theme[900],
+    }
+  }), [theme]);
 
   const CryptoIconInstance = useMemo(() => CryptoIcon[item.id.toLowerCase() as ECrypto], [item.id]);
   const cryptoDetails = useMemo(() => CryptoDetails[item.id.toLowerCase() as ECrypto], [item.id]);
@@ -107,7 +113,7 @@ const CryptoListItem: FC<CryptoListItemProps> = memo(({
           </View>
           <View style={styles.right}>
             {item.rate ? (
-              <Text>{printNumber(item.rate, quoteSymbol)}</Text>
+              <Text style={styles.price}>{printNumber(item.rate, quoteSymbol)}</Text>
             ) : null}
             {clickable && (<Icon name={EIcon.chevronRight} color={EColor.gray} width={12} />)}
           </View>

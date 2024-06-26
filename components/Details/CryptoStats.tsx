@@ -17,23 +17,23 @@ interface CryptoStatsProps {
   id: ECrypto;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  item: {
-    width: '50%',
-    flexBasis: '50%',
-  }
-});
-
 const CryptoStats: FC<CryptoStatsProps> = memo(({
   id,
 }) => {
   const { settings } = useContext(SettingsContext);
   const translation = useContext(TranslationsContext);
+    
+  const styles = useMemo(() => StyleSheet.create({
+    container: {
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+    },
+    item: {
+      width: '50%',
+      flexBasis: '50%',
+    }
+  }), []);
 
   const details = useMemo(() => CryptoDetails[id] || { color: '#222222' }, [id]);
   const quoteSymbol = useMemo(() => quoteDetails[settings.quote]?.symbol, [settings]);

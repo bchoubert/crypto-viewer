@@ -20,6 +20,8 @@ const EnTranslation: TranslationType = {
   },
   details: {
     details: 'Details',
+    graph: 'Graph',
+    stats: 'Stats',
     website: 'Official Website',
     stats_24h: '24h Stats',
     high: 'High',

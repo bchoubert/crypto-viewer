@@ -19,7 +19,7 @@ const Colors: Record<EColor, string> = {
   [EColor.veryLightGray]: '#F8F8F8',
   [EColor.lightGray]: '#F0F0F0',
   [EColor.midGray]: '#CDCDCD',
-  [EColor.gray]: '#AAAAAA',
+  [EColor.gray]: '#666666',
   [EColor.darkGray]: '#333333',
 
   [EColor.green]: '#00B344',

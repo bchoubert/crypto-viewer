@@ -34,6 +34,8 @@ export type TranslationType = {
   },
   details: {
     details: string,
+    graph: string,
+    stats: string,
     website: string,
     stats_24h: string,
     high: string,

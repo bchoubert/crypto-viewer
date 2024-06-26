@@ -2,92 +2,16 @@ import { FC, memo, useContext, useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { quoteDetails } from "@/types/crypto.types";
-import Colors from "@/assets/Colors";
 import { printNumber } from '@/services/print.service';
 import { SettingsContext } from "@/contexts/settings.provider";
 import { WalletItem } from "@/types/wallet.types";
 import { CryptoContext } from "@/contexts/crypto.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
+import { ThemeContext } from "@/contexts/theme.provider";
 
 interface WalletTotalItemProps {
   item: WalletItem;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 60,
-    borderBottomColor: Colors.lightGray,
-    borderBottomWidth: 1,
-    paddingLeft: 10,
-    paddingRight: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: 0,
-    justifyContent: 'space-between',
-    backgroundColor: Colors.white,
-    position: 'relative',
-  },
-
-  swipeActions: {
-    position: 'absolute',
-    height: 60,
-    left: '100%',
-    top: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  swipeActionsButton: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 70,
-    height: '100%',
-  },
-  swipeActionsButtonText: {
-    color: Colors.white,
-  },
-  edit: {
-    backgroundColor: Colors.blue,
-  },
-  delete: {
-    backgroundColor: Colors.red,
-  },
-
-  iconplaceholder: {
-    width: 36,
-  },
-  left: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  right: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5
-  },
-  numbers: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 70,
-  },
-  quantity: {
-    color: Colors.gray,
-  },
-  titles: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  title: {
-    fontWeight: '500',
-  }
-})
 
 const WalletTotalItem: FC<WalletTotalItemProps> = memo(({
   item,
@@ -96,6 +20,54 @@ const WalletTotalItem: FC<WalletTotalItemProps> = memo(({
   const { settings } = useContext(SettingsContext);
   const { cryptos } = useContext(CryptoContext);
   const translation = useContext(TranslationsContext);
+  const theme = useContext(ThemeContext);
+  
+  const styles = useMemo(() => StyleSheet.create({
+    container: {
+      height: 60,
+      paddingLeft: 15,
+      paddingRight: 10,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      margin: 0,
+      justifyContent: 'space-between',
+      backgroundColor: theme[100],
+      position: 'relative',
+    },
+
+    left: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 8,
+    },
+    right: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 5
+    },
+    numbers: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: 70,
+    },
+    quantity: {
+      color: theme[500],
+    },
+    titles: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    title: {
+      fontWeight: '500',
+      color: theme[900]
+    },
+    price: {
+      color: theme[900]
+    }
+  }), [theme]);
 
   const [quoteSymbol] = useMemo(() => {
     const quoteSymbol = quoteDetails[settings.quote]?.symbol;
@@ -133,7 +105,7 @@ const WalletTotalItem: FC<WalletTotalItemProps> = memo(({
         <View style={styles.numbers}>
           <Text style={styles.quantity}>{printNumber(quantity, 'tokens')}</Text>
           {amount ? (
-            <Text>{printNumber(amount, quoteSymbol)}</Text>
+            <Text style={styles.price}>{printNumber(amount, quoteSymbol)}</Text>
           ) : null}
         </View>
       </View>

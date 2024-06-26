@@ -90,12 +90,14 @@ const Icon: FC<IconProps> = ({
 }) => {
   const SvgIcon = icons[name];
 
+  console.log(color);
+
   if (!SvgIcon) {
     return <View><Text>ICON NOT FOUND: {name}</Text></View>
   }
 
   return (
-    <SvgIcon width={width || 25} height={width || 25} color={color} />
+    <SvgIcon width={width || 25} height={width || 25} fill={color} color={color} />
   )
 };
 

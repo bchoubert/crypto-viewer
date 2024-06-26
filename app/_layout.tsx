@@ -1,4 +1,4 @@
-import {  DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import { DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import StatusBar from '@/components/Utils/StatusBar';
 import TopBar from '@/components/Utils/TopBar';
 import CryptoProvider from '@/contexts/crypto.provider';
+import CVThemeProvider from '@/contexts/theme.provider';
 import SettingsProvider from '@/contexts/settings.provider';
 import TranslationsProvider from '@/contexts/translations.provider';
 import 'react-native-reanimated';
@@ -33,14 +34,16 @@ export default function RootLayout() {
     <ThemeProvider value={DefaultTheme}>
       <SettingsProvider>
         <TranslationsProvider>
-          <CryptoProvider>
-            <StatusBar />
-            <TopBar />
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-          </CryptoProvider>
+          <CVThemeProvider>
+            <CryptoProvider>
+              <StatusBar />
+              <TopBar />
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </CryptoProvider>
+          </CVThemeProvider>
         </TranslationsProvider>
       </SettingsProvider>
     </ThemeProvider>

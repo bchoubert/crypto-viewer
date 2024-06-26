@@ -6,60 +6,58 @@ import Icon, { EIcon } from "./Icon";
 
 import Colors, { EColor } from "@/assets/Colors";
 import { SettingsContext } from "@/contexts/settings.provider";
+import { ThemeContext } from "@/contexts/theme.provider";
 
-interface TopBarProps {
-
-}
-
-const styles = StyleSheet.create({
-  topBar: {
-    backgroundColor: Colors.white,
-    flexBasis: 60,
-    flexGrow: 0,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.lightGray,
-  },
-  topBarLeft: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  topBarRight: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconContainer: {
-    paddingLeft: 8,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 60,
-  },
-  topBarIcon: {
-    width: 50,
-    height: 50,
-  },
-  topBarText: {
-    color: Colors.blue,
-    fontSize: 20,
-    paddingLeft: 10,
-  },
-  topBarButton: {
-    height: 60,
-    width: 60,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-})
-
-const TopBar: FC<TopBarProps> = memo(() => {
+const TopBar: FC = memo(() => {
   const { hasFavourite, toggleFavourite, settings } = useContext(SettingsContext);
+  const theme = useContext(ThemeContext);
+
+  const styles = useMemo(() => StyleSheet.create({
+    topBar: {
+      backgroundColor: theme[100],
+      flexBasis: 60,
+      flexGrow: 0,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      borderBottomWidth: 1,
+      borderBottomColor: theme[300],
+    },
+    topBarLeft: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    topBarRight: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    iconContainer: {
+      paddingLeft: 8,
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      height: 60,
+    },
+    topBarIcon: {
+      width: 50,
+      height: 50,
+    },
+    topBarText: {
+      color: Colors.blue,
+      fontSize: 20,
+      paddingLeft: 10,
+    },
+    topBarButton: {
+      height: 60,
+      width: 60,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+  }), [theme]);
 
   const pathname = usePathname();
   const { id } = useGlobalSearchParams();

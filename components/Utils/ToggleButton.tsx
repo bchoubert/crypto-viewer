@@ -1,7 +1,8 @@
-import { FC, memo, useMemo } from "react";
+import { FC, memo, useContext, useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import Colors from "@/assets/Colors";
+import { ThemeContext } from "@/contexts/theme.provider";
 
 export interface ToggleButtonItem {
   id: string;
@@ -24,6 +25,8 @@ const ToggleButton: FC<ToggleButtonProps> = memo(({
   fullWidth,
   color,
 }) => {
+  const theme = useContext(ThemeContext);
+
   const styles = useMemo(() => StyleSheet.create({
     container: {
       display: 'flex',
@@ -63,8 +66,11 @@ const ToggleButton: FC<ToggleButtonProps> = memo(({
     },
     selectedItemText: {
       color: Colors.white,
+    },
+    itemText: {
+      color: theme[900],
     }
-  }), [fullWidth, color]);
+  }), [fullWidth, color, theme]);
   
   return (
     <View style={styles.container}>
@@ -80,7 +86,7 @@ const ToggleButton: FC<ToggleButtonProps> = memo(({
           onPress={() => setSelectedItem(i.id)}
         >
           <Text style={{
-            ...(selectedItem === i.id ? styles.selectedItemText : {}),
+            ...(selectedItem === i.id ? styles.selectedItemText : styles.itemText),
           }}>{i.label}</Text>
         </Pressable>
       ))}

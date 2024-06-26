@@ -9,18 +9,19 @@ import { ICrypto, ICryptoFavourite } from "@/types/crypto.types";
 import { SettingsContext } from "@/contexts/settings.provider";
 import { TranslationsContext } from "@/contexts/translations.provider";
 import { CryptoContext } from "@/contexts/crypto.provider";
-import Colors from "@/assets/Colors";
-
-const styles = StyleSheet.create({
-  list: {
-    backgroundColor: Colors.white,
-  },
-});
+import { ThemeContext } from "@/contexts/theme.provider";
 
 const CryptoList: FC = memo(() => {
   const { settings, hasFavourite } = useContext(SettingsContext);
   const translation = useContext(TranslationsContext);
   const { cryptos, isLoading, refreshCryptos } = useContext(CryptoContext);
+  const theme = useContext(ThemeContext);
+
+  const styles = useMemo(() => StyleSheet.create({
+    list: {
+      backgroundColor: theme[100],
+    },
+  }), [theme]);
 
   const [cryptosWithRates, setCryptosWithRate] = useState<ICrypto[]>([]);
   const [cryptosWithoutRates, setCryptosWithoutRate] = useState<ICrypto[]>([]);

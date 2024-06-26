@@ -20,6 +20,8 @@ const FrTranslation: TranslationType = {
   },
   details: {
     details: 'Détails',
+    graph: 'Graphique',
+    stats: 'Statistiques',
     website: 'Site Web',
     stats_24h: 'Stats sur 24h',
     high: 'Maxi',
