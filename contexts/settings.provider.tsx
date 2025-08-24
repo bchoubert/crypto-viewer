@@ -1,27 +1,52 @@
-import { FC, ReactNode, createContext, memo, useCallback, useEffect, useMemo, useState } from "react";
+import { createContext, FC, memo, ReactNode, useCallback, useContext, useMemo } from "react";
+import { useMMKVStorage } from 'react-native-mmkv-storage';
+import { StorageContext } from "./storage.provider";
+import { showToast } from "../services/toast.service";
+import { Currency } from "../services/currency.service";
+import { TranslationLanguage } from "../types/translation";
 
-import { SettingsEnum, SettingsType, SettingsValue, defaultSettings, settingsDetails } from "@/types/settings.types";
-import { loadSettings, saveSettings } from "@/services/settings.service";
-import { TranslationType } from "@/types/translation.types";
-import { WalletItem } from "@/types/wallet.types";
+type SettingsMode = 'LIGHT' | 'DARK';
+type SettingsSortMarketBy = 'SYMBOL' | 'NAME';
 
-interface SettingsContextInterface {
-  settings: SettingsType;
+interface Settings {
+  mode: SettingsMode;
+  language: TranslationLanguage;
+  sortMarketBy: SettingsSortMarketBy;
+  currency: Currency;
   favourites: string[];
-  wallet: WalletItem[];
-
-  changeSetting: (settingKey: SettingsEnum, value: string, translation: TranslationType) => void;
-  
-  toggleFavourite: (id: string) => void;
-  hasFavourite: (id: string) => boolean;
-
-  addWalletItem: (item: WalletItem) => void;
-  removeWalletItem: (id: string) => void;
 }
 
-export const SettingsContext = createContext({
-  settings: defaultSettings as SettingsType,
-} as SettingsContextInterface);
+const defaultSettings: Settings = {
+  mode: 'LIGHT',
+  language: TranslationLanguage.EN,
+  sortMarketBy: 'NAME',
+  currency: Currency.eur,
+  favourites: [],
+};
+
+interface SettingsContextInterface {
+  settings: Settings;
+  
+  setMode: (mode: SettingsMode) => void;
+  setSortMarketBy: (sortMarketBy: SettingsSortMarketBy) => void;
+  setCurrency: (currency: Currency) => void;
+  setLanguage: (language: TranslationLanguage) => void;
+
+  toggleFavourite: (cryptoSymbol: string) => void;
+  isFavourite: (cryptoSymbol: string) => boolean;
+}
+
+export const SettingsContext = createContext<SettingsContextInterface>({
+  settings: defaultSettings,
+
+  setMode: () => {},
+  setSortMarketBy: () => {},
+  setCurrency: () => {},
+  setLanguage: () => {},
+
+  toggleFavourite: () => {},
+  isFavourite: () => false,
+});
 
 interface SettingsProviderProps {
   children: ReactNode;
@@ -30,86 +55,64 @@ interface SettingsProviderProps {
 const SettingsProvider: FC<SettingsProviderProps> = memo(({
   children,
 }) => {
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [values, setValues] = useState<SettingsType>(defaultSettings);
-
-  const load = useCallback(async () => {
-    const settings = await loadSettings();
-    setValues(settings);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => { load() }, []);
-
-  const changeSettingWithValue = useCallback((settingKey: keyof SettingsType, value: SettingsValue) => {
-    const newValues = {
-      ...values,
-      [settingKey]: value
-    };
-
-    setValues(newValues);
-    saveSettings(newValues);
-  }, [values, setValues]);
-
-  const changeSettingViaAccessor = useCallback((settingKey: SettingsEnum, value: SettingsValue, translation: TranslationType) => {
-    const accessor = settingsDetails[settingKey](translation).accessor;
-
-    changeSettingWithValue(accessor, value);
-  }, [changeSettingWithValue]);
+  const { storage } = useContext(StorageContext);
   
-  const hasFavourite = useCallback((id: string) => values.favourites.includes(id), [values]);
-  const toggleFavourite = useCallback((id: string) => {
-    const isNotFavourite = !hasFavourite(id);
-    const newFav = [...values.favourites].filter(i => i !== id);
+  const [currency, setCurrency] = useMMKVStorage('currency', storage, defaultSettings.currency);
+  const [mode, setMode] = useMMKVStorage('mode', storage, defaultSettings.mode);
+  const [language, setLanguage] = useMMKVStorage('lanugage', storage, defaultSettings.language);
+  const [sortMarketBy, setSortMarketBy] = useMMKVStorage('sortMarketBy', storage, defaultSettings.sortMarketBy);
+  const [favourites, setFavourites] = useMMKVStorage('favourites', storage, defaultSettings.favourites);
 
-    if (isNotFavourite) {
-      changeSettingWithValue('favourites', [...newFav, id]);
+  const addFavourite = useCallback((newFavourite: string) => {
+    const newFavourites = [...(favourites || []), newFavourite];    
+    setFavourites(newFavourites);
+    showToast('Favourite added!');
+  }, [setFavourites, favourites]);
+
+  const removeFavourite = useCallback((oldFavourite: string) => {
+    const newFavourites = [...(favourites || [])].filter(l => l !== oldFavourite);
+    setFavourites(newFavourites);
+    showToast('Favourite removed!');
+  }, [setFavourites, favourites]);
+
+  const isFavourite = useCallback((cryptoSymbol: string) => {
+    return favourites.includes(cryptoSymbol);
+  }, [favourites]);
+
+  const toggleFavourite = useCallback((cryptoSymbol: string) => {
+    const isCryptoFavourite = isFavourite(cryptoSymbol);
+    if (isCryptoFavourite) {
+      removeFavourite(cryptoSymbol);
     } else {
-      changeSettingWithValue('favourites', newFav);
+      addFavourite(cryptoSymbol);
     }
-  }, [changeSettingWithValue, values]);
+  }, [isFavourite, addFavourite, removeFavourite]);
 
-
-  const addWalletItem = useCallback((item: WalletItem) => {
-    const newWallet = [...values.wallet].filter(w => w.id !== item.id);
-    changeSettingWithValue('wallet', [...newWallet, item]);
-  }, [changeSettingWithValue, values]);
-
-  const removeWalletItem = useCallback((id: string) => {
-    const newWallet = [...values.wallet].filter(w => w.id !== id);
-    changeSettingWithValue('wallet', newWallet);
-  }, [changeSettingWithValue, values]);
-
-  const contextValues = useMemo(
-    () => {
-      const context: SettingsContextInterface = {
-        settings: values,
-        favourites: values.favourites,
-        wallet: values.wallet,
-
-        changeSetting: changeSettingViaAccessor,
-
-        toggleFavourite,
-        hasFavourite,
-
-        addWalletItem,
-        removeWalletItem,
-      };
-      
-      return context;
+  const contextValues: SettingsContextInterface = useMemo(() => ({
+    settings: {
+      favourites,
+      currency,
+      mode,
+      language,
+      sortMarketBy,
     },
-    [ values, changeSettingViaAccessor, toggleFavourite, hasFavourite, addWalletItem, removeWalletItem],
-  );
 
-  if (isLoading) {
-    return null;
-  }
+    setMode,
+    setSortMarketBy,
+    setCurrency,
+    setLanguage,
 
-  return (
-    <SettingsContext.Provider value={contextValues}>
-      {children}
-    </SettingsContext.Provider>
-  )
+    toggleFavourite,
+    isFavourite,
+  }), [favourites, currency, mode, sortMarketBy, language,
+      setMode, setSortMarketBy, setCurrency, setLanguage,
+      toggleFavourite, isFavourite]);
+
+    return (
+      <SettingsContext.Provider value={contextValues}>
+        {children}
+      </SettingsContext.Provider>
+    );
 });
 
 export default SettingsProvider;

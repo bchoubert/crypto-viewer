@@ -1,0 +1,9 @@
+export enum RouteEnum {
+  LIST = 'LIST',
+  DETAILS = 'DETAILS',
+
+  WALLET = 'WALLET',
+  WALLET_DETAILS = 'WALLET_DETAILS',
+
+  SETTINGS = 'SETTINGS',
+}

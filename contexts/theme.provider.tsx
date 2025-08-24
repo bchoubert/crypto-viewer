@@ -1,45 +1,64 @@
-import { FC, ReactNode, createContext, memo, useContext, useEffect, useState } from "react";
-
+import { createContext, FC, memo, ReactNode, useContext, useMemo, useState } from "react";
 import { SettingsContext } from "./settings.provider";
+import { useColorScheme } from "react-native";
 
-import Colors from "@/assets/Colors";
-import { DarkModeType } from "@/types/darkMode.types";
+interface Theme {
+  colors: {
+    background: string;
+    elevated: string;
 
-interface ColorTheme {
-  type: DarkModeType;
-  statusBar: DarkModeType;
+    text: string;
+    muted: string;
 
-  100: string;
-  300: string;
-  500: string;
-  700: string;
-  900: string;
+    action: string;
+    actionText: string;
+  },
 }
 
-const themes: Record<DarkModeType, ColorTheme> = {
-  'dark': {
-    type: 'dark',
-    statusBar: 'light',
+type ThemeMode = 'LIGHT' | 'DARK';
 
-    100: Colors.darkGray,
-    300: Colors.gray,
-    500: Colors.midGray,
-    700: Colors.lightGray,
-    900: Colors.white,
+const themes: Record<ThemeMode, Theme> = {
+  'DARK': {
+    colors: {
+      background: '#010618',
+      elevated: '#0f1828',
+
+      text: '#FFFFFF',
+      muted: '#9aa3b0',
+
+      action: '#015ae4',
+      actionText: '#FFFFFF',
+    },
   },
-  'light': {
-    type: 'light',
-    statusBar: 'dark',
+  'LIGHT': {
+    colors: {
+      background: '#F9F9F9',
+      elevated: '#fdfdfe',
+      text: '#151515',
+      muted: '#989ea8',
 
-    100: Colors.white,
-    300: Colors.lightGray,
-    500: Colors.midGray,
-    700: Colors.gray,
-    900: Colors.darkGray,
-  }
+      action: '#015ae4',
+      actionText: '#FFFFFF',
+    },
+  },
 };
 
-export const ThemeContext = createContext(themes.light);
+
+interface ThemeContextInterface {
+  theme: Theme;
+  mode: ThemeMode;
+
+  statusColor: string;
+  setStatusColor: (statusColor: string) => void;
+}
+
+export const ThemeContext = createContext<ThemeContextInterface>({
+  theme: themes.LIGHT,
+  mode: 'LIGHT',
+
+  statusColor: '#015ae4',
+  setStatusColor: () => {},
+});
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -48,16 +67,35 @@ interface ThemeProviderProps {
 const ThemeProvider: FC<ThemeProviderProps> = memo(({
   children,
 }) => {
+  const [statusColor, setStatusColor] = useState<string>('#015ae4');
+
+  const colorScheme = useColorScheme();
   const { settings } = useContext(SettingsContext);
 
-  const [theme, setTheme] = useState<ColorTheme>(themes.light);
+  const mode: ThemeMode = useMemo(() => {
+    if (settings.mode) {
+      return settings.mode;
+    }
+    if (colorScheme) {
+      return colorScheme.toUpperCase() as ThemeMode;
+    }
+    return 'LIGHT';
+  }, [colorScheme, settings]);
 
-  useEffect(() => {
-    setTheme(themes[settings?.darkMode || 'light']);
-  }, [settings?.darkMode]);
+  const theme = useMemo(() => {
+    return themes[mode];
+  }, [mode]);
+
+  const contextValues = useMemo(() => ({
+    theme,
+    mode,
+
+    statusColor,
+    setStatusColor,
+  }), [mode, theme, statusColor]);
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider value={contextValues}>
       {children}
     </ThemeContext.Provider>
   );
